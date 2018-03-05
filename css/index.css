@@ -19,3 +19,18 @@ body {
 #carousel-content {
     color: #ffffff;
 }
+
+#hamburger {
+    color: #000;
+    position:absolute;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+}
+
+#uwu {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    padding-top: 2%;
+}
