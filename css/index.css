@@ -6,3 +6,16 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+#carousel-icons {
+    font-size: 70%;
+    color: #ffffff;
+}
+
+#carousel-header {
+    color: #ffffff;
+}
+
+#carousel-content {
+    color: #ffffff;
+}
