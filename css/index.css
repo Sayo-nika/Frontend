@@ -1,0 +1,15 @@
+/*
+* Sayonika Index
+* Copyright 2018 (c) Capuccino. Licensed under MIT.
+*/
+body {
+    display: flex;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3%;
+    padding-left: 2%;
+}
+
