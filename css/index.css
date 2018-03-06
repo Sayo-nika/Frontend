@@ -14,10 +14,12 @@ body {
 
 #carousel-header {
     color: #ffffff;
+    position: absolute;
 }
 
 #carousel-content {
     color: #ffffff;
+    position: fixed;
 }
 
 #hamburger {
