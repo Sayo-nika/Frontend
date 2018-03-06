@@ -26,8 +26,7 @@ body {
     color: #000;
     position:absolute;
     text-align: center;
-    padding-left: 5%;
-    padding-right: 5%;
+    margin-left: 5%;
     padding-top: 0.5em;
 }
 
