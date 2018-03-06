@@ -19,7 +19,7 @@ body {
 
 #carousel-content {
     color: #ffffff;
-    position: fixed;
+    position: absolute;
 }
 
 #hamburger {
