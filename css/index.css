@@ -36,3 +36,11 @@ body {
     padding-top: 0.5em;
     
 }
+
+/* See the subtle joke here is this rule doesn't do anything */
+
+#destiny-seekers {
+    opacity: 0;
+    display: none;
+    z-index: 1;
+}
