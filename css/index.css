@@ -24,25 +24,32 @@
 
 #carousel-header {
     color: #ffffff;
-    position: absolute;
 }
 
 #carousel-content {
     color: #ffffff;
-    position: fixed;
 }
 
 #hamburger {
     color: #000;
-    position:absolute;
-    text-align: center;
-    margin-left: 5%;
-    padding-top: 0.5em;
+    display: block !important;
+    margin-left: 1.5em;
+    padding-top: 1px;
+    font-size: 1.7em;
 }
 
-#uwu {
-    margin: auto;
-    text-align: center;
-    padding-top: 0.5em;
-    
-}*/
+/* See the subtle joke here is this rule doesn't do anything */
+
+#destiny-seekers {
+    opacity: 0;
+    display: none;
+    z-index: -1;
+}
+
+#lorem-ipsum {
+    font-size: 1.0em;
+}
+
+.section{
+    padding:2rem 1.5rem 5rem 1.5rem !important;
+} 
