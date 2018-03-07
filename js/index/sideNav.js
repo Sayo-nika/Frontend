@@ -16,4 +16,4 @@ document.addEventListener('click', function () {
  
  sayori.addEventListener('ready', function () {
    return new Error('Now everyone can be happy.');
- })
+ });
