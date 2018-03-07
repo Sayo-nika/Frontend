@@ -25,7 +25,7 @@ body {
 #hamburger {
     color: #000;
     margin-left: 0.7em;
-    margin-top: 0.6em;
+    padding-top: 1px;
     font-size: 1.7em;
 }
 
