@@ -23,38 +23,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script type="text/javascript" src="js/index/slickInit.js"></script>
-    <script type="text/javascript" src="js/index/ToolTip.js"></script>
-    <script type="text/javascript" src="js/index/sideNav.js"></script>
 
-    <nav class="z-depth-1 white">
+    <nav class="z-depth-0 white">
         <div class="nav-wrapper">
             <a class="brand-logo center black-text" id="lorem-ipsum"> DDLC Mod List</a>
             <a class="left black-text sidenav-trigger" data-target="slide-out" id="hamburger"><i class="material-icons">menu</i></a>
         </div>
     </nav>
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="images/office.jpg">
+                </div>
+                <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+                <a href="#!name"><span class="white-text name">John Doe</span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div>
+        </li>
+        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large blue lighten-1" id="tol">
+        <a class="btn-floating btn-large blue lighten-1 tooltipped" data-position="top" data-delay="50" data-tooltip="List your mod here!">
         <i class="material-icons" target="_blank" href="https://tinyurl.com/ddlcmodsubmission">add</i>
     </a>
-        <ul id="slide-out" class="sidenav">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <img src="images/office.jpg">
-                    </div>
-                    <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-                    <a href="#!name"><span class="white-text name">John Doe</span></a>
-                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-                </div>
-            </li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><a href="#!">Second Link</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-        </ul>
     </div>
     <br>
     <div class="container is-fluid">
