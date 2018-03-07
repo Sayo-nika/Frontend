@@ -17,27 +17,6 @@
     height: 100% !important;
 }
 
-/*#carousel-icons {
-    font-size: 70%;
-    color: #ffffff;
-}
-
-#carousel-header {
-    color: #ffffff;
-}
-
-#carousel-content {
-    color: #ffffff;
-}
-
-#hamburger {
-    color: #000;
-    display: block !important;
-    margin-left: 1.5em;
-    padding-top: 1px;
-    font-size: 1.7em;
-}
-
 /* See the subtle joke here is this rule doesn't do anything */
 
 #destiny-seekers {
@@ -46,10 +25,6 @@
     z-index: -1;
 }
 
-#lorem-ipsum {
-    font-size: 1.0em;
-}
-
-.section{
-    padding:2rem 1.5rem 5rem 1.5rem !important;
+.section {
+    padding: 2em;
 } 
