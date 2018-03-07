@@ -50,3 +50,7 @@ body {
 .shadowed-text {
     text-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
+
+#heartu {
+    font-size: 1.0rem;
+}
