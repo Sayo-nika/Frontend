@@ -16,19 +16,23 @@
 </head>
 
 <body>
-    <nav class="z-depth-0 transparent">
-        <div class="nav-wrapper">
-            <span class="brand-logo center black-text">DDLC Mod List</span>
-            <ul class="left">
-                <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons black-text">menu</i></a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="navbar-fixed">
+        <nav class="z-depth-0 white">
+            <div class="nav-wrapper">
+                <span class="brand-logo center black-text">DDLC Mod List</span>
+                <ul class="left">
+                    <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons black-text">menu</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large blue lighten-1 tooltipped" data-position="top" data-delay="50" data-tooltip="List your mod here!" target="_blank" href="https://tinyurl.com/ddlcmodsubmission">
-<i class="material-icons">add</i>
-</a>
+            <i class="material-icons">add</i>
+        </a>
     </div>
+
     <div id="about" class="modal">
         <div class="modal-content">
             <h4>DDLC Mod Lister</h4>
@@ -66,14 +70,8 @@
         <li><a class="waves-effect modal-trigger" href="#about"><i class="material-icons"> help</i> About</a></li>
         <li><a class="waves-effect" target="_blank" href="https://tinyurl.com/ddlcmodsubmission"><i class="material-icons">add</i> List your mod!</a></li>
         <li><a class="waves-effect" target="_blank" href="https://github.com/sr229/Sayonika"><i class="material-icons"> build</i> Browse Source</a></li>
-
-        <li>
-            <div class="sidenav-footer">
-                Sidenav images are copyright Team Solvato 2017-2018.<br>
-                Other images belong to their respective copyright owners.
-            </div>
-        </li>
     </ul>
+
     <div class="container">
         <div class="section green lighten-1">
             <h4 class="carousel-header"><i class="material-icons carousel-icon">check</i> Released</h4>
@@ -83,20 +81,19 @@
 
             <div class="carousel carousel-slider">
                 <div class="carousel-item">
-                    <div class="card horizontal small blue-grey darken-1">
+                    <div class="card small white">
                         <div class="card-image">
                             <img src="img/club.png">
                         </div>
-                        <div class="card-stacked">
-                            <div class="card-content white-text">
-                                <p>
-                                    <span class="card-title">Example Mod</span>
-                                    This is a short description about the mod.
-                                </p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Mod Page</a>
-                            </div>
+
+                        <div class="card-content black-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
                         </div>
                     </div>
                 </div>
@@ -340,6 +337,21 @@
             </div>
         </div>
     </div>
+
+    <footer class="page-footer white">
+        <div class="container black-text">
+            <div class="row">
+                <div class="col l7 s12">
+                    Sidenav images and Doki Doki Literature Club (DDLC) are copyright Team Salvato 2017-2018.<br>
+                    Any other imagery belongs to their respective copyright owners.
+                </div>
+                <div class="col l5 s12">
+                    <a href="http://teamsalvato.com/" class="footer-link right">teamsalvato.com</a><br>
+                    <a href="https://www.reddit.com/r/DDLCMods/" class="footer-link right">r/DDLCMods</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
