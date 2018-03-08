@@ -18,7 +18,7 @@
 <body>
     <nav class="z-depth-0 transparent">
         <div class="nav-wrapper">
-            <span class="brand-logo center black-text" id="lorem-ipsum">DDLC Mod List</span>
+            <span class="brand-logo center black-text">DDLC Mod List</span>
             <ul class="left">
                 <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons black-text">menu</i></a></li>
             </ul>
@@ -35,14 +35,22 @@
         <div class="modal-content">
             <h4>DDLC Mod Lister</h4>
             <p>
-                A website made with <i class="material-icons">heart</i> by <a href="https://github.com/sr229">Ayane Satomi</a> and <a href="https://github.com/Ovyerus">Ovyerus.</a>
+                A website made with <i class="material-icons red-text heart">favorite</i> by <a href="https://github.com/sr229">Ayane Satomi</a> and <a href="https://github.com/Ovyerus">Ovyerus.</a>
+                <br>
+                This site uses <a href="https://next.materializecss.com">Materialize CSS Framework</a> by <a href="https://github.com/Dogfalo">Alvin Wang</a>. Licensed under MIT.
             </p>
         </div>
+
         <div class="modal-footer">
-            <a href="https://paypal.me/chinodesuuu" target="_blank" class="modal-action modal-close waves-effect waves-green btn-flat">Donate</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+            <a class="modal-action dropdown-trigger waves-effect waves-lighten btn-flat" href="#" data-target="donate-dropdown">Donate</a>
+            <a href="#" class="modal-action modal-close waves-effect waves-lighten btn-flat">Close</a>
         </div>
     </div>
+
+    <ul id="donate-dropdown" class="dropdown-content">
+        <li><a href="https://paypal.me/chinodesuuu" target="_blank">Ayane</a></li>
+        <li><a href="https://paypal.me/ovyerus" target="_blank">Ovyerus</a></li>
+    </ul>
 
     <ul id="slide-out" class="sidenav">
         <li>
@@ -51,61 +59,295 @@
                     <img src="img/club.png">
                 </div>
                 <img class="circle" src="img/air.png">
-                <span class="name white-text shadowed-text">Mod Lister</span>
+                <span class="name white-text shadowed-text">DDLC Mod List</span>
                 <span class="email white-text shadowed-text">v1.0.0</span>
             </div>
         </li>
+
         <li><a class="subheader">GENERAL</a></li>
         <li><a class="waves-effect modal-trigger" href="#about"><i class="material-icons"> help</i> About</a></li>
         <li><a class="waves-effect" target="_blank" href="https://tinyurl.com/ddlcmodsubmission"><i class="material-icons">add</i> List your mod!</a></li>
         <li><a class="waves-effect" target="_blank" href="https://github.com/sr229/Sayonika"><i class="material-icons"> build</i> Browse Source</a></li>
+
+        <li>
+            <div class="sidenav-footer">
+                Sidenav images are copyright Team Solvato 2017-2018.<br>
+                Other images belong to their respective copyright owners.
+            </div>
+        </li>
     </ul>
 
     <div class="container">
         <div class="section green lighten-1">
-            <div class="content">
-                <h4 id="carousel-header"><i class="material-icons" id="carousel-icons">check</i> Released</h4>
-                <p id="carousel-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada elit a ullamcorper suscipit. Cras consequat congue purus id euismod. Pellentesque vitae ullamcorper quam, at pretium erat. Aliquam malesuada aliquet tellus. Donec consequat urna
-                    vel lobortis pretium. Maecenas a porttitor nisi. Cras rutrum dolor eu sapien tempus, vitae mollis orci mollis. Ut nec erat eu leo imperdiet facilisis id vitae sapien. Nunc fringilla, erat et iaculis iaculis, nisi arcu suscipit mi,
-                    et convallis turpis urna sagittis nunc. Quisque non urna ipsum. Sed faucibus lacus vitae nibh consectetur pulvinar.
-                </p>
+            <h4 class="carousel-header"><i class="material-icons carousel-icon">check</i> Released</h4>
+            <p class="carousel-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+
+            <div class="carousel carousel-slider">
+                <div class="carousel-item">
+                    <div class="card horizontal small blue-grey darken-1">
+                        <div class="card-image">
+                            <img src="img/club.png">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content white-text">
+                                <p>
+                                    <span class="card-title">Example Mod</span>
+                                    This is a short description about the mod.
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Mod Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="section teal lighten-1">
-            <div class="content">
-                <h4 id="carousel-header"><i class="material-icons" id="carousel-icons">airplay</i> Playtesting</h4>
-                <p id="carousel-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada elit a ullamcorper suscipit. Cras consequat congue purus id euismod. Pellentesque vitae ullamcorper quam, at pretium erat. Aliquam malesuada aliquet tellus. Donec consequat urna
-                    vel lobortis pretium. Maecenas a porttitor nisi. Cras rutrum dolor eu sapien tempus, vitae mollis orci mollis. Ut nec erat eu leo imperdiet facilisis id vitae sapien. Nunc fringilla, erat et iaculis iaculis, nisi arcu suscipit mi,
-                    et convallis turpis urna sagittis nunc. Quisque non urna ipsum. Sed faucibus lacus vitae nibh consectetur pulvinar.
-                </p>
+            <h4 class="carousel-header"><i class="material-icons carousel-icon">airplay</i> Playtesting</h4>
+            <p class="carousel-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="carousel carousel-slider">
+                <div class="carousel-item">
+                    <div class="card horizontal small blue-grey darken-1">
+                        <div class="card-image">
+                            <img src="img/club.png">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content white-text">
+                                <p>
+                                    <span class="card-title">Example Mod</span>
+                                    This is a short description about the mod.
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Mod Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="section orange lighten-2">
-            <div class="content">
-                <h4 id="carousel-header"><i class="material-icons" id="carousel-icons">build</i> In Development</h4>
-                <p id="carousel-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada elit a ullamcorper suscipit. Cras consequat congue purus id euismod. Pellentesque vitae ullamcorper quam, at pretium erat. Aliquam malesuada aliquet tellus. Donec consequat urna
-                    vel lobortis pretium. Maecenas a porttitor nisi. Cras rutrum dolor eu sapien tempus, vitae mollis orci mollis. Ut nec erat eu leo imperdiet facilisis id vitae sapien. Nunc fringilla, erat et iaculis iaculis, nisi arcu suscipit mi,
-                    et convallis turpis urna sagittis nunc. Quisque non urna ipsum. Sed faucibus lacus vitae nibh consectetur pulvinar.
-                </p>
+            <h4 class="carousel-header"><i class="material-icons carousel-icon">build</i> In Development</h4>
+            <p class="carousel-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="carousel carousel-slider">
+                <div class="carousel-item">
+                    <div class="card horizontal small blue-grey darken-1">
+                        <div class="card-image">
+                            <img src="img/club.png">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content white-text">
+                                <p>
+                                    <span class="card-title">Example Mod</span>
+                                    This is a short description about the mod.
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Mod Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="section red lighten-2">
-            <div class="content">
-                <h4 id="carousel-header"><i class="material-icons" id="carousel-icons">edit</i> Planning</h4>
-                <p id="carousel-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada elit a ullamcorper suscipit. Cras consequat congue purus id euismod. Pellentesque vitae ullamcorper quam, at pretium erat. Aliquam malesuada aliquet tellus. Donec consequat urna
-                    vel lobortis pretium. Maecenas a porttitor nisi. Cras rutrum dolor eu sapien tempus, vitae mollis orci mollis. Ut nec erat eu leo imperdiet facilisis id vitae sapien. Nunc fringilla, erat et iaculis iaculis, nisi arcu suscipit mi,
-                    et convallis turpis urna sagittis nunc. Quisque non urna ipsum. Sed faucibus lacus vitae nibh consectetur pulvinar.
-                </p>
+            <h4 class="carousel-header"><i class="material-icons carousel-icon">edit</i> Planning</h4>
+            <p class="carousel-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="carousel carousel-slider">
+                <div class="carousel-item">
+                    <div class="card horizontal small blue-grey darken-1">
+                        <div class="card-image">
+                            <img src="img/club.png">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content white-text">
+                                <p>
+                                    <span class="card-title">Example Mod</span>
+                                    This is a short description about the mod.
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Mod Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Example Mod</span>
+                            <p>
+                                This is a short description about the mod.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Mod Page</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+    </div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>

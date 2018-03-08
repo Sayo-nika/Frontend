@@ -1,33 +1,56 @@
 /*
-* Sayonika Index
-* Copyright 2018 (c) Capuccino. Licensed under MIT.
-*/
-body {
-    display: flex;
-    flex-direction: column;
-}
+ * Sayonika Index
+ * Copyright 2018 (c) Capuccino. Licensed under MIT.
+ */
 
-#carousel-icons {
+.carousel-icon {
     font-size: 70%;
     color: #ffffff;
 }
 
-#carousel-header {
+.carousel-header {
     color: #ffffff;
     font-size: 1.5rem;
+    font-weight: 600;
 }
 
-#carousel-content {
+.carousel-description {
     color: #ffffff;
     padding-top: 5px;
 }
 
-#hamburger {
-    color: #000;
-    display: block !important;
-    margin-left: 1.5rem;
-    padding-top: 1px;
-    font-size: 1.0rem !important;
+.brand-logo {
+    font-size: 1.3rem;
+}
+
+.section {
+    padding: 2rem;
+}
+
+.shadowed-text {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.heart {
+    font-size: 75%;
+}
+
+.user-view .background img {
+    width: 100%;
+}
+
+.sidenav-footer {
+    bottom: 96px;
+    position: absolute;
+    line-height: 1.5em;
+    padding: 0 32px;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.carousel {
+    max-width: 75%;
+    margin: auto;
 }
 
 /* See the subtle joke here is this rule doesn't do anything */
@@ -36,17 +59,4 @@ body {
     opacity: 0;
     display: none;
     z-index: -1;
-}
-
-#lorem-ipsum {
-    font-size: 1.3rem;
-    display: block !important;
-}
-
-.section{
-    padding: 2rem 1.5rem 5rem 1.5rem !important;
-}
-
-.shadowed-text {
-    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
