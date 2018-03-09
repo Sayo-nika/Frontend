@@ -1,9 +1,13 @@
 /*
- * Sayonika Index
- * Copyright 2018 (c) Capuccino. Licensed under MIT.
- */
+* Sayonika Index
+* Copyright 2018 (c) Capuccino. Licensed under MIT.
+*/
+body {
+    display: flex;
+    flex-direction: column;
+}
 
-.carousel-icon {
+.carousel-icons {
     font-size: 70%;
     color: #ffffff;
 }
@@ -11,42 +15,14 @@
 .carousel-header {
     color: #ffffff;
     font-size: 1.5rem;
-    font-weight: 600;
 }
 
 .carousel-description {
     color: #ffffff;
     padding-top: 5px;
 }
-
-.brand-logo {
-    font-size: 1.3rem;
-}
-
-.section {
-    padding: 2rem;
-}
-
-.shadowed-text {
-    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
-}
-
-.doki {
-    font-size: 75%;
-}
-
-.user-view .background img {
-    width: 100%;
-}
-
-.carousel {
-    max-width: 75%;
-    margin: auto;
-}
-
-.footer-link {
-    color: #000;
-    text-decoration: underline;
+.card {
+    margin: 1rem 1.2rem !important;
 }
 
 /* See the subtle joke here is this rule doesn't do anything */
@@ -55,4 +31,21 @@
     opacity: 0;
     display: none;
     z-index: -1;
+}
+
+#lorem-ipsum {
+    font-size: 1.3rem;
+    display: block !important;
+}
+
+.section{
+    padding: 2rem 1.5rem 5rem 1.5rem !important;
+}
+
+.shadowed-text {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+#doki {
+    font-size: 1.0rem;
 }
