@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 
-.carousel-icons {
+.carousel-icon {
     font-size: 70%;
     color: #ffffff;
 }
@@ -22,9 +22,6 @@
     color: #ffffff;
     padding-top: 5px;
 }
-.card {
-    margin: 1rem 1.2rem !important;
-}
 
 /* See the subtle joke here is this rule doesn't do anything */
 
@@ -34,12 +31,12 @@
     z-index: -1;
 }
 
-#lorem-ipsum {
-    font-size: 1.3rem;
+.brand-logo {
+    font-size: 1.3rem !important;
     display: block !important;
 }
 
-.section{
+.section {
     padding: 2rem 1.5rem 5rem 1.5rem !important;
 }
 
@@ -47,7 +44,7 @@
     text-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
-#doki {
+.doki {
     font-size: 1.0rem;
 }
 
@@ -57,4 +54,9 @@
 
 .shadowed-text {
     text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.carousel {
+    max-width: 85%;
+    margin: auto;
 }
