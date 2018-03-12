@@ -1,8 +1,9 @@
 /*
-* Sayonika Index
-* Copyright 2018 (c) Capuccino. Licensed under MIT.
-*/
-body {
+ * Sayonika Index
+ * Copyright 2018 (c) Capuccino. Licensed under MIT.
+ */
+
+ body {
     display: flex;
     flex-direction: column;
 }
@@ -48,4 +49,12 @@ body {
 
 #doki {
     font-size: 1.0rem;
+}
+
+.user-view .background img {
+    width: 100%;
+}
+
+.shadowed-text {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
