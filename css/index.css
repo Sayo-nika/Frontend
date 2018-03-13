@@ -51,7 +51,7 @@ main {
 }
 
 .shadowed-text {
-    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 2px #000, 0 0 3px #000;
 }
 
 .doki {
@@ -60,10 +60,6 @@ main {
 
 .user-view .background img {
     width: 100%;
-}
-
-.shadowed-text {
-    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
 .carousel {
