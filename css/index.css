@@ -3,9 +3,24 @@
  * Copyright 2018 (c) Capuccino. Licensed under MIT.
  */
 
- body {
+@font-face {
+    font-family: "Always In My Heart";
+    src: url("../font/Always_In_My_Heart.woff") format("woff");
+}
+
+body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.large-container {
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 .carousel-icon {
@@ -31,11 +46,6 @@
     z-index: -1;
 }
 
-.brand-logo {
-    font-size: 1.3rem !important;
-    display: block !important;
-}
-
 .section {
     padding: 2rem 1.5rem 5rem 1.5rem !important;
 }
@@ -59,4 +69,16 @@
 .carousel {
     max-width: 1000px;
     margin: auto;
+}
+
+.semibold {
+    font-weight: 600;
+}
+
+.logo-font {
+    font-family: 'Always In My Heart', cursive;
+}
+
+.user-view > .name {
+    font-size: 1.5em !important;
 }
