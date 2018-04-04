@@ -1,0 +1,24 @@
+{
+  "name": "sayonika",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/sr229/Sayonika.git",
+  "author": "Ovyerus <iamovyerus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build index.html -d dist/ --public-url ./",
+    "start": "parcel index.html"
+  },
+  "dependencies": {
+    "hyperapp": "^1.2.5",
+    "materialize-css": "^1.0.0-beta"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-jsx": "^0.0.2",
+    "node-sass": "^4.8.3",
+    "parcel-bundler": "^1.7.0"
+  }
+}
