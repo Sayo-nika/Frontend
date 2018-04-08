@@ -1,0 +1,9 @@
+@import '../../utils/mixins'
+@import '@material/list/mdc-list'
+
+.mdc-list
+    @include vendor(user-select, none)
+
+    & a
+        text-decoration: none
+        color: inherit

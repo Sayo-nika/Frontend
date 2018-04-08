@@ -6,12 +6,19 @@
   "author": "Ovyerus <iamovyerus@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build index.html -d dist/ --public-url ./",
-    "start": "parcel index.html"
+    "build": "parcel build src/index.html -d dist/ --public-url ./",
+    "start": "parcel src/index.html"
   },
   "dependencies": {
-    "hyperapp": "^1.2.5",
-    "materialize-css": "^1.0.0-beta"
+    "@material/button": "^0.34.1",
+    "@material/drawer": "^0.34.0",
+    "@material/elevation": "^0.34.0",
+    "@material/list": "^0.34.1",
+    "@material/ripple": "^0.34.1",
+    "@material/theme": "^0.33.0",
+    "@material/top-app-bar": "^0.34.1",
+    "@material/typography": "^0.34.0",
+    "hyperapp": "^1.2.5"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
