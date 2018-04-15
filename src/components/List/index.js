@@ -8,11 +8,17 @@ export const List = ({twolines, grouped, avatars, class: class_, ...rest}, child
 
     if (grouped) classes += '-group' + (class_ ? ` ${class_}` : '');
     else classes += (twolines ? ' mdc-list--two-line' : '') + (avatars ? ' mdc-list--avatar-list' : '') + (class_ ? ` ${class_}` : '');
-    
-    return <ul class={classes} {...rest}>
-        {children}
-    </ul>;
+
+    if (grouped) return <div class={classes} {...rest}>{children}</div>;
+    else return <ul class={classes} {...rest}>{children}</ul>;
 };
+
+export const ListGroup = ({subheader, ...rest}, children) => [
+    subheader && <h3 class="mdc-list-group__subheader">{subheader}</h3>,
+    <List {...rest}>
+        {children}
+    </List>
+];
 
 export const ListItem = ({oncreate=() => {}, ondestroy=() => {}, href, ...rest}, children) => {
     let onCreate = el => {
@@ -46,13 +52,6 @@ export const ListItemMetaIcon = ({href='#', icon, label, ...rest}) => (
     <a class="mdc-list-item__meta material-icons" href={href} aria-label={label} title={label} {...rest}>{icon}</a>
 );
 
-export const ListItemGroup = ({subheader, ...rest}, children) => [
-    <h3 class="mdc-list-group__subheader">{subheader}</h3>,
-    <List {...rest}>
-        {children}
-    </List>
-];
-
 export const ListTwoLineItem = ({lineone, linetwo}) => (
     <span class="mdc-list-item__text">
         {lineone}
@@ -63,7 +62,7 @@ export const ListTwoLineItem = ({lineone, linetwo}) => (
 );
 
 export const ListDivider = ({inline, hr}) => {
-    let classes = 'mdc-list-divider' + (inline ? 'mdc-list-divider--insert' : '');
+    let classes = 'mdc-list-divider' + (inline ? 'mdc-list-divider--inset' : '');
 
     if (hr) return <hr class={classes} />;
     else <li role="separator" class={classes} />;

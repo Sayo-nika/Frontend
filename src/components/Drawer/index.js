@@ -12,7 +12,7 @@ export const TemporaryDrawer = ({id}, children) => {
 };
 
 export const PermanentDrawer = ({id, withspacer}, children) => {
-    return <nav class="mdc-drawer mdc-drawer--permanent mdc-typography" id={id}>
+    return <nav class="mdc-drawer mdc-drawer--permanent" id={id}>
         {withspacer && <div class="mdc-drawer__toolbar-spacer" />}
         <div class="mdc-drawer__content">
             {children}

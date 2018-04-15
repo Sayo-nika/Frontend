@@ -3,8 +3,8 @@ import {MDCRipple} from '@material/ripple';
 
 import './Button.sass';
 
-export const Button = ({href, flat, oncreate=() => {}, ondestroy=() => {}, noripple, ...rest}, children) => {
-    let classes = ['mdc-button', flat ? 'mdc-button--unelevated' : 'mdc-button--raised'].join(' ');
+export const Button = ({href, flat, oncreate=() => {}, ondestroy=() => {}, noripple, class: class_, ...rest}, children) => {
+    let classes = 'mdc-button' + (flat ? ' mdc-button--unelevated' : ' mdc-button--raised') + (class_ ? ` ${class_}` : '');
     let onCreate = noripple ? oncreate : el => {
         el.ripple = new MDCRipple(el);
         oncreate(el);
@@ -14,6 +14,16 @@ export const Button = ({href, flat, oncreate=() => {}, ondestroy=() => {}, norip
         ondestroy(el);
     };
 
-    if (href) return <a class={classes} oncreate={onCreate} ondestroy={onDestroy} {...rest}>{children}</a>;
-    else return <button class={classes} oncreate={onCreate} ondestroy={onDestroy} {...rest}>{children}</button>;
+    let attrs = {
+        class: classes,
+        href,
+        oncreate: onCreate,
+        ondestroy: onDestroy,
+        ...rest
+    };
+
+    if (href) return <a {...attrs}>{children}</a>;
+    else return <button {...attrs}>{children}</button>;
 };
+
+export const IconButton = () => {};
