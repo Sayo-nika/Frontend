@@ -1,5 +1,13 @@
 import {h, app} from 'hyperapp';
-import {FAB, Navbar, NavbarAction, List, ListItem, ListItemIcon, PermanentDrawer, ListDivider, ListGroup, Card, CardMedia, CardActionBlock, CardAction} from './components';
+import {withLogger} from '@hyperapp/logger';
+import {
+    FAB,
+    PermanentDrawer,
+    Navbar, NavbarAction,
+    List, ListItem, ListItemIcon, ListDivider, ListGroup,
+    Card, CardMedia, CardPrimaryAction, CardActionBlock, CardAction, CardIconAction,
+    Grid, GridCell
+} from './components';
 
 import './sass/main.sass';
 
@@ -7,7 +15,7 @@ const state = {};
 const actions = {};
 const view = () => (
     <div class="mdc-typography __wrapper">
-        <FAB icon="phone" class="mdc-fab--bottom-right" labe="banana"/>
+        <FAB icon="phone" class="mdc-fab--bottom-right" label="banana"/>
 
         <Navbar title="Sayonika" shadow>
             <NavbarAction href="#" label="Do things" icon="add"/>
@@ -26,6 +34,7 @@ const view = () => (
                     <ListDivider hr/>
 
                     <ListGroup>
+                        <ListItem>Home</ListItem>
                         <ListItem>About</ListItem>
                         <ListItem>Login</ListItem>
                         <ListItem>Source</ListItem>
@@ -39,37 +48,32 @@ const view = () => (
                     Mods that have been released.
                 </p>
 
-                <div class="mdc-layout-grid">
-                    <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell">
-                            <Card class="foo">
+                <Grid>
+                    <GridCell>
+                        <Card>
+                            <CardPrimaryAction>
                                 <CardMedia class="my-card-media"/>
-                                Lol I'm a card
-                                <CardActionBlock full-bleed>
-                                    <CardAction>Woah haha!</CardAction>
-                                </CardActionBlock>
-                            </Card>
-                        </div>
-                        <div class="mdc-layout-grid__cell">
-                            <Card>Lol I'm a card</Card>
-                        </div>
-                        <div class="mdc-layout-grid__cell">
-                            <Card>Lol I'm a card</Card>
-                        </div>
-                        <div class="mdc-layout-grid__cell">
-                            <Card>Lol I'm a card</Card>
-                        </div>
-                        <div class="mdc-layout-grid__cell">
-                            <Card>Lol I'm a card</Card>
-                        </div>
-                        <div class="mdc-layout-grid__cell">
-                            <Card>Lol I'm a card</Card>
-                        </div>
-                    </div>
-                </div>
+
+                                <div class="mdc-card__content">
+                                    <h2 class="mdc-card__title mdc-typography--title">Example Mod</h2>
+                                    <h3 class="mdc-card__subtitle mdc-typography--subheading2">by John Cena</h3>
+
+                                    <div class="mdc-card__body mdc-typography--body1">
+                                        Lorem ipsum delor sit amet.
+                                    </div>
+                                </div>
+                            </CardPrimaryAction>
+
+                            <CardActionBlock>
+                                <CardAction>Download</CardAction>
+                                <CardIconAction toggle="true" icon="star_border" label="Favourite this mod" on={{content: 'star', label: 'Unfavourite this mod'}} off={{content: 'star_border', label: 'Favourite this mod'}}/>
+                            </CardActionBlock>
+                        </Card>
+                    </GridCell>
+                </Grid>
             </div>
         </div>
     </div>
 );
 
-app(state, actions, view, document.body);
+withLogger(app)(state, actions, view, document.body);

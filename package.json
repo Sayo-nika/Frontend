@@ -12,18 +12,20 @@
   "dependencies": {
     "@material/button": "^0.34.1",
     "@material/card": "^0.34.1",
+    "@material/dialog": "^0.34.1",
     "@material/drawer": "^0.34.0",
     "@material/elevation": "^0.34.0",
     "@material/fab": "^0.34.1",
+    "@material/icon-toggle": "^0.34.1",
     "@material/layout-grid": "^0.34.0",
     "@material/list": "^0.34.1",
-    "@material/ripple": "^0.34.1",
     "@material/theme": "^0.33.0",
     "@material/top-app-bar": "^0.34.1",
     "@material/typography": "^0.34.0",
     "hyperapp": "^1.2.5"
   },
   "devDependencies": {
+    "@hyperapp/logger": "^0.5.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "eslint": "^4.19.1",
