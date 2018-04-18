@@ -3,7 +3,7 @@ import {MDCRipple} from '@material/ripple';
 
 import './List.sass';
 
-export const List = ({twolines, grouped, avatars, class: class_, ...rest}, children) => {
+export const List = ({class: class_, twolines, grouped, avatars, ...rest}, children) => {
     let classes = 'mdc-list';
 
     if (grouped) classes += '-group' + (class_ ? ` ${class_}` : '');

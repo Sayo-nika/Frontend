@@ -19,6 +19,7 @@
     "@material/icon-toggle": "^0.34.1",
     "@material/layout-grid": "^0.34.0",
     "@material/list": "^0.34.1",
+    "@material/menu": "^0.34.0",
     "@material/theme": "^0.33.0",
     "@material/top-app-bar": "^0.34.1",
     "@material/typography": "^0.34.0",

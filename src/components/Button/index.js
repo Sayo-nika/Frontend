@@ -25,5 +25,3 @@ export const Button = ({href, flat, oncreate=() => {}, ondestroy=() => {}, norip
     if (href) return <a {...attrs}>{children}</a>;
     else return <button {...attrs}>{children}</button>;
 };
-
-export const IconButton = () => {};

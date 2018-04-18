@@ -5,3 +5,6 @@ export * from './Drawer';
 export * from './List';
 export * from './Card';
 export * from './Layout';
+export * from './Dialog';
+export * from './Icon';
+export * from './Menu';
