@@ -35,7 +35,7 @@ const view = () => (
                     <DialogAction onclick={() => document.getElementById('donate-menu').component.show()}>Donate</DialogAction>
                     <Menu id="donate-menu">
                         <MenuItem href="https://paypal.me/ovyerus" target="_blank">Ovyerus</MenuItem>
-                        <MenuItem>Ayane</MenuItem>
+                        <MenuItem href="https://paypal.me/chinodesuuu" target="_blank">Ayane</MenuItem>
                     </Menu>
                 </MenuAnchor>
                 <DialogAction cancel>Close</DialogAction>
