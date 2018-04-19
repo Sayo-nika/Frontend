@@ -69,7 +69,6 @@
                     "boolean": "Boolean",
                     "promise": "Promise",
                     "array": "Array",
-                    "undefined":" Undefined",
                     "null": "Null",
                     "function": "Function"
                 },

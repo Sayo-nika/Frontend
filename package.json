@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "parcel build src/index.html -d dist/ --public-url ./",
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "@material/button": "^0.34.1",
