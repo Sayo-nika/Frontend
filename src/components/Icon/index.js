@@ -49,7 +49,7 @@ export const IconButton = ({class: class_, href, label, icon, oncreate=() => {},
 
     if (toggle) {
         attrs.class += ' mdc-icon-toggle';
-        attrs.pressed = pressed;
+        attrs['aria-pressed'] = pressed;
         attrs['data-toggle-on'] = JSON.stringify(on);
         attrs['data-toggle-off'] = JSON.stringify(off);
         attrs.oncreate = el => {
