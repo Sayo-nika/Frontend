@@ -5,7 +5,7 @@
 
 import {h} from 'hyperapp';
 import {MDCRipple} from '@material/ripple';
-import {MDCIconToggle} from '@material/icon-toggle';
+import {IconButton} from '../';
 
 import './Card.sass';
 
@@ -130,33 +130,8 @@ export const CardAction = ({class: class_, href, oncreate=() => {}, ondestroy=()
  * @param {Object} [props.off] Data for when the toggle icon is unpressed.
  * @returns {JSX.Element} An action icon.
  */
-export const CardIconAction = ({class: class_, href, label, icon, oncreate=() => {}, ondestroy=() => {}, toggle=false, pressed=false, on={}, off={}, ...rest}) => {
-    let attrs = {
-        class: 'material-icons mdc-card__action mdc-card__action--icon' + (class_ ? ` ${class_}` : ''),
-        href,
-        oncreate,
-        ondestroy,
-        tabindex: 0,
-        role: 'button',
-        'aria-label': label,
-        title: label,
-        ...rest
-    };
-
-    if (toggle) {
-        attrs.pressed = pressed;
-        attrs['data-toggle-on'] = JSON.stringify(on);
-        attrs['data-toggle-off'] = JSON.stringify(off);
-        attrs.oncreate = el => {
-            el.component = new MDCIconToggle(el);
-            oncreate(el);
-        };
-        attrs.ondestroy = el => {
-            el.component.destroy();
-            ondestroy(el);
-        };
-    }
-
-    if (href) return <a {...attrs}>{icon}</a>;
-    else return <i {...attrs}>{icon}</i>;
+export const CardIconAction = ({class: class_, ...rest}) => {
+    let classes = 'mdc-card__action mdc-card__action--icon' + (class_ ? ` ${class_}` : '');
+    
+    return <IconButton class={classes} {...rest}/>;
 };
