@@ -12,7 +12,9 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^1.0.0"
+    "express": "^4.16.3",
+    "nuxt": "^1.0.0",
+    "nuxt-vue-material": "^1.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

@@ -50,5 +50,10 @@ module.exports = {
             }
         }
     },
+    modules: [
+        ['nuxt-vue-material', {
+            theme: 'default'
+        }]
+    ],
     srcDir: 'src/'
 };
