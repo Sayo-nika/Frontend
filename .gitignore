@@ -1,8 +1,14 @@
+# Cache stuff
 node_modules/
 dist/
 dev/
-.vscode/
+.nuxt/
 .cache/
+
+# Editor memes
+.vscode/
+
+# Random node stuff
 yarn.lock
 yarn-error.log
 package-lock.json

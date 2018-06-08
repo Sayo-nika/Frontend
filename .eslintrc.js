@@ -1,23 +1,27 @@
-{
-    "env": {
-        "es6": true,
-        "browser": true
+module.exports = {
+    root: true,
+    env: {
+        browser: true,
+        node: true,
+        es6: true
     },
-    "plugins": ["jsx"],
-
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
+    parserOptions: {
+        parser: 'babel-eslint'
     },
-
-    "rules": {
+    extends: [
+        // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
+        // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
+        'plugin:vue/recommended'
+    ],
+    // required to lint *.vue files
+    plugins: [
+        'vue'
+    ],
+    // add your custom rules here
+    rules: {
         "no-console": 0,
         "global-require":"off",
-        
+
         "quotes": ["warn", "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
         "semi": "warn",
         "indent": ["error", 4, {"SwitchCase": 1}],
@@ -76,10 +80,5 @@
                 "requireReturn": false
             }
         ],
-
-        "jsx/uses-factory": ["error", {"pragma": "h"}],
-        "jsx/factory-in-scope": ["error", {"pragma": "h"}],
-        "jsx/mark-used-vars": "error",
-        "jsx/no-undef": "off"
     }
 }

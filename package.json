@@ -1,39 +1,24 @@
 {
   "name": "sayonika",
-  "version": "0.1.0",
-  "main": "index.js",
-  "repository": "https://github.com/sr229/Sayonika.git",
+  "version": "1.0.0",
+  "description": "Mod database thing for DDLC",
   "author": "Ovyerus <iamovyerus@gmail.com>",
-  "license": "MIT",
   "scripts": {
-    "build": "parcel build src/index.html -d dist/ --public-url ./",
-    "start": "parcel src/index.html -d dev/",
-    "lint": "eslint ./src"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
   },
   "dependencies": {
-    "@material/button": "^0.34.1",
-    "@material/card": "^0.34.1",
-    "@material/dialog": "^0.34.1",
-    "@material/drawer": "^0.34.0",
-    "@material/elevation": "^0.34.0",
-    "@material/fab": "^0.34.1",
-    "@material/icon-toggle": "^0.34.1",
-    "@material/layout-grid": "^0.34.0",
-    "@material/list": "^0.34.1",
-    "@material/menu": "^0.34.0",
-    "@material/theme": "^0.33.0",
-    "@material/top-app-bar": "^0.34.1",
-    "@material/typography": "^0.34.0",
-    "express": "^4.16.3",
-    "hyperapp": "^1.2.5"
+    "nuxt": "^1.0.0"
   },
   "devDependencies": {
-    "@hyperapp/logger": "^0.5.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "eslint": "^4.19.1",
-    "eslint-plugin-jsx": "^0.0.2",
-    "node-sass": "^4.8.3",
-    "parcel-bundler": "^1.7.0"
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0"
   }
 }
