@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="md-layout md-gutter">
+    <!-- <div class="md-layout md-gutter">
       <div class="md-layout-item md-xlarge-size-33 md-large-size-33 md-medium-size-50 md-small-size-50 md-xsmall-size-100">
         <md-card md-with-hover>
           <md-card-area>
@@ -42,13 +42,13 @@
       </div>
     </div>
 
-    <md-dialog-alert :md-active.sync="cardModal" md-content="Haha u pressed the card butan"/>
+    <md-dialog-alert :md-active.sync="cardModal" md-content="Haha u pressed the card butan"/> -->
   </div>
 </template>
 
 <script>
 export default {
-  layout: 'mod-views',
+  layout: 'mods',
   data() {
     return {
       cardModal: false

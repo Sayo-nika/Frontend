@@ -1,13 +1,8 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'Sayonika',
     meta: [
-      {
-        charset: 'utf-8'
-      },
+      {charset: 'utf-8'},
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1'
@@ -26,24 +21,14 @@ module.exports = {
       },
       {
         rel: 'stylesheet',
-        href: '//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,700,400italic|Material+Icons'
+        href: 'https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,700,400italic|Material+Icons'
       }
     ]
   },
-  /*
-  ** Customize the progress bar color
-  */
-  loading: {
-    color: '#3B8070'
-  },
-  /*
-  ** Build configuration
-  */
+  loading: {color: '#3B8070'},
+
   build: {
-    /*
-    ** Run ESLint on save
-    */
-    vendor: ['vue-material'],
+    vendor: ['~/plugins/vuetify'],
     extend(config, {isDev, isClient}) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -55,42 +40,12 @@ module.exports = {
       }
     }
   },
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/
-    }, {
-      test: /\.vue$/,
-      loader: 'vue'
-    }, {
-      test: /\.s[a|c]ss$/,
-      loader: 'style!css!sass'
-    }]
-  },
-  vue: {
-    loaders: {
-      scss: 'style!css!sass'
-    }
-  },
-  plugins: [
-    {
-      src: '~/plugins/vue-material'
-    }
-  ],
+
   srcDir: 'src/',
+  plugins: [
+    {src: '~/plugins/vuetify'}
+  ],
   css: [
-    {
-      src: 'vue-material/dist/vue-material.min.css',
-      lang: 'css'
-    },
-    {
-      src: '~assets/theme.scss',
-      lang: 'scss'
-    },
-    {
-      src: '~assets/index.scss',
-      lang: 'scss'
-    }
+    '~/assets/styl/index.styl'
   ]
 };

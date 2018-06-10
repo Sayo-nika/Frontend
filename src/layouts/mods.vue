@@ -1,7 +1,7 @@
 <template>
   <v-app :dark="darkTheme">
-    <v-toolbar :scroll-threshold="96" height="96px" app flat scroll-off-screen>
-      <v-toolbar-title class="title-text primary--text">Sayonika</v-toolbar-title>
+    <v-toolbar :scroll-threshold="96" color="primary" height="64px" app flat scroll-off-screen>
+      <v-toolbar-title class="title-text white--text">Sayonika</v-toolbar-title>
       <v-toolbar-items>
         <div class="vertical-center ml-4">
           <v-btn class="mr-2" style="height: 36px" to="/" flat nuxt>Home</v-btn>
@@ -15,18 +15,18 @@
 
       <v-toolbar-items>
         <div class="vertical-center">
-          <v-text-field v-model="search" class="mr-4" label="Search" prepend-icon="search" hide-details single-line/>
+          <v-text-field v-model="search" class="mr-4" color="white" label="Search" prepend-icon="search" dark hide-details single-line/>
 
-          <v-badge class="mr-4" color="primary" overlap>
+          <v-badge class="mr-4" color="accent" overlap>
             <span slot="badge">5</span>
             <v-btn flat icon>
-              <v-icon large>notifications</v-icon>
+              <v-icon color="white">notifications</v-icon>
             </v-btn>
           </v-badge>
 
-          <v-menu :close-on-content-click="false" :nudge-right="48" :nudge-bottom="24" v-model="userMenu" offset-y offset-x left>
+          <v-menu :close-on-content-click="false" :nudge-right="36" :nudge-bottom="16" v-model="userMenu" offset-y offset-x left>
             <a slot="activator">
-              <v-avatar size="48" color="accent">
+              <v-avatar size="36" color="accent">
                 <img src="https://vuematerial.io/assets/examples/avatar.png" alt="Avatar">
               </v-avatar>
             </a>
@@ -67,9 +67,45 @@
     </v-toolbar>
 
     <v-content>
-      <div class="content-container">
-        <nuxt/>
-      </div>
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex xs2>
+            <v-card class="mt-2">
+              <v-list>
+                <v-list-tile @click="void 0">
+                  <v-list-tile-content>
+                    <v-list-tile-title>Released</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile @click="void 0">
+                  <v-list-tile-content>
+                    <v-list-tile-title>Playtesting</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile @click="void 0">
+                  <v-list-tile-content>
+                    <v-list-tile-title>In Development</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile @click="void 0">
+                  <v-list-tile-content>
+                    <v-list-tile-title>Planning</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-card>
+          </v-flex>
+
+          <v-flex xs10>
+            <div class="content-container">
+              <nuxt/>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-content>
 
     <v-footer height="auto" class="primary darken-1" app absolute>
