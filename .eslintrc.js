@@ -27,7 +27,6 @@ module.exports = {
     "indent": ["error", 2, { "SwitchCase": 1 }], // 2 spaces because the vue plugin wants 2 spaces in HTML.
     "no-unsafe-negation": "error",
     "eqeqeq": ["warn", "always", { "null": "ignore" }],
-    "no-alert": "error",
     "no-useless-return": "error",
     "array-bracket-spacing": "error",
     "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
