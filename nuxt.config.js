@@ -43,7 +43,8 @@ module.exports = {
 
   srcDir: 'src/',
   plugins: [
-    {src: '~/plugins/vuetify'}
+    {src: '~/plugins/vuetify'},
+    {src: '~/plugins/localStorage', ssr: false}
   ],
   css: [
     '~/assets/styl/index.styl'

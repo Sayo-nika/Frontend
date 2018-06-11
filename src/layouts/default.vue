@@ -48,7 +48,7 @@
             <v-list>
               <v-list-tile>
                 <v-list-tile-action>
-                  <v-switch v-model="darkTheme"/>
+                  <v-switch v-model="darkTheme" @click="setDarkTheme"/>
                 </v-list-tile-action>
                 <v-list-tile-title>Dark theme</v-list-tile-title>
               </v-list-tile>
@@ -92,8 +92,16 @@ export default {
     return {
       search: '',
       userMenu: false,
-      darkTheme: false
+      darkTheme: this.$store.state.user.darkTheme
     };
+  },
+  methods: {
+    setDarkTheme() {
+      this.darkTheme = !this.darkTheme;
+
+      if (this.darkTheme) this.$store.commit('user/enableDarkTheme');
+      else this.$store.commit('user/disableDarkTheme');
+    }
   }
 };
 </script>
