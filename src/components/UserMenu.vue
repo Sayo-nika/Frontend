@@ -1,5 +1,5 @@
 <template>
-  <v-menu :close-on-content-click="false" :nudge-right="size" :nudge-bottom="size / 2" v-model="userMenu" offset-y offset-x left>
+  <v-menu v-if="authed" :close-on-content-click="false" :nudge-right="size" :nudge-bottom="size / 2" v-model="userMenu" offset-y offset-x left>
     <a slot="activator">
       <v-avatar :size="size" color="accent">
         <img src="https://vuematerial.io/assets/examples/avatar.png" alt="Avatar">
@@ -32,11 +32,14 @@
         My mods
       </v-list-tile>
 
-      <v-list-tile ripple @click="void 0">
+      <v-list-tile ripple @click="logout">
         Sign out
       </v-list-tile>
     </v-list>
   </v-menu>
+  <v-toolbar-items v-else>
+    <v-btn style="height: 36px" round depressed @click="redirectLogin">Log In</v-btn>
+  </v-toolbar-items>
 </template>
 
 <script>
@@ -54,12 +57,23 @@ export default {
       darkTheme: this.$store.state.user.darkTheme
     };
   },
+  computed: {
+    authed() {
+      return this.$store.state.auth.authed;
+    }
+  },
   methods: {
     setDarkTheme() {
       this.darkTheme = !this.darkTheme;
 
       if (this.darkTheme) this.$store.commit('user/enableDarkTheme');
       else this.$store.commit('user/disableDarkTheme');
+    },
+    redirectLogin() {
+      window.location.href = `${location.origin}/login?redir=${encodeURIComponent(location.pathname)}`;
+    },
+    logout() {
+      this.$store.commit('auth/unauth');
     }
   }
 };
