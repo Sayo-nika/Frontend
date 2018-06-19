@@ -100,17 +100,16 @@ export default {
           integrity: 'sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp',
           crossorigin: 'anonymous'
         }
-      ]
+      ],
+      htmlAttrs: {
+        style: 'overflow: hidden'
+      }
     };
   }
 };
 </script>
 
 <style>
-html {
-  overflow: hidden;
-}
-
 .login-app {
   background-color: transparent !important;
   background-image: url('/login-bg.jpg') !important;
