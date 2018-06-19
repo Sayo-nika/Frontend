@@ -1,32 +1,3 @@
 @require '~vuetify/src/stylus/main'
 @require 'base'
 @require 'fonts'
-
-.no-deco {
-  color: initial !important;
-  text-decoration: none !important;
-}
-
-.ratio-16-9 {
-  position: relative;
-
-  &::before {
-    content: "";
-    display: block;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-
-  & > * {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-}
-
-.title-text {
-  font-family: 'Always In My Heart', cursive;
-  font-size: 2rem;
-  overflow: visible !important;
-  padding-top: 0.25rem;
-}
