@@ -15,8 +15,8 @@
           <v-card-text>
             <v-container class="text-xs-center">
               <v-form ref="form" class="mb-4" lazy-validation>
-                <v-text-field v-model="name" :rules="nameRules" label="Username or Email" required/>
-                <v-text-field v-model="password" :rules="passwordRules" label="Password" type="password" required/>
+                <v-text-field v-model="name" :rules="nameRules" label="Username or Email" required @keyup.enter="login"/>
+                <v-text-field v-model="password" :rules="passwordRules" label="Password" type="password" required @keyup.enter="login"/>
                 <div class="text-xs-left">
                   <nuxt-link to="/recover-password">Forgot password?</nuxt-link><br>
                   <nuxt-link to="/register">Register</nuxt-link>
