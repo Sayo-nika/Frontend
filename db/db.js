@@ -37,7 +37,8 @@ casual.define('user', id => ({
   mods: {
     authored: [],
     collaborated: []
-  }
+  },
+  created: casual.unix_time
 }));
 
 casual.define('simpleUser', user => (
@@ -63,7 +64,10 @@ casual.define('mod', id => ({
   category: casual.random_element(categories),
   owner: null,
   authors: [],
-  verified: casual.boolean
+  verified: casual.boolean,
+  rating: casual.double(0, 5).toFixed(2),
+  created: casual.unix_time,
+  released: casual.random_element([null, casual.unix_time])
 }));
 
 module.exports = (() => {
