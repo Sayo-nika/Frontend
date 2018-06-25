@@ -5,6 +5,7 @@
   "author": "Ovyerus <iamovyerus@gmail.com>",
   "scripts": {
     "dev": "nuxt",
+    "dev-api": "node db/server.js",
     "start": "nuxt start",
     "build": "nuxt build --universal",
     "generate": "nuxt generate",
@@ -12,6 +13,8 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/proxy": "^1.2.4",
     "nuxt": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
@@ -20,9 +23,11 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "casual": "^1.5.19",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "express": "^4.16.3"
   }
 }
