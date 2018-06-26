@@ -1,6 +1,6 @@
 <template>
   <v-app :dark="darkTheme">
-    <v-toolbar key="navbar" :scroll-threshold="96" color="primary" height="64px" app flat scroll-off-screen>
+    <!-- <v-toolbar key="navbar" :scroll-threshold="96" color="primary" height="64px" app flat scroll-off-screen>
       <v-toolbar-title class="title-text white--text">Sayonika</v-toolbar-title>
       <v-toolbar-items>
         <div class="vertical-center ml-4">
@@ -25,7 +25,8 @@
           <user-menu :size="36"/>
         </div>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-toolbar> -->
+    <app-navbar :height="64" :like-dark="true" :search="false" color="primary"/>
 
     <v-content>
       <v-container fluid>
@@ -69,25 +70,21 @@
       </v-container>
     </v-content>
 
-    <!-- <v-footer height="auto" class="primary darken-1" app absolute>
-      <v-layout row wrap justify-center>
-        <v-btn color="white" flat>Home</v-btn>
-        <v-btn color="white" flat>Mod List</v-btn>
-        <v-btn color="white" flat>About Us</v-btn>
-
-        <v-flex xs12 py-3 text-xs-center white--text>
-          &copy;2018 - <b>Sayonika</b>
-        </v-flex>
-      </v-layout>
-    </v-footer> -->
+    <app-footer/>
   </v-app>
 </template>
 
 <script>
 import UserMenu from '~/components/UserMenu';
+import AppNavbar from '~/components/Navbar';
+import AppFooter from '~/components/Footer';
 
 export default {
-  components: {UserMenu},
+  components: {
+    UserMenu,
+    AppFooter,
+    AppNavbar
+  },
   computed: {
     darkTheme() {
       return this.$store.state.user.darkTheme;
@@ -97,8 +94,4 @@ export default {
 </script>
 
 <style>
-.toolbar__content {
-  width: 70%;
-  margin: 0 auto;
-}
 </style>
