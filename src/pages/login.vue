@@ -112,7 +112,7 @@ export default {
 <style>
 .login-app {
   background-color: transparent !important;
-  background-image: url('/login-bg.jpg') !important;
+  background-image: url('/img/login-bg.jpg') !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;

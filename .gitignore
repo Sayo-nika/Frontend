@@ -12,3 +12,5 @@ dev/
 yarn.lock
 yarn-error.log
 package-lock.json
+
+designs.txt

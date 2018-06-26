@@ -17,6 +17,8 @@
         <v-flex xs12 mt-3 text-xs-center white--text>
           &copy; 2018 &mdash; <b>Sayonika</b>
         </v-flex>
+
+        <img class="my-2" src="/img/chibi.png" alt="Sayonika Chibi" height="64">
       </v-layout>
     </v-container>
   </v-footer>

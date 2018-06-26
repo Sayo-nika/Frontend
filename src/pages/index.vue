@@ -20,7 +20,7 @@
             <v-flex xs6>
               <div class="mod-carousel-section">
                 <div class="mod-carousel-section__inner">
-                  <img src="/club.png" alt="aaa" class="elevation-4" width="75%">
+                  <img src="/img/club.png" alt="aaa" class="elevation-4" width="75%">
                 </div>
               </div>
             </v-flex>
