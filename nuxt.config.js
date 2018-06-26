@@ -42,11 +42,27 @@ module.exports = {
   },
 
   srcDir: 'src/',
-  plugins: [
-    {src: '~/plugins/vuetify'},
-    {src: '~/plugins/localStorage', ssr: false}
-  ],
   css: [
     '~/assets/styl/index.styl'
-  ]
+  ],
+
+  plugins: [
+    '~/plugins/vuetify',
+    '~/plugins/logging',
+    {src: '~/plugins/localStorage', ssr: false}
+  ],
+  modules: [
+    '@nuxtjs/axios'
+  ],
+  axios: {
+    prefix: '/api/v1',
+    proxy: true,
+    debug: process.env.NODE_ENV !== 'production'
+  },
+  proxy: {
+    '/api/':
+      process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:3001'
+        : process.env.SAYONIKA_API_ORIGIN
+  }
 };
