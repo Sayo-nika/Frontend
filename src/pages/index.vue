@@ -33,12 +33,12 @@
       <h1 class="headline">Just Released</h1>
       <v-container grid-list-md fluid>
         <v-layout row wrap>
-          <v-flex v-for="n in 6" :key="n" xs2>
-            <v-card class="pt-4" raised ripple @click.native="modModalOpen = true">
-              <v-card-media src="https://is4-ssl.mzstatic.com/image/thumb/Music118/v4/fa/05/b5/fa05b5ed-6564-d0f9-d963-28629995c21e/Monstercat_-_Uncaged_Vol_4_Art.png/100000x100000.jpg" class="circle mx-auto" style="width: 125px;height: 125px" contain/>
+          <v-flex v-for="mod in recent" :key="mod.id" xs2>
+            <v-card class="pt-4" hover raised ripple @click.native="openModModal(mod)">
+              <v-card-media :src="mod.icon" class="circle mx-auto" style="width: 125px;height: 125px" contain/>
               <v-card-title primary-title>
                 <div class="mx-auto">
-                  <h3 class="title">Banana</h3>
+                  <h3 class="title">{{ mod.title }}</h3>
                   <div class="mt-1">
                     <v-icon>star</v-icon> 420
                   </div>
@@ -93,15 +93,15 @@
     </section>
 
     <v-dialog v-model="modModalOpen" max-width="70%" lazy>
-      <v-card>
+      <v-card v-if="activeMod">
         <v-card-title>
-          <v-avatar size="96px"><img :src="img" alt="mod icon"></v-avatar>
+          <v-avatar size="96px"><img :src="activeMod.icon" alt="mod icon"></v-avatar>
           <div class="mod-card-title ml-4">
             <div>
-              <div class="headline">Doki Doki aoije3wiknrrjn Club</div>
+              <div class="headline">{{ activeMod.title }}</div>
               <div class="title mt-1">
-                <v-avatar size="32px"><img src="https://vuematerial.io/assets/examples/avatar.png" alt="mod author"></v-avatar>
-                <i class="ml-2">That Guy</i>
+                <v-avatar size="32px"><img :src="activeMod.authors.find(a => a.id === activeMod.owner).avatar" alt="mod author"></v-avatar>
+                <i class="ml-2">{{ activeMod.authors.find(a => a.id === activeMod.owner).username }}</i>
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@
 
         <v-card-text>
           <v-container>
-            <v-layout row>
+            <!-- <v-layout row>
               <v-flex v-for="i in 3" :key="i" xs1/>
               <v-flex class="red" xs2>
                 <div class="display-1">Rating</div>
@@ -124,11 +124,18 @@
               <v-flex class="red" xs2>
                 g
               </v-flex>
-            </v-layout>
+            </v-layout> -->
 
             <div class="mod-description horizontal-center">
-              Girls dying for the second time and shit, idk.
-              <v-btn class="d-block mt-3" color="accent" outline round>Read More</v-btn>
+              {{ activeMod.tagline }}
+              <v-btn class="d-block mt-3" color="accent" outline round @click="modDescriptionExpanded = !modDescriptionExpanded">Read {{ modDescriptionExpanded ? 'Less' : 'More' }}</v-btn>
+              <transition name="height">
+                <div v-if="modDescriptionExpanded">
+                  <div class="content-container">
+                    {{ activeMod.description }}
+                  </div>
+                </div>
+              </transition>
             </div>
 
             <v-carousel class="my-5">
@@ -166,8 +173,21 @@ export default {
   data() {
     return {
       modModalOpen: false,
+      modDescriptionExpanded: false,
+      activeMod: null,
       img: 'https://is4-ssl.mzstatic.com/image/thumb/Music118/v4/fa/05/b5/fa05b5ed-6564-d0f9-d963-28629995c21e/Monstercat_-_Uncaged_Vol_4_Art.png/100000x100000.jpg'
     };
+  },
+  async asyncData(ctx) {
+    let {data: recent} = await ctx.$axios.get('/mods/recent_releases');
+
+    return {recent};
+  },
+  methods: {
+    openModModal(mod) {
+      this.activeMod = mod;
+      this.modModalOpen = true;
+    }
   }
 };
 </script>
@@ -219,5 +239,13 @@ export default {
   display: inline-block;
   max-width: calc(100% - 96px - 1rem);
   margin-left: 1rem;
+}
+
+.height-enter-active, .height-leave-active {
+  transition: max-height 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.height-enter, .height-leave-to {
+  max-height: 0;
 }
 </style>
