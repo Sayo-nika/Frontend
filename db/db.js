@@ -16,14 +16,14 @@ const sample = (arr, {min=1, max=5}={}) => arr.map(v => ({v, r: Math.random()}))
 casual.seed(420);
 
 casual.define('snowflake', () => (
-  // Wooho type coercion!
+  // Woohoo type coercion!
   casual.unix_time.toString() + casual.integer(0, 20) + casual.integer(0, 50)
 ));
 
 casual.define('user', id => ({
   username: casual.username,
   id: id || casual.snowflake,
-  avatar: null,
+  avatar: 'https://vuematerial.io/assets/examples/avatar.png',
   bio: casual.sentences(casual.integer(4, 7)),
   donator: casual.boolean,
   developer: casual.boolean,
@@ -58,9 +58,10 @@ casual.define('simpleUser', user => (
 casual.define('mod', id => ({
   id: id || casual.snowflake,
   title: casual.title,
-  icon: null,
+  icon: 'https://is4-ssl.mzstatic.com/image/thumb/Music118/v4/fa/05/b5/fa05b5ed-6564-d0f9-d963-28629995c21e/Monstercat_-_Uncaged_Vol_4_Art.png/100000x100000.jpg',
   media: [],
-  description: casual.sentence,
+  tagline: casual.sentence,
+  description: arrayOf(casual._text).join('\n\n'),
   category: casual.random_element(categories),
   owner: null,
   authors: [],
