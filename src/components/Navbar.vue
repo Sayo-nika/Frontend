@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style>
-.toolbar__content {
+.v-toolbar__content {
   width: 70%;
   margin: 0 auto;
 }

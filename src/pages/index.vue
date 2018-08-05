@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-carousel class="main-carousel mb-5">
-      <v-carousel-item v-for="n in 10" :key="n" src="/club.png" gradient="to bottom, transparent, rgba(0, 0, 0, 0.5)">
+      <v-carousel-item v-for="n in 10" :key="n" src="/img/club.png" gradient="to bottom, transparent, rgba(0, 0, 0, 0.5)">
         <v-container style="height: 100%" grid-list-md>
           <v-layout style="height: 100%" row wrap>
             <v-flex xs6>
@@ -130,16 +130,14 @@
               {{ activeMod.tagline }}
               <v-btn class="d-block mt-3" color="accent" outline round @click="modDescriptionExpanded = !modDescriptionExpanded">Read {{ modDescriptionExpanded ? 'Less' : 'More' }}</v-btn>
               <transition name="height">
-                <div v-if="modDescriptionExpanded">
-                  <div class="content-container">
-                    {{ activeMod.description }}
-                  </div>
+                <div v-if="modDescriptionExpanded" class="content-container mt-2" style="overflow: hidden">
+                  {{ activeMod.description }}
                 </div>
               </transition>
             </div>
 
             <v-carousel class="my-5">
-              <v-carousel-item v-for="n in 5" :key="n" src="/club.png"/>
+              <v-carousel-item v-for="n in 5" :key="n" src="/img/club.png"/>
             </v-carousel>
 
             <div class="mod-reviews">
@@ -242,10 +240,10 @@ export default {
 }
 
 .height-enter-active, .height-leave-active {
-  transition: max-height 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: height 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .height-enter, .height-leave-to {
-  max-height: 0;
+  height: 0;
 }
 </style>
