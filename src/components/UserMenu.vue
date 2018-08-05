@@ -28,8 +28,8 @@
         <v-list-tile-title>Dark theme</v-list-tile-title>
       </v-list-tile>
 
-      <v-list-tile ripple @click="void 0">
-        My mods
+      <v-list-tile to="/profile" nuxt ripple>
+        Profile
       </v-list-tile>
 
       <v-list-tile ripple @click="logout">
