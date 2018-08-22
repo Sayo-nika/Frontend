@@ -1,9 +1,11 @@
 <template>
-  <v-toolbar :color="color" :height="height" :scroll-threshold="96" app flat scroll-off-screen>
-    <v-toolbar-title :class="['title-text', likeDark ? 'white--text' : 'primary--text']">Sayonika</v-toolbar-title>
+  <v-toolbar :color="color" :height="height" app flat>
+    <v-toolbar-title class="title-text">
+      <nuxt-link :class="likeDark ? 'white--text' : 'primary--text'" style="text-decoration: none" to="/">Sayonika</nuxt-link>
+    </v-toolbar-title>
     <v-toolbar-items>
       <div class="vertical-center ml-4">
-        <v-btn :dark="likeDark" class="mr-2" style="height: 36px" to="/" flat nuxt round>Home</v-btn>
+        <!-- <v-btn :dark="likeDark" class="mr-2" style="height: 36px" to="/" flat nuxt round>Home</v-btn> -->
         <v-btn :dark="likeDark" class="mr-2" style="height: 36px" to="/editors-pick" flat nuxt round>Editors' Picks</v-btn>
         <v-btn :dark="likeDark" class="mr-2" style="height: 36px" to="/mods" flat nuxt round>Mod List</v-btn>
         <v-btn :dark="likeDark" class="mr-2" style="height: 36px" to="/about" flat nuxt round>About</v-btn>
