@@ -13,9 +13,6 @@
     "precommit": "npm run lint",
     "heroku-postbuild": "npm i --save-dev"
   },
-  "env": {
-    "NODE_ENV": "development"
-  },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/proxy": "^1.2.4",
