@@ -18,4 +18,4 @@ app.get('/api', (req, res) => {
   res.send('lol docs or smth will be here soon');
 });
 
-app.listen(process.env.PORT || 3001, () => console.log(`Fake API available at port ${process.env.PORT || 3001}\n`));
+app.listen(3001, () => console.log('Fake API available at port 3001\n'));
