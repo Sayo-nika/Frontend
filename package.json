@@ -10,7 +10,8 @@
     "build": "nuxt build --universal",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "heroku-postbuild": "npm i --save-dev"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
