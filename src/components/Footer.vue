@@ -4,7 +4,7 @@
       <v-layout row wrap justify-center>
         <v-btn color="white" to="/dmca" nuxt outline round>DMCA</v-btn>
         <v-btn color="white" href="https://github.com/Sayo-nika" outline round>Open Source</v-btn>
-        <v-btn color="white" href="https://github.com/Sayo-nika/Press" outline round>Press</v-btn>
+        <v-btn color="white" href="https://github.com/Sayo-nika/Press" outline round>Press Kit</v-btn>
         <v-btn color="white" to="/about" nuxt outline round>About</v-btn>
 
         <v-flex class="text-xs-center my-2" xs12 white--text>
@@ -15,7 +15,7 @@
         </v-flex>
 
         <v-flex xs12 mt-3 text-xs-center white--text>
-          &copy; 2018 &mdash; <b>Sayonika</b>
+          &copy; 2018 &mdash; <b>The Sayonika Project</b>
         </v-flex>
 
         <img class="my-2" src="/img/chibi.png" alt="Sayonika Chibi" height="64">

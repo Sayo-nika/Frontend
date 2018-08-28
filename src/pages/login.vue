@@ -2,16 +2,15 @@
   <v-app class="login-app">
     <div class="vertical-center" style="height: 100%">
       <v-content>
-        <v-card class="login-card mx-auto elevation-5">
+        <v-card class="login-card mx-auto elevation-4">
           <v-card-title primary-title>
             <div class="mx-auto">
-              <h3 class="display-3 title-text primary--text mb-2">Sayonika</h3>
+              <h3 class="display-3 title-text primary--text mb-2"><img src="/img/SayonikaLogo.svg" rel="image/svg+xml" alt="Sayonika"></h3>
               <div class="text-xs-center">
-                Blah blah blah
+                {{communityText.line}}
               </div>
             </div>
           </v-card-title>
-
           <v-card-text>
             <v-container class="text-xs-center">
               <v-form ref="form" class="mb-4" lazy-validation>
@@ -60,7 +59,7 @@ export default {
           name: 'GitHub',
           icon: 'fab fa-github',
           url: '#',
-          colour: 'grey lighten-3'
+          colour: 'grey lighten-4'
         },
         {
           name: 'GitLab',
