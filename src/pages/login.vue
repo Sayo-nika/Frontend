@@ -79,7 +79,7 @@ export default {
           name: 'Discord',
           icon: 'fab fa-discord',
           url: '#',
-          colour: 'blue lighten-1'
+          colour: 'blue lighten-1 white--text'
         }
       ]
     };
