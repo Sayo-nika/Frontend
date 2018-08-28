@@ -7,7 +7,7 @@
             <div class="mx-auto">
               <h3 class="display-3 title-text primary--text mb-2"><img src="/img/SayonikaLogo.svg" rel="image/svg+xml" alt="Sayonika"></h3>
               <div class="text-xs-center">
-                {{ communityText.line }}
+                Lorem Ipsum doret Nyan
               </div>
             </div>
           </v-card-title>
@@ -16,10 +16,7 @@
               <v-form ref="form" class="mb-4" lazy-validation>
                 <v-text-field v-model="name" :rules="nameRules" label="Username or Email" required @keyup.enter="login"/>
                 <v-text-field v-model="password" :rules="passwordRules" label="Password" type="password" required @keyup.enter="login"/>
-                <div class="text-xs-left">
-                  <nuxt-link to="/recover-password">Forgot password?</nuxt-link><br>
-                  <nuxt-link to="/register">Register</nuxt-link>
-                </div>
+                <nuxt-link to="/recover-password" class="xs-left">Forgot password?</nuxt-link><br><br>
 
                 <v-btn class="mx-auto" color="primary" large round @click="login">Login</v-btn>
               </v-form>
@@ -30,6 +27,11 @@
                 <v-btn v-for="prov in providers" :key="prov.name.toLowerCase()" :color="prov.colour" class="elevation-4" depressed fab>
                   <v-icon>{{ prov.icon }}</v-icon>
                 </v-btn>
+                <div class="text-xs-center" style="padding-top: 1.5rem !important">
+                  <br>
+                  <div class="text-xs-center">Don't have an account?</div>
+                  <nuxt-link to="/register"><v-btn class="mx-auto" color="secondary" medium round>Sign up</v-btn></nuxt-link>
+                </div>
               </div>
             </v-container>
           </v-card-text>

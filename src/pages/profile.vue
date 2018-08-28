@@ -7,7 +7,7 @@
           <v-layout>
             <v-flex xs2>
               <div style="position: relative; top: -24px;">
-                <img class="circle user-avatar" src="https://cdn.discordapp.com/attachments/387194001326997504/462817207915642882/IMG_20180701_041011.jpg" alt="user avatar">
+                <img class="circle user-avatar" src="/img/avatar.png" alt="user avatar">
               </div>
             </v-flex>
 
