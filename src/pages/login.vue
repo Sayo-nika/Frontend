@@ -27,7 +27,7 @@
                 <v-btn v-for="prov in providers" :key="prov.name.toLowerCase()" :color="prov.colour" class="elevation-4" depressed fab>
                   <v-icon>{{ prov.icon }}</v-icon>
                 </v-btn>
-                <div class="text-xs-center" style="padding-top: 1.5rem !important">
+                <div class="text-xs-center">
                   <br>
                   <div class="text-xs-center">Don't have an account?</div>
                   <nuxt-link to="/register"><v-btn class="mx-auto" color="secondary" medium round>Sign up</v-btn></nuxt-link>
