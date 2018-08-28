@@ -7,7 +7,7 @@
             <div class="mx-auto">
               <h3 class="display-3 title-text primary--text mb-2"><img src="/img/SayonikaLogo.svg" rel="image/svg+xml" alt="Sayonika"></h3>
               <div class="text-xs-center">
-                {{communityText.line}}
+                {{ communityText.line }}
               </div>
             </div>
           </v-card-title>
