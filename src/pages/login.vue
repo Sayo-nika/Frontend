@@ -3,37 +3,69 @@
     <div class="vertical-center" style="height: 100%">
       <v-content>
         <v-card class="login-card mx-auto elevation-4">
-          <v-card-title primary-title>
+          <v-card-title class="pb-0" primary-title>
             <div class="mx-auto">
-              <h3 class="display-3 title-text primary--text mb-2"><img src="/img/SayonikaLogo.svg" rel="image/svg+xml" alt="Sayonika"></h3>
-              <div class="text-xs-center">
-                Lorem Ipsum doret Nyan
-              </div>
+              <img src="/img/SayonikaLogo.svg" alt="Sayonika" height="125">
             </div>
           </v-card-title>
           <v-card-text>
-            <v-container class="text-xs-center">
-              <v-form ref="form" class="mb-4" lazy-validation>
-                <v-text-field v-model="name" :rules="nameRules" label="Username or Email" required @keyup.enter="login"/>
-                <v-text-field v-model="password" :rules="passwordRules" label="Password" type="password" required @keyup.enter="login"/>
-                <nuxt-link to="/recover-password" class="xs-left">Forgot password?</nuxt-link><br><br>
+            <v-slide-transition>
+              <v-container v-if="!altLogin" class="text-xs-center pb-0 pt-0">
+                <v-form ref="form" class="mb-2" lazy-validation>
+                  <v-text-field v-model="name" :rules="nameRules" label="Username or Email" required @keyup.enter="login"/>
+                  <v-text-field v-model="password" :rules="passwordRules" label="Password" type="password" required @keyup.enter="login"/>
 
-                <v-btn class="mx-auto" color="primary" large round @click="login">Login</v-btn>
-              </v-form>
+                  <v-container class="pa-0 pt-2" fluid>
+                    <v-layout row>
+                      <v-flex sm6 xs12>
+                        <v-checkbox v-model="rememberMe" class="mt-0" label="Remember me"/>
+                      </v-flex>
+                      <v-flex class="text-sm-right" sm6 xs12>
+                        <nuxt-link to="/recover-password" class="xs-left">Forgot password?</nuxt-link><br><br>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
 
-              Or log in with another service
+                  <v-btn class="mx-auto" color="primary" large round @click="login">Login</v-btn>
+                  <div>or <nuxt-link to="/register">sign up</nuxt-link></div>
+                </v-form>
 
-              <div class="mt-3">
-                <v-btn v-for="prov in providers" :key="prov.name.toLowerCase()" :color="prov.colour" class="elevation-4" depressed fab>
-                  <v-icon>{{ prov.icon }}</v-icon>
-                </v-btn>
-                <div class="text-xs-center">
-                  <br>
-                  <div class="text-xs-center">Don't have an account?</div>
-                  <nuxt-link to="/register"><v-btn class="mx-auto" color="secondary" medium round>Sign up</v-btn></nuxt-link>
+                <v-divider class="mt-2 mb-3"/>
+
+                <v-btn color="accent" depressed round @click="altLogin = true">Login with another service</v-btn>
+                <!-- <v-speed-dial direction="right" transition="scale-transition">
+
+                  <v-btn v-for="prov in providers" :key="prov.name.toLowerCase()" :color="prov.colour" class="elevation-4" depressed fab small>
+                    <v-icon>{{ prov.icon }}</v-icon>
+                  </v-btn>
+                </v-speed-dial> -->
+              </v-container>
+              <v-container v-else class="text-xs-center pb-0 pt-0">
+                <div class="headline pb-2">
+                  Log in with Another Service
                 </div>
-              </div>
-            </v-container>
+
+                <div class="pb-2">
+                  <v-btn color="primary" block flat large round @click="altLogin = false">
+                    <v-icon left>arrow_back</v-icon>
+                    Go back
+                  </v-btn>
+                </div>
+
+                <v-card raised>
+                  <v-list class="pa-0">
+                    <v-list-tile v-for="prov in providers" :key="prov.name.toLowerCase()" :class="prov.colour" avatar ripple @click="void 0">
+                      <v-list-tile-avatar>
+                        <v-icon>{{ prov.icon }}</v-icon>
+                      </v-list-tile-avatar>
+                      <v-list-tile-content>
+                        {{ prov.name }}
+                      </v-list-tile-content>
+                    </v-list-tile>
+                  </v-list>
+                </v-card>
+              </v-container>
+            </v-slide-transition>
           </v-card-text>
         </v-card>
       </v-content>
@@ -48,6 +80,8 @@ export default {
     return {
       name: '',
       password: '',
+      rememberMe: false,
+      altLogin: false,
 
       nameRules: [
         v => !!v || 'Username or email is required'
@@ -121,5 +155,15 @@ export default {
 
 .login-card {
   width: 450px;
+}
+
+.v-card__text {
+  padding-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .login-card {
+    width: 100%;
+  }
 }
 </style>
