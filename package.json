@@ -20,19 +20,19 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/proxy": "^1.2.4",
-    "nuxt": "^1.0.0",
+    "nuxt": "^1.4.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vuetify": "^1.1.0",
+    "vuetify": "^1.2.1",
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.5",
+    "babel-eslint": "^9.0.0",
     "casual": "^1.5.19",
-    "eslint": "^5.0.1",
+    "eslint": "^5.4.0",
     "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-vue": "^4.0.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-vue": "^4.7.1",
     "express": "^4.16.3",
     "morgan": "^1.9.0"
   }
