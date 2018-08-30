@@ -15,7 +15,7 @@
     "heroku-postbuild": "npm install -D -P"
   },
   "engines": {
-    "node": "8.x"
+    "node": ">=8.0.0"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
