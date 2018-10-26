@@ -60,9 +60,6 @@ module.exports = {
     debug: process.env.NODE_ENV !== 'production'
   },
   proxy: {
-    '/api/':
-      process.env.NODE_ENV !== 'production'
-        ? 'http://localhost:3001'
-        : process.env.SAYONIKA_API_ORIGIN
+    '/api/': process.env.SAYONIKA_API_ORIGIN || 'http://localhost:port/'
   }
 };

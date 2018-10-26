@@ -28,12 +28,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
-    "casual": "^1.5.19",
     "eslint": "^5.4.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.1.0",
-    "eslint-plugin-vue": "^4.7.1",
-    "express": "^4.16.3",
-    "morgan": "^1.9.0"
+    "eslint-plugin-vue": "^4.7.1"
   }
 }
