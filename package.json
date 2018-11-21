@@ -1,33 +1,30 @@
 {
-  "name": "sayonika-frontend",
+  "name": "frontend-v2",
   "version": "1.0.0",
-  "description": "Mod database thing for DDLC",
-  "author": "Ovyerus <iamovyerus@gmail.com>",
+  "description": "A mod frontend thing for DDLC",
+  "author": "Ovyerus",
+  "private": true,
   "scripts": {
     "dev": "nuxt",
-    "start": "nuxt start",
     "build": "nuxt build",
+    "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "heroku-postbuild": "npm install -D -P"
-  },
-  "engines": {
-    "node": ">=8.0.0"
+    "precommit": "npm run lint"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.1",
-    "@nuxtjs/proxy": "^1.2.4",
-    "nuxt": "^1.4.2",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "vuetify": "^1.2.1",
-    "vuex-persistedstate": "^2.5.4"
+    "@nuxtjs/axios": "^5.0.0",
+    "cross-env": "^5.2.0",
+    "nuxt": "^2.0.0",
+    "vuetify": "^1.2.4"
   },
   "devDependencies": {
-    "babel-eslint": "^9.0.0",
-    "eslint": "^5.4.0",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.1.0",
-    "eslint-plugin-vue": "^4.7.1"
+    "babel-eslint": "^8.2.1",
+    "eslint": "^5.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.0.0",
+    "nodemon": "^1.11.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
   }
 }

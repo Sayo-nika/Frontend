@@ -1,36 +1,73 @@
+const pkg = require('./package');
+
 module.exports = {
+  mode: 'universal',
+
+  /*
+  ** Headers of the page
+  */
   head: {
-    title: 'Sayonika',
+    title: pkg.name,
     meta: [
       {charset: 'utf-8'},
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Mod database thing for DDLC'
-      }
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: pkg.description}
     ],
     link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,700,400italic|Material+Icons'
-      }
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'}
     ]
   },
-  loading: {color: '#3B8070'},
 
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: {color: '#FFA000'},
+
+  router: {
+    scrollBehavior() {
+      return {x: 0, y: 0};
+    }
+  },
+
+  /*
+  ** Global CSS
+  */
+  css: [
+    '~/assets/style/app.styl'
+  ],
+
+  /*
+  ** Plugins to load before mounting the App
+  */
+  plugins: [
+    '~/plugins/vuetify'
+  ],
+
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [
+    // Doc: https://github.com/nuxt-community/axios-module#usage
+    '@nuxtjs/axios'
+  ],
+  /*
+  ** Axios module configuration
+  */
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  /*
+  ** Build configuration
+  */
   build: {
-    vendor: ['~/plugins/vuetify'],
-    extend(config, {isDev, isClient}) {
-      if (isDev && isClient) {
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
@@ -39,27 +76,5 @@ module.exports = {
         });
       }
     }
-  },
-
-  srcDir: 'src/',
-  css: [
-    '~/assets/styl/index.styl'
-  ],
-
-  plugins: [
-    '~/plugins/vuetify',
-    '~/plugins/logging',
-    {src: '~/plugins/localStorage', ssr: false}
-  ],
-  modules: [
-    '@nuxtjs/axios'
-  ],
-  axios: {
-    prefix: '/api/v1',
-    proxy: true,
-    debug: process.env.NODE_ENV !== 'production'
-  },
-  proxy: {
-    '/api/': process.env.SAYONIKA_API_ORIGIN || 'http://localhost:port/'
   }
 };

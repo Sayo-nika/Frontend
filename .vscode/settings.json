@@ -1,0 +1,11 @@
+{
+  "javascript.validate.enable": true,
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    {
+      "autoFix": true,
+      "language": "vue"
+    }
+  ],
+}
