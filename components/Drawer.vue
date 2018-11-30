@@ -3,7 +3,7 @@
     <v-list>
       <v-list-tile to="/" nuxt ripple>
         <v-list-tile-action>
-          <v-icon>home</v-icon>
+          <v-icon>mdi-home</v-icon>
         </v-list-tile-action>
 
         <v-list-tile-content>
@@ -13,7 +13,7 @@
 
       <v-list-tile to="/trending" nuxt ripple>
         <v-list-tile-action>
-          <v-icon>trending_up</v-icon>
+          <v-icon>mdi-trending-up</v-icon>
         </v-list-tile-action>
 
         <v-list-tile-content>
@@ -23,7 +23,7 @@
 
       <v-list-tile to="/editors-choice" nuxt ripple>
         <v-list-tile-action>
-          <v-icon>drafts</v-icon>
+          <v-icon>mdi-email-open</v-icon>
         </v-list-tile-action>
 
         <v-list-tile-content>
@@ -33,7 +33,7 @@
 
       <v-list-tile to="/loved" nuxt ripple>
         <v-list-tile-action>
-          <v-icon>favorite</v-icon>
+          <v-icon>mdi-heart</v-icon>
         </v-list-tile-action>
 
         <v-list-tile-content>

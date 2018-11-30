@@ -663,6 +663,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@mdi/font@^3.0.39":
+  version "3.0.39"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-3.0.39.tgz#8a388ec9816939eff2099120102073aecdf6e5f8"
+  integrity sha512-VnPxEXsiV+YP9NO7XyQEvs1tBxkmtPzib9dRq/1CqubaZy9oeP7Jmgd/IEya8Z3bVyj+NZpwS0YGZW1kvx2eFQ==
+
 "@nuxt/babel-preset-app@2.3.4":
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/@nuxt/babel-preset-app/-/babel-preset-app-2.3.4.tgz#e8ef218a8ce58f854aa3c822bd5ebcb7c3d1c917"

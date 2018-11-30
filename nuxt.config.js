@@ -34,7 +34,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/style/app.styl'
+    '~/assets/style/app.styl',
+    '~/node_modules/@mdi/font/css/materialdesignicons.min.css'
   ],
 
   /*

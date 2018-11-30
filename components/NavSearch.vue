@@ -3,7 +3,7 @@
     <div :class="classes">
       <div class="v-input__prepend-outer">
         <label class="v-input__icon v-input__icon--prepend" for="search">
-          <v-icon :class="focused ? 'primary--text' : 'white--text'">search</v-icon>
+          <v-icon :class="focused ? 'primary--text' : 'white--text'">mdi-magnify</v-icon>
         </label>
       </div>
       <div class="v-input__control">
@@ -15,7 +15,7 @@
       <div class="v-input__append-outer">
         <div class="v-input__icon v-input__icon--append">
           <v-btn :disabled="!text" :class="[focused ? 'primary--text' : 'white--text' ,{'display-none': !focused}]" flat icon @click="text = ''">
-            <v-icon>close</v-icon>
+            <v-icon>mdi-close</v-icon>
           </v-btn>
         </div>
       </div>

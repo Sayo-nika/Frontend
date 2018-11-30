@@ -11,7 +11,7 @@
         <div class="mod-card__info-inner">
           <div class="mod-card__title">
             <v-tooltip top>
-              <v-icon slot="activator">star</v-icon>
+              <v-icon slot="activator">mdi-star</v-icon>
               <span>Editors' Choice</span>
             </v-tooltip>
             <div class="mod-card__title-content">
@@ -20,11 +20,11 @@
           </div>
           <div class="mod-card__content-community">
             <div class="mod-card__content-community-item">
-              <v-icon>favorite</v-icon>
+              <v-icon>mdi-heart</v-icon>
               <span>2.3k</span>
             </div>
             <div class="mod-card__content-community-item">
-              <v-icon>cloud_download</v-icon>
+              <v-icon>mdi-cloud-download</v-icon>
               <span>300k</span>
             </div>
           </div>
@@ -34,7 +34,7 @@
       <div class="mod-card__actions">
         <div class="combined-button">
           <v-btn color="primary" depressed>Download</v-btn>
-          <v-btn color="accent" depressed><v-icon>favorite</v-icon></v-btn>
+          <v-btn color="accent" depressed><v-icon>mdi-heart</v-icon></v-btn>
         </div>
       </div>
     </div>
