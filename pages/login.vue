@@ -41,31 +41,18 @@
           <v-window-item :value="2">
             <v-card-text>
               <v-container class="text-xs-center pb-0 pt-0">
-                <div class="headline pb-2">
-                  Log in with Another Service
-                </div>
+                <v-list class="pa-0">
+                  <v-list-tile v-for="prov in providers" :key="prov.name.toLowerCase()" :ripple="{class: prov.textColour}" class="login-provider" avatar @click="void 0">
+                    <v-list-tile-avatar class="mr-2">
+                      <v-icon :color="prov.colour">{{ prov.icon }}</v-icon>
+                    </v-list-tile-avatar>
+                    <v-list-tile-content :class="prov.textColour">
+                      {{ prov.name }}
+                    </v-list-tile-content>
+                  </v-list-tile>
+                </v-list>
 
-                <!--div class="pb-2">
-                  <v-btn color="primary" block flat large @click="section = 1">
-                    <v-icon left>arrow_back</v-icon>
-                    Go back
-                  </v-btn>
-                </div-->
-
-                <!--v-card>
-                  <v-list class="pa-0">
-                    <v-list-tile v-for="prov in providers" :key="prov.name.toLowerCase()" :class="prov.colour" avatar ripple @click="void 0">
-                      <v-list-tile-avatar>
-                        <v-icon>{{ prov.icon }}</v-icon>
-                      </v-list-tile-avatar>
-                      <v-list-tile-content>
-                        {{ prov.name }}
-                      </v-list-tile-content>
-                    </v-list-tile>
-                  </v-list>
-                </v-card-->
-
-                <v-divider class="mt-2 mb-3"/>
+                <v-divider class="mt-3 mb-3"/>
 
                 <v-btn color="primary" flat large @click="section = 1">
                   <v-icon left>arrow_back</v-icon>
@@ -104,25 +91,29 @@ export default {
           name: 'GitHub',
           icon: 'fab fa-github',
           url: '#',
-          colour: 'grey lighten-4'
+          colour: 'grey darken-3',
+          textColour: 'grey--text text--darken-3'
         },
         {
           name: 'GitLab',
           icon: 'fab fa-gitlab',
           url: '#',
-          colour: 'orange darken-2 white--text'
+          colour: 'orange darken-2',
+          textColour: 'orange--text text--darken-2'
         },
         {
           name: 'Reddit',
           icon: 'fab fa-reddit-alien',
           url: '#',
-          colour: 'deep-orange white--text'
+          colour: 'deep-orange',
+          textColour: 'deep-orange--text'
         },
         {
           name: 'Discord',
           icon: 'fab fa-discord',
           url: '#',
-          colour: 'blue lighten-1 white--text'
+          colour: 'blue lighten-1',
+          textColour: 'blue--text text--lighten-1'
         }
       ]
     };
@@ -166,7 +157,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="stylus">
 .application--wrap {
   min-height: 0;
 }
@@ -193,6 +184,18 @@ export default {
 .login-card {
   width: 450px;
   border-radius: 8px;
+}
+
+.login-provider > .v-list__tile {
+  justify-content: center;
+
+  & > .v-list__tile__content {
+    flex: initial;
+  }
+
+  & > .v-list__tile__avatar {
+    min-width: 40px;
+  }
 }
 
 .v-card__text {
