@@ -43,14 +43,14 @@
         </a>
 
         <v-list>
-          <v-list-tile @click="void 0">
+          <v-list-tile to="/profile" nuxt ripple>
             <v-list-tile-content>Profile</v-list-tile-content>
           </v-list-tile>
-          <v-list-tile @click="void 0">
+          <v-list-tile to="/settings" nuxt ripple>
             <v-list-tile-content>Settings</v-list-tile-content>
           </v-list-tile>
           <v-divider/>
-          <v-list-tile @click="void 0">
+          <v-list-tile ripple @click="$store.commit('auth/logout')">
             <v-list-tile-content>Log Out</v-list-tile-content>
           </v-list-tile>
         </v-list>
