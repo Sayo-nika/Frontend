@@ -5,7 +5,7 @@
 
     <v-spacer/>
 
-    <!-- <nav-search/> -->
+    <nav-search/>
 
     <v-spacer/>
 

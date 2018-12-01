@@ -1,124 +1,189 @@
 <template>
-  <div class="search-wrapper" @click="$refs.input.focus()">
-    <div :class="classes">
-      <div class="v-input__prepend-outer">
-        <label class="v-input__icon v-input__icon--prepend" for="search">
-          <v-icon :class="focused ? 'primary--text' : 'white--text'">mdi-magnify</v-icon>
-        </label>
-      </div>
-      <div class="v-input__control">
-        <div class="v-input__slot">
-          <input id="search" ref="input" :class="focused ? 'primary--text' : 'white--text'" v-model="text" aria-label="search" type="text"
-                 placeholder="Search" @focus="focused = true" @blur="focused = false">
+  <div class="search__wrapper">
+    <div ref="container" :class="['search__container', {'is-focused': focused}]" @click="focused = true">
+      <div class="v-input search theme--light">
+        <div class="v-input__prepend-outer">
+          <label class="v-input__icon v-input__icon--prepend" for="search">
+            <v-icon :class="focused ? 'primary--text' : 'white--text'">mdi-magnify</v-icon>
+          </label>
         </div>
-      </div>
-      <div class="v-input__append-outer">
-        <div class="v-input__icon v-input__icon--append">
-          <v-btn :disabled="!text" :class="[focused ? 'primary--text' : 'white--text' ,{'display-none': !focused}]" flat icon @click="text = ''">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
+
+        <div class="v-input__control">
+          <div class="v-input__slot">
+            <input id="search" ref="input" :class="focused ? 'primary--text' : 'white--text'" v-model="text" aria-label="search" type="text"
+                   placeholder="Search" @focus="focused = true">
+          </div>
         </div>
+
+        <v-fade-transition>
+          <div v-if="focused" class="v-input__append-outer">
+            <div class="v-input__icon v-input__icon--append">
+              <v-btn :disabled="!text" :class="focused ? 'primary--text' : 'white--text'" flat icon @click="text = ''">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </div>
+          </div>
+        </v-fade-transition>
       </div>
+
+      <v-fade-transition>
+        <div v-if="focused" class="search__results">
+          <v-subheader class="search__results-meta">
+            <template v-if="!text">
+              Type to start searching...
+            </template>
+            <template v-else>
+              Showing {{ results.length }} results
+            </template>
+          </v-subheader>
+          <v-list v-if="text" class="search__results-list" two-line>
+
+            <!-- <v-divider/> -->
+            <v-subheader class="primary--text">
+              Mods
+            </v-subheader>
+
+            <v-list-tile avatar @click="void 0">
+              <v-list-tile-avatar>
+                <img src="https://placeimg.com/128/128/people" alt="icon">
+              </v-list-tile-avatar>
+
+              <v-list-tile-content>
+                <v-list-tile-title>Title</v-list-tile-title>
+                <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
+              </v-list-tile-content>
+
+              <v-list-tile-action>
+                <v-btn color="primary" depressed ripple>View</v-btn>
+              </v-list-tile-action>
+            </v-list-tile>
+
+            <v-divider/>
+            <v-subheader class="primary--text">
+              Users
+            </v-subheader>
+
+            <v-list-tile avatar @click="void 0">
+              <v-list-tile-avatar>
+                <img src="https://placeimg.com/128/128/people" alt="icon">
+              </v-list-tile-avatar>
+
+              <v-list-tile-content>
+                <v-list-tile-title>Title</v-list-tile-title>
+                <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
+              </v-list-tile-content>
+
+              <v-list-tile-action>
+                <v-btn color="primary" depressed ripple>View</v-btn>
+              </v-list-tile-action>
+            </v-list-tile>
+          </v-list>
+        </div>
+      </v-fade-transition>
     </div>
 
-    <div class="search__results">
-      <v-subheader class="search__results-meta">
-        {{ resultsMeta }}
-      </v-subheader>
-      <v-list class="search__results-list" two-line>
-
-        <!-- <v-divider/> -->
-        <v-subheader class="primary--text">
-          Mods
-        </v-subheader>
-
-        <v-list-tile avatar @click="void 0">
-          <v-list-tile-avatar>
-            <img src="https://placeimg.com/128/128/people" alt="icon">
-          </v-list-tile-avatar>
-
-          <v-list-tile-content>
-            <v-list-tile-title>Title</v-list-tile-title>
-            <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
-          </v-list-tile-content>
-
-          <v-list-tile-action>
-            <v-btn color="primary" depressed ripple>View</v-btn>
-          </v-list-tile-action>
-        </v-list-tile>
-
-        <v-divider/>
-        <v-subheader class="primary--text">
-          Users
-        </v-subheader>
-
-        <v-list-tile avatar @click="void 0">
-          <v-list-tile-avatar>
-            <img src="https://placeimg.com/128/128/people" alt="icon">
-          </v-list-tile-avatar>
-
-          <v-list-tile-content>
-            <v-list-tile-title>Title</v-list-tile-title>
-            <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
-          </v-list-tile-content>
-
-          <v-list-tile-action>
-            <v-btn color="primary" depressed ripple>View</v-btn>
-          </v-list-tile-action>
-        </v-list-tile>
-      </v-list>
-    </div>
-    <!-- <div class="search-scrim"/> -->
+    <v-fade-transition>
+      <div v-if="focused" class="search__scrim"/>
+    </v-fade-transition>
   </div>
 </template>
 
 <script>
+function getParentList(el) {
+  let ref = el;
+  const list = [];
+
+  while (ref.parentElement) list.push(ref = ref.parentElement);
+
+  return list;
+}
+
 export default {
   data() {
     return {
-      focused: false,
+      focusedVal: false,
       text: '',
       results: []
     };
   },
   computed: {
-    classes() {
-      return [
-        'v-input',
-        'search',
-        'theme--light',
-        {
-          'search--focused': this.focused
-          // 'primary--text': this.focused
-        }
-      ];
-    },
-    resultsMeta() {
-      return this.text ? `Showing ${this.results.length} results` : 'Type to start searching...';
+    focused: {
+      get() {
+        return this.focusedVal;
+      },
+      set(val) {
+        if (val) this.$refs.input.focus();
+
+        this.focusedVal = val;
+      }
+    }
+  },
+  mounted() {
+    const cb = ev => {
+      const targetParents = getParentList(ev.target);
+
+      if (this.focused && !targetParents.includes(this.$refs.container)) this.focused = false;
+    };
+
+    document.addEventListener('click', cb);
+    this.$_click = cb;
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.$_click);
+    delete this.$_click;
+  },
+  methods: {
+    clearSearch() {
+
+      this.focused = true;
     }
   }
 };
 </script>
 
-<style>
+<style lang="stylus">
+@import '~vuetify/src/stylus/settings/_variables'
+@import '~vuetify/src/stylus/settings/_elevations'
+
 .display-none {
   display: none !important;
 }
 
-.search-scrim {
+.search__scrim {
   position: fixed;
-  background: #000;
+  background: rgba(0, 0, 0, 0.25);
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 9000;
+  width: 100vw;
+  height: calc(100vh);
+  z-index: 4;
 }
 
-.search-wrapper {
+.search__wrapper {
   flex: 2 1 auto;
   max-width: 750px;
   position: relative;
+}
+
+.search__container {
+  position: relative;
+  z-index: 5;
+
+  &.is-focused {
+    elevation(4);
+
+    .search {
+      background: #FFF;
+
+      & .v-input__slot > input::placeholder {
+        color: $material-light.text.disabled;
+      }
+    }
+
+    .search__results {
+      elevation(4);
+    }
+  }
 }
 
 .v-input.search {
@@ -126,17 +191,18 @@ export default {
   background: rgba(255, 255, 255, 0.12);
   padding: 8px 16px;
   border-radius: 8px;
-  transition: background-color 0.2s ease;
+  transition: $primary-transition;
   z-index: 10;
-}
 
-.v-input.search--focused {
-  background: #FFF;
-}
+  & .v-input__slot {
+    margin-bottom: 0;
 
-/* .search--focused {
-  background: #eee !important;
-} */
+    & > input::placeholder {
+      color: $material-dark.text.disabled;
+      transition: $primary-transition;
+    }
+  }
+}
 
 .v-input.search .v-input__slot {
   margin-bottom: 0;
@@ -148,7 +214,6 @@ export default {
 
 .search__results {
   position: absolute;
-  /* background: #000; */
   background: #FFF;
   width: 100%;
   border-radius: 0 0 8px 8px;
@@ -169,6 +234,10 @@ export default {
 .search__results-meta {
   /* padding: 1rem; */
   background: #eee;
+
+  &:only-child {
+    border-radius: 0 0 8px 8px;
+  }
 }
 
 .search__results-list {
