@@ -13,8 +13,48 @@
       <v-btn color="primary--text" to="/login" depressed nuxt>Log In</v-btn>
       <v-btn color="primary--text" depressed>Sign Up</v-btn>
     </v-toolbar-items>
-    <v-toolbar-items v-else class="white--text">
-      lol u logged in boi
+    <v-toolbar-items v-else class="navbar__user white--text">
+      <div class="navbar__user-details">
+        <div class="navbar__user-name">Obama</div>
+        <div class="navbar__user-roles">
+          <v-tooltip bottom>
+            <v-icon slot="activator" size="16" dark>mdi-heart</v-icon>
+            Supporter
+          </v-tooltip>
+          <v-tooltip bottom>
+            <v-icon slot="activator" size="16" dark>mdi-wrench</v-icon>
+            Developer
+          </v-tooltip>
+          <v-tooltip bottom>
+            <v-icon slot="activator" size="16" dark>mdi-gavel</v-icon>
+            Moderator
+          </v-tooltip>
+          <v-tooltip bottom>
+            <v-icon slot="activator" size="16" dark>mdi-pencil</v-icon>
+            Mod Author
+          </v-tooltip>
+        </div>
+      </div>
+
+      <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
+        <a slot="activator" class="navbar__user-menu" href="#">
+          <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
+          <v-icon size="32" dark>mdi-chevron-down</v-icon>
+        </a>
+
+        <v-list>
+          <v-list-tile @click="void 0">
+            <v-list-tile-content>Profile</v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile @click="void 0">
+            <v-list-tile-content>Settings</v-list-tile-content>
+          </v-list-tile>
+          <v-divider/>
+          <v-list-tile @click="void 0">
+            <v-list-tile-content>Log Out</v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -49,5 +89,35 @@ export default {
 
 .v-toolbar__items .v-btn + .v-btn {
   margin-left: 24px !important;
+}
+
+.navbar__user {
+  display: flex;
+  height: 48px;
+}
+
+.navbar__user-menu {
+  display: flex;
+  align-content: center;
+}
+
+.navbar__user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.navbar__user-roles > * {
+  margin-left: 0.25rem;
+}
+
+.navbar__user-name {
+  font-size: 1.25rem;
+}
+
+.navbar__user-icon {
+  border-radius: 50%;
+  margin-left: 1rem;
 }
 </style>
