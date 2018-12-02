@@ -56,7 +56,13 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    proxy: true,
+    prefix: '/api/v1',
+    debug: process.env.NODE_ENV !== 'production'
+  },
+
+  proxy: {
+    '/api/': process.env.SAYONIKA_API_ORIGIN || ''
   },
 
   /*
