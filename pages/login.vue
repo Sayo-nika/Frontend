@@ -12,9 +12,11 @@
           <v-window-item :value="1">
             <v-card-text>
               <v-container class="text-xs-center pb-0 pt-0">
-                <v-form ref="form" class="mb-2" lazy-validation>
-                  <v-text-field v-model="name" :rules="nameRules" label="Username or Email" required @keyup.enter="login"/>
-                  <v-text-field v-model="password" :rules="passwordRules" label="Password" type="password" required @keyup.enter="login"/>
+                <v-form ref="form" v-model="formValid" class="mb-2" lazy-validation>
+                  <v-text-field v-model="name" :disabled="loading" :rules="nameRules" label="Username or Email" required @keyup.enter="login"/>
+                  <v-text-field v-model="password" :append-icon="showPassword ? 'visibility_off' : 'visibility'" :disabled="loading"
+                                :rules="passwordRules" :type="showPassword ? 'text' : 'password'" label="Password" required
+                                @click:append="showPassword = !showPassword" @keyup.enter="login"/>
 
                   <v-container class="pa-0 pt-2" fluid>
                     <v-layout row>
@@ -27,7 +29,7 @@
                     </v-layout>
                   </v-container>
 
-                  <v-btn :disabled="loading" :loading="loading" class="mx-auto" color="primary" large @click="login">Login</v-btn>
+                  <v-btn :disabled="submitDisabled || loading" :loading="loading" class="mx-auto" color="primary" large @click="login">Login</v-btn>
                   <div>or <nuxt-link to="/register">sign up</nuxt-link></div>
                 </v-form>
 
@@ -76,6 +78,9 @@ export default {
       name: '',
       password: '',
       rememberMe: false,
+
+      showPassword: false,
+      formValid: false,
       loading: false,
       section: 1,
 
@@ -121,6 +126,9 @@ export default {
   computed: {
     to() {
       return this.$route.query.redir ? decodeURIComponent(this.$route.query.redir) : '/';
+    },
+    submitDisabled() {
+      return !(this.name && this.password && this.formValid);
     }
   },
   methods: {
