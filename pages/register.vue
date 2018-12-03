@@ -1,7 +1,7 @@
 <template>
   <v-app class="login-app">
     <v-content>
-      <v-card class="login-card elevation-4">
+      <v-card :style="section === 2 ? 'width: 450px;' : 'width: 650px;'" class="login-card elevation-4">
         <v-card-title class="pb-0" primary-title>
           <v-layout align-center column justify-center>
             <img src="/img/SayonikaLogo.svg" alt="Sayonika" height="125">
@@ -13,30 +13,31 @@
           <v-window-item :value="1">
             <v-card-text>
               <v-container class="text-xs-center pb-0 pt-0">
-                <v-form ref="form" class="mb-2" lazy-validation>
-                  <v-text-field v-model="name" :rules="nameRules" label="Username" autofocus required @keyup.enter="register"/>
+                <v-form ref="form" v-model="formValid" class="mb-2" lazy-validation>
+                  <v-text-field v-model="name" :disabled="loading" :rules="nameRules" label="Username" autofocus required @keyup.enter="register"/>
 
                   <v-layout>
                     <div style="width: 50%; padding-right: 9px;">
-                      <v-text-field v-model="password" :append-icon="showPassword ? 'visibility_off' : 'visibility'" :loading="passwordFocused"
-                                    :rules="passwordRules" :type="showPassword ? 'text' : 'password'" label="Password" required
+                      <v-text-field v-model="password" :append-icon="showPassword ? 'visibility_off' : 'visibility'" :disabled="loading"
+                                    :loading="passwordFocused" :rules="passwordRules" :type="showPassword ? 'text' : 'password'" label="Password" required
                                     @keyup.enter="register" @click:append="showPassword = !showPassword" @focus="passwordFocused = true" @blur="passwordFocused = false">
                         <v-fade-transition slot="progress">
                           <v-progress-linear v-if="passwordFocused" v-model="passwordStrength" :color="passwordStrengthColour" height="4"/>
                         </v-fade-transition>
                       </v-text-field>
 
-                      <v-text-field v-model="passwordConfirm" :append-icon="showPasswordConfirm ? 'visibility_off' : 'visibility'" :rules="passwordConfirmRules"
-                                    :type="showPasswordConfirm ? 'text' : 'password'" label="Confirm Password" required @keyup.enter="register" @click:append="showPasswordConfirm = !showPasswordConfirm"/>
+                      <v-text-field v-model="passwordConfirm" :append-icon="showPasswordConfirm ? 'visibility_off' : 'visibility'" :disabled="loading"
+                                    :rules="passwordConfirmRules" :type="showPasswordConfirm ? 'text' : 'password'" label="Confirm Password" required
+                                    @keyup.enter="register" @click:append="showPasswordConfirm = !showPasswordConfirm"/>
                     </div>
 
                     <div style="width: 50%; padding-left: 9px;">
-                      <v-text-field v-model="email" :rules="emailRules" label="Email" type="email" required @keyup.enter="register"/>
-                      <v-text-field v-model="emailConfirm" :rules="emailConfirmRules" label="Confirm Email" type="email" required @keyup.enter="register"/>
+                      <v-text-field v-model="email" :disabled="loading" :rules="emailRules" label="Email" type="email" required @keyup.enter="register"/>
+                      <v-text-field v-model="emailConfirm" :disabled="loading" :rules="emailConfirmRules" label="Confirm Email" type="email" required @keyup.enter="register"/>
                     </div>
                   </v-layout>
 
-                  <v-btn :disabled="loading" :loading="loading" class="mx-auto" color="primary" large @click="register">Register</v-btn>
+                  <v-btn :disabled="submitDisabled || loading" :loading="loading" class="mx-auto" color="primary" large @click="register">Register</v-btn>
                   <div>Got an account? <nuxt-link to="/login">Log in</nuxt-link></div>
                 </v-form>
 
@@ -90,6 +91,7 @@ export default {
       email: '',
       emailConfirm: '',
 
+      formValid: false,
       loading: false,
       section: 1,
       showPassword: false,
@@ -104,7 +106,8 @@ export default {
         v => v.length >= 8 || 'Password must be at least 8 characters long'
       ],
       passwordConfirmRules: [
-        v => !!v || 'Required',
+        v => !!v || 'Please confirm your password',
+        v => v.length >= 8 || 'Password must be at least 8 characters long',
         v => v === this.password || 'Passwords do not match'
       ],
       emailRules: [
@@ -112,7 +115,8 @@ export default {
         v => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(v) || 'Email must be valid'
       ],
       emailConfirmRules: [
-        v => !!v || 'Required',
+        v => !!v || 'Please confirm your email',
+        v => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(v) || 'Email must be valid',
         v => v === this.email || 'Emails do not match'
       ],
 
@@ -154,6 +158,9 @@ export default {
     },
     passwordStrengthColour() {
       return ['error', 'error', 'warning', 'success', 'success'][this.passwordStrength / 100 * 4];
+    },
+    submitDisabled() {
+      return !(this.name && this.password && this.passwordConfirm && this.email && this.emailConfirm && this.formValid);
     }
   },
   methods: {
@@ -204,7 +211,6 @@ export default {
 }
 
 .login-card {
-  width: 650px;
   border-radius: 8px;
 }
 
