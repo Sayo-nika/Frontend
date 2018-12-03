@@ -89,28 +89,28 @@ export default {
       providers: [
         {
           name: 'GitHub',
-          icon: 'fab fa-github',
+          icon: 'mdi-github-circle',
           url: '#',
           colour: 'grey darken-3',
           textColour: 'grey--text text--darken-3'
         },
         {
           name: 'GitLab',
-          icon: 'fab fa-gitlab',
+          icon: 'mdi-gitlab',
           url: '#',
           colour: 'orange darken-2',
           textColour: 'orange--text text--darken-2'
         },
         {
           name: 'Reddit',
-          icon: 'fab fa-reddit-alien',
+          icon: 'mdi-reddit',
           url: '#',
           colour: 'deep-orange',
           textColour: 'deep-orange--text'
         },
         {
           name: 'Discord',
-          icon: 'fab fa-discord',
+          icon: 'mdi-discord',
           url: '#',
           colour: 'blue lighten-1',
           textColour: 'blue--text text--lighten-1'
@@ -123,9 +123,6 @@ export default {
       return this.$route.query.redir ? decodeURIComponent(this.$route.query.redir) : '/';
     }
   },
-  /*mounted() {
-    if (this.$store.state.auth.loggedIn) this.$router.replace(this.to);
-  },*/
   methods: {
     login() {
       if (this.$refs.form.validate()) {
@@ -141,14 +138,6 @@ export default {
   },
   head() {
     return {
-      link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
-          integrity: 'sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp',
-          crossorigin: 'anonymous'
-        }
-      ],
       htmlAttrs: {
         style: 'overflow: hidden'
       }
