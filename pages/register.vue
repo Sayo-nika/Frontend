@@ -1,7 +1,7 @@
 <template>
-  <v-app class="login-app">
+  <v-app class="register">
     <v-content>
-      <v-card :style="section === 2 ? 'width: 450px;' : 'width: 650px;'" class="login-card elevation-4">
+      <v-card :style="section === 2 ? 'width: 450px;' : 'width: 650px;'" class="register__card elevation-4">
         <v-card-title class="pb-0" primary-title>
           <v-layout align-center column justify-center>
             <img src="/img/SayonikaLogo.svg" alt="Sayonika" height="125">
@@ -17,7 +17,7 @@
                   <v-text-field v-model="name" :disabled="loading" :rules="nameRules" label="Username" autofocus required @keyup.enter="register"/>
 
                   <v-layout>
-                    <div style="width: 50%; padding-right: 9px;">
+                    <div class="register-col is-left">
                       <v-text-field v-model="password" :append-icon="showPassword ? 'visibility_off' : 'visibility'" :disabled="loading"
                                     :loading="passwordFocused" :rules="passwordRules" :type="showPassword ? 'text' : 'password'" label="Password" required
                                     @keyup.enter="register" @click:append="showPassword = !showPassword" @focus="passwordFocused = true" @blur="passwordFocused = false">
@@ -31,11 +31,17 @@
                                     @keyup.enter="register" @click:append="showPasswordConfirm = !showPasswordConfirm"/>
                     </div>
 
-                    <div style="width: 50%; padding-left: 9px;">
+                    <div class="register-col is-right">
                       <v-text-field v-model="email" :disabled="loading" :rules="emailRules" label="Email" type="email" required @keyup.enter="register"/>
                       <v-text-field v-model="emailConfirm" :disabled="loading" :rules="emailConfirmRules" label="Confirm Email" type="email" required @keyup.enter="register"/>
                     </div>
                   </v-layout>
+
+                  <div>
+                    <v-checkbox v-model="readTOS" :rules="tosRules">
+                      <div slot="label">I have read and agree to the <a href="#" target="_blank" @click.stop>Terms of Service</a> and the <a href="#" target="_blank" @click.stop>Community Guidelines</a>.</div>
+                    </v-checkbox>
+                  </div>
 
                   <v-btn :disabled="submitDisabled || loading" :loading="loading" class="mx-auto" color="primary" large @click="register">Register</v-btn>
                   <div>Got an account? <nuxt-link to="/login">Log in</nuxt-link></div>
@@ -52,7 +58,7 @@
             <v-card-text>
               <v-container class="text-xs-center pb-0 pt-0">
                 <v-list class="pa-0">
-                  <v-list-tile v-for="prov in providers" :key="prov.name.toLowerCase()" :ripple="{class: prov.textColour}" class="login-provider" avatar @click="void 0">
+                  <v-list-tile v-for="prov in providers" :key="prov.name.toLowerCase()" :ripple="{class: prov.textColour}" class="register-provider" avatar @click="void 0">
                     <v-list-tile-avatar class="mr-2">
                       <v-icon :color="prov.colour">{{ prov.icon }}</v-icon>
                     </v-list-tile-avatar>
@@ -90,6 +96,7 @@ export default {
       passwordConfirm: '',
       email: '',
       emailConfirm: '',
+      readTOS: false,
 
       formValid: false,
       loading: false,
@@ -118,6 +125,9 @@ export default {
         v => !!v || 'Please confirm your email',
         v => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(v) || 'Email must be valid',
         v => v === this.email || 'Emails do not match'
+      ],
+      tosRules: [
+        v => v || 'You must agree'
       ],
 
       providers: [
@@ -160,7 +170,7 @@ export default {
       return ['error', 'error', 'warning', 'success', 'success'][this.passwordStrength / 100 * 4];
     },
     submitDisabled() {
-      return !(this.name && this.password && this.passwordConfirm && this.email && this.emailConfirm && this.formValid);
+      return !(this.name && this.password && this.passwordConfirm && this.email && this.emailConfirm && this.readTOS && this.formValid);
     }
   },
   methods: {
@@ -187,17 +197,8 @@ export default {
 </script>
 
 <style lang="stylus">
-.application--wrap {
-  min-height: 0;
-}
 
-.v-content__wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.login-app {
+.register {
   background-color: transparent !important;
   background-image: url('/img/login-bg.jpg') !important;
   background-repeat: no-repeat !important;
@@ -208,13 +209,27 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & > .application--wrap {
+    min-height: 0;
+  }
+
+  & .v-content__wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
-.login-card {
+.register__card {
   border-radius: 8px;
+
+  .v-card__text {
+    padding-top: 0;
+  }
 }
 
-.login-provider > .v-list__tile {
+.register-provider > .v-list__tile {
   justify-content: center;
 
   & > .v-list__tile__content {
@@ -226,13 +241,21 @@ export default {
   }
 }
 
-.v-card__text {
-  padding-top: 0;
+.register-col {
+  width: 50%;
+
+  &.is-left {
+    padding-right: 9px;
+  }
+
+  &.is-right {
+    padding-left: 9px;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .login-card {
-    width: 100%;
+  .register__card {
+    width: 100% !important;
   }
 }
 </style>
