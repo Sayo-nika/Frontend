@@ -1,7 +1,7 @@
 <template>
-  <v-app class="login-app">
+  <v-app class="login">
     <v-content>
-      <v-card class="login-card elevation-4">
+      <v-card class="login__card elevation-4">
         <v-card-title class="pb-0" primary-title>
           <div class="mx-auto">
             <img src="/img/SayonikaLogo.svg" alt="Sayonika" height="125">
@@ -156,17 +156,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.application--wrap {
-  min-height: 0;
-}
-
-.v-content__wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.login-app {
+.login {
   background-color: transparent !important;
   background-image: url('/img/login-bg.jpg') !important;
   background-repeat: no-repeat !important;
@@ -177,11 +167,25 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & > .application--wrap {
+    min-height: 0;
+  }
+
+  & .v-content__wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
-.login-card {
+.login__card {
   width: 450px;
   border-radius: 8px;
+
+  & .v-card__text {
+    padding-top: 0;
+  }
 }
 
 .login-provider > .v-list__tile {
@@ -196,12 +200,8 @@ export default {
   }
 }
 
-.v-card__text {
-  padding-top: 0;
-}
-
 @media screen and (max-width: 600px) {
-  .login-card {
+  .login__card {
     width: 100%;
   }
 }
