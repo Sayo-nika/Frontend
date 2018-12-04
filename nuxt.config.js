@@ -1,4 +1,5 @@
 const pkg = require('./package');
+const {LoaderOptionsPlugin} = require('webpack');
 
 module.exports = {
   mode: 'universal',
@@ -62,7 +63,7 @@ module.exports = {
   },
 
   proxy: {
-    '/api/': process.env.SAYONIKA_API_ORIGIN || ''
+    '/api/': process.env.SAYONIKA_API_ORIGIN || 'https://google.com/'
   },
 
   /*
@@ -73,6 +74,11 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.styl$/,
+        loader: 'vue-style-loader!css-loader!stylus-loader?resolve url'
+      });
+
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
@@ -82,6 +88,15 @@ module.exports = {
           exclude: /(node_modules)/
         });
       }
-    }
+    },
+
+    plugins: [
+      new LoaderOptionsPlugin({
+        test: /\.styl$/,
+        stylus: {
+          preferPathResolver: 'webpack'
+        }
+      })
+    ]
   }
 };
