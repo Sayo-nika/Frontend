@@ -4,7 +4,7 @@
       <v-card :style="section === 2 ? 'width: 450px;' : 'width: 650px;'" class="register__card elevation-4">
         <v-card-title class="pb-0" primary-title>
           <v-layout align-center column justify-center>
-            <img src="/img/SayonikaLogo.svg" alt="Sayonika" height="125">
+            <img src="~/assets/img/SayonikaLogo.svg" alt="Sayonika" height="125">
             <h2 class="headline primary--text mb-2">Create an Account</h2>
           </v-layout>
         </v-card-title>
@@ -197,10 +197,9 @@ export default {
 </script>
 
 <style lang="stylus">
-
 .register {
   background-color: transparent !important;
-  background-image: url('/img/login-bg.jpg') !important;
+  background-image: url('~assets/img/login-bg.jpg') !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;
