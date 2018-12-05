@@ -158,7 +158,7 @@ export default {
 <style lang="stylus">
 .login {
   background-color: transparent !important;
-  background-image: url('~/assets/img/login-bg.jpg') !important;
+  background-image: url('~assets/img/login-bg.jpg') !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;

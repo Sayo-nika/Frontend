@@ -74,11 +74,6 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      config.module.rules.push({
-        test: /\.styl$/,
-        loader: 'vue-style-loader!css-loader!stylus-loader?resolve url'
-      });
-
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
