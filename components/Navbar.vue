@@ -1,7 +1,9 @@
 <template>
   <v-toolbar color="primary" app clipped-left>
     <v-toolbar-side-icon class="hidden-md-and-up" dark/>
-    <v-toolbar-title class="white--text">Title</v-toolbar-title>
+    <nuxt-link to="/" style="display: flex; align-items: center;">
+      <img src="~/assets/img/logo-white.svg" alt="Sayonika logo" height="58">
+    </nuxt-link>
 
     <v-spacer/>
 
