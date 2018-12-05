@@ -4,7 +4,7 @@
       <v-card class="login__card elevation-4">
         <v-card-title class="pb-0" primary-title>
           <div class="mx-auto">
-            <img src="~/assets/img/SayonikaLogo.svg" alt="Sayonika" height="125">
+            <img src="~/assets/img/logo.svg" alt="Sayonika" height="125">
           </div>
         </v-card-title>
 
