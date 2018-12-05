@@ -58,7 +58,7 @@
                 <v-divider class="mt-3 mb-3"/>
 
                 <v-btn color="primary" flat large @click="section = 1">
-                  <v-icon left>arrow_back</v-icon>
+                  <v-icon left>mdi-arrow-back</v-icon>
                   Go back
                 </v-btn>
               </v-container>
