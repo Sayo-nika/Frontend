@@ -15,7 +15,7 @@
                 <v-form ref="form" v-model="formValid" class="mb-2" lazy-validation>
                   <v-text-field v-model="name" :disabled="loading" :rules="nameRules" label="Username or Email" autofocus required
                                 @keyup.enter="login"/>
-                  <v-text-field v-model="password" :append-icon="showPassword ? 'visibility_off' : 'visibility'" :disabled="loading"
+                  <v-text-field v-model="password" :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'" :disabled="loading"
                                 :rules="passwordRules" :type="showPassword ? 'text' : 'password'" label="Password" required
                                 @click:append="showPassword = !showPassword" @keyup.enter="login"/>
 

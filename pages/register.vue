@@ -18,7 +18,7 @@
 
                   <v-layout>
                     <div class="register-col is-left">
-                      <v-text-field v-model="password" :append-icon="showPassword ? 'visibility_off' : 'visibility'" :disabled="loading"
+                      <v-text-field v-model="password" :append-icon="showPassword ? 'mdi mdi-eye-off' : 'mdi mdi-eye'" :disabled="loading"
                                     :loading="passwordFocused" :rules="passwordRules" :type="showPassword ? 'text' : 'password'" label="Password" required
                                     @keyup.enter="register" @click:append="showPassword = !showPassword" @focus="passwordFocused = true" @blur="passwordFocused = false">
                         <v-fade-transition slot="progress">
@@ -26,7 +26,7 @@
                         </v-fade-transition>
                       </v-text-field>
 
-                      <v-text-field v-model="passwordConfirm" :append-icon="showPasswordConfirm ? 'visibility_off' : 'visibility'" :disabled="loading"
+                      <v-text-field v-model="passwordConfirm" :append-icon="showPasswordConfirm ? 'mdi-eye-off' : 'mdi-eye'" :disabled="loading"
                                     :rules="passwordConfirmRules" :type="showPasswordConfirm ? 'text' : 'password'" label="Confirm Password" required
                                     @keyup.enter="register" @click:append="showPasswordConfirm = !showPasswordConfirm"/>
                     </div>
