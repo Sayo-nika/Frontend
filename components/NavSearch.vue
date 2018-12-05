@@ -11,7 +11,7 @@
         <div class="v-input__control">
           <div class="v-input__slot">
             <input id="search" ref="input" :class="focused ? 'primary--text' : 'white--text'" v-model="text" aria-label="search" type="text"
-                   placeholder="Search" @focus="focused = true">
+                   placeholder="Search" @focus="focused = true" @keyup.enter="goToSearch">
           </div>
         </div>
 
@@ -36,48 +36,54 @@
               Showing {{ results.length }} results
             </template>
           </v-subheader>
-          <v-list v-if="text" class="search__results-list" two-line>
 
-            <!-- <v-divider/> -->
-            <v-subheader class="primary--text">
-              Mods
-            </v-subheader>
+          <template v-if="text">
+            <v-btn class="search__results-expand" color="accent" block flat @click="goToSearch">
+              Go to Search
+              <v-icon right>mdi-arrow-right</v-icon>
+            </v-btn>
 
-            <v-list-tile avatar @click="void 0">
-              <v-list-tile-avatar>
-                <img src="https://placeimg.com/128/128/people" alt="icon">
-              </v-list-tile-avatar>
+            <v-list class="search__results-list" two-line>
+              <v-subheader class="primary--text">
+                Mods
+              </v-subheader>
 
-              <v-list-tile-content>
-                <v-list-tile-title>Title</v-list-tile-title>
-                <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
-              </v-list-tile-content>
+              <v-list-tile avatar @click="void 0">
+                <v-list-tile-avatar>
+                  <img src="https://placeimg.com/128/128/people" alt="icon">
+                </v-list-tile-avatar>
 
-              <v-list-tile-action>
-                <v-btn color="primary" depressed ripple>View</v-btn>
-              </v-list-tile-action>
-            </v-list-tile>
+                <v-list-tile-content>
+                  <v-list-tile-title>Title</v-list-tile-title>
+                  <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
+                </v-list-tile-content>
 
-            <v-divider/>
-            <v-subheader class="primary--text">
-              Users
-            </v-subheader>
+                <v-list-tile-action>
+                  <v-btn color="primary" depressed ripple>View</v-btn>
+                </v-list-tile-action>
+              </v-list-tile>
 
-            <v-list-tile avatar @click="void 0">
-              <v-list-tile-avatar>
-                <img src="https://placeimg.com/128/128/people" alt="icon">
-              </v-list-tile-avatar>
+              <v-divider/>
+              <v-subheader class="primary--text">
+                Users
+              </v-subheader>
 
-              <v-list-tile-content>
-                <v-list-tile-title>Title</v-list-tile-title>
-                <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
-              </v-list-tile-content>
+              <v-list-tile avatar @click="void 0">
+                <v-list-tile-avatar>
+                  <img src="https://placeimg.com/128/128/people" alt="icon">
+                </v-list-tile-avatar>
 
-              <v-list-tile-action>
-                <v-btn color="primary" depressed ripple>View</v-btn>
-              </v-list-tile-action>
-            </v-list-tile>
-          </v-list>
+                <v-list-tile-content>
+                  <v-list-tile-title>Title</v-list-tile-title>
+                  <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
+                </v-list-tile-content>
+
+                <v-list-tile-action>
+                  <v-btn color="primary" depressed ripple>View</v-btn>
+                </v-list-tile-action>
+              </v-list-tile>
+            </v-list>
+          </template>
         </div>
       </v-fade-transition>
     </div>
@@ -133,9 +139,9 @@ export default {
     delete this.$_click;
   },
   methods: {
-    clearSearch() {
-
-      this.focused = true;
+    goToSearch() {
+      this.focused = false;
+      this.$router.push(`/search?q=${this.text}`);
     }
   }
 };
@@ -218,6 +224,13 @@ export default {
   &:only-child {
     border-radius: 0 0 8px 8px;
   }
+}
+
+.search__results-expand {
+  border-radius: 0;
+  height: 40px;
+  padding: 0;
+  margin: 0;
 }
 
 .search__results-list {
