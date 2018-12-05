@@ -149,16 +149,6 @@ export default {
   display: none !important;
 }
 
-.search__scrim {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.25);
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: calc(100vh);
-  z-index: 4;
-}
-
 .search__wrapper {
   flex: 2 1 auto;
   max-width: 750px;
@@ -168,12 +158,14 @@ export default {
 .search__container {
   position: relative;
   z-index: 5;
+  transition: $primary-transition;
 
   &.is-focused {
     elevation(4);
 
     .search {
       background: #FFF;
+      border-radius: 8px 8px 0 0;
 
       & .v-input__slot > input::placeholder {
         color: $material-light.text.disabled;
@@ -220,19 +212,7 @@ export default {
   z-index: 9001;
 }
 
-.search__results::after {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 0;
-  background: #FFF;
-  width: 100%;
-  height: 8px;
-  z-index: -1;
-}
-
 .search__results-meta {
-  /* padding: 1rem; */
   background: #eee;
 
   &:only-child {
@@ -242,5 +222,15 @@ export default {
 
 .search__results-list {
   border-radius: 0 0 8px 8px;
+}
+
+.search__scrim {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.25);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh);
+  z-index: 4;
 }
 </style>
