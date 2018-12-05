@@ -15,7 +15,7 @@ module.exports = {
       {hid: 'description', name: 'description', content: pkg.description}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'icon', type: 'image/png', href: '/favicon.png'},
       {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,400,500,700|Material+Icons'}
     ]
   },
