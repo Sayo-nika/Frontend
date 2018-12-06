@@ -157,7 +157,7 @@ export default {
 
 .search__wrapper {
   flex: 2 1 auto;
-  max-width: 750px;
+  max-width: 650px;
   position: relative;
 }
 

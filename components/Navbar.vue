@@ -7,7 +7,7 @@
 
     <v-spacer/>
 
-    <nav-search/>
+    <nav-search v-show="$vuetify.breakpoint.mdAndUp"/>
 
     <v-spacer/>
 
