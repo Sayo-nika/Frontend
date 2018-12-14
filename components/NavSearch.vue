@@ -1,5 +1,5 @@
 <template>
-  <div class="search__wrapper">
+  <div class="search__wrapper mx-4">
     <div ref="container" :class="['search__container', {'is-focused': focused}]" @click="focused = true">
       <div class="v-input search theme--light">
         <div class="v-input__prepend-outer">
@@ -15,15 +15,13 @@
           </div>
         </div>
 
-        <v-fade-transition>
-          <div v-if="focused" class="v-input__append-outer">
-            <div class="v-input__icon v-input__icon--append">
-              <v-btn :disabled="!text" :class="focused ? 'primary--text' : 'white--text'" flat icon @click="text = ''">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
-            </div>
+        <div class="v-input__append-outer">
+          <div class="v-input__icon v-input__icon--append">
+            <v-btn :disabled="!focused || !text" :class="focused ? 'primary--text' : 'white--text'" flat icon @click="text = ''">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
           </div>
-        </v-fade-transition>
+        </div>
       </div>
 
       <v-fade-transition>
@@ -157,7 +155,7 @@ export default {
 
 .search__wrapper {
   flex: 2 1 auto;
-  max-width: 650px;
+  max-width: 100%;
   position: relative;
 }
 
@@ -169,16 +167,20 @@ export default {
   &.is-focused {
     elevation(4);
 
-    .search {
+    & .search {
       background: #FFF;
       border-radius: 8px 8px 0 0;
 
       & .v-input__slot > input::placeholder {
         color: $material-light.text.disabled;
       }
+
+      & .v-input__append-outer {
+        opacity: 1;
+      }
     }
 
-    .search__results {
+    & .search__results {
       elevation(4);
     }
   }
@@ -195,19 +197,20 @@ export default {
   & .v-input__slot {
     margin-bottom: 0;
 
+    & > input {
+      width: 100%;
+    }
+
     & > input::placeholder {
       color: $material-dark.text.disabled;
       transition: $primary-transition;
     }
   }
-}
 
-.v-input.search .v-input__slot {
-  margin-bottom: 0;
-}
-
-.v-input.search input {
-  width: 100%;
+  & .v-input__append-outer {
+    opacity: 0;
+    transition: $primary-transition;
+  }
 }
 
 .search__results {
