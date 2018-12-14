@@ -1,12 +1,21 @@
-const pkg = require('./package');
-const {LoaderOptionsPlugin} = require('webpack');
+import pkg from './package.json';
+import {LoaderOptionsPlugin} from 'webpack';
 
-module.exports = {
+// OAuth client IDs.
+const oauth = {
+  discord: process.env.SAYONIKA_DISCORD_CLIENTID || '523033929968648202',
+  reddit: process.env.SAYONIKA_REDDIT_CLIENTID || 'QMmaDuS_MF51pA',
+  gitlab: process.env.SAYONIKA_GITLAB_CLIENTID || '0fe569725bd69ef467aa07d2d1748c68e018bb773bfa36215fb9f435d692445a',
+  github: process.env.SAYONIKA_GITHUB_CLIENTID || '1bbb823cec3d3fbce34d',
+  discordRedirect: encodeURIComponent(process.env.SAYONIKA_DISCORD_REDIRECT || 'https://sayonika.moe/callback/discord'),
+  redditRedirect: encodeURIComponent(process.env.SAYONIKA_REDDIT_REDIRECT || 'https://sayonika.moe/callback/reddit'),
+  gitlabRedirect: encodeURIComponent(process.env.SAYONIKA_GITLAB_REDIRECT || 'https://sayonika.moe/callback/gitlab'),
+  githubRedirect: encodeURIComponent(process.env.SAYONIKA_GITHUB_REDIRECT || 'https://sayonika.moe/callback/github')
+};
+
+export default {
   mode: 'universal',
 
-  /*
-  ** Headers of the page
-  */
   head: {
     title: pkg.name,
     meta: [
@@ -20,9 +29,10 @@ module.exports = {
     ]
   },
 
-  /*
-  ** Customize the progress-bar color
-  */
+  env: {
+    oauth
+  },
+
   loading: {color: '#FFA000'},
 
   router: {
@@ -31,31 +41,19 @@ module.exports = {
     }
   },
 
-  /*
-  ** Global CSS
-  */
   css: [
     '~/assets/style/app.styl',
     '~/node_modules/@mdi/font/css/materialdesignicons.min.css'
   ],
 
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
     '~/plugins/vuetify'
   ],
 
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'
   ],
-  /*
-  ** Axios module configuration
-  */
+
   axios: {
     proxy: true,
     prefix: '/api/v1',
@@ -66,13 +64,7 @@ module.exports = {
     '/api/': process.env.SAYONIKA_API_ORIGIN || 'https://google.com/'
   },
 
-  /*
-  ** Build configuration
-  */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {

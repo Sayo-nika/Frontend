@@ -45,7 +45,7 @@
             <v-card-text>
               <v-container class="text-xs-center pb-0 pt-0">
                 <v-list class="pa-0">
-                  <v-list-tile v-for="prov in providers" :key="prov.name.toLowerCase()" :ripple="{class: prov.textColour}" class="login-provider" avatar @click="void 0">
+                  <v-list-tile v-for="prov in providers" :href="prov.url" :key="prov.name.toLowerCase()" :ripple="{class: prov.textColour}" class="login-provider" avatar>
                     <v-list-tile-avatar class="mr-2">
                       <v-icon :color="prov.colour">{{ prov.icon }}</v-icon>
                     </v-list-tile-avatar>
@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import providers from '~/utils/oauth';
+
 export default {
   layout: 'blank',
   middleware: 'notLoggedIn',
@@ -92,36 +94,7 @@ export default {
         v => !!v || 'Password is required'
       ],
 
-      providers: [
-        {
-          name: 'GitHub',
-          icon: 'mdi-github-circle',
-          url: '#',
-          colour: 'grey darken-3',
-          textColour: 'grey--text text--darken-3'
-        },
-        {
-          name: 'GitLab',
-          icon: 'mdi-gitlab',
-          url: '#',
-          colour: 'orange darken-2',
-          textColour: 'orange--text text--darken-2'
-        },
-        {
-          name: 'Reddit',
-          icon: 'mdi-reddit',
-          url: '#',
-          colour: 'deep-orange',
-          textColour: 'deep-orange--text'
-        },
-        {
-          name: 'Discord',
-          icon: 'mdi-discord',
-          url: '#',
-          colour: 'blue lighten-1',
-          textColour: 'blue--text text--lighten-1'
-        }
-      ]
+      providers
     };
   },
   computed: {
