@@ -44,7 +44,11 @@ module.exports = {
     'quote-props': ['error', 'as-needed'],
     'semi-spacing': 'error',
     'space-before-blocks': ['error', 'always'],
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': ['error', {
+      named: 'never',
+      anonymous: 'never',
+      asyncArrow: 'always'
+    }],
     'space-in-parens': 'error',
     'space-unary-ops': ['error', { 'words': true, 'nonwords': false }],
     'arrow-parens': ['warn', 'as-needed'],
