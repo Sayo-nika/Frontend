@@ -4,11 +4,9 @@ import {LoaderOptionsPlugin} from 'webpack';
 // OAuth client IDs.
 const oauth = {
   discord: process.env.SAYONIKA_DISCORD_CLIENTID || '523033929968648202',
-  reddit: process.env.SAYONIKA_REDDIT_CLIENTID || 'QMmaDuS_MF51pA',
   gitlab: process.env.SAYONIKA_GITLAB_CLIENTID || '0fe569725bd69ef467aa07d2d1748c68e018bb773bfa36215fb9f435d692445a',
   github: process.env.SAYONIKA_GITHUB_CLIENTID || '1bbb823cec3d3fbce34d',
   discordRedirect: encodeURIComponent(process.env.SAYONIKA_DISCORD_REDIRECT || 'https://sayonika.moe/callback/discord'),
-  redditRedirect: encodeURIComponent(process.env.SAYONIKA_REDDIT_REDIRECT || 'https://sayonika.moe/callback/reddit'),
   gitlabRedirect: encodeURIComponent(process.env.SAYONIKA_GITLAB_REDIRECT || 'https://sayonika.moe/callback/gitlab'),
   githubRedirect: encodeURIComponent(process.env.SAYONIKA_GITHUB_REDIRECT || 'https://sayonika.moe/callback/github')
 };

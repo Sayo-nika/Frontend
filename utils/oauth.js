@@ -14,13 +14,6 @@ export default [
     textColour: 'orange--text text--darken-2'
   },
   {
-    name: 'Reddit',
-    icon: 'mdi-reddit',
-    url: `https://www.reddit.com/api/v1/authorize?client_id=${process.env.oauth.reddit}&response_type=code&redirect_uri=${process.env.oauth.redditRedirect}&duration=temporary&scope=identity&state=temp`,
-    colour: 'deep-orange',
-    textColour: 'deep-orange--text'
-  },
-  {
     name: 'Discord',
     icon: 'mdi-discord',
     url: `https://discordapp.com/api/oauth2/authorize?client_id=${process.env.oauth.discord}&redirect_uri=${process.env.oauth.discordRedirect}&response_type=code&scope=email%20identify`,
