@@ -52,6 +52,10 @@ export default {
     '@nuxtjs/axios'
   ],
 
+  serverMiddleware: [
+    {path: '/callback', handler: '~/middleware/server/callback'}
+  ],
+
   axios: {
     proxy: true,
     prefix: '/api/v1',
