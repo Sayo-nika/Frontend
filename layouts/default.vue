@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <navbar no-drawer-btn/>
+    <navbar/>
 
     <v-content>
       <v-container fluid>

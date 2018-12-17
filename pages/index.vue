@@ -19,6 +19,6 @@ export default {
     ModCategory,
     ModCard
   },
-  layout: 'drawer'
+  layout: 'index'
 };
 </script>
