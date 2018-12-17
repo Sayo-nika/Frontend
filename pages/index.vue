@@ -18,6 +18,7 @@ export default {
   components: {
     ModCategory,
     ModCard
-  }
+  },
+  layout: 'drawer'
 };
 </script>

@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <navbar no-drawer-btn/>
+    <drawer/>
+    <navbar/>
 
     <v-content>
       <v-container fluid>
@@ -13,10 +14,12 @@
 </template>
 
 <script>
+import Drawer from '~/components/Drawer.vue';
 import Navbar from '~/components/Navbar.vue';
 
 export default {
   components: {
+    Drawer,
     Navbar
   }
 };

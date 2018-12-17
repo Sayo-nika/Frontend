@@ -1,7 +1,7 @@
 <template>
   <v-toolbar color="primary" app clipped-left>
     <div class="navbar__part">
-      <v-toolbar-side-icon class="hidden-md-and-up" dark/>
+      <v-toolbar-side-icon v-if="noDrawerBtn" class="hidden-md-and-up" dark/>
       <nuxt-link class="mr-4" to="/" style="display: flex; align-items: center;">
         <img v-if="$vuetify.breakpoint.mdAndUp" src="~/assets/img/logo-white.svg" alt="Sayonika logo" height="58">
         <img v-else src="~/assets/img/logo-white.svg" alt="Sayonika logo" height="48">
@@ -78,7 +78,13 @@
 import NavSearch from '~/components/NavSearch.vue';
 
 export default {
-  components: {NavSearch}
+  components: {NavSearch},
+  props: {
+    noDrawerBtn: {
+      type: Boolean,
+      default: false
+    }
+  }
   // data() {
   //   const destinationLinks = [
   //     {text: 'Home', value: '/'},
