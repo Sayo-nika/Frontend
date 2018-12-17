@@ -1,7 +1,14 @@
 // Import Vuetify styling
 @import '~vuetify/src/stylus/settings/_variables'
 
+$border-radius = 8px;
 $body-font-family = 'Noto Sans JP', Roboto, sans-serif;
-$button-border-radius = 8px
+$button-border-radius = $border-radius;
+
+@import '~vuetify/src/stylus/components/_lists';
+
+.v-list {
+  border-radius: $border-radius;
+}
 
 @require '~vuetify/src/stylus/main.styl'

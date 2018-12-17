@@ -106,21 +106,6 @@ export default {
 </script>
 
 <style lang="stylus">
-.drawer-search-container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 16px;
-}
-
-.drawer-search-container .v-input {
-  padding: 0;
-  margin: 0;
-}
-
-.drawer-search-container .v-input__slot {
-  margin-bottom: 0;
-}
-
 .v-toolbar__items .v-btn:not(.v-btn--floating):not(.v-btn--icon) {
   height: 36px;
 }
