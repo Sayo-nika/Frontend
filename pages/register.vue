@@ -47,14 +47,14 @@
                   <div>Got an account? <nuxt-link to="/login">Log in</nuxt-link></div>
                 </v-form>
 
-                <v-divider class="mt-2 mb-3"/>
+                <!-- <v-divider class="mt-2 mb-3"/>
 
-                <v-btn color="accent" depressed @click="section = 2">Register using another service</v-btn>
+                <v-btn color="accent" depressed @click="section = 2">Register using another service</v-btn> -->
               </v-container>
             </v-card-text>
           </v-window-item>
 
-          <v-window-item :value="2">
+          <!-- <v-window-item :value="2">
             <v-card-text>
               <v-container class="text-xs-center pb-0 pt-0">
                 <v-list class="pa-0">
@@ -76,7 +76,7 @@
                 </v-btn>
               </v-container>
             </v-card-text>
-          </v-window-item>
+          </v-window-item> -->
         </v-window>
       </v-card>
     </v-content>
