@@ -21,9 +21,9 @@ router.use((req, res, next) => {
   else next();
 });
 
-router.get('/discord', require('./discord'));
-router.get('/gitlab', require('./gitlab'));
-router.get('/github', require('./github'));
+router.get('/discord', require('./discord').default);
+router.get('/gitlab', require('./gitlab').default);
+router.get('/github', require('./github').default);
 
 // Final handler
 router.use(wrapRouterPromise(async (req, res) => {
