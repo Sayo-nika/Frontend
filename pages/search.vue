@@ -2,13 +2,15 @@
   <v-app>
     <v-navigation-drawer app clipped>
       <v-form ref="search">
-        <v-subheader>Results</v-subheader>
+        <!-- <v-subheader>Results</v-subheader>
         <div class="search__drawer-container">
           <v-checkbox v-model="active.users" label="Users"/>
           <v-checkbox v-model="active.mods" label="Mods"/>
         </div>
 
-        <v-divider/>
+        <v-divider/> -->
+
+        <!-- <h3 class="search__drawer-container titles primary--text mt-3">Mods</h3> -->
 
         <v-subheader>Mod State</v-subheader>
         <div class="search__drawer-container">
@@ -38,6 +40,8 @@
 
         <v-divider/>
 
+        <!-- <h3 class="search__drawer-container titles primary--text mt-3">Users</h3> -->
+
         <v-subheader>User Sorting</v-subheader>
         <div class="search__drawer-container is-fullwidth">
           <v-select v-model="sorting.users" :items="sorting.usersItems" label="Sorting" box/>
@@ -60,7 +64,7 @@
             </v-tooltip>
           </v-text-field>
 
-          <v-list class="mb-4 elevation-3" two-line>
+          <v-list class="search__results mb-4 elevation-3" two-line>
             <v-subheader class="primary--text">
               Mods
             </v-subheader>
@@ -85,7 +89,7 @@
             </v-layout>
           </v-list>
 
-          <v-list class="elevation-3" two-line>
+          <v-list class="search__results elevation-3" two-line>
             <v-subheader class="primary--text">
               Users
             </v-subheader>
@@ -121,13 +125,18 @@ import Navbar from '~/components/Navbar.vue';
 export default {
   layout: 'blank',
   components: {Navbar},
+  watchQuery: true,
   data() {
+    const query = this.$route.query;
+
     return {
-      search: '',
       focused: false,
       modPage: 1,
       userPage: 1,
 
+      search: query.q || '',
+
+      // TODO: put other query string variables into here
       active: {
         users: true,
         mods: true
