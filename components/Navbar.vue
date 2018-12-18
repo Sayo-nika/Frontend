@@ -24,9 +24,10 @@
 
     <div class="navbar__part is-end">
       <v-toolbar-items v-if="!$store.state.auth.loggedIn">
-        <v-btn color="primary--text" to="/login" depressed nuxt>Log In</v-btn>
+        <v-btn :to="`/login?redir=${encodeURIComponent($route.fullPath)}`" color="primary--text" depressed nuxt>Log In</v-btn>
         <v-btn color="primary--text" to="/register" depressed nuxt>Sign Up</v-btn>
       </v-toolbar-items>
+
       <v-toolbar-items v-else class="navbar__user white--text">
         <div class="navbar__user-details">
           <div class="navbar__user-name">Obama</div>

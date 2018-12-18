@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  layout: 'blank',
   props: ['error'], // eslint-disable-line vue/require-prop-types
   data() {
     return {
