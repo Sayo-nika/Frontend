@@ -30,7 +30,7 @@
 
       <v-toolbar-items v-else class="navbar__user white--text">
         <div class="navbar__user-details">
-          <div class="navbar__user-name">Obama</div>
+          <div class="navbar__user-name">Username</div>
           <div class="navbar__user-roles">
             <v-tooltip bottom>
               <v-icon slot="activator" size="16" dark>mdi-heart</v-icon>

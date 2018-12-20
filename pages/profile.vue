@@ -6,7 +6,9 @@
           <v-layout class="pa-3" column>
             <img class="profile__avatar" src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon">
 
-            <v-layout class="mt-3" justify-center>
+            <h1 class="profile__name headline font-weight-medium text-xs-center mt-2">Username</h1>
+
+            <v-layout class="mt-2" justify-center>
               <v-tooltip top>
                 <v-avatar slot="activator" class="ma-1" color="red" size="32">
                   <v-icon size="20" dark>mdi-heart</v-icon>
@@ -88,6 +90,10 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+
+.profile__name {
+  word-wrap: break-word;
 }
 
 .profile__bio {
