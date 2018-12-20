@@ -38,7 +38,7 @@
             </v-tooltip>
             <v-tooltip bottom>
               <v-icon slot="activator" size="16" dark>mdi-wrench</v-icon>
-              Developer
+              Sayonika Developer
             </v-tooltip>
             <v-tooltip bottom>
               <v-icon slot="activator" size="16" dark>mdi-gavel</v-icon>
