@@ -10,22 +10,22 @@
         </div>
         <div class="mod-card__info-inner">
           <div class="mod-card__title">
-            <v-tooltip top>
+            <v-tooltip class="mod-card__title-meta" top>
               <v-icon slot="activator">mdi-star</v-icon>
               <span>Editors' Choice</span>
             </v-tooltip>
-            <div class="mod-card__title-content">
+            <div class="mod-card__title-content text-truncate">
               {{ title }}
             </div>
           </div>
           <div class="mod-card__content-community">
             <div class="mod-card__content-community-item">
               <v-icon>mdi-heart</v-icon>
-              <span>2.3k</span>
+              <span class="ml-1 mr-3">2.3k</span>
             </div>
             <div class="mod-card__content-community-item">
               <v-icon>mdi-cloud-download</v-icon>
-              <span>300k</span>
+              <span class="ml-1">300k</span>
             </div>
           </div>
         </div>
@@ -60,11 +60,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="stylus">
 .mod-card {
   background: #DDD;
   height: 290px;
-  /* min-width: 350px */
   border-radius: 8px;
   position: relative;
   z-index: 2;
@@ -139,44 +138,26 @@ export default {
     position: relative;
 }
 
-/* .mod-card__title > .material-icons::after {
-    position: absolute;
-    letter-spacing: initial;
-    font-family: Roboto;
-    top: -1.5rem;
-    left: 0;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    padding: 0.25rem;
-    background: #333;
-    color: #FFF;
-    content: "Editors' Choice";
-    pointer-events: all;
-    opacity: 0;
-    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
-    transition: opacity 0.2s ease;
+.mod-card__title-content {
+  max-width: 12ch;
 }
 
-.mod-card__title > .material-icons:hover::after {
-    opacity: 1;
-} */
-
-.mod-card__title-content {
-  max-width: 20ch;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.mod-card__title-meta {
+  &,
+  & > span {
+    display: flex;
+  }
 }
 
 .mod-card__content-community {
+  display: flex;
   font-size: 1rem;
   opacity: 0.75;
 }
 
 .mod-card__content-community-item {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
-  margin-right: 0.5rem;
   text-transform: uppercase;
 }
 

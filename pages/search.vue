@@ -85,7 +85,7 @@
             </v-list-tile>
 
             <v-layout class="mt-2" justify-center>
-              <v-pagination v-model="modPage" :length="10" total-visible="7"/>
+              <v-pagination v-model="modPage" :length="10" :total-visible="paginationVisible"/>
             </v-layout>
           </v-list>
 
@@ -110,7 +110,7 @@
             </v-list-tile>
 
             <v-layout class="mt-2" justify-center>
-              <v-pagination v-model="userPage" :length="10" total-visible="7"/>
+              <v-pagination v-model="userPage" :length="10" :total-visible="paginationVisible"/>
             </v-layout>
           </v-list>
         </v-layout>
@@ -156,6 +156,15 @@ export default {
       },
       categories: ['All', 'Dating', 'Miscellaneous']
     };
+  },
+  computed: {
+    paginationVisible() {
+      return this.$vuetify.breakpoint.mdAndDown
+        ? 5
+        : this.$vuetify.breakpoint.xs
+          ? 3
+          : 7;
+    }
   },
   methods: {
     clear() {

@@ -1,6 +1,6 @@
 <template>
   <div class="mod-category">
-    <h3 class="mod-category__title">{{ title }}</h3>
+    <h3 class="mod-category__title mb-2">{{ title }}</h3>
     <div class="mod-category__scroller">
       <slot/>
     </div>
@@ -14,10 +14,6 @@ export default {
       type: String,
       required: true
     }
-    // mods: {
-    //   type: Array,
-    //   required: true
-    // }
   }
 };
 </script>
