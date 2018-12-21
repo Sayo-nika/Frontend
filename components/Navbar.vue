@@ -27,32 +27,42 @@
         <v-btn :to="`/login?redir=${encodeURIComponent($route.fullPath)}`" color="primary--text" depressed nuxt>Log In</v-btn>
         <v-btn color="primary--text" to="/register" depressed nuxt>Sign Up</v-btn>
       </v-toolbar-items>
-
       <v-toolbar-items v-else class="navbar__user white--text">
-        <div class="navbar__user-details">
-          <div class="navbar__user-name">Username</div>
-          <div class="navbar__user-roles">
+
+        <v-menu>
+          <a slot="activator" to="/add-mod" class="navbar__user-menu">
+            <!-- FIXME:  icon missing and tooltip not working -->
             <v-tooltip bottom>
-              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-heart</v-icon>
-              Supporter
+              <v-icon size="64" class="ml-2" dark>mdi-add</v-icon>
+              Add Mod
             </v-tooltip>
-            <v-tooltip bottom>
-              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-wrench</v-icon>
-              Sayonika Developer
-            </v-tooltip>
-            <v-tooltip bottom>
-              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-gavel</v-icon>
-              Moderator
-            </v-tooltip>
-            <v-tooltip bottom>
-              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-pencil</v-icon>
-              Editor
-            </v-tooltip>
-          </div>
-        </div>
+          </a>
+        </v-menu>
 
         <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
           <a slot="activator" class="navbar__user-menu" href="#">
+            <div class="navbar__user-details">
+              <!-- FIXME: Missing Username -->
+              <div class="navbar__user-name">Username</div>
+              <div class="navbar__user-roles">
+                <v-tooltip bottom>
+                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-heart</v-icon>
+                  Supporter
+                </v-tooltip>
+                <v-tooltip bottom>
+                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-wrench</v-icon>
+                  Sayonika Developer
+                </v-tooltip>
+                <v-tooltip bottom>
+                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-gavel</v-icon>
+                  Moderator
+                </v-tooltip>
+                <v-tooltip bottom>
+                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-pencil</v-icon>
+                  Editor
+                </v-tooltip>
+              </div>
+            </div>
             <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
           </a>
         </v-menu>
