@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer app clipped>
       <v-list>
-        <v-list-tile to="/" nuxt ripple>
+        <v-list-tile to="/admin" nuxt ripple>
           <v-list-tile-action>
             <v-icon>mdi-home</v-icon>
           </v-list-tile-action>
