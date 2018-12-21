@@ -46,7 +46,7 @@
             </v-tooltip>
             <v-tooltip bottom>
               <v-icon slot="activator" size="16" dark>mdi-pencil</v-icon>
-              Mod Author
+              Editor
             </v-tooltip>
           </div>
         </div>
@@ -64,7 +64,9 @@
             <v-list-tile to="/settings" nuxt ripple>
               <v-list-tile-content>Settings</v-list-tile-content>
             </v-list-tile>
-            <v-divider/>
+            <v-list-tile to="/admin" nuxt ripple>
+              <v-list-tile-content>Admin Dashboard</v-list-tile-content>
+            </v-list-tile>
             <v-list-tile ripple @click="$store.commit('auth/logout')">
               <v-list-tile-content>Log Out</v-list-tile-content>
             </v-list-tile>
