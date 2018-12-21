@@ -54,9 +54,12 @@
         <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
           <a slot="activator" class="navbar__user-menu" href="#">
             <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
+          </a>
+        </v-menu>
+        <v-menu>
+          <a slot="activator" class="navbar__user-menu">
             <v-icon size="32" class="ml-2" dark>mdi-chevron-down</v-icon>
           </a>
-
           <v-list>
             <v-list-tile to="/profile" nuxt ripple>
               <v-list-tile-content>Profile</v-list-tile-content>
