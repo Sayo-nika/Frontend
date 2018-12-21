@@ -1,6 +1,6 @@
 <template>
-  <v-layout>
-    <v-list class="search__results elevation-3" two-line>
+  <v-layout column>
+    <v-list class="search__results elevation-3 mb-2" two-line>
       <v-subheader class="primary--text">
         Recent Pending Mods
       </v-subheader>
@@ -24,7 +24,7 @@
         <v-pagination v-model="userPage" :length="10" :total-visible="paginationVisible"/>
       </v-layout>
     </v-list>
-    <v-list class="search__results elevation-3" two-line>
+    <v-list class="search__results elevation-3 mb-2" two-line>
       <v-subheader class="primary--text">
         Recent User Reports
       </v-subheader>
