@@ -2,7 +2,7 @@
   <v-layout>
     <v-list class="search__results elevation-3" two-line>
       <v-subheader class="primary--text">
-        Pending Mods
+        Recent Pending Mods
       </v-subheader>
 
       <v-list-tile v-for="i in 5" :key="`user-${i}`" avatar @click="void 0">
