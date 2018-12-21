@@ -33,19 +33,19 @@
           <div class="navbar__user-name">Username</div>
           <div class="navbar__user-roles">
             <v-tooltip bottom>
-              <v-icon slot="activator" size="16" dark>mdi-heart</v-icon>
+              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-heart</v-icon>
               Supporter
             </v-tooltip>
             <v-tooltip bottom>
-              <v-icon slot="activator" size="16" dark>mdi-wrench</v-icon>
+              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-wrench</v-icon>
               Sayonika Developer
             </v-tooltip>
             <v-tooltip bottom>
-              <v-icon slot="activator" size="16" dark>mdi-gavel</v-icon>
+              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-gavel</v-icon>
               Moderator
             </v-tooltip>
             <v-tooltip bottom>
-              <v-icon slot="activator" size="16" dark>mdi-pencil</v-icon>
+              <v-icon slot="activator" size="16" class="ml-1" dark>mdi-pencil</v-icon>
               Editor
             </v-tooltip>
           </div>
@@ -54,7 +54,7 @@
         <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
           <a slot="activator" class="navbar__user-menu" href="#">
             <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
-            <v-icon size="32" dark>mdi-chevron-down</v-icon>
+            <v-icon size="32" class="ml-2" dark>mdi-chevron-down</v-icon>
           </a>
 
           <v-list>
