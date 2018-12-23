@@ -22,7 +22,7 @@
                   <v-icon size="20" dark>mdi-pencil</v-icon>
                 </v-avatar>
 
-                <span>Mod Author</span>
+                <span>Editor</span>
               </v-tooltip>
 
               <v-tooltip top>
