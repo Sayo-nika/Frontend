@@ -39,52 +39,53 @@
           </a>
         </v-menu>
 
-        <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
-          <a slot="activator" class="navbar__user-menu" href="#">
-            <div class="navbar__user-details">
-              <!-- FIXME: Missing Username -->
-              <div class="navbar__user-name">Username</div>
-              <div class="navbar__user-roles">
-                <v-tooltip bottom>
-                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-heart</v-icon>
-                  Supporter
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-wrench</v-icon>
-                  Sayonika Developer
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-gavel</v-icon>
-                  Moderator
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <v-icon slot="activator" size="16" class="ml-1" dark>mdi-pencil</v-icon>
-                  Editor
-                </v-tooltip>
-              </div>
+        <div class="navbar__user">
+          <div class="navbar__user-details">
+            <!-- FIXME: Missing Username -->
+            <div class="navbar__user-name">Username</div>
+            <div class="navbar__user-roles">
+              <v-tooltip bottom>
+                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-heart</v-icon>
+                Supporter
+              </v-tooltip>
+              <v-tooltip bottom>
+                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-wrench</v-icon>
+                Sayonika Developer
+              </v-tooltip>
+              <v-tooltip bottom>
+                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-gavel</v-icon>
+                Moderator
+              </v-tooltip>
+              <v-tooltip bottom>
+                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-pencil</v-icon>
+                Editor
+              </v-tooltip>
             </div>
-            <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
-          </a>
-        </v-menu>
-        <v-menu>
-          <a slot="activator" class="navbar__user-menu">
-            <v-icon size="32" class="ml-2" dark>mdi-chevron-down</v-icon>
-          </a>
-          <v-list>
-            <v-list-tile to="/profile" nuxt ripple>
-              <v-list-tile-content>Profile</v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile to="/settings" nuxt ripple>
-              <v-list-tile-content>Settings</v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile to="/admin" nuxt ripple>
-              <v-list-tile-content>Admin Dashboard</v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile ripple @click="$store.commit('auth/logout')">
-              <v-list-tile-content>Log Out</v-list-tile-content>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
+          </div>
+          <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
+
+          <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
+            <a slot="activator" class="navbar__user-menu">
+              <v-icon size="32" class="ml-2" dark>mdi-chevron-down</v-icon>
+            </a>
+
+            <v-list>
+              <v-list-tile to="/profile" nuxt ripple>
+                <v-list-tile-content>Profile</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile to="/settings" nuxt ripple>
+                <v-list-tile-content>Settings</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile to="/admin" nuxt ripple>
+                <v-list-tile-content>Admin Dashboard</v-list-tile-content>
+              </v-list-tile>
+              <v-divider/>
+              <v-list-tile ripple @click="$store.commit('auth/logout')">
+                <v-list-tile-content>Log Out</v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </div>
       </v-toolbar-items>
     </div>
   </v-toolbar>
