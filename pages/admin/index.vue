@@ -1,6 +1,6 @@
 <template>
   <v-layout column>
-    <v-list class="search__results elevation-3 mb-2" two-line>
+    <v-list class="admin__recent elevation-3 mb-3" two-line>
       <v-subheader class="primary--text">
         Recent Pending Mods
       </v-subheader>
@@ -20,11 +20,12 @@
         </v-list-tile-action>
       </v-list-tile>
 
-      <v-layout class="mt-2" justify-center>
-        <v-pagination v-model="userPage" :length="10" :total-visible="paginationVisible"/>
-      </v-layout>
+      <div class="mx-3 mb-2">
+        <v-btn color="accent" to="/admin/mods" block flat nuxt>View all pending mods</v-btn>
+      </div>
     </v-list>
-    <v-list class="search__results elevation-3 mb-2" two-line>
+
+    <v-list class="admin__recent elevation-3 mb-2" two-line>
       <v-subheader class="primary--text">
         Recent User Reports
       </v-subheader>
@@ -44,9 +45,9 @@
         </v-list-tile-action>
       </v-list-tile>
 
-      <v-layout class="mt-2" justify-center>
-        <v-pagination v-model="userPage" :length="10" :total-visible="paginationVisible"/>
-      </v-layout>
+      <div class="mx-3 mb-2">
+        <v-btn color="accent" to="/admin/reports" block flat nuxt>View all reports</v-btn>
+      </div>
     </v-list>
   </v-layout>
 </template>
@@ -56,3 +57,6 @@ export default {
   layout: 'admin'
 };
 </script>
+
+<style lang="stylus">
+</style>

@@ -12,7 +12,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile to="/admin/pending-mods" nuxt ripple>
+        <v-list-tile to="/admin/mods" nuxt ripple>
           <v-list-tile-action>
             <v-icon>mdi-library-books</v-icon>
           </v-list-tile-action>
@@ -22,7 +22,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile to="/admin/user-reports" nuxt ripple>
+        <v-list-tile to="/admin/reports" nuxt ripple>
           <v-list-tile-action>
             <v-icon>mdi-email-open</v-icon>
           </v-list-tile-action>
