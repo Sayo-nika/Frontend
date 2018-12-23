@@ -7,8 +7,9 @@ $button-border-radius = $border-radius;
 
 @import '~vuetify/src/stylus/components/_lists';
 
-.v-list {
-  border-radius: $border-radius;
+.v-list,
+.v-menu__content {
+  border-radius: $border-radius !important;
 }
 
 @require '~vuetify/src/stylus/main.styl'
