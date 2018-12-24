@@ -26,17 +26,31 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile to="/admin/reports" nuxt ripple>
+        <v-list-tile to="/admin/user-reports" nuxt ripple>
           <v-list-tile-action>
             <v-badge color="accent">
               <span slot="badge">12</span>
 
-              <v-icon>mdi-email-open</v-icon>
+              <v-icon>mdi-account-circle</v-icon>
             </v-badge>
           </v-list-tile-action>
 
           <v-list-tile-content>
-            <v-list-tile-title>Flags and Reports</v-list-tile-title>
+            <v-list-tile-title>User Reports</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <v-list-tile to="/admin/mod-reports" nuxt ripple>
+          <v-list-tile-action>
+            <v-badge color="accent">
+              <span slot="badge">69</span>
+
+              <v-icon>mdi-flag</v-icon>
+            </v-badge>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>Mod Reports</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
