@@ -50,13 +50,25 @@ module.exports = {
       asyncArrow: 'always'
     }],
     'space-in-parens': 'error',
-    'space-unary-ops': ['error', { 'words': true, 'nonwords': false }],
+    'space-unary-ops': ['error', {
+      words: true,
+      nonwords: false
+    }],
     'arrow-parens': ['warn', 'as-needed'],
     'arrow-spacing': 'error',
     'no-useless-rename': 'error',
     'prefer-arrow-callback': 'error',
     'template-curly-spacing': 'error',
 
-    'vue/max-attributes-per-line': 0
+    'vue/max-attributes-per-line': 0,
+    'vue/component-name-in-template-casing': ['error', 'kebab-case'],
+    'vue/html-closing-bracket-spacing': ['error', {
+      selfClosingTag: 'never'
+    }],
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/html-closing-bracket-newline': ['error', {
+      multiline: 'never'
+    }],
+    'vue/multiline-html-element-content-newline': 'off'
   }
 }
