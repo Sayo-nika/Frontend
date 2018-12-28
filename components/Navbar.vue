@@ -29,15 +29,16 @@
       </v-toolbar-items>
       <v-toolbar-items v-else class="navbar__user white--text">
 
-        <v-menu>
-          <a slot="activator" to="/add-mod" class="navbar__user-menu">
-            <!-- FIXME:  icon missing and tooltip not working -->
-            <v-tooltip bottom>
-              <v-icon size="64" class="ml-2" dark>mdi-add</v-icon>
-              Add Mod
-            </v-tooltip>
-          </a>
-        </v-menu>
+        <div class="navbar__part is-end">
+          <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
+            <a slot="activator" class="navbar__user-menu" to="/add-mod">
+              <v-tooltip bottom>
+                <v-icon slot="activator" size="48" class="ml-2" dark>mdi-plus</v-icon>
+                Add Mod
+              </v-tooltip>
+            </a>
+          </v-menu>
+        </div>
 
         <div class="navbar__user">
           <div class="navbar__user-details">
