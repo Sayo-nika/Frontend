@@ -33,7 +33,7 @@
           <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
             <a slot="activator" class="navbar__user-menu" to="/submit-mod">
               <v-tooltip bottom>
-                <v-icon slot="activator" size="48" class="ml-2" dark>mdi-plus</v-icon>
+                <v-icon slot="activator" size="46" dark>mdi-plus</v-icon>
                 Add Mod Entry
               </v-tooltip>
             </a>
