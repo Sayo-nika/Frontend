@@ -29,12 +29,12 @@
       </v-toolbar-items>
       <v-toolbar-items v-else class="navbar__user white--text">
 
-        <div class="navbar__part is-end">
+        <div class="navbar__part is-end mr-4">
           <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
-            <a slot="activator" class="navbar__user-menu" to="/add-mod">
+            <a slot="activator" class="navbar__user-menu" to="/submit-mod">
               <v-tooltip bottom>
                 <v-icon slot="activator" size="48" class="ml-2" dark>mdi-plus</v-icon>
-                Add Mod
+                Add Mod Entry
               </v-tooltip>
             </a>
           </v-menu>
