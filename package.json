@@ -1,7 +1,7 @@
 {
-  "name": "frontend-v2",
+  "name": "sayonika",
   "version": "1.0.0",
-  "description": "A mod frontend thing for DDLC",
+  "description": "Frontend for Sayonika Project",
   "author": "Ovyerus",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "postinstall": "nuxt generate",
     "precommit": "npm run lint"
   },
   "dependencies": {
