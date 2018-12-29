@@ -27,18 +27,14 @@
         <v-btn :to="`/login?redir=${encodeURIComponent($route.fullPath)}`" color="primary--text" depressed nuxt>Log In</v-btn>
         <v-btn color="primary--text" to="/register" depressed nuxt>Sign Up</v-btn>
       </v-toolbar-items>
-      <v-toolbar-items v-else class="navbar__user white--text">
 
-        <div class="navbar__part is-end mr-4">
-          <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
-            <a slot="activator" class="navbar__user-menu" to="/submit-mod">
-              <v-tooltip bottom>
-                <v-icon slot="activator" size="46" dark>mdi-plus</v-icon>
-                Add Mod Entry
-              </v-tooltip>
-            </a>
-          </v-menu>
-        </div>
+      <v-toolbar-items v-else class="navbar__user white--text">
+        <v-tooltip class="tooltip-fix-span" bottom>
+          <v-btn slot="activator" to="/submit-mod" dark flat icon large nuxt>
+            <v-icon size="36">mdi-plus</v-icon>
+          </v-btn>
+          <span>Add a Mod</span>
+        </v-tooltip>
 
         <div class="navbar__user">
           <div class="navbar__user-details">
@@ -126,6 +122,10 @@ export default {
 <style lang="stylus">
 .v-toolbar__items .v-btn:not(.v-btn--floating):not(.v-btn--icon) {
   height: 36px;
+}
+
+.tooltip-fix-span > span {
+  display: flex;
 }
 
 .v-toolbar__items .v-btn + .v-btn {

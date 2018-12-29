@@ -10,7 +10,7 @@
 
         <div class="v-input__control">
           <div class="v-input__slot">
-            <input id="navsearch" ref="input" :class="focused ? 'primary--text' : 'white--text'" v-model="text" aria-label="Search" type="text"
+            <input id="navsearch" ref="input" v-model="text" :class="focused ? 'primary--text' : 'white--text'" aria-label="Search" type="text"
                    placeholder="Search" @focus="focused = true" @keyup.enter="goToSearch">
           </div>
         </div>
