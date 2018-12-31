@@ -66,6 +66,10 @@
           </v-window-item> -->
         </v-window>
       </v-card>
+
+      <v-snackbar v-model="snackbarOpen" :timeout="5000" right>
+        {{ snackbarText }}
+      </v-snackbar>
     </v-content>
   </v-app>
 </template>
@@ -86,6 +90,8 @@ export default {
       formValid: false,
       loading: false,
       section: 1,
+      snackbarOpen: false,
+      snackbarText: '',
 
       nameRules: [
         v => !!v || 'Username or email is required'
@@ -106,15 +112,53 @@ export default {
     }
   },
   methods: {
-    login() {
+    async login() {
       if (this.$refs.form.validate()) {
         this.loading = true;
 
-        setTimeout(() => {
+        try {
+          const tokenResp = await this.$axios.$post('/login', {
+            username: this.name,
+            password: this.password
+          });
+        } catch (err) {
+          console.error(err);
+
+          this.snackbarText = 'Error';
+          this.snackbarOpen = true;
           this.loading = false;
-          this.$router.push(this.to);
-          this.$store.commit('auth/login');
-        }, 2500);
+
+          return;
+        }
+
+        const token = tokenResp.result;
+
+        this.$axios.setToken(token);
+        this.$store.commit('auth/setToken', token);
+
+        if (this.rememberMe)
+          this.$cookies.set('token', token, {
+            expires: new Date('2038-01-01') // Roughly the 32-bit int limit. Should be ok for an infinite cookie.
+          });
+
+        try {
+          const userResp = await this.$axios.$get('/users/@me');
+        } catch (err) {
+          console.error(err);
+
+          this.snackbarText = 'Error';
+          this.snackbarOpen = true;
+          this.loading = false;
+
+          return;
+        }
+
+        const user = userResp.result;
+
+        this.$store.commit('auth/setUser', user);
+
+        this.loading = false;
+        this.$router.push(this.to);
       }
     }
   },

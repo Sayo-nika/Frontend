@@ -905,6 +905,11 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
+"@types/cookie@^0.3.1":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.3.2.tgz#453f4b14b25da6a8ea4494842dedcbf0151deef9"
+  integrity sha512-aHQA072E10/8iUQsPH7mQU/KUyQBZAGzTVRCUvnSz8mSvbrYsP4xEO2RSA0Pjltolzi0j8+8ixrm//Hr4umPzw==
+
 "@types/q@^1.5.1":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.1.tgz#48fd98c1561fe718b61733daed46ff115b496e18"
@@ -2056,6 +2061,21 @@ cookie-signature@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
   integrity sha1-4wOogrNCzD7oylE6eZmXNNqzriw=
+
+cookie-universal-nuxt@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/cookie-universal-nuxt/-/cookie-universal-nuxt-2.0.11.tgz#f7f2ea1d63a497b24d5e630cee4e999475e777f4"
+  integrity sha512-GmzXjkIpCRAe+fIpYavHyFliEDRofiJMbBd17kZJia+nLVEt2CJxjOqcQRqUOXmvtuB0oHDYy+fVflxs863T0w==
+  dependencies:
+    "@types/cookie" "^0.3.1"
+    cookie-universal "^2.0.11"
+
+cookie-universal@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/cookie-universal/-/cookie-universal-2.0.11.tgz#525f6324b6698a713b46be77a3440daff68e4a6a"
+  integrity sha512-5IA+uAPwBuphUfuk+lpFEajfrUTZA3RmMXfoT/KWs29WMd2ZifHOafAr+w8WdlSixddjTEkOgUWrk27+ErueUg==
+  dependencies:
+    cookie "^0.3.1"
 
 cookie@0.3.1, cookie@^0.3.1:
   version "0.3.1"

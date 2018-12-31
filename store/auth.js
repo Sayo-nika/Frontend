@@ -1,13 +1,35 @@
 export const state = () => ({
-  loggedIn: false
+  token: null,
+  user: null
 });
 
 export const mutations = {
   // TODO: auth logic when we get to it
-  login(state) {
-    state.loggedIn = true;
+  setToken(state, token) {
+    state.token = token;
   },
-  logout(state) {
-    state.loggedIn = false;
+  setUser(state, user) {
+    state.user = user;
+  }
+};
+
+export const actions = {
+  async processFromCache({commit}, {app: {$axios, $cookies}, req}) {
+    if (req.headers.cookies) {
+      const token = $cookies.get('token');
+
+      if (token) {
+        try {
+          commit('setToken', token);
+          $axios.setToken(token);
+
+          const user = await $axios.$get('/users/@me');
+          commit('setUser', user);
+        } catch {
+          $axios.setToken(null);
+          $cookies.remove('token');
+        }
+      }
+    }
   }
 };

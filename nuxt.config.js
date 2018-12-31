@@ -49,7 +49,8 @@ export default {
   ],
 
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
 
   // serverMiddleware: [
@@ -63,7 +64,7 @@ export default {
   },
 
   proxy: {
-    '/api/': process.env.SAYONIKA_API_ORIGIN || 'https://google.com/'
+    '/api/': process.env.SAYONIKA_API_ORIGIN || 'https://localhost:4444/'
   },
 
   build: {
