@@ -34,7 +34,7 @@ module.exports = {
     'computed-property-spacing': 'error',
     'func-call-spacing': 'error',
     'key-spacing': 'error',
-    'keyword-spacing': ['error', { 'overrides': { 'catch': { 'after': false } } }],
+    'keyword-spacing': 'error',
     'new-parens': 'error',
     'no-array-constructor': 'warn',
     'no-new-object': 'warn',
