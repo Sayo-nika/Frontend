@@ -30,9 +30,9 @@ matrix:
        if: branch = staging
        after_success:
          - oc login https://api.starter-us-east-2.openshift.com -u $OPENSHIFT_USER -p $OPENSHIFT_PASSWORD
-         - docker build -t sayonika/frontend:staging .
+         - docker build -t docker-registry.default.svc:5000/$OPENSHIFT_NAMESPACE/frontend .
          - oc project $OPENSHIFT_NAMESPACE
-         - oc new-app sayonika/frontend:staging
+         - oc new-app docker-registry.default.svc:5000/$OPENSHIFT_NAMESPACE/frontend
          - oc expose dc/frontend --port=8080
 
 
