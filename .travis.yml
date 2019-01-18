@@ -1,0 +1,45 @@
+matrix:
+   include:
+    #######################
+    #    Test Matrix      #
+    #######################
+     - language: node_js
+       dist: xenial
+       node_js:
+         - "10"
+       install:
+        - yarn --production
+        - yarn run generate
+       script:
+         - yarn run precommit
+    #######################
+    #    Deploy Matrix    #
+    #######################
+     - language: node_js
+       dist: xenial
+       node_js:
+         - "10"
+       install:
+        - yarn --production
+        - yarn run generate
+       script:
+         - yarn run precommit
+       before_deploy:
+         - rm -rf .*
+         - rm -rf LICENSE
+         - rm -rf Jenkinsfile
+         - rm -rf *.md
+       deploy:
+         provider: openshift
+         user: "$OPENSHIFT_USER"
+         password: "$OPENSHIFT_PASSWORD"
+         domain: "https://api.starter-us-east-2.openshift.com"
+         app: frontend-staging
+         on:
+           deployment_branch: staging
+         skip_cleanup: true
+
+
+
+notifications:
+  email: false
