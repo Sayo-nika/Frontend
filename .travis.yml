@@ -30,7 +30,7 @@ matrix:
        if: branch = staging
        after_success:
          - oc login https://api.starter-us-east-2.openshift.com -u $OPENSHIFT_USER -p $OPENSHIFT_PASSWORD
-         - docker build -t registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/frontend:latest
+         - docker build -t registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/frontend:latest .
          - docker login registry.starter-us-east-2.openshift.com -u $(oc whoami) -p $(oc whoami -t)
          - docker push registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/frontend:latest
          - oc project $OPENSHIFT_NAMESPACE
