@@ -29,8 +29,9 @@ matrix:
          - npm run precommit
        after_success:
          - oc login https://api.starter-us-east-2.openshift.com -u $OPENSHIFT_USER -p $OPENSHIFT_PASSWORD
+         - docker build -t sayonika/frontend:staging .
          - oc project $OPENSHIFT_NAMESPACE
-         - oc new-app .
+         - oc new-app sayonika/frontend:staging
 
 
 
