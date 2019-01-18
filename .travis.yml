@@ -29,7 +29,7 @@ matrix:
          - npm run precommit
        after_success:
          - oc login https://api.starter-us-east-2.openshift.com -u $OPENSHIFT_USER -p $OPENSHIFT_PASSWORD
-         - oc project -u $OPENSHIFT_NAMESPACE
+         - oc project $OPENSHIFT_NAMESPACE
          - oc new-app .
 
 
