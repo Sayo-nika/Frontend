@@ -173,7 +173,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.login {
+.login
   background-color: transparent !important;
   background-image: url('~assets/img/login-bg.jpg') !important;
   background-repeat: no-repeat !important;
@@ -185,41 +185,30 @@ export default {
   justify-content: center;
   align-items: center;
 
-  & > .application--wrap {
+  & > .application--wrap
     min-height: 0;
-  }
 
-  & .v-content__wrap {
+  & .v-content__wrap
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-}
 
-.login__card {
-  width: 450px;
-  border-radius: 8px;
+  &__card
+    width: 450px;
+    border-radius: 8px;
 
-  & .v-card__text {
-    padding-top: 0;
-  }
-}
+    & .v-card__text
+      padding-top: 0;
 
-.login-provider > .v-list__tile {
-  justify-content: center;
+    @media screen and (max-width: 600px)
+      width: 100%;
 
-  & > .v-list__tile__content {
-    flex: initial;
-  }
+  &-provider > .v-list__tile
+    justify-content: center;
 
-  & > .v-list__tile__avatar {
-    min-width: 40px;
-  }
-}
+    & > .v-list__tile__content
+      flex: initial;
 
-@media screen and (max-width: 600px) {
-  .login__card {
-    width: 100%;
-  }
-}
+    & > .v-list__tile__avatar
+      min-width: 40px;
 </style>

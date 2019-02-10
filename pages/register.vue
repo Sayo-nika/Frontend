@@ -169,7 +169,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.register {
+.register
   background-color: transparent !important;
   background-image: url('~assets/img/login-bg.jpg') !important;
   background-repeat: no-repeat !important;
@@ -181,52 +181,38 @@ export default {
   justify-content: center;
   align-items: center;
 
-  & > .application--wrap {
+  > .application--wrap
     min-height: 0;
-  }
 
-  & .v-content__wrap {
+  .v-content__wrap
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-}
 
-.register__card {
-  border-radius: 8px;
+  &__card
+    border-radius: 8px;
 
-  .v-card__text {
-    padding-top: 0;
-  }
-}
+    .v-card__text
+      padding-top: 0;
 
-.register-provider > .v-list__tile {
-  justify-content: center;
+    @media screen and (max-width: 600px)
+      width: 100% !important;
 
-  & > .v-list__tile__content {
-    flex: initial;
-  }
+  &-provider > .v-list__tile
+    justify-content: center;
 
-  & > .v-list__tile__avatar {
-    min-width: 40px;
-  }
-}
+    > .v-list__tile__content
+      flex: initial;
 
-.register-col {
-  width: 50%;
+    > .v-list__tile__avatar
+      min-width: 40px;
 
-  &.is-left {
-    padding-right: 9px;
-  }
+  &-col
+    width: 50%;
 
-  &.is-right {
-    padding-left: 9px;
-  }
-}
+    &.is-left
+      padding-right: 9px;
 
-@media screen and (max-width: 600px) {
-  .register__card {
-    width: 100% !important;
-  }
-}
+    &.is-right
+      padding-left: 9px;
 </style>

@@ -22,8 +22,7 @@ export default {
 };
 </script>
 
-<style>
-body {
+<style lang="stylus">
+body
   background: #FAFAFA;
-}
 </style>

@@ -95,22 +95,19 @@ export default {
 </script>
 
 <style lang="stylus">
-.profile__side {
-  height: 100%;
-  border-right: solid 1px rgba(0, 0, 0, 0.12);
-}
+.profile
+  &__side
+    height: 100%;
+    border-right: solid 1px rgba(0, 0, 0, 0.12);
 
-.profile__avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
+  &__avatar
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 
-.profile__name {
-  word-wrap: break-word;
-}
+  &__name
+    word-wrap: break-word;
 
-.profile__bio {
-  text-align: center;
-}
+  &__bio
+    text-align: center;
 </style>

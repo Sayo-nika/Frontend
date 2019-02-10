@@ -18,25 +18,20 @@ export default {
 };
 </script>
 
-<style>
-.mod-category {
+<style lang="stylus">
+.mod-category
   position: relative;
   width: calc(100% + 2rem);
-}
 
-.mod-category__title {
-  font-size: 2rem;
-}
+  &__title
+    font-size: 2rem;
 
-.mod-category__scroller {
-  /*height: 308px;*/
-  padding: 0 1rem 1rem;
-  position: relative;
-  /* background: #000; */
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-y: hidden;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
+  &__scroller
+    padding: 0 1rem 1rem;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 </style>

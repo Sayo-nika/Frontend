@@ -175,31 +175,26 @@ export default {
 </script>
 
 <style lang="stylus">
-.search .v-input__append-inner {
-  margin-top: 9px !important;
-}
+.search
+  .v-input__append-inner
+    margin-top: 9px !important;
 
-.search__close {
-  margin: 0;
-}
-
-.search__drawer-container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 16px;
-
-  &.is-fullwidth {
+  &__close
     margin: 0;
-  }
 
-  & .v-input {
-    padding: 0;
-    margin: 0;
-  }
+  &__drawer-container
+    display: flex;
+    flex-direction: column;
+    margin: 0 16px;
 
-  & .v-input__slot,
-  & .v-text-field__details {
-    margin-bottom: 0 !important;
-  }
-}
+    &.is-fullwidth
+      margin: 0;
+
+    .v-input
+      padding: 0;
+      margin: 0;
+
+    .v-input__slot,
+    .v-text-field__details
+      margin-bottom: 0 !important;
 </style>

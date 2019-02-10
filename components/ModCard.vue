@@ -61,134 +61,108 @@ export default {
 </script>
 
 <style lang="stylus">
-.mod-card {
+.mod-card
   background: #DDD;
   height: 290px;
   border-radius: 8px;
   position: relative;
   z-index: 2;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-}
 
-.mod-card + .mod-card {
-  margin-left: 2rem;
-}
+  & + &
+    margin-left: 2rem;
 
-.mod-card__link {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /*z-index: 3;*/
-}
+  &__link
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 
-.mod-card__img {
-  background-size: cover;
-  background-position: center;
-  height: 150px;
-  border-radius: 8px 8px 0 0;
-}
+  &__img
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    border-radius: 8px 8px 0 0;
 
-.mod-card__content {
-  min-width: 300px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.mod-card__info {
-  display: inline-flex;
-}
-
-.mod-card__icon {
-  background: #E84444;
-  height: 64px;
-  width: 64px;
-  border-radius: 50%;
-  margin-right: 9px;
-  /* position: relative; */
-}
-
-.mod-card__icon-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  /* z-index: 2; */
-}
-
-.mod-card__info-inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.mod-card__title {
-  margin: 0;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-}
-
-.mod-card__title > .material-icons {
-    color: rgba(0, 0, 0, 0.75);
-    margin-right: 0.25rem;
-    cursor: default;
-    position: relative;
-}
-
-.mod-card__title-content {
-  max-width: 12ch;
-}
-
-.mod-card__title-meta {
-  &,
-  & > span {
+  &__content
+    min-width: 300px;
+    padding: 1rem;
     display: flex;
-  }
-}
+    flex-direction: column;
 
-.mod-card__content-community {
+  &__info
+    display: inline-flex;
+
+  &__icon
+    background: #E84444;
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    margin-right: 9px;
+
+  &__icon-img
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+  &__info-inner
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  &__title
+    margin: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+
+    > .material-icons
+      color: rgba(0, 0, 0, 0.75);
+      margin-right: 0.25rem;
+      cursor: default;
+      position: relative;
+
+  &__title-content
+    max-width: 12ch;
+
+  &__title-meta
+    &,
+    > span
+      display: flex;
+
+  &__content-community
+    display: flex;
+    font-size: 1rem;
+    opacity: 0.75;
+
+    &-item
+      display: flex;
+      justify-content: center;
+      text-transform: uppercase;
+
+  &__actions
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+
+
+.combined-button
   display: flex;
-  font-size: 1rem;
-  opacity: 0.75;
-}
 
-.mod-card__content-community-item {
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
-}
+  .v-btn
+    margin-left: 0;
+    margin-right: 0;
 
-.mod-card__actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-}
+    &:nth-child(1)
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
 
-.combined-button {
-  display: flex;
-  /* z-index: 4; */
-}
-
-.combined-button .v-btn {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.combined-button .v-btn:nth-child(1) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.combined-button .v-btn:nth-child(2) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 0 8px;
-  min-width: 0;
-}
-
-
+    &:nth-child(2)
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      padding: 0 8px;
+      min-width: 0;
 </style>

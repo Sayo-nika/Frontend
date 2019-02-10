@@ -149,44 +149,36 @@ export default {
 @import '~vuetify/src/stylus/settings/_variables'
 @import '~vuetify/src/stylus/settings/_elevations'
 
-.display-none {
+.display-none
   display: none !important;
-}
 
-.navsearch__wrapper {
+.navsearch__wrapper
   flex: 2 1 auto;
   max-width: 100%;
   position: relative;
-}
 
-.navsearch__container {
+.navsearch__container
   position: relative;
   z-index: 5;
   transition: $primary-transition;
 
-  &.is-focused {
+  &.is-focused
     elevation(4);
 
-    & .navsearch {
+    & .navsearch
       background: #FFF;
       border-radius: 8px 8px 0 0;
 
-      & .v-input__slot > input::placeholder {
+      & .v-input__slot > input::placeholder
         color: $material-light.text.disabled;
-      }
 
-      & .v-input__append-outer {
+      & .v-input__append-outer
         opacity: 1;
-      }
-    }
 
-    & .navsearch__results {
+    & .navsearch__results
       elevation(4);
-    }
-  }
-}
 
-.v-input.navsearch {
+.v-input.navsearch
   align-items: center;
   background: rgba(255, 255, 255, 0.12);
   padding: 8px 16px;
@@ -194,59 +186,74 @@ export default {
   transition: $primary-transition;
   z-index: 10;
 
-  & .v-input__slot {
+  &__wrapper
+    flex: 2 1 auto;
+    max-width: 100%;
+    position: relative;
+
+  &__container
+    position: relative;
+    z-index: 5;
+    transition: $primary-transition;
+
+    &.is-focused
+      elevation(4);
+
+      .navsearch
+        background: #FFF;
+        border-radius: 8px 8px 0 0;
+
+        .v-input__slot > input::placeholder
+          color: $material-light.text.disabled;
+
+        .v-input__append-outer
+          opacity: 1;
+
+      .navsearch__results
+        elevation(4);
+
+  .v-input__slot
     margin-bottom: 0;
 
-    & > input {
+    > input
       width: 100%;
-    }
 
-    & > input::placeholder {
+    > input::placeholder
       color: $material-dark.text.disabled;
       transition: $primary-transition;
-    }
-  }
 
-  & .v-input__append-outer {
+  .v-input__append-outer
     opacity: 0;
     transition: $primary-transition;
-  }
-}
 
-.navsearch__results {
-  position: absolute;
-  background: #FFF;
-  width: 100%;
-  border-radius: 0 0 8px 8px;
-  z-index: 9001;
-}
-
-.navsearch__results-meta {
-  background: #eee;
-
-  &:only-child {
+  &__results
+    position: absolute;
+    background: #FFF;
+    width: 100%;
     border-radius: 0 0 8px 8px;
-  }
-}
+    z-index: 9001;
 
-.navsearch__results-expand {
-  border-radius: 0;
-  height: 40px;
-  padding: 0;
-  margin: 0;
-}
+  &__results-meta
+    background: #eee;
 
-.navsearch__results-list {
-  border-radius: 0 0 8px 8px;
-}
+    &:only-child
+      border-radius: 0 0 8px 8px;
 
-.navsearch__scrim {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.25);
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: calc(100vh);
-  z-index: 4;
-}
+  &__results-expand
+    border-radius: 0;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+
+  &__results-list
+    border-radius: 0 0 8px 8px;
+
+  &__scrim
+    position: fixed;
+    background: rgba(0, 0, 0, 0.25);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh);
+    z-index: 4;
 </style>

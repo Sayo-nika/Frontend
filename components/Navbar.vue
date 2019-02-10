@@ -95,61 +95,50 @@ export default {
 </script>
 
 <style lang="stylus">
-.v-toolbar__items .v-btn:not(.v-btn--floating):not(.v-btn--icon) {
+.v-toolbar__items .v-btn:not(.v-btn--floating):not(.v-btn--icon)
   height: 36px;
-}
 
-.tooltip-fix-span > span {
+.tooltip-fix-span > span
   display: flex;
-}
 
-.navbar__logo {
-  display: flex;
-  align-items: center;
-  position: relative;
-  top: 4px;
-}
+.navbar
+  &__logo
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 4px;
 
-.v-toolbar__items .v-btn + .v-btn {
-  margin-left: 24px !important;
-}
+  .v-toolbar__items .v-btn + .v-btn
+    margin-left: 24px !important;
 
-.navbar__part {
-  display: flex;
-  flex: 1 0 auto;
+  &__part
+    display: flex;
+    flex: 1 0 auto;
 
-  &.is-end {
-    justify-content: flex-end;
-  }
-}
+    &.is-end
+      justify-content: flex-end;
 
-.navbar__user {
-  display: flex;
-  height: 48px;
-}
+  &__user
+    display: flex;
+    height: 48px;
 
-.navbar__user-menu {
-  display: flex;
-  align-content: center;
-}
+  &__user-menu
+    display: flex;
+    align-content: center;
 
-.navbar__user-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-}
+  &__user-details
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 
-.navbar__user-roles > * {
-  margin-left: 0.25rem;
-}
+  &__user-roles > *
+    margin-left: 0.25rem;
 
-.navbar__user-name {
-  font-size: 1.25rem;
-}
+  &__user-name
+    font-size: 1.25rem;
 
-.navbar__user-icon {
-  border-radius: 50%;
-  margin-left: 1rem;
-}
+  &__user-icon
+    border-radius: 50%;
+    margin-left: 1rem;
 </style>

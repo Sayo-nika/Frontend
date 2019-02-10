@@ -82,6 +82,3 @@ export default {
   layout: 'admin'
 };
 </script>
-
-<style lang="stylus">
-</style>
