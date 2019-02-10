@@ -2,22 +2,10 @@
   <v-toolbar color="primary" app clipped-left>
     <div class="navbar__part">
       <v-toolbar-side-icon v-if="drawerBtn" class="hidden-md-and-up" dark/>
-      <nuxt-link class="mr-4" to="/" style="display: flex; align-items: center;">
+      <nuxt-link class="mr-4 navbar__logo" to="/">
         <img v-if="$vuetify.breakpoint.mdAndUp" src="~/assets/img/logo-white.svg" alt="Sayonika logo" height="58">
         <img v-else src="~/assets/img/logo-white.svg" alt="Sayonika logo" height="48">
       </nuxt-link>
-
-      <!-- <v-menu style="width: 50%" bottom right full-width>
-        <v-btn slot="activator" block depressed large>
-          {{ active }}
-        </v-btn>
-
-        <v-list>
-          <v-list-tile v-for="link in destinationLinks" :key="link.value" :to="link.value" nuxt ripple @click="active = link.text">
-            <v-list-tile-title>{{ link.text }}</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu> -->
     </div>
 
     <nav-search v-if="!noSearch" v-show="$vuetify.breakpoint.mdAndUp"/>
@@ -103,19 +91,6 @@ export default {
       default: false
     }
   }
-  // data() {
-  //   const destinationLinks = [
-  //     {text: 'Home', value: '/'},
-  //     {text: 'Search', value: '/search'},
-  //     {text: 'About', value: '/about'}
-  //   ];
-  //   // const active = (destinationLinks.find(v => v.value === location.pathname) || {}).text;
-
-  //   return {
-  //     active: null,
-  //     destinationLinks
-  //   };
-  // }
 };
 </script>
 
@@ -126,6 +101,13 @@ export default {
 
 .tooltip-fix-span > span {
   display: flex;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 4px;
 }
 
 .v-toolbar__items .v-btn + .v-btn {
