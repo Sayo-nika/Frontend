@@ -15,7 +15,7 @@ export const mutations = {
 
 export const actions = {
   async processFromCache({commit}, {app: {$axios, $cookies}, req}) {
-    if (req.headers.cookies) {
+    if (req.headers.cookie) {
       const token = $cookies.get('token');
 
       if (token) {
