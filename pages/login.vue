@@ -116,22 +116,27 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
 
+        let tokenResp, userResp;
+
         try {
-          const tokenResp = await this.$axios.$post('/login', {
+          tokenResp = await this.$axios.$post('/login', {
             username: this.name,
             password: this.password
           });
         } catch (err) {
-          console.error(err);
+          let msg = err.mesage;
 
-          this.snackbarText = 'Error';
+          if (err.response) msg = err.response.data.error;
+          console.error(msg);
+
+          this.snackbarText = `Error: ${msg}`;
           this.snackbarOpen = true;
           this.loading = false;
 
           return;
         }
 
-        const token = tokenResp.result;
+        const token = tokenResp.result.token;
 
         this.$axios.setToken(token);
         this.$store.commit('auth/setToken', token);
@@ -142,11 +147,14 @@ export default {
           });
 
         try {
-          const userResp = await this.$axios.$get('/users/@me');
+          userResp = await this.$axios.$get('/users/@me');
         } catch (err) {
-          console.error(err);
+          let msg = err.mesage;
 
-          this.snackbarText = 'Error';
+          if (err.response) msg = err.response.data.error;
+          console.error(msg);
+
+          this.snackbarText = `Error: ${msg}`;
           this.snackbarOpen = true;
           this.loading = false;
 
