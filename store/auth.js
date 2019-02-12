@@ -4,7 +4,6 @@ export const state = () => ({
 });
 
 export const mutations = {
-  // TODO: auth logic when we get to it
   setToken(state, token) {
     state.token = token;
   },

@@ -58,7 +58,7 @@
 
               <v-divider/>
 
-              <v-list-tile ripple @click="$store.commit('auth/logout')">
+              <v-list-tile ripple @click="logout">
                 <v-list-tile-content>Log Out</v-list-tile-content>
               </v-list-tile>
             </v-list>
@@ -66,6 +66,19 @@
         </div>
       </v-toolbar-items>
     </div>
+
+    <v-dialog v-model="dialog" max-width="500">
+      <v-card>
+        <v-card-text>
+          You are now logged out.
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer/>
+          <v-btn color="primary" depressed @click="dialog = false">Ok</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-toolbar>
 </template>
 
@@ -84,9 +97,24 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      dialog: false
+    };
+  },
   computed: {
     user() {
       return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.commit('auth/setToken', null);
+      this.$store.commit('auth/setUser', null);
+
+      if (this.$cookies.get('token')) this.$cookies.remove('token');
+
+      this.dialog = true;
     }
   }
 };
