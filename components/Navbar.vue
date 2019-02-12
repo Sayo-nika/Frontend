@@ -1,58 +1,49 @@
 <template>
-  <v-toolbar color="primary" app clipped-left>
+  <v-toolbar class="navbar" app clipped-left flat>
     <div class="navbar__part">
-      <v-toolbar-side-icon v-if="drawerBtn" class="hidden-md-and-up" dark/>
+      <v-toolbar-side-icon v-if="drawerBtn" class="hidden-md-and-up"/>
       <nuxt-link class="mr-4 navbar__logo" to="/">
-        <img v-if="$vuetify.breakpoint.mdAndUp" src="~/assets/img/logo-white.svg" alt="Sayonika logo" height="58">
-        <img v-else src="~/assets/img/logo-white.svg" alt="Sayonika logo" height="48">
+        <img src="~/assets/img/logo.svg" alt="Sayonika logo" :height="$vuetify.breakpoint.mdAndUp ? 58 : 48">
       </nuxt-link>
     </div>
 
     <nav-search v-if="!noSearch" v-show="$vuetify.breakpoint.mdAndUp"/>
 
     <div class="navbar__part is-end">
-      <v-toolbar-items v-if="!$store.state.auth.loggedIn">
-        <v-btn :to="`/login?redir=${encodeURIComponent($route.fullPath)}`" color="primary--text" depressed nuxt>Log In</v-btn>
-        <v-btn color="primary--text" to="/register" depressed nuxt>Sign Up</v-btn>
+      <v-toolbar-items v-if="!user">
+        <nuxt-link :to="`/login?redir=${encodeURIComponent($route.fullPath)}`" class="navbar__login primary--text">
+          <v-icon color="primary" large left>mdi-login</v-icon>
+          Log In
+        </nuxt-link>
       </v-toolbar-items>
 
-      <v-toolbar-items v-else class="navbar__user white--text">
+      <v-toolbar-items v-else class="navbar__user">
         <v-tooltip class="tooltip-fix-span" bottom>
-          <v-btn slot="activator" to="/submit-mod" dark flat icon large nuxt>
-            <v-icon size="36">mdi-plus</v-icon>
+          <v-btn slot="activator" to="/submit-mod" flat icon large nuxt>
+            <v-icon color="primary" size="36">mdi-plus</v-icon>
           </v-btn>
           <span>Add a Mod</span>
         </v-tooltip>
 
-        <div class="navbar__user">
-          <div class="navbar__user-details">
-            <!-- FIXME: Missing Username -->
-            <div class="navbar__user-name">Username</div>
-            <div class="navbar__user-roles">
-              <v-tooltip bottom>
-                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-heart</v-icon>
-                Supporter
-              </v-tooltip>
-              <v-tooltip bottom>
-                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-wrench</v-icon>
-                Sayonika Developer
-              </v-tooltip>
-              <v-tooltip bottom>
-                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-gavel</v-icon>
-                Moderator
-              </v-tooltip>
-              <v-tooltip bottom>
-                <v-icon slot="activator" size="16" class="ml-1" dark>mdi-pencil</v-icon>
-                Editor
-              </v-tooltip>
-            </div>
-          </div>
-          <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
-
-          <v-menu min-width="150" nudge-bottom="8" origin="bottom right" offset-y>
+        <div style="height: 48px; display: flex;">
+          <v-menu nudge-bottom="8px" left offset-y full-width>
             <a slot="activator" class="navbar__user-menu">
-              <v-icon size="32" class="ml-2" dark>mdi-chevron-down</v-icon>
+              <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
+              <v-icon class="ml-2" color="primary" size="32">mdi-chevron-down</v-icon>
             </a>
+
+            <v-list class="navbar__user-menu__header" two-line>
+              <v-list-tile>
+                <v-list-tile-avatar>
+                  <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon">
+                </v-list-tile-avatar>
+
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ user.username }}</v-list-tile-title>
+                  <v-list-tile-sub-title>{{ user.email }}</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
 
             <v-list>
               <v-list-tile to="/profile" nuxt ripple>
@@ -61,10 +52,12 @@
               <v-list-tile to="/settings" nuxt ripple>
                 <v-list-tile-content>Settings</v-list-tile-content>
               </v-list-tile>
-              <v-list-tile to="/admin" nuxt ripple>
+              <v-list-tile v-if="user.moderator || user.developer" to="/admin" nuxt ripple>
                 <v-list-tile-content>Admin Dashboard</v-list-tile-content>
               </v-list-tile>
+
               <v-divider/>
+
               <v-list-tile ripple @click="$store.commit('auth/logout')">
                 <v-list-tile-content>Log Out</v-list-tile-content>
               </v-list-tile>
@@ -90,18 +83,24 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  computed: {
+    user() {
+      return this.$store.state.auth.user;
+    }
   }
 };
 </script>
 
 <style lang="stylus">
-.v-toolbar__items .v-btn:not(.v-btn--floating):not(.v-btn--icon)
-  height: 36px;
 
 .tooltip-fix-span > span
   display: flex;
 
 .navbar
+  // > .v-toolbar__content
+  //   padding: 0 2rem;
+
   &__logo
     display: flex;
     align-items: center;
@@ -118,27 +117,26 @@ export default {
     &.is-end
       justify-content: flex-end;
 
+  &__login
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    font-weight: 300;
+
   &__user
     display: flex;
     height: 48px;
 
-  &__user-menu
-    display: flex;
-    align-content: center;
+    &-icon
+      border-radius: 50%;
+      margin-left: 1rem;
 
-  &__user-details
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
+    &-menu
+      display: flex;
+      align-content: center;
 
-  &__user-roles > *
-    margin-left: 0.25rem;
-
-  &__user-name
-    font-size: 1.25rem;
-
-  &__user-icon
-    border-radius: 50%;
-    margin-left: 1rem;
+      &__header
+        background: #E0E0E0 !important;
 </style>

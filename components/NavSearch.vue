@@ -2,48 +2,46 @@
   <div class="navsearch__wrapper mx-4">
     <div ref="container" :class="['navsearch__container', {'is-focused': focused}]" @click="focused = true">
       <div class="v-input navsearch theme--light">
-        <div class="v-input__prepend-outer">
+        <!-- <div class="v-input__prepend-outer">
           <label class="v-input__icon v-input__icon--prepend" for="navsearch">
-            <v-icon :class="focused ? 'primary--text' : 'white--text'">mdi-magnify</v-icon>
           </label>
-        </div>
+        </div> -->
 
         <div class="v-input__control">
           <div class="v-input__slot">
-            <input id="navsearch" ref="input" v-model="text" :class="focused ? 'primary--text' : 'white--text'" aria-label="Search" type="text"
+            <input id="navsearch" ref="input" v-model="text" :class="!focused ? 'is-inactive' : 'primary--text'" aria-label="Search" type="text"
                    placeholder="Search" @focus="focused = true" @keyup.enter="goToSearch">
           </div>
         </div>
 
         <div class="v-input__append-outer">
           <div class="v-input__icon v-input__icon--append">
-            <v-btn :disabled="!focused || !text" :class="focused ? 'primary--text' : 'white--text'" flat icon @click="text = ''">
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
+            <transition name="fade-abs">
+              <v-icon v-if="!focused">mdi-magnify</v-icon>
+              <v-btn v-else :disabled="!text" class="primary--text" flat icon @click="text = ''">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </transition>
           </div>
         </div>
       </div>
 
       <v-fade-transition>
         <div v-if="focused" class="navsearch__results">
-          <v-subheader class="navsearch__results-meta">
-            <template v-if="!text">
-              Type to start searching...
-            </template>
-            <template v-else>
-              Showing {{ results.length }} results
-            </template>
+          <v-subheader v-if="!text" class="navsearch__results-meta">
+            Type to start searching...
           </v-subheader>
 
           <template v-if="text">
-            <v-btn class="navsearch__results-expand" color="accent" block flat @click="goToSearch">
-              Go to search
-              <v-icon right>mdi-arrow-right</v-icon>
-            </v-btn>
-
             <v-list class="navsearch__results-list" two-line>
               <v-subheader class="primary--text">
                 Mods
+
+                <v-spacer/>
+
+                <v-btn :to="`/search/mods?q=${text}`" color="primary" flat icon nuxt>
+                  <v-icon>mdi-arrow-right</v-icon>
+                </v-btn>
               </v-subheader>
 
               <v-list-tile avatar @click="void 0">
@@ -64,6 +62,12 @@
               <v-divider/>
               <v-subheader class="primary--text">
                 Users
+
+                <v-spacer/>
+
+                <v-btn :to="`/search/users?q=${text}`" color="primary" flat icon nuxt>
+                  <v-icon>mdi-arrow-right</v-icon>
+                </v-btn>
               </v-subheader>
 
               <v-list-tile avatar @click="void 0">
@@ -152,42 +156,30 @@ export default {
 .display-none
   display: none !important;
 
-.navsearch__wrapper
-  flex: 2 1 auto;
-  max-width: 100%;
-  position: relative;
+.fade-abs
+  &-leave-active, &-enter-active
+    position: absolute;
+    margin: 0 !important;
 
-.navsearch__container
-  position: relative;
-  z-index: 5;
-  transition: $primary-transition;
+  &-enter-active, &-leave, &-leave-to
+    transition: opacity $primary-transition;
 
-  &.is-focused
-    elevation(4);
+  &-enter, &-leave-to
+    opacity: 0;
 
-    & .navsearch
-      background: #FFF;
-      border-radius: 8px 8px 0 0;
+.is-inactive
+  color: $material-light.text.secondary !important;
 
-      & .v-input__slot > input::placeholder
-        color: $material-light.text.disabled;
-
-      & .v-input__append-outer
-        opacity: 1;
-
-    & .navsearch__results
-      elevation(4);
-
-.v-input.navsearch
+.navsearch
   align-items: center;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.12);
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 24px;
   transition: $primary-transition;
   z-index: 10;
 
   &__wrapper
-    flex: 2 1 auto;
+    flex: 3 1 auto;
     max-width: 100%;
     position: relative;
 
@@ -201,13 +193,10 @@ export default {
 
       .navsearch
         background: #FFF;
-        border-radius: 8px 8px 0 0;
+        border-radius: 24px 24px 0 0;
 
         .v-input__slot > input::placeholder
           color: $material-light.text.disabled;
-
-        .v-input__append-outer
-          opacity: 1;
 
       .navsearch__results
         elevation(4);
@@ -217,27 +206,25 @@ export default {
 
     > input
       width: 100%;
+      text-align: center;
 
     > input::placeholder
-      color: $material-dark.text.disabled;
+      text-align: center;
+      color: $material-light.text.disabled;
       transition: $primary-transition;
-
-  .v-input__append-outer
-    opacity: 0;
-    transition: $primary-transition;
 
   &__results
     position: absolute;
     background: #FFF;
     width: 100%;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 24px 24px;
     z-index: 9001;
 
   &__results-meta
     background: #eee;
 
     &:only-child
-      border-radius: 0 0 8px 8px;
+      border-radius: 0 0 24px 24px;
 
   &__results-expand
     border-radius: 0;
@@ -246,7 +233,10 @@ export default {
     margin: 0;
 
   &__results-list
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 24px 24px !important;
+
+    .v-list__tile
+      padding: 0 5%;
 
   &__scrim
     position: fixed;

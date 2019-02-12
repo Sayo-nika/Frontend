@@ -24,7 +24,7 @@ export const actions = {
           $axios.setToken(token);
 
           const user = await $axios.$get('/users/@me');
-          commit('setUser', user);
+          commit('setUser', user.result);
         } catch {
           $axios.setToken(null);
           $cookies.remove('token');
