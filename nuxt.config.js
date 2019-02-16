@@ -28,7 +28,9 @@ export default {
   },
 
   env: {
-    oauth
+    oauth,
+    recaptchaInvisibleKey: process.env.SAYONIKA_RECAPTCHA_INVISIBLE_SITE_KEY,
+    recaptchaCheckboxKey: process.env.SAYONIKA_RECAPTCHA_CHECKBOX_SITE_KEY
   },
 
   loading: {color: '#FFA000'},
@@ -45,6 +47,7 @@ export default {
   ],
 
   plugins: [
+    // '~/plugins/recaptcha',
     '~/plugins/vuetify'
   ],
 

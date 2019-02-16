@@ -19,6 +19,11 @@
                                 :rules="passwordRules" :type="showPassword ? 'text' : 'password'" label="Password" required
                                 @click:append="showPassword = !showPassword" @keyup.enter="login"/>
 
+                  <!-- TODO: migrate to recaptcha v3 when vue-recaptcha-v3 is fixed. -->
+                  <v-layout align-center column my-3>
+                    <recaptcha :sitekey="captchaKey" @verify="storeCaptcha" @expired="captcha = null"/>
+                  </v-layout>
+
                   <v-container class="pa-0 pt-2" fluid>
                     <v-layout row>
                       <v-flex sm6 xs12>
@@ -75,15 +80,18 @@
 </template>
 
 <script>
+import Recaptcha from 'vue-recaptcha';
 import providers from '~/utils/oauth';
 
 export default {
   layout: 'blank',
   middleware: 'notLoggedIn',
+  components: {Recaptcha},
   data() {
     return {
       name: '',
       password: '',
+      captcha: null,
       rememberMe: false,
 
       showPassword: false,
@@ -109,6 +117,9 @@ export default {
     },
     submitDisabled() {
       return !(this.name && this.password && this.formValid);
+    },
+    captchaKey() {
+      return process.env.recaptchaCheckboxKey;
     }
   },
   methods: {
@@ -116,12 +127,16 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
 
+        // const recaptchaToken = await this.$recaptcha('login');
+
         let tokenResp, userResp;
 
         try {
           tokenResp = await this.$axios.$post('/login', {
             username: this.name,
-            password: this.password
+            password: this.password,
+            recaptcha: this.captcha
+            // recaptcha: recaptchaToken
           });
         } catch (err) {
           let msg = err.mesage;
@@ -168,13 +183,23 @@ export default {
         this.loading = false;
         this.$router.push(this.to);
       }
+    },
+    storeCaptcha(val) {
+      this.captcha = val;
     }
   },
   head() {
     return {
       htmlAttrs: {
         style: 'overflow: hidden'
-      }
+      },
+      script: [
+        {
+          src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+          async: true,
+          defer: true
+        }
+      ]
     };
   }
 };

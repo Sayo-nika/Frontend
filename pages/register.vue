@@ -14,7 +14,7 @@
             <v-card-text>
               <v-container class="text-xs-center pb-0 pt-0">
                 <v-form ref="form" v-model="formValid" class="mb-2" lazy-validation>
-                  <v-text-field v-model="name" :disabled="loading" :rules="nameRules" label="Username" autofocus required @keyup.enter="register"/>
+                  <v-text-field v-model="username" :disabled="loading" :rules="usernameRules" label="Username" autofocus required @keyup.enter="register"/>
 
                   <v-layout>
                     <div class="register-col is-left">
@@ -35,6 +35,10 @@
                       <v-text-field v-model="email" :disabled="loading" :rules="emailRules" label="Email" type="email" required @keyup.enter="register"/>
                       <v-text-field v-model="emailConfirm" :disabled="loading" :rules="emailConfirmRules" label="Confirm Email" type="email" required @keyup.enter="register"/>
                     </div>
+                  </v-layout>
+
+                  <v-layout align-center column mt-3>
+                    <recaptcha :sitekey="captchaKey" @verify="storeCaptcha" @expired="captcha = null"/>
                   </v-layout>
 
                   <div>
@@ -79,25 +83,51 @@
           </v-window-item> -->
         </v-window>
       </v-card>
+
+      <v-snackbar v-model="snackbarOpen" :timeout="5000" right>
+        {{ snackbarText }}
+      </v-snackbar>
+
+      <v-dialog v-model="dialog" max-width="500">
+        <v-card>
+          <v-card-title>
+            Email Verification Required
+          </v-card-title>
+
+          <v-card-text>
+            Your accout has been made, but there's just one last step to do.
+            A verification link has been sent to your provided email.
+            You should verify it within 24 hours, otherwise your account will be deleted.
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer/>
+            <v-btn color="primary" depressed @click="closeDialog">Ok</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-content>
   </v-app>
 </template>
 
 <script>
+import Recaptcha from 'vue-recaptcha';
 import zxcvbn from 'zxcvbn';
 import providers from '~/utils/oauth';
 
 export default {
   layout: 'blank',
   middleware: 'notLoggedIn',
+  components: {Recaptcha},
   data() {
     return {
-      name: '',
+      username: '',
       password: '',
       passwordConfirm: '',
       email: '',
       emailConfirm: '',
       readTOS: false,
+      captcha: null,
 
       formValid: false,
       loading: false,
@@ -105,8 +135,11 @@ export default {
       showPassword: false,
       showPasswordConfirm: false,
       passwordFocused: false,
+      snackbarText: '',
+      snackbarOpen: false,
+      dialog: false,
 
-      nameRules: [
+      usernameRules: [
         v => !!v || 'Username is required'
       ],
       passwordRules: [
@@ -142,27 +175,62 @@ export default {
       return ['error', 'error', 'warning', 'success', 'success'][this.passwordStrength / 100 * 4];
     },
     submitDisabled() {
-      return !(this.name && this.password && this.passwordConfirm && this.email && this.emailConfirm && this.readTOS && this.formValid);
+      return !(this.username && this.password && this.passwordConfirm && this.email && this.emailConfirm && this.readTOS && this.captcha && this.formValid);
+    },
+    captchaKey() {
+      return process.env.recaptchaCheckboxKey;
     }
   },
   methods: {
-    register() {
+    async register() {
       if (this.$refs.form.validate()) {
         this.loading = true;
 
-        setTimeout(() => {
+        let resp;
+
+        try {
+          resp = await this.$axios.$post('/users', {
+            username: this.username,
+            password: this.password,
+            email: this.email,
+            recaptcha: this.captcha
+          });
+        } catch (err) {
+          let msg = err.mesage;
+
+          if (err.response) msg = err.response.data.error;
+          console.error(msg);
+
+          this.snackbarText = `Error: ${msg}`;
+          this.snackbarOpen = true;
           this.loading = false;
-          this.$router.push('/');
-          this.$store.commit('auth/login');
-        }, 2500);
+
+          return;
+        }
+
+        this.dialog = true;
       }
+    },
+    storeCaptcha(val) {
+      this.captcha = val;
+    },
+    closeDialog() {
+      this.dialog = false;
+      this.$router.push('/login');
     }
   },
   head() {
     return {
       htmlAttrs: {
         style: 'overflow: hidden'
-      }
+      },
+      script: [
+        {
+          src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+          async: true,
+          defer: true
+        }
+      ]
     };
   }
 };
