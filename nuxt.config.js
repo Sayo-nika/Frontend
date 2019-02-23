@@ -47,7 +47,7 @@ export default {
   ],
 
   plugins: [
-    // '~/plugins/recaptcha',
+    '~/plugins/recaptcha.client',
     '~/plugins/vuetify'
   ],
 
