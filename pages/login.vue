@@ -154,6 +154,8 @@ export default {
           this.$cookies.set('token', token, {
             expires: new Date('2038-01-01') // Roughly the 32-bit int limit. Should be ok for an infinite cookie.
           });
+        else
+          this.$cookies.set('token', token); // Store as session cookie so it won't get cleared on a simple reload.
 
         try {
           userResp = await this.$axios.$get('/users/@me');
@@ -177,9 +179,6 @@ export default {
         this.loading = false;
         this.$router.push(this.to);
       }
-    },
-    storeCaptcha(val) {
-      this.captcha = val;
     }
   },
   head() {
