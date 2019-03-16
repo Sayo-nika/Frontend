@@ -48,7 +48,8 @@ export default {
 
   plugins: [
     '~/plugins/recaptcha.client',
-    '~/plugins/vuetify'
+    '~/plugins/routerHooks',
+    '~/plugins/vuePlugins'
   ],
 
   modules: [

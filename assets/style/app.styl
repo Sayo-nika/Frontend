@@ -11,8 +11,15 @@ $button-border-radius = $border-radius;
   scrollbar-width: thin !important;
   scrollbar-color: #FFA000 rgba(0, 0, 0, 0.12) !important;
 
-// .v-list,
+.hint
+  color: rgba(0, 0, 0, 0.54);
+
+// Vuetify style overrides
 .v-menu__content
   border-radius: $border-radius !important;
+
+.v-text-field__details,
+.v-input .v-label
+  overflow: visible !important;
 
 @require '~vuetify/src/stylus/main.styl'
