@@ -1,42 +1,37 @@
 <template>
-  <div class="mod-card">
-    <!--nuxt-link v-ripple class="mod-card__link black--text" to="/"/-->
-    <div :style="{backgroundImage: `url(${background})`}" class="mod-card__img"/>
+  <div :style="`--color: ${color}; --bg: url(${background})`" class="mod-card" @mouseenter="hovered = true" @mouseleave="hovered = false">
+    <v-avatar class="mod-card__icon" size="128">
+      <img :src="icon">
+    </v-avatar>
 
-    <div class="mod-card__content">
-      <div class="mod-card__info">
-        <div class="mod-card__icon">
-          <img :src="icon" class="mod-card__icon-img" alt="mod icon">
-        </div>
-        <div class="mod-card__info-inner">
-          <div class="mod-card__title">
-            <v-tooltip class="mod-card__title-meta" top>
-              <v-icon slot="activator">mdi-star</v-icon>
-              <span>Editors' Choice</span>
-            </v-tooltip>
-            <div class="mod-card__title-content text-truncate">
-              {{ title }}
-            </div>
-          </div>
-          <div class="mod-card__content-community">
-            <div class="mod-card__content-community-item">
-              <v-icon>mdi-heart</v-icon>
-              <span class="ml-1 mr-3">2.3k</span>
-            </div>
-            <div class="mod-card__content-community-item">
-              <v-icon>mdi-cloud-download</v-icon>
-              <span class="ml-1">300k</span>
-            </div>
-          </div>
-        </div>
+    <div class="mod-card__hover">
+      <div class="mod-card__hover-content">
+        <h1 class="mod-card__hover-title">
+          {{ title }}
+        </h1>
+        <p class="mod-card__hover-description">
+          {{ description }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mod-card__actions">
+      <div class="mod-card__actions-left">
+        <v-btn class="ma-0" icon @click="faved = !faved">
+          <v-icon :color="iconColor">{{ faved ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+        </v-btn>
+        <v-tooltip top>
+          <template #activator="{on}">
+            <v-icon :color="iconColor" v-on="on">mdi-star</v-icon>
+          </template>
+
+          <span>Editor's Choice</span>
+        </v-tooltip>
       </div>
 
-      <div class="mod-card__actions">
-        <div class="combined-button">
-          <v-btn color="primary" depressed>Download</v-btn>
-          <v-btn color="accent" depressed><v-icon>mdi-heart</v-icon></v-btn>
-        </div>
-      </div>
+      <v-btn :color="color" class="mod-card__actions-open" depressed round>View Mod</v-btn>
+
+      <v-spacer/>
     </div>
   </div>
 </template>
@@ -48,6 +43,10 @@ export default {
       type: String,
       required: true
     },
+    description: {
+      type: String,
+      required: true
+    },
     background: {
       type: String,
       required: true
@@ -55,114 +54,115 @@ export default {
     icon: {
       type: String,
       required: true
+    },
+    color: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      faved: false,
+      hovered: false
+    };
+  },
+  computed: {
+    iconColor() {
+      return this.hovered ? this.color : 'white';
     }
   }
 };
 </script>
 
 <style lang="stylus">
+@import '~vuetify/src/stylus/settings/_variables'
+@import '~vuetify/src/stylus/settings/_elevations'
+
 .mod-card
-  background: #DDD;
-  height: 290px;
-  border-radius: 8px;
   position: relative;
-  z-index: 2;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  background: var(--color);
+  width: 500px;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  transition: $primary-transition;
 
-  & + &
-    margin-left: 2rem;
+  elevation(2);
 
-  &__link
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-  &__img
+  &__hover
+    background-image: var(--bg);
+    background-color: var(--color);
     background-size: cover;
-    background-position: center;
-    height: 150px;
-    border-radius: 8px 8px 0 0;
-
-  &__content
-    min-width: 300px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-
-  &__info
-    display: inline-flex;
-
-  &__icon
-    background: #E84444;
-    height: 64px;
-    width: 64px;
-    border-radius: 50%;
-    margin-right: 9px;
-
-  &__icon-img
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-
-  &__info-inner
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-  &__title
-    margin: 0;
-    font-size: 1.5rem;
+    position: absolute;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #FFF;
+    opacity: 0;
+    transition: $primary-transition;
 
-    > .material-icons
-      color: rgba(0, 0, 0, 0.75);
-      margin-right: 0.25rem;
-      cursor: default;
-      position: relative;
+    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px))
+      &, &::before
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
 
-  &__title-content
-    max-width: 12ch;
+    &::before
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
 
-  &__title-meta
-    &,
-    > span
+    &-content
       display: flex;
-
-  &__content-community
-    display: flex;
-    font-size: 1rem;
-    opacity: 0.75;
-
-    &-item
-      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      text-transform: uppercase;
+      padding: 3.5rem 3rem calc(2rem + 48px);
+      width: 100%;
+      height: 100%;
+      transform: translateY(48px);
+      transition: $primary-transition;
+
+    &-title
+      line-height: 1;
+      margin-bottom: 1rem;
 
   &__actions
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-top: 0.5rem;
 
+    &-left
+      display: flex;
+      align-items: center;
+      flex: 1;
+      padding: 8px;
 
-.combined-button
-  display: flex;
+    &-open
+      color: #FFF !important;
+      position: relative;
+      bottom: 8px;
+      transform: translateY(calc(100% + 18px));
+      transition: $primary-transition;
 
-  .v-btn
-    margin-left: 0;
-    margin-right: 0;
+  &:hover
+    elevation(8);
 
-    &:nth-child(1)
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+    & ^[0]
+      &__actions-open
+        transform: translateY(0);
 
-    &:nth-child(2)
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      padding: 0 8px;
-      min-width: 0;
+      &__hover
+        opacity: 1;
+
+        &-content
+          transform: translateY(0);
 </style>
