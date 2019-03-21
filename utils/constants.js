@@ -1,15 +1,15 @@
 export const categories = [
-  {text: 'Tools', value: 'Tools'},
-  {text: 'Comedy', value: 'Comedy'},
-  {text: 'Tragic Comedy', value: 'TragicComedy'},
-  {text: 'Drama', value: 'Drama'},
-  {text: 'Rom Com', value: 'RomCom'},
-  {text: 'Romance', value: 'Romance'},
-  {text: 'Horror', value: 'Horror'},
-  {text: 'Mystery', value: 'Mystery'},
-  {text: 'Satire', value: 'Satire'},
-  {text: 'Thriller', value: 'Thriller'},
-  {text: 'Sci-Fi', value: 'SciFi'}
+  {text: 'Tools', value: 'tools'},
+  {text: 'Comedy', value: 'comedy'},
+  {text: 'Tragic Comedy', value: 'tragic_comedy'},
+  {text: 'Drama', value: 'drama'},
+  {text: 'Rom Com', value: 'rom_com'},
+  {text: 'Romance', value: 'romance'},
+  {text: 'Horror', value: 'horror'},
+  {text: 'Mystery', value: 'mystery'},
+  {text: 'Satire', value: 'satire'},
+  {text: 'Thriller', value: 'thriller'},
+  {text: 'Sci-Fi', value: 'sci_fi'}
 ];
 
 export const categoriesText = [
@@ -27,10 +27,10 @@ export const categoriesText = [
 ];
 
 export const statuses = [
-  {text: 'Planning', value: 'Planning'},
-  {text: 'In Development', value: 'InDevelopment'},
-  {text: 'Playtesting', value: 'Playtesting'},
-  {text: 'Released', value: 'Released'}
+  {text: 'Planning', value: 'planning'},
+  {text: 'In Development', value: 'in_development'},
+  {text: 'Playtesting', value: 'playtesting'},
+  {text: 'Released', value: 'released'}
 ];
 
 export const statusesText = [
@@ -41,13 +41,13 @@ export const statusesText = [
 ];
 
 export const roles = [
-  {text: 'Unassigned', value: 'Unassigned'},
-  {text: 'Co-owner', value: 'CoOwner'},
-  {text: 'Programmer', value: 'Programmer'},
-  {text: 'Artist', value: 'Artist'},
-  {text: 'Writer', value: 'Writer'},
-  {text: 'Musician', value: 'Musician'},
-  {text: 'Public Relations', value: 'PublicRelations'}
+  {text: 'Unassigned', value: 'unassigned'},
+  {text: 'Co-owner', value: 'co_owner'},
+  {text: 'Programmer', value: 'programmer'},
+  {text: 'Artist', value: 'artist'},
+  {text: 'Writer', value: 'writer'},
+  {text: 'Musician', value: 'musician'},
+  {text: 'Public Relations', value: 'public_relations'}
 ];
 
 export const rolesText = [
