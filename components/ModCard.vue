@@ -82,7 +82,6 @@ export default {
   position: relative;
   display: flex;
   background: var(--color);
-  width: 500px;
   height: 200px;
   border-radius: 8px;
   overflow: hidden;
