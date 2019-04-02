@@ -1,12 +1,12 @@
 <template>
-  <div class="ai-carousel">
+  <div :class="['ai-carousel', {'is-tile': tile}]">
     <div class="ai-carousel__btn-wrap is-left">
       <v-btn class="ai-carousel__btn" color="white primary--text" fab @click="$refs.carousel.prev()">
         <v-icon large>mdi-chevron-left</v-icon>
       </v-btn>
     </div>
 
-    <v-carousel ref="carousel" class="ai-carousel__items" hide-controls hide-delimiters>
+    <v-carousel ref="carousel" :class="`ai-carousel__items ${color}`" hide-controls hide-delimiters>
       <slot/>
     </v-carousel>
 
@@ -19,7 +19,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    tile: {
+      type: Boolean,
+      default: false
+    },
+    color: {
+      type: String,
+      default: 'primary'
+    }
+  }
+};
 </script>
 
 <style lang="stylus">
@@ -29,8 +40,16 @@ export default {};
   position: relative;
   padding: 0 5rem;
 
+  &.is-tile
+    padding: 0;
+
+    & ^[0]__items
+      border-radius: 0;
+      box-shadow: none;
+
   &__btn
     opacity: 0;
+    z-index: 999;
     transition: $primary-transition;
 
     &-wrap
@@ -39,9 +58,9 @@ export default {};
       display: flex;
       flex-direction: column;
       justify-content: center;
-      z-index: 999;
       top: 0;
       bottom: 0;
+      z-index: 1;
 
       &.is-left
         left: 5rem;
