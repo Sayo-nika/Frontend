@@ -7,7 +7,7 @@
       </nuxt-link>
     </div>
 
-    <nav-search v-if="!noSearch" v-show="$vuetify.breakpoint.mdAndUp"/>
+    <!-- <nav-search v-if="!noSearch" v-show="$vuetify.breakpoint.mdAndUp"/> -->
 
     <div class="navbar__part is-end">
       <v-toolbar-items v-if="!user">
@@ -83,10 +83,10 @@
 </template>
 
 <script>
-import NavSearch from '~/components/NavSearch.vue';
+// import NavSearch from '~/components/NavSearch.vue';
 
 export default {
-  components: {NavSearch},
+  // components: {NavSearch},
   props: {
     drawerBtn: {
       type: Boolean,

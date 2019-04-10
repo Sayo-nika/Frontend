@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import AsyncComputed from 'vue-async-computed';
+import SocialSharing from 'vue-social-sharing';
 import colors from 'vuetify/es5/util/colors';
 
 Vue.use(Vuetify, {
@@ -17,3 +18,4 @@ Vue.use(Vuetify, {
 });
 
 Vue.use(AsyncComputed);
+Vue.use(SocialSharing);

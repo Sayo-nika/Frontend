@@ -312,7 +312,10 @@ export default {
       this.collaborators.push({index: this.collaborators.length, role: 'Unassigned'});
     },
     removeCollaborator(index) {
-      this.collaborators.splice(index, 1);
+      this.collaborators = this.collaborators.filter(col => col.index !== index).map((col, i) => {
+        col.index = i;
+        return col;
+      });
     },
     collaboratorRoleChange(role, index) {
       this.collaborators[index].role = role;
@@ -337,10 +340,8 @@ export default {
 
         const recaptchaToken = await this.$recaptcha('create_mod');
 
-        let resp;
-
         try {
-          resp = await this.$axios.$post('/mods', {
+          await this.$axios.$post('/mods', {
             title: this.title,
             tagline: this.tagline,
             description: this.description,

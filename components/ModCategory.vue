@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: use scoped slots instead of prop -->
   <div class="mod-category">
     <h1 class="mod-category__title mb-2">{{ title }}</h1>
     <div class="mod-category__grid">

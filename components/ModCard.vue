@@ -29,7 +29,7 @@
         </v-tooltip>
       </div>
 
-      <v-btn :color="color" class="mod-card__actions-open" depressed round>View Mod</v-btn>
+      <v-btn :color="color" class="mod-card__actions-open" to="/mod" depressed nuxt round>View Mod</v-btn>
 
       <v-spacer/>
     </div>
