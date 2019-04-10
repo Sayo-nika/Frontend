@@ -124,10 +124,8 @@ export default {
 
         const recaptchaToken = await this.$recaptcha('login');
 
-        let tokenResp, userResp;
-
         try {
-          tokenResp = await this.$axios.$post('/login', {
+          var {result: {token}} = await this.$axios.$post('/login', {
             username: this.name,
             password: this.password,
             recaptcha: recaptchaToken
@@ -145,8 +143,6 @@ export default {
           return;
         }
 
-        const token = tokenResp.result.token;
-
         this.$axios.setToken(token);
         this.$store.commit('auth/setToken', token);
 
@@ -158,7 +154,7 @@ export default {
           this.$cookies.set('token', token); // Store as session cookie so it won't get cleared on a simple reload.
 
         try {
-          userResp = await this.$axios.$get('/users/@me');
+          var {result: user} = await this.$axios.$get('/users/@me');
         } catch (err) {
           let msg = err.mesage;
 
@@ -171,8 +167,6 @@ export default {
 
           return;
         }
-
-        const user = userResp.result;
 
         this.$store.commit('auth/setUser', user);
 

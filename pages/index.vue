@@ -4,7 +4,9 @@
       <ai-carousel-item background="https://storage.googleapis.com/spec-host-backup/mio-material%2Fassets%2F12Fkh25mfiYNsuNC49MUv6FKnJG1hJnba%2Fcollections-brand-2x1-large.png"
                         color="accent" to="/test">
         <template #badge>
-          <v-icon class="mr-1" small>mdi-alert-decagram</v-icon>
+          <v-avatar>
+            <v-icon small>mdi-alert-decagram</v-icon>
+          </v-avatar>
           Recently Released
         </template>
 
@@ -20,7 +22,9 @@
       <ai-carousel-item background="https://www.microsoft.com/design/images/engaging_1600x800_vp_5.jpg?_sw-precache=090fd62d869916a59bd4495cc52da669"
                         color="purple" to="/test">
         <template #badge>
-          <v-icon class="mr-1" small>mdi-book</v-icon>
+          <v-avatar>
+            <v-icon small>mdi-book</v-icon>
+          </v-avatar>
           From the Blog
         </template>
 
