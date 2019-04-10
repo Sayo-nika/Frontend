@@ -17,7 +17,7 @@ export default {
     };
   },
   mounted() {
-    console.error(this.error);
+    console.error(this.error.message, this.error.statusCode);
   }
 };
 </script>
