@@ -27,7 +27,7 @@
         </v-container>
       </v-card-text>
 
-      <v-card-actions class="create-review__footer">
+      <v-card-actions class="justify-end">
         <v-btn flat @click="close">Cancel</v-btn>
         <v-btn :disabled="loading || submitDisabled" :loading="loading" color="primary" depressed @click="submit">Submit</v-btn>
       </v-card-actions>
@@ -67,7 +67,8 @@ export default {
       return !(
         this.rating &&
         this.title &&
-        this.body
+        this.body &&
+        this.formValid
       );
     }
   },
@@ -113,7 +114,4 @@ export default {
   &__rating
     .v-icon
       padding: 0;
-
-  &__footer
-    justify-content: flex-end;
 </style>

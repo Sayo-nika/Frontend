@@ -38,7 +38,7 @@
                   </v-layout>
 
                   <v-layout align-center column mt-3>
-                    <recaptcha :sitekey="captchaKey" @verify="storeCaptcha" @expired="captcha = null"/>
+                    <recaptcha :sitekey="captchaKey" @verify="v => captcha = v" @expired="captcha = null"/>
                   </v-layout>
 
                   <div>
@@ -210,9 +210,6 @@ export default {
 
         this.dialog = true;
       }
-    },
-    storeCaptcha(val) {
-      this.captcha = val;
     },
     closeDialog() {
       this.dialog = false;

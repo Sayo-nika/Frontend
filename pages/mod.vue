@@ -7,11 +7,21 @@
     <permanent-dialog max-width="1200">
       <v-card :class="['mod', {'is-editors-choice': editorsChoice}]">
         <v-card-title class="mod__title-bar">
-          <v-btn class="ma-0" :dark="editorsChoice" icon @click="(gone = true) && $router.back()">
+          <v-btn class="ma-0" :dark="editorsChoice" icon @click="(gone = true) && goBack()">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
 
           <v-spacer/>
+
+          <v-tooltip v-if="user" z-index="300" bottom>
+            <template #activator="{on}">
+              <v-btn class="my-0 mx-2" :dark="editorsChoice" icon v-on="on" @click="report = true">
+                <v-icon>mdi-flag</v-icon>
+              </v-btn>
+            </template>
+
+            <span>Report Abuse</span>
+          </v-tooltip>
 
           <v-menu z-index="300" left>
             <template #activator="{on: menu}">
@@ -247,6 +257,10 @@
     <v-snackbar v-model="snackbarOpen" :timeout="5000" right>
       {{ snackbarText }}
     </v-snackbar>
+
+    <v-dialog v-model="report" max-width="750">
+      <report-mod @close="report = false"/>
+    </v-dialog>
   </div>
 </template>
 
@@ -257,6 +271,7 @@ import HeightTransition from '~/components/HeightTransition.vue';
 import ModReview from '~/components/ModReview.vue';
 import MoreReviews from '~/components/MoreReviews.vue';
 import PermanentDialog from '~/components/PermanentDialog.vue';
+import ReportMod from '~/components/ReportMod.vue';
 
 import copy from 'clipboard-copy';
 
@@ -267,7 +282,8 @@ export default {
     HeightTransition,
     ModReview,
     MoreReviews,
-    PermanentDialog
+    PermanentDialog,
+    ReportMod
   },
   data() {
     return {
@@ -279,7 +295,8 @@ export default {
       createReview: false,
       moreReviews: false,
       snackbarOpen: false,
-      snackbarText: ''
+      snackbarText: '',
+      report: false
     };
   },
   computed: {
@@ -288,6 +305,9 @@ export default {
     },
     href() {
       return process.browser ? window.location.href : 'null';
+    },
+    user() {
+      return this.$store.state.auth.user;
     }
   },
   methods: {
@@ -301,6 +321,10 @@ export default {
     createReviewError(msg) {
       this.snackbarText = msg;
       this.snackbarOpen = true;
+    },
+    goBack() {
+      if (window.history.length === 1) this.$router.push('/');
+      else this.$router.back();
     }
   }
 };
