@@ -62,6 +62,7 @@ export default {
 
   &-body
     padding: 0;
+    flex: 1;
 
     &__text
       max-width: 50%;

@@ -38,11 +38,8 @@ export default {
 
 .ai-carousel
   position: relative;
-  padding: 0 5rem;
 
   &.is-tile
-    padding: 0;
-
     & ^[0]__items
       border-radius: 0;
       box-shadow: none;
