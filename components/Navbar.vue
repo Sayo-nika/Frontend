@@ -1,11 +1,15 @@
 <template>
   <v-toolbar class="navbar" app clipped-left flat>
     <div class="navbar__part">
-      <v-toolbar-side-icon v-if="drawerBtn" class="hidden-md-and-up"/>
-      <nuxt-link class="mr-4 navbar__logo" to="/">
-        <img src="~/assets/img/logo.svg" alt="Sayonika logo" :height="$vuetify.breakpoint.mdAndUp ? 58 : 48">
+      <v-toolbar-side-icon v-if="$vuetify.breakpoint.smAndDown" class="primary--text" @click="$emit('drawer-click')"/>
+      <nuxt-link v-if="$vuetify.breakpoint.mdAndUp" class="mr-4 navbar__logo" to="/">
+        <img src="~/assets/img/logo.svg" alt="Sayonika logo" height="58">
       </nuxt-link>
     </div>
+
+    <nuxt-link v-if="$vuetify.breakpoint.smAndDown" class="mr-4 navbar__logo" to="/">
+      <img src="~/assets/img/logo.svg" alt="Sayonika logo" height="48">
+    </nuxt-link>
 
     <!-- <nav-search v-if="!noSearch" v-show="$vuetify.breakpoint.mdAndUp"/> -->
 
@@ -18,7 +22,7 @@
       </v-toolbar-items>
 
       <v-toolbar-items v-else class="navbar__user">
-        <v-tooltip class="tooltip-fix-span" bottom>
+        <v-tooltip v-if="$vuetify.breakpoint.mdAndUp" class="tooltip-fix-span" bottom>
           <v-btn slot="activator" to="/submit-mod" flat icon large nuxt>
             <v-icon color="primary" size="36">mdi-plus</v-icon>
           </v-btn>
@@ -28,8 +32,9 @@
         <div style="height: 48px; display: flex;">
           <v-menu nudge-bottom="8px" left offset-y full-width>
             <a slot="activator" class="navbar__user-menu">
-              <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon" width="48" height="48">
-              <v-icon class="ml-2" color="primary" size="32">mdi-chevron-down</v-icon>
+              <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon"
+                   :width="profileIconSize" :height="profileIconSize">
+              <v-icon v-if="$vuetify.breakpoint.mdAndUp" class="ml-2" color="primary" size="32">mdi-chevron-down</v-icon>
             </a>
 
             <v-list class="navbar__user-menu__header" two-line>
@@ -88,10 +93,6 @@
 export default {
   // components: {NavSearch},
   props: {
-    drawerBtn: {
-      type: Boolean,
-      default: false
-    },
     noSearch: {
       type: Boolean,
       default: false
@@ -105,6 +106,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.auth.user;
+    },
+    profileIconSize() {
+      return this.$vuetify.breakpoint.mdAndUp ? 48 : 40;
     }
   },
   methods: {
