@@ -1,5 +1,5 @@
 <template>
-  <v-carousel-item class="ai-carousel__item" :src="background">
+  <v-carousel-item class="ai-carousel__item" v-bind="bind">
     <div class="ai-carousel__item-content pa-3">
       <div class="ai-carousel__item-top">
         <v-chip :color="color">
@@ -20,7 +20,7 @@
           </p>
         </div>
 
-        <v-btn :color="color" :to="to" depressed large nuxt round>
+        <v-btn :color="color" v-bind="{[to_.startsWith('http') ? 'href' : 'to']: to_}" depressed large nuxt round>
           <slot name="button">View</slot>
         </v-btn>
       </div>
@@ -33,7 +33,7 @@ export default {
   props: {
     background: {
       type: String,
-      required: true
+      default: null
     },
     color: {
       type: String,
@@ -41,8 +41,18 @@ export default {
     },
     to: {
       type: String,
-      required: true
+      default: null
     }
+  },
+  data() {
+    const data = {
+      to_: this.to || '',
+      bind: {}
+    };
+
+    if (this.background) data.bind = {src: this.background};
+
+    return data;
   }
 };
 </script>

@@ -6,39 +6,21 @@
 
     <v-flex md9 lg10 xs12>
       <ai-carousel class="mb-4">
-        <ai-carousel-item background="https://storage.googleapis.com/spec-host-backup/mio-material%2Fassets%2F12Fkh25mfiYNsuNC49MUv6FKnJG1hJnba%2Fcollections-brand-2x1-large.png"
-                          color="accent" to="/test">
+        <ai-carousel-item v-for="({title, body, type, url, banner}, index) in news" :key="`news-carousel-${index}`"
+                          :color="newsColours[type]" :background="banner" :to="url">
           <template #badge>
             <v-avatar>
-              <v-icon small>mdi-alert-decagram</v-icon>
+              <v-icon small>{{ newsIcons[type] }}</v-icon>
             </v-avatar>
-            Recently Released
+            {{ newsTitles[type] }}
           </template>
 
           <template #title>
-            Doki Doki Obama Club
+            {{ title }}
           </template>
 
           <template #body>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex erat, pulvinar id pretium non, sollicitudin in metus. Ut a sapien nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-          </template>
-        </ai-carousel-item>
-
-        <ai-carousel-item background="https://www.microsoft.com/design/images/engaging_1600x800_vp_5.jpg?_sw-precache=090fd62d869916a59bd4495cc52da669"
-                          color="purple" to="/test">
-          <template #badge>
-            <v-avatar>
-              <v-icon small>mdi-book</v-icon>
-            </v-avatar>
-            From the Blog
-          </template>
-
-          <template #title>
-            Why Elon Musk Should Invest In Catgirls
-          </template>
-
-          <template #body>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex erat, pulvinar id pretium non, sollicitudin in metus. Ut a sapien nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+            {{ body }}
           </template>
         </ai-carousel-item>
       </ai-carousel>
@@ -70,8 +52,16 @@ export default {
         title: 'Lorem Ipsum',
         color: '#A4086A',
         icon: 'https://avatars1.githubusercontent.com/u/14976516'
-      })
+      }),
+      newsColours: ['accent', 'secondary', 'purple'],
+      newsIcons: ['mdi-alert-decagram', 'mdi-star-circle', 'mdi-book'],
+      newsTitles: ['Recently Released', 'Featured', 'From the Blog']
     };
+  },
+  async asyncData({app: {$axios}}) {
+    const {result: news} = await $axios.$get('/news');
+
+    return {news};
   }
 };
 </script>

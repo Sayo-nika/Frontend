@@ -47,6 +47,7 @@ export default {
   &__btn
     opacity: 0;
     z-index: 999;
+    pointer-events: auto;
     transition: $primary-transition;
 
     &-wrap
@@ -58,6 +59,7 @@ export default {
       top: 0;
       bottom: 0;
       z-index: 1;
+      pointer-events: none;
 
       &.is-left
         left: 5rem;
