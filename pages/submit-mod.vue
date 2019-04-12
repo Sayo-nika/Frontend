@@ -1,10 +1,11 @@
 <template>
   <div>
-    <component :is="parentComponent" v-if="parentComponent"/>
-    <v-dialog v-model="open" max-width="1000" persistent>
+    <component :is="parentComponent" v-if="!gone && parentComponent"/>
+
+    <permanent-dialog max-width="1200">
       <v-card>
         <v-card-title>
-          <v-btn class="mr-3" style="margin: 0;" icon @click="$router.back()">
+          <v-btn class="mr-3" style="margin: 0;" icon @click="(gone = true) && goBack()">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
           Upload Mod
@@ -161,7 +162,7 @@
           <v-btn :disabled="submitDisabled || loading" :loading="loading" class="px-5" color="primary" large round @click="submit">Submit</v-btn>
         </v-layout>
       </v-card>
-    </v-dialog>
+    </permanent-dialog>
 
     <v-dialog v-model="fileDialogOpen" width="300">
       <v-card color="grey darken-4 white--text">
@@ -185,6 +186,7 @@
 </template>
 
 <script>
+import PermanentDialog from '~/components/PermanentDialog.vue';
 import UploadCollaborator from '~/components/UploadCollaborator.vue';
 import {categories, statuses} from '~/utils/constants';
 
@@ -202,7 +204,10 @@ const URL_RE = new RegExp('^'
 );
 
 export default {
-  components: {UploadCollaborator},
+  components: {
+    UploadCollaborator,
+    PermanentDialog
+  },
   middleware: 'loggedIn',
   data() {
     return {
@@ -223,7 +228,7 @@ export default {
       fileDialogOpen: false,
 
       formValid: false,
-      open: true,
+      gone: false,
       loading: false,
       categories,
       statuses,
@@ -370,6 +375,10 @@ export default {
         this.loading = false;
         this.$router.push('/'); // TODO: go to mod page when they exist
       }
+    },
+    goBack() {
+      if (window.history.length === 1) this.$router.push('/');
+      else this.$router.back();
     }
   }
 };
