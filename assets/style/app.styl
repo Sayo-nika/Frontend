@@ -3,7 +3,10 @@
 
 $border-radius = 8px;
 $body-font-family = 'Noto Sans JP', Roboto, sans-serif;
+
 $button-border-radius = $border-radius;
+$sheet-border-radius = $border-radius;
+$card-border-radius = $border-radius;
 
 @import '~vuetify/src/stylus/components/_lists';
 
@@ -15,8 +18,7 @@ $button-border-radius = $border-radius;
   color: rgba(0, 0, 0, 0.54);
 
 // Vuetify style overrides
-.v-menu__content,
-.v-sheet:not(.v-sheet--tile)
+.v-menu__content
   border-radius: $border-radius !important;
 
 .v-text-field__details,

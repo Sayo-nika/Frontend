@@ -59,3 +59,20 @@ export const rolesText = [
   'Musician',
   'Public Relations'
 ];
+
+export const colors = [
+  {value: 'default', color: 'primary', dark: true},
+  {value: 'red', color: 'red', dark: true},
+  {value: 'pink', color: 'pink', dark: true},
+  {value: 'purple', color: 'purple', dark: true},
+  {value: 'deep_purple', color: 'deep-purple', dark: true},
+  {value: 'indigo', color: 'indigo', dark: true},
+  {value: 'blue', color: 'blue', dark: false},
+  {value: 'cyan', color: 'cyan', dark: false},
+  {value: 'teal', color: 'teal', dark: true},
+  {value: 'green', color: 'green', dark: true},
+  {value: 'lime', color: 'lime', dark: false},
+  {value: 'yellow', color: 'yellow', dark: false},
+  {value: 'orange', color: 'orange', dark: true},
+  {value: 'deep_orange', color: 'deep-orange', dark: true}
+];

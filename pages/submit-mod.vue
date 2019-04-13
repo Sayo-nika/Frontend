@@ -12,14 +12,14 @@
         </v-card-title>
 
         <v-form ref="form" v-model="formValid" lazy-validation>
-          <v-card class="upload-mod__header px-5 py-5" color="primary white--text" :img="bannerPath" flat tile>
+          <v-card class="upload-mod__header px-5 py-5" :color="`${colorValue} ${colorIsDark ? 'white' : 'black'}--text`" :img="bannerPath" flat tile>
             <input id="inputA" ref="iconSelect" type="file" accept=".png,.jpeg,.jpg" style="display: none;" @change="() => icon = this.$refs.iconSelect.files[0]">
             <input id="inputB" ref="bannerSelect" type="file" accept=".png,.jpeg,.jpg" style="display: none;" @change="() => banner = this.$refs.bannerSelect.files[0]">
 
             <div class="upload-mod__header__banner-upload">
               <v-tooltip bottom>
                 <template #activator="data">
-                  <v-btn color="white--text" fab icon large v-on="data.on" @click="$refs.bannerSelect.click()">
+                  <v-btn :color="`${colorIsDark ? 'white' : 'black'}--text`" fab icon large v-on="data.on" @click="$refs.bannerSelect.click()">
                     <v-icon large>mdi-camera</v-icon>
                   </v-btn>
                 </template>
@@ -30,8 +30,8 @@
 
             <v-tooltip bottom>
               <template #activator="data">
-                <div class="upload-mod__icon mt-4" v-on="data.on" @click="$refs.iconSelect.click()">
-                  <v-icon dark large>mdi-camera</v-icon>
+                <div :class="['upload-mod__icon', 'mt-4', {'is-dark': colorIsDark}]" v-on="data.on" @click="$refs.iconSelect.click()">
+                  <v-icon :dark="colorIsDark" large>mdi-camera</v-icon>
 
                   <div class="upload-mod__icon-preview">
                     <img :src="iconPath">
@@ -43,10 +43,40 @@
             </v-tooltip>
 
             <div class="upload-mod__title-wrapper mt-3">
-              <v-text-field v-model="title" :rules="titleRules" class="upload-mod__title-input mt-3" color="white" name="mod-title"
-                            label="Mod Title" hint="The name of your mod." maxlength="32" counter="32" autofocus dark solo/>
+              <v-text-field v-model="title" :rules="titleRules" :class="['upload-mod__title-input', 'mt-3', {'is-dark': colorIsDark}]"
+                            :dark="colorIsDark" name="mod-title" label="Mod Title" hint="The name of your mod." maxlength="32"
+                            counter="32" autofocus solo/>
             </div>
           </v-card>
+
+          <div class="pa-3">
+            <v-menu :close-on-content-click="false" min-width="250">
+              <template #activator="{on}">
+                <v-btn :color="`${colorValue} ${colorIsDark ? 'white' : 'black'}--text`" depressed v-on="on">
+                  Theme Color
+                </v-btn>
+              </template>
+
+              <v-card>
+                <v-card-text>
+                  <v-container fluid grid-list-md pa-0>
+                    <v-layout row wrap>
+                      <v-flex v-for="{value, color: pColor, dark} in colors" :key="`palette-${pColor}`" xs3>
+                        <v-responsive :aspect-ratio="1">
+                          <v-card class="upload-mod__palette-color" :color="pColor" ripple @click="color = value">
+                            <v-icon v-if="value === color" size="28" :dark="dark">
+                              mdi-check-circle
+                            </v-icon>
+                          </v-card>
+                        </v-responsive>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card-text>
+              </v-card>
+            </v-menu>
+          </div>
+
 
           <div class="pa-3">
             <v-card color="grey lighten-4">
@@ -159,7 +189,7 @@
         </p>
 
         <v-layout pt-1 pb-4 align-center column>
-          <v-btn :disabled="submitDisabled || loading" :loading="loading" class="px-5" color="primary" large round @click="submit">Submit</v-btn>
+          <v-btn :disabled="submitDisabled || loading" :loading="loading" class="px-5" :color="colorValue" large round @click="submit">Submit</v-btn>
         </v-layout>
       </v-card>
     </permanent-dialog>
@@ -188,7 +218,7 @@
 <script>
 import PermanentDialog from '~/components/PermanentDialog.vue';
 import UploadCollaborator from '~/components/UploadCollaborator.vue';
-import {categories, statuses} from '~/utils/constants';
+import {categories, colors, statuses} from '~/utils/constants';
 
 // URL regex taken from Marshmallow to be consistent with backend.
 const URL_RE = new RegExp('^'
@@ -221,6 +251,7 @@ export default {
       description: '',
       category: null,
       status: null,
+      color: 'default',
 
       snackbarText: '',
       snackbarOpen: false,
@@ -232,6 +263,7 @@ export default {
       loading: false,
       categories,
       statuses,
+      colors,
 
       titleRules: [
         v => !!v || 'Mod title is required',
@@ -283,6 +315,12 @@ export default {
     },
     parentComponent() {
       return this.$store.state.parentRoute;
+    },
+    colorValue() {
+      return this.colors.find(({value}) => value === this.color).color;
+    },
+    colorIsDark() {
+      return this.colors.find(({value}) => value === this.color).dark;
     },
     submitDisabled() {
       return !(
@@ -357,6 +395,7 @@ export default {
             icon: this.iconPath,
             status: this.status,
             category: this.category,
+            color: this.color,
             recaptcha: recaptchaToken
           });
         } catch (err) {
@@ -406,9 +445,13 @@ img:not([src])
     justify-content: center;
     width: 128px;
     height: 128px;
-    border: dotted 4px white;
+    border: dotted 4px black;
     border-radius: 50%;
     cursor: pointer;
+    transition: border-color $primary-transition;
+
+    &.is-dark
+      border-color: white;
 
     &-preview
       width: 100%;
@@ -443,10 +486,23 @@ img:not([src])
           line-height: 32px;
           overflow: visible !important;
 
-    .v-messages.error--text,
-    &.error--text .v-input__slot input
-      color: #FFEBEE !important;
-      caret-color: #FFEBEE !important;
+    .v-messages
+      color: #000 !important;
+      caret-color: #000 !important;
+      transition: $primary-transition;
+
+    &.is-dark
+      .v-messages
+        color: #FFEBEE !important;
+        caret-color: #FFEBEE !important;
+
+  &__palette-color
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 
   &__collaborators
     display: grid;
