@@ -1,16 +1,21 @@
 FROM node:10-alpine
 
-# Copy into container
+# Make container root
 USER root
 RUN mkdir /app
+
+# Install node dependencies
+COPY package.json /app/package.json
+RUN cd /app; yarn
+
+# Copy project to container
 COPY . /app
 WORKDIR /app
 
 # Install dumb-init
 RUN apk add dumb-init
 
-# Install node dependencies and build.
-RUN yarn
+# Build app
 RUN yarn build
 
 USER node
