@@ -1,6 +1,6 @@
 FROM node:10-alpine
 
-# Make container root
+# Create container root
 USER root
 RUN mkdir /app
 
@@ -19,7 +19,6 @@ RUN apk add dumb-init
 RUN yarn build
 
 USER node
-WORKDIR /app
 EXPOSE 8080
 
 ENTRYPOINT ["dumb-init", "--"]
