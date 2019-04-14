@@ -4,15 +4,15 @@
 
     <permanent-dialog max-width="1200">
       <v-card>
-        <v-card-title>
-          <v-btn class="mr-3" style="margin: 0;" icon @click="(gone = true) && goBack()">
+        <v-card-title :class="colorValueWithText">
+          <v-btn :class="`${colorIsDark ? 'white' : 'black'}--text mr-3`" style="margin: 0;" icon @click="(gone = true) && goBack()">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
           Upload Mod
         </v-card-title>
 
         <v-form ref="form" v-model="formValid" lazy-validation>
-          <v-card class="upload-mod__header px-5 py-5" :color="`${colorValue} ${colorIsDark ? 'white' : 'black'}--text`" :img="bannerPath" flat tile>
+          <v-card class="upload-mod__header px-5 py-5" :color="colorValueWithText" :img="bannerPath" flat tile>
             <input id="inputA" ref="iconSelect" type="file" accept=".png,.jpeg,.jpg" style="display: none;" @change="() => icon = this.$refs.iconSelect.files[0]">
             <input id="inputB" ref="bannerSelect" type="file" accept=".png,.jpeg,.jpg" style="display: none;" @change="() => banner = this.$refs.bannerSelect.files[0]">
 
@@ -52,7 +52,7 @@
           <div class="pa-3">
             <v-menu :close-on-content-click="false" min-width="250">
               <template #activator="{on}">
-                <v-btn :color="`${colorValue} ${colorIsDark ? 'white' : 'black'}--text`" depressed v-on="on">
+                <v-btn :color="colorValueWithText" depressed v-on="on">
                   Theme Color
                 </v-btn>
               </template>
@@ -216,9 +216,21 @@
 </template>
 
 <script>
+import Vibrant from 'node-vibrant';
+import materialColors from 'vuetify/es5/util/colors';
 import PermanentDialog from '~/components/PermanentDialog.vue';
 import UploadCollaborator from '~/components/UploadCollaborator.vue';
 import {categories, colors, statuses} from '~/utils/constants';
+import theme from '~/utils/theme';
+
+const {Util: {hexDiff}} = Vibrant;
+
+// Only get bases from Vuetify colors, and merge with our theme.
+const baseColors = Object.entries(materialColors)
+  .filter(([key]) => !['shades', 'grey', 'brown', 'amber', 'blueGrey', 'lightGreen', 'lightBlue'].includes(key)) // Filter out colors we don't want.
+  .map(([key, {base}]) => ({[key]: base}))
+  .concat({primary: theme.primary})
+  .reduce((last, next) => ({...last, ...next}));
 
 // URL regex taken from Marshmallow to be consistent with backend.
 const URL_RE = new RegExp('^'
@@ -319,6 +331,9 @@ export default {
     colorValue() {
       return this.colors.find(({value}) => value === this.color).color;
     },
+    colorValueWithText() {
+      return `${this.colorValue} ${this.colorIsDark ? 'white' : 'black'}--text`;
+    },
     colorIsDark() {
       return this.colors.find(({value}) => value === this.color).dark;
     },
@@ -346,6 +361,26 @@ export default {
       if (!this.banner) return Promise.resolve(null);
 
       return this.getImgURI(this.banner);
+    },
+    async bannerPalette() {
+      if (!this.bannerPath) return Promise.resolve(null);
+
+      // TODO: make this pop out a dialog with the choices of swatches. Allow to decline if wanted.
+      return Vibrant.from(this.bannerPath).getPalette();
+    }
+  },
+  watch: {
+    bannerPalette(val) {
+      if (!val) return;
+
+      // Diff all the base colors we have against current swatch, to try and find the most similar color.
+      const swatch = val.Vibrant.getHex();
+      const diffedColors = Object.entries(baseColors)
+        .map(([name, hex]) => [name, hexDiff(hex, swatch)])
+        .sort(([, similarityA], [, similarityB]) => similarityA - similarityB);
+
+      // Turn from `camelCase` color to `snake_case` color so we can just select it from our colors list.
+      this.color = diffedColors[0][0].replace(/([A-Z])/g, match => '_' + match.toLowerCase());
     }
   },
   methods: {

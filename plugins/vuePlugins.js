@@ -2,20 +2,19 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import AsyncComputed from 'vue-async-computed';
 import SocialSharing from 'vue-social-sharing';
-import colors from 'vuetify/es5/util/colors';
+import theme from '~/utils/theme';
 
 Vue.use(Vuetify, {
   iconfont: 'mdi',
-  theme: {
-    primary: '#E84444',
-    accent: '#FFA000',
-    secondary: '#F13131',
-    info: colors.teal.lighten1,
-    warning: colors.amber.base,
-    error: colors.deepOrange.accent4,
-    success: colors.green.accent3
-  }
+  theme
 });
 
-Vue.use(AsyncComputed);
+Vue.use(AsyncComputed, {
+  useRawError: true,
+  errorHandler(err, vm, stack) {
+    console.error(err);
+    console.error(vm);
+    console.error(stack);
+  }
+});
 Vue.use(SocialSharing);
