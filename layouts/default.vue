@@ -60,6 +60,16 @@
       <v-container grid-list-lg fluid>
         <nuxt/>
       </v-container>
+
+      <v-tooltip left>
+        <template #activator="{on}">
+          <v-btn color="secondary" href="https://discord.gg/sGUkGc8" bottom fab fixed right v-on="on">
+            <v-icon>mdi-message-alert</v-icon>
+          </v-btn>
+        </template>
+
+        <span>Feedback and Support</span>
+      </v-tooltip>
     </v-content>
 
     <!-- <v-footer app/> -->

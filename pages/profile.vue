@@ -86,7 +86,6 @@ import ModCategory from '~/components/ModCategory.vue';
 import ModCard from '~/components/ModCard.vue';
 
 export default {
-  layout: 'default-no-container',
   components: {
     ModCategory,
     ModCard
