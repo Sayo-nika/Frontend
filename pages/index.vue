@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex v-if="$vuetify.breakpoint.mdAndUp" lg2 md3>
+    <v-flex v-if="$breakpoint.is('mdAndUp')" lg2 md3>
       <index-nav-card/>
     </v-flex>
 

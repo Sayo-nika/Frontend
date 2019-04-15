@@ -159,9 +159,9 @@ export default {
   },
   computed: {
     paginationVisible() {
-      return this.$vuetify.breakpoint.mdAndDown
+      return this.$breakpoint.is('mdAndDown')
         ? 5
-        : this.$vuetify.breakpoint.xs
+        : this.$breakpoint.is('xs')
           ? 3
           : 7;
     }

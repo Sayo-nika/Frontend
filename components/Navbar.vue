@@ -1,17 +1,18 @@
 <template>
   <v-toolbar class="navbar" app clipped-left flat>
     <div class="navbar__part">
-      <v-toolbar-side-icon v-if="$vuetify.breakpoint.smAndDown" class="primary--text" @click="$emit('drawer-click')"/>
-      <nuxt-link v-if="$vuetify.breakpoint.mdAndUp" class="mr-4 navbar__logo" to="/">
+      <v-toolbar-side-icon v-if="$breakpoint.is('smAndDown')" class="primary--text" @click="$emit('drawer-click')"/>
+
+      <nuxt-link v-if="$breakpoint.is('mdAndUp')" class="mr-4 navbar__logo" to="/">
         <img src="~/assets/img/logo.svg" alt="Sayonika logo" height="58">
       </nuxt-link>
     </div>
 
-    <nuxt-link v-if="$vuetify.breakpoint.smAndDown" class="mr-4 navbar__logo" to="/">
+    <nuxt-link v-if="$breakpoint.is('smAndDown')" class="mr-4 navbar__logo" to="/">
       <img src="~/assets/img/logo.svg" alt="Sayonika logo" height="48">
     </nuxt-link>
 
-    <!-- <nav-search v-if="!noSearch" v-show="$vuetify.breakpoint.mdAndUp"/> -->
+    <!-- <nav-search v-if="!noSearch" v-show="$breakpoint.is('mdAndUp')"/> -->
 
     <div class="navbar__part is-end">
       <v-toolbar-items v-if="!user">
@@ -22,7 +23,7 @@
       </v-toolbar-items>
 
       <v-toolbar-items v-else class="navbar__user">
-        <v-tooltip v-if="$vuetify.breakpoint.mdAndUp" class="tooltip-fix-span" bottom>
+        <v-tooltip v-if="$breakpoint.is('mdAndUp')" class="tooltip-fix-span" bottom>
           <v-btn slot="activator" to="/submit-mod" flat icon large nuxt>
             <v-icon color="primary" size="36">mdi-plus</v-icon>
           </v-btn>
@@ -34,7 +35,7 @@
             <a slot="activator" class="navbar__user-menu">
               <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon"
                    :width="profileIconSize" :height="profileIconSize">
-              <v-icon v-if="$vuetify.breakpoint.mdAndUp" class="ml-2" color="primary" size="32">mdi-chevron-down</v-icon>
+              <v-icon v-if="$breakpoint.is('mdAndUp')" class="ml-2" color="primary" size="32">mdi-chevron-down</v-icon>
             </a>
 
             <v-list class="navbar__user-menu__header" two-line>
@@ -108,7 +109,7 @@ export default {
       return this.$store.state.auth.user;
     },
     profileIconSize() {
-      return this.$vuetify.breakpoint.mdAndUp ? 48 : 40;
+      return this.$breakpoint.is('mdAndUp') ? 48 : 40;
     }
   },
   methods: {

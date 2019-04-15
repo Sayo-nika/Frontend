@@ -17,4 +17,5 @@ Vue.use(AsyncComputed, {
     console.error(stack);
   }
 });
+
 Vue.use(SocialSharing);
