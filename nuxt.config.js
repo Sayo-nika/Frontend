@@ -73,6 +73,8 @@ export default {
 
   build: {
     extend(config, ctx) {
+      if (ctx.isDev) config.devtool = '#eval-source-map';
+
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
