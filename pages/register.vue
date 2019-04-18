@@ -178,7 +178,7 @@ export default {
       return !(this.username && this.password && this.passwordConfirm && this.email && this.emailConfirm && this.readTOS && this.captcha && this.formValid);
     },
     captchaKey() {
-      return process.env.recaptchaCheckboxKey;
+      return this.$env.recaptchaCheckboxKey;
     }
   },
   methods: {

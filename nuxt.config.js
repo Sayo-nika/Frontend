@@ -27,11 +27,11 @@ export default {
     ]
   },
 
-  env: {
-    oauth,
-    recaptchaInvisibleKey: process.env.SAYONIKA_RECAPTCHA_INVISIBLE_SITE_KEY,
-    recaptchaCheckboxKey: process.env.SAYONIKA_RECAPTCHA_CHECKBOX_SITE_KEY
-  },
+  // env: {
+  //   oauth,
+  //   recaptchaInvisibleKey: process.env.SAYONIKA_RECAPTCHA_INVISIBLE_SITE_KEY,
+  //   recaptchaCheckboxKey: process.env.SAYONIKA_RECAPTCHA_CHECKBOX_SITE_KEY
+  // },
 
   loading: {color: '#FFA000'},
 
@@ -55,7 +55,13 @@ export default {
 
   modules: [
     '@nuxtjs/axios',
-    'cookie-universal-nuxt'
+    'cookie-universal-nuxt',
+    ['nuxt-env', {
+      keys: [
+        {key: 'SAYONIKA_RECAPTCHA_INVISIBLE_SITE_KEY', name: 'recaptchaInvisibleKey'},
+        {key: 'SAYONIKA_RECAPTCHA_CHECKBOX_SITE_KEY', name: 'recaptchaCheckboxKey'}
+      ]
+    }]
   ],
 
   // serverMiddleware: [

@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     captchaKey() {
-      return process.env.recaptchaCheckboxKey;
+      return this.$env.recaptchaCheckboxKey;
     },
     submitDisabled() {
       return !(
