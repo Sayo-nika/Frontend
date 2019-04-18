@@ -15,11 +15,8 @@ WORKDIR /app
 # Install dumb-init
 RUN apk add dumb-init
 
-# Build app
-RUN yarn build
-
 USER node
 EXPOSE 8080
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["yarn", "start"]
+CMD ["sh", "dockerrun.sh"]
