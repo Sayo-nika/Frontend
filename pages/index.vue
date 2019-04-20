@@ -25,7 +25,9 @@
         </ai-carousel-item>
       </ai-carousel>
 
-      <mod-category title="Category" :mods="mods"/>
+      <mod-category v-if="recentReleases.length" class="mb-4" title="Recently Released" :mods="recentReleases"/>
+      <mod-category v-if="mostLoved.length" class="mb-4" title="Most Loved" :mods="mostLoved"/>
+      <mod-category v-if="mostDownloads.length" class="mb-4" title="Most Downloaded" :mods="mostDownloads"/>
     </v-flex>
   </v-layout>
 </template>
@@ -43,25 +45,32 @@ export default {
     IndexNavCard,
     ModCategory
   },
-  // layout: 'index',
   data() {
     return {
-      mods: new Array(10).fill({
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis luctus mi, sed cursus posuere.',
-        background: 'https://material.io/design/assets/1BkDOHzEJX_10xKlv9KmPixbghY4lIYzl/image-list-thumbnail-2x1.png',
-        title: 'Lorem Ipsum',
-        color: '#A4086A',
-        icon: 'https://avatars1.githubusercontent.com/u/14976516'
-      }),
       newsColours: ['accent', 'secondary', 'purple'],
       newsIcons: ['mdi-alert-decagram', 'mdi-star-circle', 'mdi-book'],
       newsTitles: ['Recently Released', 'Featured', 'From the Blog']
     };
   },
-  async asyncData({app: {$axios}}) {
-    const {result: news} = await $axios.$get('/news');
+  async asyncData({$axios}) {
+    const [
+      {result: news},
+      {result: recentReleases},
+      {result: mostLoved},
+      {result: mostDownloads}
+    ] = await Promise.all([
+      $axios.$get('/news'),
+      $axios.$get('/mods/recent_releases'),
+      $axios.$get('/mods/most_loved'),
+      $axios.$get('/mods/most_downloads')
+    ]);
 
-    return {news};
+    return {
+      news,
+      recentReleases,
+      mostLoved,
+      mostDownloads
+    };
   }
 };
 </script>
