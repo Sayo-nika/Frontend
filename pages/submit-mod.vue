@@ -148,7 +148,7 @@
                   <v-flex class="upload-mod__column" s12 m6>
                     <v-select v-model="category" :items="categories" label="Category" hint="The genre or category your mod falls under." persistent-hint/>
 
-                    <v-select v-model="status" :items="statuses" label="Mod Status" hint="The mod's deveopment status." persistent-hint/>
+                    <v-select v-model="status" :items="statuses" label="Mod Status" hint="The mod's development status." persistent-hint/>
 
                     <v-radio-group v-model="betaState" label="Playtesting Beta Type">
                       <v-radio label="Closed" :value="true" hint="obama"/>
