@@ -54,6 +54,20 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
+
+      <v-list-tile to="/admin/user-control" nuxt ripple>
+        <v-list-tile-action>
+          <v-badge color="accent">
+            <span slot="badge">50+</span>
+
+            <v-icon>mdi-library-books</v-icon>
+          </v-badge>
+        </v-list-tile-action>
+
+        <v-list-tile-content>
+          <v-list-tile-title>User Access Control</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
     </v-navigation-drawer>
 
     <navbar no-search drawer-btn/>

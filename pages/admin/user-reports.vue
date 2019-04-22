@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    its ghostville here
+    Not Implemented.
   </v-layout>
 </template>
 
