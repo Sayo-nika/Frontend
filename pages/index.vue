@@ -1,7 +1,9 @@
 <template>
   <v-layout row wrap>
     <v-flex v-if="$breakpoint.is('mdAndUp')" lg2 md3>
-      <index-nav-card/>
+      <nav-card>
+        <index-nav/>
+      </nav-card>
     </v-flex>
 
     <v-flex md9 lg10 xs12>
@@ -35,14 +37,16 @@
 <script>
 import AiCarousel from '~/components/AiCarousel.vue';
 import AiCarouselItem from '~/components/AiCarouselItem.vue';
-import IndexNavCard from '~/components/IndexNavCard.vue';
+import IndexNav from '~/components/IndexNav.vue';
+import NavCard from '~/components/NavCard.vue';
 import ModCategory from '~/components/ModCategory.vue';
 
 export default {
   components: {
     AiCarousel,
     AiCarouselItem,
-    IndexNavCard,
+    IndexNav,
+    NavCard,
     ModCategory
   },
   data() {

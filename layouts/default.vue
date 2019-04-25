@@ -3,57 +3,59 @@
     <navbar @drawer-click="drawer = !drawer"/>
 
     <v-navigation-drawer v-model="drawer" app clipped temporary>
-      <v-list-tile to="/" nuxt ripple>
-        <v-list-tile-action>
-          <v-icon>mdi-home</v-icon>
-        </v-list-tile-action>
-
-        <v-list-tile-content>
-          <v-list-tile-title>Home</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-
-      <v-list-tile to="/trending" nuxt ripple>
-        <v-list-tile-action>
-          <v-icon>mdi-trending-up</v-icon>
-        </v-list-tile-action>
-
-        <v-list-tile-content>
-          <v-list-tile-title>Trending</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-
-      <v-list-tile to="/editors-choice" nuxt ripple>
-        <v-list-tile-action>
-          <v-icon>mdi-email-open</v-icon>
-        </v-list-tile-action>
-
-        <v-list-tile-content>
-          <v-list-tile-title>Editors' Choice</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-
-      <template v-if="$store.state.auth.user">
-        <v-list-tile to="/loved" nuxt ripple>
+      <v-list>
+        <v-list-tile to="/" nuxt ripple>
           <v-list-tile-action>
-            <v-icon>mdi-heart</v-icon>
+            <v-icon>mdi-home</v-icon>
           </v-list-tile-action>
 
           <v-list-tile-content>
-            <v-list-tile-title>Loved</v-list-tile-title>
+            <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile to="/submit-mod" nuxt ripple>
+        <v-list-tile to="/trending" nuxt ripple>
           <v-list-tile-action>
-            <v-icon>mdi-plus</v-icon>
+            <v-icon>mdi-trending-up</v-icon>
           </v-list-tile-action>
 
           <v-list-tile-content>
-            <v-list-tile-title>Add a Mod</v-list-tile-title>
+            <v-list-tile-title>Trending</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-      </template>
+
+        <v-list-tile to="/editors-choice" nuxt ripple>
+          <v-list-tile-action>
+            <v-icon>mdi-email-open</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>Editors' Choice</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <template v-if="$store.state.auth.user">
+          <v-list-tile to="/loved" nuxt ripple>
+            <v-list-tile-action>
+              <v-icon>mdi-heart</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>Loved</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <v-list-tile to="/submit-mod" nuxt ripple>
+            <v-list-tile-action>
+              <v-icon>mdi-plus</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>Add a Mod</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
+      </v-list>
     </v-navigation-drawer>
 
     <v-content>
@@ -80,9 +82,7 @@
 import Navbar from '~/components/Navbar.vue';
 
 export default {
-  components: {
-    Navbar
-  },
+  components: {Navbar},
   data() {
     return {
       drawer: false

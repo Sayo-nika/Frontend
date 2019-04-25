@@ -1,96 +1,173 @@
 <template>
-  <v-layout column>
-    <v-list class="admin__recent elevation-3 mb-3" two-line>
-      <v-subheader class="primary--text">
-        <v-icon class="mr-1" color="primary">mdi-library-books</v-icon> Pending Mods
-      </v-subheader>
+  <v-layout row wrap>
+    <v-flex v-if="$breakpoint.is('mdAndUp')" lg2 md3>
+      <nav-card>
+        <v-list>
+          <v-list-tile to="/admin" exact nuxt ripple>
+            <v-list-tile-action>
+              <v-icon>mdi-home</v-icon>
+            </v-list-tile-action>
 
-      <v-list-tile v-for="mod in pendingMods" :key="`mod-${mod.id}`" avatar @click="void 0">
-        <v-list-tile-avatar>
-          <img src="{{ mod.icon_url }}" alt="icon">
-        </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>Home</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-        <v-list-tile-content>
-          <v-list-tile-title>{{ mod.title }}</v-list-tile-title>
-          <v-list-tile-sub-title>Submitted by {{ mod.author.username }}</v-list-tile-sub-title>
-        </v-list-tile-content>
+          <v-list-tile to="/admin/mods" nuxt ripple>
+            <v-list-tile-action>
+              <v-badge color="accent">
+                <span slot="badge">50+</span>
 
-        <!---TODO: Make this spawn the Mod overview that has approve and deny buttons. --->
-        <v-list-tile-action>
-          <v-btn color="primary" depressed ripple>View</v-btn>
-        </v-list-tile-action>
-      </v-list-tile>
+                <v-icon>mdi-library-books</v-icon>
+              </v-badge>
+            </v-list-tile-action>
 
-      <div class="mx-3 mb-2">
-        <v-btn color="accent" to="/admin/mods" block flat nuxt>View all pending mods</v-btn>
-      </div>
-    </v-list>
+            <v-list-tile-content>
+              <v-list-tile-title>Pending Mods</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-    <v-list class="admin__recent elevation-3 mb-2" two-line>
-      <v-subheader class="primary--text">
-        <v-icon class="mr-1" color="primary">mdi-account-circle</v-icon> Recent User Reports
-      </v-subheader>
+          <v-list-tile to="/admin/user-reports" nuxt ripple>
+            <v-list-tile-action>
+              <v-badge color="accent">
+                <span slot="badge">12</span>
 
-      <v-list-tile v-for="mod in modReports" :key="`m_report-${mod}`" avatar @click="void 0">
+                <v-icon>mdi-account-circle</v-icon>
+              </v-badge>
+            </v-list-tile-action>
 
-        <v-list-tile-avatar>
-          <img src="{{ mod.icon_url }}" alt="icon">
-        </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>User Reports</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-        <v-list-tile-content>
-          <v-list-tile-title>{{ mod.title }}</v-list-tile-title>
-          <v-list-tile-sub-title>Reported by {{ mod.author_id }} for {{ mod.report_type }}</v-list-tile-sub-title>
-        </v-list-tile-content>
+          <v-list-tile to="/admin/mod-reports" nuxt ripple>
+            <v-list-tile-action>
+              <v-badge color="accent">
+                <span slot="badge">69</span>
 
-        <!--- TODO: this should show a dialog containing all the info from the report object --->
-        <v-list-tile-action>
-          <v-btn color="primary" depressed ripple>View</v-btn>
-        </v-list-tile-action>
-      </v-list-tile>
+                <v-icon>mdi-flag</v-icon>
+              </v-badge>
+            </v-list-tile-action>
 
-      <div class="mx-3 mb-2">
-        <v-btn color="accent" to="/admin/user-reports" block flat nuxt>View all reports</v-btn>
-      </div>
-    </v-list>
+            <v-list-tile-content>
+              <v-list-tile-title>Mod Reports</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-    <v-list class="admin__recent elevation-3 mb-2" two-line>
-      <v-subheader class="primary--text">
-        <v-icon class="mr-1" color="primary">mdi-flag</v-icon> Recent Mod Reports
-      </v-subheader>
+          <v-list-tile to="/admin/user-control" nuxt ripple>
+            <v-list-tile-action>
+              <v-badge color="accent">
+                <span slot="badge">50+</span>
 
-      <v-list-tile v-for="i in 5" :key="`user-${i}`" avatar @click="void 0">
+                <v-icon>mdi-library-books</v-icon>
+              </v-badge>
+            </v-list-tile-action>
 
+            <v-list-tile-content>
+              <v-list-tile-title>User Access Control</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </nav-card>
+    </v-flex>
 
-        <v-list-tile-avatar>
-          <img src="https://placeimg.com/128/128/people" alt="icon">
-        </v-list-tile-avatar>
+    <v-flex md9 lg10 xs12>
+      <v-list class="admin__recent elevation-3 mb-3" two-line>
+        <v-subheader class="primary--text">
+          <v-icon class="mr-1" color="primary">mdi-library-books</v-icon> Pending Mods
+        </v-subheader>
 
-        <v-list-tile-content>
-          <v-list-tile-title>Title</v-list-tile-title>
-          <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
-        </v-list-tile-content>
+        <v-list-tile v-for="mod in pendingMods" :key="`mod-${mod.id}`" avatar @click="void 0">
+          <v-list-tile-avatar>
+            <img :src="mod.icon_url" alt="icon">
+          </v-list-tile-avatar>
 
-        <v-list-tile-action>
-          <v-btn color="primary" depressed ripple>View</v-btn>
-        </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ mod.title }}</v-list-tile-title>
+            <v-list-tile-sub-title>Submitted by {{ mod.author.username }}</v-list-tile-sub-title>
+          </v-list-tile-content>
+
+          <!---TODO: Make this spawn the Mod overview that has approve and deny buttons. --->
+          <v-list-tile-action>
+            <v-btn color="primary" depressed ripple>View</v-btn>
+          </v-list-tile-action>
+        </v-list-tile>
 
         <div class="mx-3 mb-2">
-          <v-btn color="accent" to="/admin/mod-reports" block flat nuxt>View all reports</v-btn>
+          <v-btn color="accent" to="/admin/mods" block flat nuxt>View all pending mods</v-btn>
         </div>
-      </v-list-tile></v-list>
+      </v-list>
+
+      <v-list class="admin__recent elevation-3 mb-2" two-line>
+        <v-subheader class="primary--text">
+          <v-icon class="mr-1" color="primary">mdi-account-circle</v-icon> Recent User Reports
+        </v-subheader>
+
+        <v-list-tile v-for="mod in modReports" :key="`m_report-${mod}`" avatar @click="void 0">
+
+          <v-list-tile-avatar>
+            <img :src="mod.icon_url" alt="icon">
+          </v-list-tile-avatar>
+
+          <v-list-tile-content>
+            <v-list-tile-title>{{ mod.title }}</v-list-tile-title>
+            <v-list-tile-sub-title>Reported by {{ mod.author_id }} for {{ mod.report_type }}</v-list-tile-sub-title>
+          </v-list-tile-content>
+
+          <!--- TODO: this should show a dialog containing all the info from the report object --->
+          <v-list-tile-action>
+            <v-btn color="primary" depressed ripple>View</v-btn>
+          </v-list-tile-action>
+        </v-list-tile>
+
+        <div class="mx-3 mb-2">
+          <v-btn color="accent" to="/admin/user-reports" block flat nuxt>View all reports</v-btn>
+        </div>
+      </v-list>
+
+      <v-list class="admin__recent elevation-3 mb-2" two-line>
+        <v-subheader class="primary--text">
+          <v-icon class="mr-1" color="primary">mdi-flag</v-icon> Recent Mod Reports
+        </v-subheader>
+
+        <v-list-tile v-for="i in 5" :key="`user-${i}`" avatar @click="void 0">
+
+
+          <v-list-tile-avatar>
+            <img src="https://placeimg.com/128/128/people" alt="icon">
+          </v-list-tile-avatar>
+
+          <v-list-tile-content>
+            <v-list-tile-title>Title</v-list-tile-title>
+            <v-list-tile-sub-title>*screams*</v-list-tile-sub-title>
+          </v-list-tile-content>
+
+          <v-list-tile-action>
+            <v-btn color="primary" depressed ripple>View</v-btn>
+          </v-list-tile-action>
+
+          <div class="mx-3 mb-2">
+            <v-btn color="accent" to="/admin/mod-reports" block flat nuxt>View all reports</v-btn>
+          </div>
+        </v-list-tile>
+      </v-list>
+    </v-flex>
   </v-layout>
 </template>
 
 <script>
+import NavCard from '~/components/NavCard.vue';
+
 export default {
   layout: 'admin',
-
+  components: {NavCard},
   async asyncData({$axios}) {
     const [
       {result: pendingMods},
       {result: modReports}
     ] = await Promise.all([
-      $axios.$get('/mods/verify_queue'), 
+      $axios.$get('/mods/verify_queue'),
       $axios.$get('/mods/report_queue')
     ]);
   }

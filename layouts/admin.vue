@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <v-navigation-drawer app clipped>
+    <navbar @drawer-click="drawer = !drawer"/>
+
+    <v-navigation-drawer v-model="drawer" app clipped temporary>
       <v-list>
         <v-list-tile to="/admin" exact nuxt ripple>
           <v-list-tile-action>
@@ -53,27 +55,25 @@
             <v-list-tile-title>Mod Reports</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
+        <v-list-tile to="/admin/user-control" nuxt ripple>
+          <v-list-tile-action>
+            <v-badge color="accent">
+              <span slot="badge">50+</span>
+
+              <v-icon>mdi-library-books</v-icon>
+            </v-badge>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>User Access Control</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
-
-      <v-list-tile to="/admin/user-control" nuxt ripple>
-        <v-list-tile-action>
-          <v-badge color="accent">
-            <span slot="badge">50+</span>
-
-            <v-icon>mdi-library-books</v-icon>
-          </v-badge>
-        </v-list-tile-action>
-
-        <v-list-tile-content>
-          <v-list-tile-title>User Access Control</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
     </v-navigation-drawer>
 
-    <navbar no-search drawer-btn/>
-
     <v-content>
-      <v-container fluid>
+      <v-container grid-list-lg fluid>
         <nuxt/>
       </v-container>
     </v-content>
@@ -86,7 +86,12 @@
 import Navbar from '~/components/Navbar.vue';
 
 export default {
-  components: {Navbar}
+  components: {Navbar},
+  data() {
+    return {
+      drawer: false
+    };
+  }
 };
 </script>
 
