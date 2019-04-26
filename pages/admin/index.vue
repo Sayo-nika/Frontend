@@ -109,8 +109,8 @@ export default {
       {result: pendingMods},
       {result: modReports}
     ] = await Promise.all([
-      $axios.$get('/mods/verify_queue'),
-      $axios.$get('/mods/report_queue')
+      $axios.$get('/mods/verify_queue?limit=5'),
+      $axios.$get('/mods/report_queue?limit=5')
     ]);
 
     return {pendingMods, modReports};
