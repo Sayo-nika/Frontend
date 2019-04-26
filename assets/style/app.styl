@@ -1,12 +1,20 @@
 // Import Vuetify styling
 @import '~vuetify/src/stylus/settings/_variables'
 
+$color-pack = false
+
 $border-radius = 8px;
 $body-font-family = 'Noto Sans JP', Roboto, sans-serif;
 
 $button-border-radius = $border-radius;
 $sheet-border-radius = $border-radius;
 $card-border-radius = $border-radius;
+
+$container-max-widths = {
+  md: $grid-breakpoints.md
+  lg: 1260
+  xl: 1260
+}
 
 @import '~vuetify/src/stylus/components/_lists';
 

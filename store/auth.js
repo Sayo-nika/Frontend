@@ -24,9 +24,12 @@ export const actions = {
 
           const user = await $axios.$get('/users/@me');
           commit('setUser', user.result);
-        } catch {
-          $axios.setToken(null);
-          $cookies.remove('token');
+        } catch (err) {
+          // FIXME: this triggers sometimes but page loads fine more or less. need to figure it out eventually
+          // maybe its a 429 idk
+          console.warn('HEY, OVER HERE!!', err);
+          // $axios.setToken(null);
+          // $cookies.remove('token');
         }
       }
     }
