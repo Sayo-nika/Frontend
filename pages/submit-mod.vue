@@ -229,7 +229,7 @@ const {Util: {hexDiff}} = Vibrant;
 const baseColors = Object.entries(materialColors)
   .filter(([key]) => !['shades', 'grey', 'brown', 'amber', 'blueGrey', 'lightGreen', 'lightBlue'].includes(key)) // Filter out colors we don't want.
   .map(([key, {base}]) => ({[key]: base}))
-  .concat({primary: theme.primary})
+  .concat({default: theme.primary})
   .reduce((last, next) => ({...last, ...next}));
 
 // URL regex taken from Marshmallow to be consistent with backend.
