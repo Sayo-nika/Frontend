@@ -9,7 +9,7 @@
         <template v-if="pendingMods.length">
           <v-list-tile v-for="mod in pendingMods" :key="`mod-${mod.id}`" avatar @click="void 0">
             <v-list-tile-avatar>
-              <img :src="mod.icon_url" alt="icon">
+              <img :src="mod.icon" alt="icon">
             </v-list-tile-avatar>
 
             <v-list-tile-content>
@@ -44,7 +44,7 @@
         <template v-if="modReports.length">
           <v-list-tile v-for="mod in modReports" :key="`m_report-${mod}`" avatar @click="void 0">
             <v-list-tile-avatar>
-              <img :src="mod.icon_url" alt="icon">
+              <img :src="mod.icon" alt="icon">
             </v-list-tile-avatar>
 
             <v-list-tile-content>
@@ -106,7 +106,7 @@ export default {
   middleware: 'admin',
   async asyncData({$axios}) {
     const [
-      {result: pendingMods},
+      {result: {results: pendingMods}},
       {result: modReports}
     ] = await Promise.all([
       $axios.$get('/mods/verify_queue?limit=5'),

@@ -73,16 +73,11 @@
       </v-toolbar-items>
     </div>
 
-    <v-dialog v-model="dialog" max-width="500">
+    <v-dialog v-model="dialog" max-width="500" no-click-animation persistent>
       <v-card>
         <v-card-text>
           You are now logged out.
         </v-card-text>
-
-        <v-card-actions>
-          <v-spacer/>
-          <v-btn color="primary" depressed @click="dialog = false">Ok</v-btn>
-        </v-card-actions>
       </v-card>
     </v-dialog>
   </v-toolbar>
@@ -120,6 +115,7 @@ export default {
       if (this.$cookies.get('token')) this.$cookies.remove('token');
 
       this.dialog = true;
+      setTimeout(() => location.reload(true), 2000);
     }
   }
 };
