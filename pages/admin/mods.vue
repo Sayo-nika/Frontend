@@ -35,34 +35,35 @@
     </header>
 
     <v-list class="transparent" avatar three-line>
-      <v-card v-for="i in 10" :key="`z${i}`" class="mb-3 zoop">
+      <v-card v-for="mod in pendingMods" :key="`pendingMod-${mod.id}`" class="mb-3 verify-entry__card" :style="`background-image: url(${mod.banner});`">
         <v-list-tile class="verify-entry">
           <v-list-tile-avatar color="primary">
-            Z
+            <img v-if="mod.icon" :src="mod.icon">
+            <template v-else>{{ initial(mod.title) }}</template>
           </v-list-tile-avatar>
 
           <v-list-tile-content>
             <v-list-tile-title>
-              Obamas Sexy time club
+              {{ mod.title }}
             </v-list-tile-title>
 
             <v-list-tile-sub-title>
-              Submitted by God
+              Submitted by {{ mod.author.username }}
               <br>
-              20 March, 20219
+              On 1{{ formatDate(mod.created_at) }}
             </v-list-tile-sub-title>
           </v-list-tile-content>
 
           <v-spacer/>
 
           <v-list-tile-action>
-            <v-btn color="primary" depressed @click="dialogOpen = true">View</v-btn>
+            <v-btn color="primary" depressed @click="selection = mod">View</v-btn>
           </v-list-tile-action>
         </v-list-tile>
       </v-card>
     </v-list>
 
-    <v-dialog v-model="dialogOpen" max-width="1000">
+    <v-dialog v-model="selection" max-width="1000">
       <v-card>
         <v-card-text>
           <header class="align-center pa-5" style="display: flex;">
@@ -132,6 +133,7 @@
 </template>
 
 <script>
+import {format} from 'date-fns';
 import AiCarousel from '~/components/AiCarousel.vue';
 import HeightTransition from '~/components/HeightTransition.vue';
 
@@ -145,9 +147,27 @@ export default {
   data() {
     return {
       sort: 'Submitted',
-      dialogOpen: false,
-      expandedDescription: false
+      expandedDescription: false,
+      selection: null
     };
+  },
+  async asyncData({$axios}) {
+    const {result: {
+      results: pendingMods,
+      total,
+      page,
+      limit
+    }} = await $axios.$get('/mods/verify_queue?limit=100');
+
+    return {pendingMods, total, page, limit};
+  },
+  methods: {
+    initial(value) {
+      return value ? value[0].toUpperCase() : '';
+    },
+    formatDate(date) {
+      return format(date, 'MMMM D, YYYY');
+    }
   }
 };
 </script>
@@ -157,8 +177,7 @@ export default {
 
 .verify-entry
   position: relative;
-  // background-image: url('~assets/img/login-bg.jpg');
-  background-image: linear-gradient(to right,#7c75ee,#e767eb 75%);
+  background-image: url('~assets/img/login-bg.jpg');
   background-position: left center;
 
   &::before
@@ -169,6 +188,6 @@ export default {
     width: 100%;
     border-radius: 8px;
 
-.zoop:hover
+.verify-entry__card:hover
   elevation(10, true);
 </style>

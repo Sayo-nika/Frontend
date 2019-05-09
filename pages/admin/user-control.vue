@@ -23,7 +23,8 @@
       <template #selection="{item: {avatar, username}}">
         <v-chip>
           <v-avatar color="primary">
-            {{ avatar || initial(username) }}
+            <img v-if="avatar" :src="avatar">
+            <template v-else>{{ initial(username) }}</template>
           </v-avatar>
           {{ username }}
         </v-chip>
@@ -33,7 +34,8 @@
     <v-card v-if="selection" class="pa-3">
       <v-card-title class="mb-2">
         <v-avatar class="mr-3" color="primary" size="64">
-          {{ selection.avatar || initial(selection.username) }}
+          <img v-if="selection.avatar" :src="selection.avatar">
+          <template v-else>{{ initial(selection.username) }}</template>
         </v-avatar>
         <div>
           <div>{{ selection.username }}</div>
