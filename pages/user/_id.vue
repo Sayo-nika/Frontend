@@ -45,12 +45,12 @@
         <v-container fluid>
           <mod-category title="Authored Mods" class="mb-2" v-if="authoredMods.length">
             <h2 class="display-1 font-italic category__empty text-xs-center" v-if="!authoredMods.length">
-              You don't have any submitted mods. Try submitting one!
+              {{profile.username}} does not have any mods authored.
             </h2>
           </mod-category>
           <mod-category title="Favorited" class="mb-2" v-if="userFavorites.length">
             <h2 class="display-1 font-italic category__empty text-xs-center" v-if="!userFavorites.length">
-              You seem to have no favorite mods, why not try adding one?
+              {{profile.username}} does not have any favorites.
             </h2>
           </mod-category>
           <mod-category title="Collaborated Mods" class="mb-2">
