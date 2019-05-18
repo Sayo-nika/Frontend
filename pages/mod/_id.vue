@@ -112,15 +112,17 @@
 
             <div class="mod__header-title__block">
               <h1 class="display-1">
-                Doki Doki Obama Club
+                {{ modData.title }}
               </h1>
 
               <div class="mod__header-authors">
                 <h2 class="headline mr-2">By</h2>
 
-                <v-chip v-for="i in 10" :key="i">
-                  <v-avatar color="primary"/>
-                  Obama
+                <v-chip v-for="author in modData.authors" :key="author">
+                  <v-avatar>
+                     <img src="{{ author.avatar }}">
+                  </v-avatar>
+                  {{ author.username }}
                 </v-chip>
               </div>
             </div>
@@ -128,10 +130,10 @@
         </v-card-text>
         <template v-else>
           <v-responsive :aspect-ratio="21/9">
-            <v-card-text class="mod__header" style="background-image: url(https://www.microsoft.com/design/images/intuitive_1400x700_vp_4.jpg)"/>
+            <v-card-text class="mod__header" style="background-image: url({{ modData.banner }})"/>
           </v-responsive>
 
-          <div class="mod__editors-choice">
+          <div class="mod__editors-choice" v-if="modData.editors_choice">
             <div class="mod__editors-choice__seam">
               <v-chip color="purple white--text">
                 <v-avatar>
@@ -187,7 +189,7 @@
 
         <div class="mod__tags">
           <div class="mod__tags-row">
-            <v-chip color="deep-orange white--text">
+            <v-chip color="deep-orange white--text" v-if="modData.trending">
               <v-avatar>
                 <v-icon dark>mdi-fire</v-icon>
               </v-avatar>
@@ -195,7 +197,7 @@
               Trending
             </v-chip>
 
-            <v-chip color="red white--text">
+            <v-chip color="red white--text" v-if="modData.nsfw">
               <v-avatar>
                 <v-icon dark>mdi-alert-circle</v-icon>
               </v-avatar>
@@ -207,15 +209,16 @@
               <v-avatar>
                 <v-icon dark>mdi-emoticon-outline</v-icon>
               </v-avatar>
-              Comedy
+              {{ modData.category }}
             </v-chip>
           </div>
         </div>
 
         <v-responsive :aspect-ratio="21/9">
           <ai-carousel tile>
-            <v-carousel-item/>
-            <v-carousel-item src="https://storage.googleapis.com/gd-wagtail-prod-assets/images/MDA_2018_2x1.max-4000x2000.jpegquality-90.jpg"/>
+            <v-list v-for="media in modData.media" :key="media">
+                <v-carousel-item src="{{ media.url }}" />
+            </v-list>
           </ai-carousel>
         </v-responsive>
 
@@ -285,19 +288,16 @@ export default {
     PermanentDialog,
     ReportMod
   },
-  data() {
+  async asyncData({$axios, params}) {
+    const [
+      {result: modData}
+    ] = Promise.all([
+      $axios.get(`/mod/${params.id}`)
+    ]);
+
     return {
-      gone: false,
-      faved: false,
-      expandedDescription: false,
-      editorsChoice: false,
-      copied: false,
-      createReview: false,
-      moreReviews: false,
-      snackbarOpen: false,
-      snackbarText: '',
-      report: false
-    };
+      modData
+    }
   },
   computed: {
     parentComponent() {
