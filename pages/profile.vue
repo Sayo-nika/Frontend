@@ -4,9 +4,9 @@
       <v-flex lg2 md12>
         <div class="profile__side">
           <v-layout class="pa-3" column>
-            <img class="profile__avatar" src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon">
+            <img class="profile__avatar" src="{{ profile.avatar }}" alt="user icon">
 
-            <h1 class="profile__name headline font-weight-medium text-xs-center mt-2">Username</h1>
+            <h1 class="profile__name headline font-weight-medium text-xs-center mt-2">{{ profile.username }}</h1>
 
             <v-layout class="mt-2" justify-center>
               <v-tooltip top>
@@ -17,7 +17,7 @@
                 <span>Supporter</span>
               </v-tooltip>
 
-              <v-tooltip top>
+              <v-tooltip top v-if="profile.editor">
                 <v-avatar slot="activator" class="ma-1" color="indigo" size="32">
                   <v-icon size="20" dark>mdi-pencil</v-icon>
                 </v-avatar>
@@ -25,28 +25,17 @@
                 <span>Editor</span>
               </v-tooltip>
 
-              <v-tooltip top>
+              <v-tooltip top v-if="profile.developer">
                 <v-avatar slot="activator" class="ma-1" color="orange" size="32">
                   <v-icon size="20" dark>mdi-wrench</v-icon>
                 </v-avatar>
 
                 <span>Sayonika Developer</span>
               </v-tooltip>
-
-              <v-tooltip top>
-                <v-avatar slot="activator" class="ma-1" color="light-blue" size="32">
-                  <v-icon size="20" dark>mdi-gavel</v-icon>
-                </v-avatar>
-
-                <span>Moderator</span>
-              </v-tooltip>
             </v-layout>
 
             <section class="profile__bio subheading font-weight-light mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Curabitur auctor hendrerit consectetur.
-              Proin magna lorem, vehicula vel facilisis ut, fringilla ut mauris.
-              Donec porttitor metus in diam maximus rhoncus.
+              {{ profile.bio }}
             </section>
           </v-layout>
         </div>
@@ -54,26 +43,20 @@
 
       <v-flex lg10 md12>
         <v-container fluid>
-          <mod-category title="Authored Mods" class="mb-2">
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod with a really really long name"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod with a really really long name"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
+          <mod-category title="Authored Mods" class="mb-2" v-if="authoredMods.length">
+            <h2 class="display-1 font-italic category__empty text-xs-center" v-if="!authoredMods.length">
+              You don't have any submitted mods. Try submitting one!
+            </h2>
           </mod-category>
-          <mod-category title="Favorited" class="mb-2">
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod with a really really long name"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod with a really really long name"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
+          <mod-category title="Favorited" class="mb-2" v-if="userFavorites.length">
+            <h2 class="display-1 font-italic category__empty text-xs-center" v-if="!userFavorites.length">
+              You seem to have no favorite mods, why not try adding one?
+            </h2>
           </mod-category>
           <mod-category title="Collaborated Mods" class="mb-2">
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod with a really really long name"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod with a really really long name"/>
-            <mod-card background="https://placeimg.com/1000/1000/arch" icon="https://placeimg.com/128/128/people" title="DDLC Mod"/>
+            <h2 class="display-1 font-italic category__empty text-xs-center">
+              Coming really soon!
+            </h2>
           </mod-category>
         </v-container>
       </v-flex>
@@ -89,6 +72,24 @@ export default {
   components: {
     ModCategory,
     ModCard
+  },
+  async asyncData({$axios}) {
+    const [
+      {result: profile},
+      {result: {results: authoredMods}},
+      {result: {results: userFavorites}}
+    ] = await Promise.all([
+      // TODO: figure out how to handle /user/:id.
+      $axios.get('/user/@me'),
+      $axios.get('/user/@me/mods'),
+      $axios.get('user/@me/favorites')
+    ]);
+
+    return {
+      profile,
+      authoredMods,
+      userFavorites
+    };
   }
 };
 </script>
@@ -109,4 +110,7 @@ export default {
 
   &__bio
     text-align: center;
+
+.category__empty
+  opacity: 0.67;
 </style>
