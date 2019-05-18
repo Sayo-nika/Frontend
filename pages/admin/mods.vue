@@ -48,9 +48,9 @@
             </v-list-tile-title>
 
             <v-list-tile-sub-title>
-              Submitted by {{ mod.author.username }}
+              Submitted by {{ mod.owner.username }}
               <br>
-              On 1{{ formatDate(mod.created_at) }}
+              On {{ formatDate(mod.created_at) }}
             </v-list-tile-sub-title>
           </v-list-tile-content>
 
@@ -63,23 +63,32 @@
       </v-card>
     </v-list>
 
-    <v-dialog v-model="selection" max-width="1000">
+    <v-dialog v-if="selection" v-model="dialogOpen" max-width="1000">
       <v-card>
-        <v-card-text>
+        <v-card-text>-*
           <header class="align-center pa-5" style="display: flex;">
             <v-avatar class="elevation-4 mr-4" color="primary" size="192">
-              <!--  -->
+              <img :src="selection.icon">
             </v-avatar>
 
             <div>
-              <h1 class="display-1">Dededemon fucking kills kirby</h1>
+              <h1 class="display-1">{{ selection.title }}</h1>
 
               <div class="align-center mt-3" style="flex-wrap: wrap; display: flex;">
                 <h2 class="headline mr-2">By</h2>
 
-                <v-chip v-for="i in 10" :key="i">
-                  <v-avatar color="primary"/>
-                  Obama
+                <v-chip>
+                  <v-avatar color="primary">
+                    <img :src="selection.owner.avatar">
+                  </v-avatar>
+                  {{ selection.owner.username }}
+                </v-chip>
+
+                <v-chip v-for="u in selection.authors" :key="u.id">
+                  <v-avatar color="primary">
+                    <img :src="u.avatar">
+                  </v-avatar>
+                  {{ u.username }}
                 </v-chip>
               </div>
             </div>
@@ -91,7 +100,7 @@
             <h2 class="headline mb-2">Description</h2>
             <height-transition>
               <p v-if="!expandedDescription">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lorem at posuere volutpat. Sed in neque quam. Etiam semper libero nec risus feugiat consequat in eu est. Nam vitae elementum velit, quis vestibulum ante. Praesent sed leo ac sem luctus malesuada ac quis est. Praesent quis fermentum libero.
+                {{ selection.tagline }}
               </p>
             </height-transition>
 
@@ -100,16 +109,8 @@
             </v-btn>
 
             <height-transition>
-              <p v-if="expandedDescription">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue neque ultricies leo maximus euismod. Suspendisse id tempus metus, sed aliquam tortor. Nulla facilisi. Nunc accumsan facilisis enim, id pharetra ligula. Nunc tincidunt diam vitae imperdiet hendrerit. Ut non imperdiet leo. Sed facilisis justo et egestas tristique. Integer quam mi, maximus ac commodo quis, efficitur ac tortor. Suspendisse eu sapien vel massa dictum vestibulum.<br><br>
-
-                Quisque quis odio sed justo fermentum sagittis. Nunc in luctus orci. Praesent et mauris sit amet purus pharetra aliquet ac in odio. Pellentesque at feugiat nisl. In at faucibus ipsum. Donec vel turpis ipsum. In maximus est eget tristique pretium. In ipsum ipsum, ultrices vel tortor vel, molestie mollis nisi. Donec blandit ex ullamcorper ante bibendum, sed ullamcorper tortor pellentesque. Sed at nunc mattis, consequat augue sed, efficitur odio. Praesent facilisis velit eleifend, rhoncus urna eu, lacinia elit. Maecenas sed nulla auctor, imperdiet turpis non, facilisis purus. Nunc porttitor risus ut vulputate malesuada.<br><br>
-
-                In magna quam, euismod sit amet purus scelerisque, venenatis pellentesque nisl. Cras quis orci ultricies dui elementum malesuada. Morbi eget pharetra arcu. Nulla eleifend ultricies malesuada. Suspendisse laoreet luctus scelerisque. Suspendisse sit amet augue ultricies, ultrices purus vitae, eleifend velit. Fusce feugiat lacinia purus non commodo. Integer erat libero, aliquam eget egestas ac, accumsan venenatis purus. Maecenas posuere vulputate libero at egestas. Aliquam convallis velit sapien, at mollis nunc bibendum ut. Suspendisse congue augue ex, eu ornare justo molestie at. Pellentesque egestas ante ac elit congue, eget consequat nunc dignissim. Phasellus ac risus in dui commodo consequat. Proin nec accumsan elit. Vivamus est lorem, aliquet et ornare sed, tristique quis purus.<br><br>
-
-                Cras interdum, ante ac dapibus posuere, ipsum metus luctus velit, eget sodales dolor lacus vel diam. Donec pellentesque eu justo ac maximus. Sed in mi mi. In molestie est posuere, interdum augue ut, vehicula neque. Sed non consectetur erat, sed ultrices est. Curabitur mollis tempus ullamcorper. Fusce faucibus ut tellus sed vehicula. Sed maximus tellus at tincidunt dapibus. Vestibulum ut orci ligula. Duis sit amet pharetra ligula.<br><br>
-
-                Vivamus congue metus non cursus porta. Sed sollicitudin massa at interdum varius. Praesent placerat, est eget eleifend gravida, erat mauris viverra dolor, eu maximus erat ligula ac ex. Fusce vulputate, ante vel tempus volutpat, augue urna pulvinar nunc, a convallis massa augue non dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam quis nulla elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Cras ut molestie nisi. Donec viverra rhoncus tellus ac tempus.
+              <p v-if="expandedDescription" style="white-space: pre-line;">
+                {{ selection.description.trim() }}
               </p>
             </height-transition>
           </v-layout>
@@ -117,14 +118,14 @@
 
         <v-responsive :aspect-ratio="21/9">
           <ai-carousel tile>
-            <v-carousel-item/>
+            <v-carousel-item :src="selection.banner || ''"/>
           </ai-carousel>
         </v-responsive>
 
         <v-card-actions class="py-4">
           <v-spacer/>
-          <v-btn color="accent" block depressed>Approve</v-btn>
-          <v-btn color="secondary" block depressed>Deny</v-btn>
+          <v-btn :disabled="loading" :loading="loading" color="accent" block depressed @click="verify">Approve</v-btn>
+          <v-btn :disabled="loading" :loading="loading" color="secondary" block depressed @click="decline">Deny</v-btn>
           <v-spacer/>
         </v-card-actions>
       </v-card>
@@ -134,6 +135,7 @@
 
 <script>
 import {format} from 'date-fns';
+import {without} from 'rambda';
 import AiCarousel from '~/components/AiCarousel.vue';
 import HeightTransition from '~/components/HeightTransition.vue';
 
@@ -147,9 +149,45 @@ export default {
   data() {
     return {
       sort: 'Submitted',
-      expandedDescription: false,
-      selection: null
+
+      loading: false,
+
+      expandedDescription_: false,
+      selection_: null,
+      dialogOpen_: false
     };
+  },
+  computed: {
+    expandedDescription: {
+      set(value) {
+        this.expandedDescription_ = value;
+      },
+      get() {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        if (!this.selection) return (this.expandedDescription_ = false);
+        else return this.expandedDescription_;
+      }
+    },
+    selection: {
+      set(value) {
+        this.selection_ = value;
+        this.dialogOpen_ = true;
+      },
+      get() {
+        return this.selection_;
+      }
+    },
+    dialogOpen: {
+      set(value) {
+        if (this.loading) return;
+
+        if (!value) this.selection_ = null;
+        this.dialogOpen_ = value;
+      },
+      get() {
+        return this.dialogOpen_;
+      }
+    }
   },
   async asyncData({$axios}) {
     const {result: {
@@ -157,7 +195,7 @@ export default {
       total,
       page,
       limit
-    }} = await $axios.$get('/mods/verify_queue?limit=100');
+    }} = await $axios.$get('/mods/verify_queue?limit=100&get_all_authors=true');
 
     return {pendingMods, total, page, limit};
   },
@@ -167,6 +205,38 @@ export default {
     },
     formatDate(date) {
       return format(date, 'MMMM D, YYYY');
+    },
+    async verify() {
+      this.loading = true;
+
+      try {
+        await this.$axios.$post(`/mods/${this.selection.id}/verify`);
+      } catch (err) {
+        console.error(err);
+        this.loading = false;
+        return;
+      }
+
+      this.dialogOpen = false;
+      this.loading = false;
+      this.pendingMods = without([this.selection], this.pendingMods);
+      this.selection = null;
+    },
+    async decline() {
+      this.loading = true;
+
+      try {
+        await this.$axios.$delete(`/mods/${this.selection.id}`);
+      } catch (err) {
+        console.error(err);
+        this.loading = false;
+        return;
+      }
+
+      this.dialogOpen = false;
+      this.loading = false;
+      this.pendingMods = without([this.selection], this.pendingMods);
+      this.selection = null;
     }
   }
 };

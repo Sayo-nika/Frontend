@@ -14,7 +14,7 @@
 
             <v-list-tile-content>
               <v-list-tile-title>{{ mod.title }}</v-list-tile-title>
-              <v-list-tile-sub-title>Submitted by {{ mod.author.username }}</v-list-tile-sub-title>
+              <v-list-tile-sub-title>Submitted by {{ mod.owner.username }}</v-list-tile-sub-title>
             </v-list-tile-content>
 
             <!---TODO: Make this spawn the Mod overview that has approve and deny buttons. --->
