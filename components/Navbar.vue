@@ -33,7 +33,7 @@
         <div style="height: 48px; display: flex;">
           <v-menu nudge-bottom="8px" left offset-y full-width>
             <a slot="activator" class="navbar__user-menu">
-              <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon" class="navbar__user-icon"
+              <img src="{{ user.avatar }}" alt="user icon" class="navbar__user-icon"
                    :width="profileIconSize" :height="profileIconSize">
               <v-icon v-if="$breakpoint.is('mdAndUp')" class="ml-2" color="primary" size="32">mdi-chevron-down</v-icon>
             </a>
@@ -41,7 +41,7 @@
             <v-list class="navbar__user-menu__header" two-line>
               <v-list-tile>
                 <v-list-tile-avatar>
-                  <img src="https://avatars2.githubusercontent.com/u/18654005" alt="user icon">
+                  <img src="{{ user.avatar }}" alt="user icon">
                 </v-list-tile-avatar>
 
                 <v-list-tile-content>
@@ -52,7 +52,7 @@
             </v-list>
 
             <v-list>
-              <v-list-tile to="/profile" nuxt ripple>
+              <v-list-tile to="/user/@me" nuxt ripple>
                 <v-list-tile-content>Profile</v-list-tile-content>
               </v-list-tile>
               <v-list-tile to="/settings" nuxt ripple>
