@@ -73,15 +73,15 @@ export default {
     ModCategory,
     ModCard
   },
-  async asyncData({$axios}) {
+  async asyncData({$axios, params}) {
     const [
       {result: profile},
       {result: {results: authoredMods}},
       {result: {results: userFavorites}}
     ] = await Promise.all([
-      $axios.get('/user/@me'),
-      $axios.get('/user/@me/mods'),
-      $axios.get('/user/@me/favorites')
+      $axios.get(`/user/${params.id}`),
+      $axios.get(`/user/${params.id}/mods`),
+      $axios.get(`/user/${params.id}/favorites`)
     ]);
 
     return {
