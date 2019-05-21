@@ -4,7 +4,7 @@
       <v-flex lg2 md12>
         <div class="profile__side">
           <v-layout class="pa-3" column>
-            <img class="profile__avatar" src="{{ profile.avatar }}" alt="user icon">
+            <img class="profile__avatar" :src="profile.avatar" alt="user icon">
 
             <h1 class="profile__name headline font-weight-medium text-xs-center mt-2">{{ profile.username }}</h1>
 
@@ -17,7 +17,7 @@
                 <span>Supporter</span>
               </v-tooltip>
 
-              <v-tooltip top v-if="profile.editor">
+              <v-tooltip v-if="profile.editor" top>
                 <v-avatar slot="activator" class="ma-1" color="indigo" size="32">
                   <v-icon size="20" dark>mdi-pencil</v-icon>
                 </v-avatar>
@@ -25,7 +25,7 @@
                 <span>Editor</span>
               </v-tooltip>
 
-              <v-tooltip top v-if="profile.developer">
+              <v-tooltip v-if="profile.developer" top>
                 <v-avatar slot="activator" class="ma-1" color="orange" size="32">
                   <v-icon size="20" dark>mdi-wrench</v-icon>
                 </v-avatar>
@@ -43,13 +43,13 @@
 
       <v-flex lg10 md12>
         <v-container fluid>
-          <mod-category title="Authored Mods" class="mb-2" v-if="authoredMods.length">
-            <h2 class="display-1 font-italic category__empty text-xs-center" v-if="!authoredMods.length">
+          <mod-category v-if="authoredMods.length" title="Authored Mods" class="mb-2">
+            <h2 v-if="!authoredMods.length" class="display-1 font-italic category__empty text-xs-center">
               You don't have any submitted mods. Try submitting one!
             </h2>
           </mod-category>
-          <mod-category title="Favorited" class="mb-2" v-if="userFavorites.length">
-            <h2 class="display-1 font-italic category__empty text-xs-center" v-if="!userFavorites.length">
+          <mod-category v-if="userFavorites.length" title="Favorited" class="mb-2">
+            <h2 v-if="!userFavorites.length" class="display-1 font-italic category__empty text-xs-center">
               You seem to have no favorite mods, why not try adding one?
             </h2>
           </mod-category>
@@ -66,12 +66,12 @@
 
 <script>
 import ModCategory from '~/components/ModCategory.vue';
-import ModCard from '~/components/ModCard.vue';
+// import ModCard from '~/components/ModCard.vue';
 
 export default {
   components: {
-    ModCategory,
-    ModCard
+    ModCategory
+    // ModCard
   },
   async asyncData({$axios}) {
     const [
