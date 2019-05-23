@@ -7,10 +7,10 @@
     <div class="mod-card__hover">
       <div class="mod-card__hover-content">
         <h1 class="mod-card__hover-title">
-          {{ modData.title }}
+          {{ title }}
         </h1>
         <p class="mod-card__hover-description">
-          {{ modData.description }}
+          {{ description }}
         </p>
       </div>
     </div>
@@ -22,7 +22,7 @@
         </v-btn>
         <v-tooltip top>
           <template #activator="{on}">
-            <v-icon :color="iconColor" v-if="modData.editors_choice" v-on="on">mdi-star</v-icon>
+            <v-icon :color="iconColor" v-on="on">mdi-star</v-icon>
           </template>
 
           <span>Editor's Choice</span>
@@ -60,17 +60,6 @@ export default {
       required: true
     }
   },
-  async asyncData({$axios, params}) {
-    const [
-      {result: modData}
-    ] = Promise.all([
-      $axios.get(`/mod/${params.id}`)
-    ]);
-
-    return {
-      modData
-    }
-  },
   data() {
     return {
       faved: false,
@@ -79,7 +68,7 @@ export default {
   },
   computed: {
     iconColor() {
-      return this.hovered ? modData.color : 'white';
+      return this.hovered ? this.color : 'white';
     }
   }
 };

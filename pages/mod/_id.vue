@@ -4,10 +4,10 @@
     <!-- vue pls make it better kthx -->
     <component :is="parentComponent" v-if="!gone && parentComponent"/>
 
-    <permanent-dialog max-width="1200">
+    <permanent-dialog max-width="1200" @exit="goBack">
       <v-card :class="['mod', {'is-editors-choice': editorsChoice}]">
         <v-card-title class="mod__title-bar">
-          <v-btn class="ma-0" :dark="editorsChoice" icon @click="(gone = true) && goBack()">
+          <v-btn class="ma-0" :dark="editorsChoice" icon @click="goBack">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
 
@@ -120,7 +120,7 @@
 
                 <v-chip v-for="author in modData.authors" :key="author">
                   <v-avatar>
-                     <img src="{{ author.avatar }}">
+                    <img :src="author.avatar">
                   </v-avatar>
                   {{ author.username }}
                 </v-chip>
@@ -130,10 +130,10 @@
         </v-card-text>
         <template v-else>
           <v-responsive :aspect-ratio="21/9">
-            <v-card-text class="mod__header" style="background-image: url({{ modData.banner }})"/>
+            <v-card-text class="mod__header" :style="`background-image: url(${modData.banner})`"/>
           </v-responsive>
 
-          <div class="mod__editors-choice" v-if="modData.editors_choice">
+          <div v-if="modData.editors_choice" class="mod__editors-choice">
             <div class="mod__editors-choice__seam">
               <v-chip color="purple white--text">
                 <v-avatar>
@@ -189,7 +189,7 @@
 
         <div class="mod__tags">
           <div class="mod__tags-row">
-            <v-chip color="deep-orange white--text" v-if="modData.trending">
+            <v-chip v-if="modData.trending" color="deep-orange white--text">
               <v-avatar>
                 <v-icon dark>mdi-fire</v-icon>
               </v-avatar>
@@ -197,7 +197,7 @@
               Trending
             </v-chip>
 
-            <v-chip color="red white--text" v-if="modData.nsfw">
+            <v-chip v-if="modData.nsfw" color="red white--text">
               <v-avatar>
                 <v-icon dark>mdi-alert-circle</v-icon>
               </v-avatar>
@@ -217,7 +217,7 @@
         <v-responsive :aspect-ratio="21/9">
           <ai-carousel tile>
             <v-list v-for="media in modData.media" :key="media">
-                <v-carousel-item src="{{ media.url }}" />
+              <v-carousel-item :src="media.url"/>
             </v-list>
           </ai-carousel>
         </v-responsive>
@@ -288,17 +288,6 @@ export default {
     PermanentDialog,
     ReportMod
   },
-  async asyncData({$axios, params}) {
-    const [
-      {result: modData}
-    ] = Promise.all([
-      $axios.get(`/mod/${params.id}`)
-    ]);
-
-    return {
-      modData
-    }
-  },
   computed: {
     parentComponent() {
       return this.$store.state.parentRoute;
@@ -309,6 +298,17 @@ export default {
     user() {
       return this.$store.state.auth.user;
     }
+  },
+  async asyncData({$axios, params}) {
+    const [
+      {result: modData}
+    ] = Promise.all([
+      $axios.get(`/mod/${params.id}`)
+    ]);
+
+    return {
+      modData
+    };
   },
   methods: {
     async copyLink() {
@@ -323,8 +323,12 @@ export default {
       this.snackbarOpen = true;
     },
     goBack() {
+      if (this.gone) return;
+
       if (window.history.length === 1) this.$router.push('/');
       else this.$router.back();
+
+      this.gone = true;
     }
   }
 };
