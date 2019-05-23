@@ -79,9 +79,9 @@ export default {
       {result: {results: authoredMods}},
       {result: {results: userFavorites}}
     ] = await Promise.all([
-      $axios.get(`/user/${params.id}`),
-      $axios.get(`/user/${params.id}/mods`),
-      $axios.get(`/user/${params.id}/favorites`)
+      $axios.get(`/users/${params.id}`),
+      $axios.get(`/users/${params.id}/mods`),
+      $axios.get(`/users/${params.id}/favorites`)
     ]);
 
     return {
