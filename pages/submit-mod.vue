@@ -2,10 +2,10 @@
   <div>
     <component :is="parentComponent" v-if="!gone && parentComponent"/>
 
-    <permanent-dialog max-width="1200">
+    <permanent-dialog max-width="1200" @exit="goBack">
       <v-card>
         <v-card-title :class="colorValueWithText">
-          <v-btn :class="`${colorIsDark ? 'white' : 'black'}--text mr-3`" style="margin: 0;" icon @click="(gone = true) && goBack()">
+          <v-btn :class="`${colorIsDark ? 'white' : 'black'}--text mr-3`" style="margin: 0;" icon @click="goBack">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
           Upload Mod
@@ -451,8 +451,12 @@ export default {
       }
     },
     goBack() {
+      if (this.gone) return;
+
       if (window.history.length === 1) this.$router.push('/');
       else this.$router.back();
+
+      this.gone = true;
     }
   }
 };

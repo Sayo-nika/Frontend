@@ -4,10 +4,10 @@
     <!-- vue pls make it better kthx -->
     <component :is="parentComponent" v-if="!gone && parentComponent"/>
 
-    <permanent-dialog max-width="1200">
+    <permanent-dialog max-width="1200" @exit="goBack">
       <v-card :class="['mod', {'is-editors-choice': editorsChoice}]">
         <v-card-title class="mod__title-bar">
-          <v-btn class="ma-0" :dark="editorsChoice" icon @click="(gone = true) && goBack()">
+          <v-btn class="ma-0" :dark="editorsChoice" icon @click="goBack">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
 
@@ -323,8 +323,12 @@ export default {
       this.snackbarOpen = true;
     },
     goBack() {
+      if (this.gone) return;
+
       if (window.history.length === 1) this.$router.push('/');
       else this.$router.back();
+
+      this.gone = true;
     }
   }
 };
