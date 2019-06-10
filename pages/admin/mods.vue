@@ -2,7 +2,7 @@
   <div>
     <header class="mb-4">
       <h1 class="display-2">Mods</h1>
-      <h2 class="headline grey--text text--darken-1">There are <strong>420</strong> mods in the queue.</h2>
+      <h2 class="headline grey--text text--darken-1">There are <strong>{{ total }}</strong> mods in the queue.</h2>
 
       <v-layout align-center mt-2>
         <v-menu>
@@ -34,7 +34,7 @@
       </v-layout>
     </header>
 
-    <v-list class="transparent" avatar three-line>
+    <v-list v-if="pendingMods.length" class="transparent" avatar three-line>
       <v-card v-for="mod in pendingMods" :key="`pendingMod-${mod.id}`" class="mb-3 verify-entry__card" :style="`background-image: url(${mod.banner});`">
         <v-list-tile class="verify-entry">
           <v-list-tile-avatar color="primary">
@@ -62,6 +62,9 @@
         </v-list-tile>
       </v-card>
     </v-list>
+    <v-layout v-else align-center justify-center my-5>
+      <i class="headline grey--text text--darken-1">No mods to verify!</i>
+    </v-layout>
 
     <v-dialog v-if="selection" v-model="dialogOpen" max-width="1000">
       <v-card>
