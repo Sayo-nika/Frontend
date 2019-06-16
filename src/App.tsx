@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
 import chibi from './assets/chibi.png';
-import logo from './assets/logo.svg';
+
+import Navbar from './components/navbar/Navbar';
 
 const App: React.FC = () => {
   return (
     <div className="App">
+        <Navbar/>
       <header className="App-header">
         <img src={chibi} className="App-logo" alt="logo" />
-        <img src={logo} className="logo" alt="Sayonika"/>
         <p>
           Something great is coming, just you wait!
         </p>
