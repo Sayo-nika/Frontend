@@ -8,9 +8,11 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@mdi/js": "latest",
     "next": "^8.1.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "typescript": "^3.5.2"
   },
   "devDependencies": {
     "@types/node": "^11.13.9",
