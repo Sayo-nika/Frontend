@@ -1,0 +1,11 @@
+---
+applications:
+- name: sayonika-frontend
+  memory: 256M
+  buildpacks:
+     - https://github.com/heroku/heroku-buildpack-nodejs
+  health-check-type: process
+  command: npm start
+  routes:
+    - route: mock.sayonika.moe
+    - route: sayonika.mybluemix.net
