@@ -1,14 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import chibi from './assets/chibi.png';
+import logo from './assets/logo.svg';
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={chibi} className="App-logo" alt="logo" />
+        <img src={logo} className="logo" alt="Sayonika"/>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Something great is coming, just you wait!
         </p>
         <a
           className="App-link"
