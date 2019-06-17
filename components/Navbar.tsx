@@ -9,7 +9,7 @@ interface INavbarProps {
     classes: any;
 }
 
-function Icon(props) {
+function Icon(props: any) {
   return (
     <svg viewBox="0 0 24 24"
       style={{ width: '1.5rem' }}>
