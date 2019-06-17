@@ -20,19 +20,33 @@ const theme = {
   }
 }
 
-const layoutCss = css({
-    'html, body': {
-        padding: 0,
-        margin: 0,
-        fontFamily: "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;",
-        height: "100%"
-    }
-})
+// const layoutCss = css({
+//     'html, body': {
+//         padding: 0,
+//         margin: 0,
+//         fontFamily: "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+//         height: "100%"
+//     }
+// })
 
-const mainLayout = css({
-  paddingLeft: 32,
-  paddingRight: 32,
-})
+const layoutCss = css`
+    html, body {
+        padding: 0;
+        margin: 0;
+        font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        height: 100%;
+    }
+`
+
+// const mainLayout = css({
+//   paddingLeft: 32,
+//   paddingRight: 32,
+// })
+
+const mainLayout = css`
+  padding-left: 32px;
+  padding-right: 32px;
+`
 
 const Layout: React.FunctionComponent<Props> = ({
   children,
