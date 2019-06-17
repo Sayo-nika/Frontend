@@ -15,7 +15,7 @@ const layoutCss = css({
     'html, body': {
         padding: 0,
         margin: 0,
-        fontFamily: "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif",
+        fontFamily: "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;",
         height: "100%"
     }
 })
