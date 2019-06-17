@@ -2,11 +2,12 @@ import * as React from 'react'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import { NextFC } from 'next'
+import Navbar from '../components/Navbar'
 
 const IndexPage: NextFC = () => {
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js 👋</h1>
+    <Layout title="Home | Sayonika">
+    <h1>Hello Next.js 👋</h1>
       <p>
         <Link href="/about">
           <a>About</a>

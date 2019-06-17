@@ -1,35 +1,39 @@
 import * as React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import Navbar from './Navbar'
+
+/** @jsx jsx*/
+import {css, jsx, Global} from '@emotion/core';
+
 
 type Props = {
   title?: string
 }
+
+const layoutCss = css({
+    'html, body': {
+        padding: 0,
+        margin: 0,
+        fontFamily: "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif",
+        height: "100%"
+    }
+})
 
 const Layout: React.FunctionComponent<Props> = ({
   children,
   title = 'This is the default title',
 }) => (
   <div>
+    <Global styles={layoutCss}/>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,500,700,900&display=swap"/>
     </Head>
     <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/initial-props">
-          <a>With Initial Props</a>
-        </Link>
-      </nav>
+        <Navbar/>
     </header>
     {children}
     <footer>
