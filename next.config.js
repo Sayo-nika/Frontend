@@ -1,3 +1,10 @@
-const withTypescript = require('@zeit/next-typescript');
+const images = require('next-images');
+const progressbar = require('next-progressbar');
+const typescript = require('@zeit/next-typescript');
+const withCompose = require('next-compose-plugins');
 
-module.exports = withTypescript();
+module.exports = withCompose([
+  typescript,
+  images,
+  progressbar
+]);
