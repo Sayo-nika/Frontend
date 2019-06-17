@@ -73,6 +73,8 @@ class Navbar extends Component<INavbarProps, any> {
                 <div css={navbarLogoCss}>
                     <img src={navbarLogo} alt="Sayonika"/>
                 </div>
+
+                {/* TODO: Hook this up to a link */}
                 <div css={navbarLoginButton}>
                     <Icon path={mdiLogin}/>
                     <p>Log in</p>

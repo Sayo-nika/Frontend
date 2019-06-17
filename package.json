@@ -13,6 +13,7 @@
     "@mdi/js": "^3.6.95",
     "@mdi/react": "^1.1.1",
     "@zeit/next-typescript": "^1.1.1",
+    "emotion-theming": "^10.0.10",
     "ky-universal": "^0.2.1",
     "next": "^8.1.0",
     "next-compose-plugins": "^2.2.0",
