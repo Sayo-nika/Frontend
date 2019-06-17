@@ -1,9 +1,9 @@
 import * as React from 'react'
 import Link from 'next/link'
 import Layout from '../components/Layout'
-import { NextPage } from 'next'
+import { NextFC } from 'next'
 
-const IndexPage: NextPage = () => {
+const IndexPage: NextFC = () => {
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <h1>Hello Next.js 👋</h1>
