@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import HeadProperties from './HeadProperties';
 import Navbar from './Navbar';
 import { ThemeProvider } from 'emotion-theming';
 
@@ -55,12 +56,7 @@ const Layout: React.FunctionComponent<Props> = ({
   <ThemeProvider theme={theme}>
     <div>
       <Global styles={layoutCss}/>
-      <Head>
-        <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,500,700,900&display=swap"/>
-      </Head>
+      <HeadProperties title={title}/>
       <header>
           <Navbar/>
       </header>
