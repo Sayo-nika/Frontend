@@ -1,18 +1,28 @@
-import * as React from 'react'
-import Link from 'next/link'
-import NavbarlessLayout from '../components/NavbarlessLayout'
-import { NextFC } from 'next'
+import * as React from 'react';
+import Link from 'next/link';
+import NavbarlessLayout from '../components/NavbarlessLayout';
+import TextField, { HelperText, Input } from 'material-components-web-react';
+
+/** @jsx jsx*/
+import { css, jsx } from '@emotion/core';
+
 import loginBackground from '../assets/img/login-bg.jpg';
 import logo from '../assets/img/logo.svg';
 
-/** @jsx jsx*/
-import {css, jsx, Global} from '@emotion/core';
+interface LoginProps {
+
+}
+
+interface LoginState {
+  usernameFieldValue: String
+  passwordFieldValue: String
+}
 
 const loginContainerCss = css`
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background-image: url("${loginBackground}");
+  background-image: url("${ loginBackground }");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -55,22 +65,46 @@ const caption = css`
   font-size: 12px;
 `
 
-const LoginPage: NextFC = () => {
-  return (
+class LoginPage extends React.Component<LoginProps, LoginState>{
+
+  constructor(props: LoginProps) {
+    super(props);
+
+    this.state = {
+      usernameFieldValue: "",
+      passwordFieldValue: ""
+    }
+  }
+
+  updateUsernameField(usernameFieldValue: String) {
+    this.setState({ usernameFieldValue });
+  }
+
+  render() {
+    return (
     <NavbarlessLayout title="Login | Sayonika">
-      <div id="login-container" css={loginContainerCss}>
-        <div id="login-card" css={loginCardCss}>
-          <div id="login-header" css={loginHeaderImgContainerCss}>
-            <img src={logo} css={loginHeaderImg} alt="Sayonika"/>
+      <div id="login-container" css={ loginContainerCss }>
+        <div id="login-card" css={ loginCardCss }>
+          <div id="login-header" css={ loginHeaderImgContainerCss }>
+            <img src={ logo } css={ loginHeaderImg } alt="Sayonika"/>
           </div>
-          <div id="login-form" css={loginFormCss}>
-            {/* TODO: Add login components here */}
-            <p css={caption}>This site is protected by reCAPTCHA and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+          <div id="login-form" css={ loginFormCss }>
+            <TextField
+                label="Username"
+              >
+                <Input
+                  value={ this.state.usernameFieldValue }
+                  onChange={ (e: any) => this.updateUsernameField(e.target.value) }
+                />
+            </TextField>
+            <p css={ caption }>This site is protected by reCAPTCHA and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
           </div>
         </div>
       </div>
     </NavbarlessLayout>
-  )
+    )
+  }
+
 }
 
 export default LoginPage;
