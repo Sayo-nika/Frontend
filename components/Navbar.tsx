@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import navbarLogo from '../assets/img/logo.svg';
-import {mdiLogin} from '@mdi/js';
+import { mdiLogin } from '@mdi/js';
 
 /** @jsx jsx*/
-import {css, jsx} from '@emotion/core';
+import { css, jsx } from '@emotion/core';
 
 interface INavbarProps {
     classes?: any;
@@ -13,7 +13,7 @@ function Icon(props: any) {
   return (
     <svg viewBox="0 0 24 24"
       style={{ width: '1.5rem' }}>
-      <path d={props.path}/>
+      <path d={ props.path }/>
     </svg>
   )
 }
@@ -117,14 +117,14 @@ const navbarLoginButton = css`
 class Navbar extends Component<INavbarProps, any> {
     render() {
         return (
-            <div id="sy-navbar" css={navbarCss}>
-                <div css={navbarLogoCss}>
-                    <img src={navbarLogo} alt="Sayonika"/>
+            <div id="sy-navbar" css={ navbarCss }>
+                <div css={ navbarLogoCss }>
+                    <img src={ navbarLogo } alt="Sayonika"/>
                 </div>
 
                 {/* TODO: Hook this up to a link */}
-                <div css={navbarLoginButton}>
-                    <Icon path={mdiLogin}/>
+                <div css={ navbarLoginButton }>
+                    <Icon path={ mdiLogin }/>
                     <p>Log in</p>
                 </div>
             </div>

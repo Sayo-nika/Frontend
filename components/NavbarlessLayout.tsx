@@ -5,7 +5,7 @@ import HeadProperties from './HeadProperties';
 import { ThemeProvider } from 'emotion-theming';
 
 /** @jsx jsx*/
-import {css, jsx, Global} from '@emotion/core';
+import { css, jsx, Global } from '@emotion/core';
 
 interface INavbarlessLayoutProps {
 	title?: string;
@@ -33,12 +33,12 @@ const NavbarlessLayout: React.FunctionComponent<INavbarlessLayoutProps> = ({
 	children,
 	title = "Sayonika"
 }) => (
-	<ThemeProvider theme={theme}>
+	<ThemeProvider theme={ theme }>
     <div>
-      <Global styles={layoutCss}/>
-      <HeadProperties title={title}/>
+      <Global styles={ layoutCss }/>
+      <HeadProperties title={ title }/>
       <div>
-        {children}
+        { children }
       </div>
     </div>
   </ThemeProvider>

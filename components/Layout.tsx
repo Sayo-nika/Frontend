@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import { ThemeProvider } from 'emotion-theming';
 
 /** @jsx jsx*/
-import {css, jsx, Global} from '@emotion/core';
+import { css, jsx, Global } from '@emotion/core';
 
 
 type Props = {
@@ -53,15 +53,15 @@ const Layout: React.FunctionComponent<Props> = ({
   children,
   title = 'This is the default title',
 }) => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={ theme }>
     <div>
-      <Global styles={layoutCss}/>
-      <HeadProperties title={title}/>
+      <Global styles={ layoutCss }/>
+      <HeadProperties title={ title }/>
       <header>
           <Navbar/>
       </header>
-      <div css={mainLayout}>
-        {children}
+      <div css={ mainLayout }>
+        { children }
       </div>
       <footer>
         <hr />

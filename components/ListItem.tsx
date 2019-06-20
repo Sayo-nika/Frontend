@@ -8,9 +8,9 @@ type Props = {
 }
 
 const ListItem: React.FunctionComponent<Props> = ({ data }) => (
-  <Link href={`/detail?id=${data.id}`}>
+  <Link href={`/detail?id=${ data.id }`}>
     <a>
-      {data.id}: {data.name}
+      { data.id }: { data.name }
     </a>
   </Link>
 )
