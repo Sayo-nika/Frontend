@@ -5,8 +5,8 @@ const withCompose = require('next-compose-plugins');
 const css = require('@zeit/next-css');
 
 module.exports = withCompose([
-  typescript,
-  images,
-  progressbar,
-  css
+    typescript,
+    images,
+    progressbar,
+    css
 ]);
