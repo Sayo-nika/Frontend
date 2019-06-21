@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Link from 'next/link';
 import NavbarlessLayout from '../components/NavbarlessLayout';
-import TextField, { HelperText, Input } from 'material-components-web-react';
+import TextField, { Input } from '@material/react-text-field';
+
+import '@material/react-text-field/dist/text-field.css';
 
 /** @jsx jsx*/
 import { css, jsx } from '@emotion/core';
@@ -18,7 +20,7 @@ interface LoginState {
   passwordFieldValue: String
 }
 
-const loginContainerCss = css`
+const loginContainerCss = css `
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -29,7 +31,7 @@ const loginContainerCss = css`
   display: flex;
 `
 
-const loginCardCss = css`
+const loginCardCss = css `
   background-color: white;
   border-radius: 8px;
   width: 450px;
@@ -40,18 +42,18 @@ const loginCardCss = css`
 
 `
 
-const loginHeaderImgContainerCss = css`
+const loginHeaderImgContainerCss = css `
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 `
 
-const loginHeaderImg = css`
+const loginHeaderImg = css `
   height: 125px;
   width: auto;
 `
 
-const loginFormCss = css`
+const loginFormCss = css `
   padding: 40px;
   text-align: center;
   color: rgba(0,0,0,.54);
@@ -61,7 +63,7 @@ const loginFormCss = css`
   }
 `
 
-const caption = css`
+const caption = css `
   font-size: 12px;
 `
 
