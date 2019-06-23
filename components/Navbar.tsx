@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import navbarLogo from '../assets/img/logo.svg';
 import { mdiLogin } from '@mdi/js';
+import Link from 'next/link';
 
 /** @jsx jsx*/
 import { css, jsx } from '@emotion/core';
@@ -123,10 +124,14 @@ class Navbar extends Component<INavbarProps, any> {
                 </div>
 
                 {/* TODO: Hook this up to a link */}
-                <div css={ navbarLoginButton }>
-                    <Icon path={ mdiLogin }/>
-                    <p>Log in</p>
-                </div>
+                <Link href="/login">
+                    <a>
+                        <div css={ navbarLoginButton }>
+                            <Icon path={ mdiLogin }/>
+                            <p>Log in</p>
+                        </div>
+                    </a>
+                </Link>
             </div>
         )
     }
