@@ -9,7 +9,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@babel/core": "^7.4.5",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.12",
     "@material/react-button": "^0.13.0",
@@ -30,8 +29,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-spring": "^8.0.25",
-    "typescript": "^3.5.2",
-    "webpack": "^4.35.0"
+    "typescript": "^3.5.2"
   },
   "devDependencies": {
     "@types/next": "^8.0.5",
