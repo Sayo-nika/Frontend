@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import { NextFC } from 'next'
 import Navbar from '../components/Navbar'
+import Todo from '../components/Todo'
 
 const IndexPage: NextFC = () => {
   return (
