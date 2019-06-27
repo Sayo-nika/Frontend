@@ -3,7 +3,9 @@ import Link from 'next/link';
 import Head from 'next/head';
 import HeadProperties from './HeadProperties';
 import Navbar from './Navbar';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
+import { skMaterialTheme } from '../utils/generateThemes';
 
 /** @jsx jsx*/
 import { css, jsx, Global } from '@emotion/core';
@@ -53,21 +55,23 @@ const Layout: React.FunctionComponent<Props> = ({
   children,
   title = 'This is the default title',
 }) => (
-  <ThemeProvider theme={ theme }>
-    <div>
-      <Global styles={ layoutCss }/>
-      <HeadProperties title={ title }/>
-      <header>
-          <Navbar/>
-      </header>
-      <div css={ mainLayout }>
-        { children }
+  <ThemeProvider theme={ skMaterialTheme }>
+    <EmotionThemeProvider theme={ theme }>
+      <div>
+        <Global styles={ layoutCss }/>
+        <HeadProperties title={ title }/>
+        <header>
+            <Navbar/>
+        </header>
+        <div css={ mainLayout }>
+          { children }
+        </div>
+        <footer>
+          <hr />
+          <span>I'm here to stay (Footer)</span>
+        </footer>
       </div>
-      <footer>
-        <hr />
-        <span>I'm here to stay (Footer)</span>
-      </footer>
-    </div>
+    </EmotionThemeProvider>
   </ThemeProvider>
 )
 
