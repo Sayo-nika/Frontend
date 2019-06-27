@@ -1,13 +1,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import NavbarlessLayout from '../components/NavbarlessLayout';
-import TextField, { HelperText, Input } from '@material/react-text-field';
-import Checkbox from '@material/react-checkbox';
-import Button from '@material/react-button';
 
-import '@material/react-text-field/dist/text-field.css';
-import '@material/react-checkbox/dist/checkbox.css';
-import '@material/react-button/dist/button.css';
+import { Button, TextField, Checkbox, FormControlLabel } from "@material-ui/core";
 
 /** @jsx jsx*/
 import { css, jsx } from '@emotion/core';
@@ -106,6 +101,7 @@ class LoginPage extends React.Component<LoginProps, LoginState>{
   }
 
   render() {
+    const { usernameFieldValue, passwordFieldValue, requestToRememberLogin } = this.state;
     return (
     <NavbarlessLayout title="Login | Sayonika">
       <div id="login-container" css={ loginContainerCss }>
@@ -114,53 +110,41 @@ class LoginPage extends React.Component<LoginProps, LoginState>{
             <img src={ logo } css={ loginHeaderImg } alt="Sayonika"/>
           </div>
           <div id="login-form" css={ loginFormCss }>
-            { /* 
-                 The React MDC text field appears to hide labels when they are full-width. This
-                 is noticable when instpecting the elements; the "no-label" class is applied and 
-                 no label text appears.
-                 
-                 Is there a way around this that we can implement?
-               */ }
             <TextField
-                label="Username or Email"
-                fullWidth
-                helperText={ <HelperText>Username or Email</HelperText> }
-                required
-              >
-                <Input
-                  value={ this.state.usernameFieldValue }
-                  onChange={ (e: any) => this.updateUsernameField(e.target.value) }
-                />
-            </TextField>
+              value={ usernameFieldValue }
+              label="Username or email"
+              fullWidth
+              onChange={ (e: any) => this.updateUsernameField(e.target.value) }
+             />
             <TextField
-                label="Password"
-                fullWidth
-                helperText={ <HelperText>Password</HelperText> }
-              >
-                <Input
-                  value={ this.state.passwordFieldValue }
-                  onChange={ (e: any) => this.updatePasswordField(e.target.value) }
-                />
-            </TextField>
+              value= { passwordFieldValue }
+              label="Password"
+              fullWidth
+              onChange={ (e: any) => this.updatePasswordField(e.target.value) }
+
+             />
             <p css={ caption }>This site is protected by reCAPTCHA and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
             <div css={ loginFormFlex }>
               <div>
-                { /* It seems that the checkbox here is not lining up properly here. */ }
-                <Checkbox
-                  nativeControlId='my-checkbox'
-                  checked={ this.state.requestToRememberLogin }
-                  onChange={ (e: any) => this.toggleRememberMeState(e.target.checked) }
-                />
-                <label htmlFor='my-checkbox'>Remember me</label>
+                <FormControlLabel 
+                control = { 
+                  <Checkbox
+                    value="Remember me"
+                    checked={ requestToRememberLogin }
+                    onChange={ (e: any) => this.toggleRememberMeState(e.target.checked) }
+                  />
+                }
+                label="Remember me"
+               />
               </div>
               <div css={ spacer }/>
               <p><a href="#">Forgot password?</a></p>
             </div>
-            <Button
-              unelevated
-            >
-              Login
-            </Button>
+              <Button
+                size="large"
+                variant="contained"
+                color="primary"
+               >Log In</Button>
             <p>
               or <a href="#">sign up</a>
             </p>

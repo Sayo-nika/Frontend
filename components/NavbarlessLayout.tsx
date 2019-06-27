@@ -2,11 +2,12 @@ import * as React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import HeadProperties from './HeadProperties';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
+import { skMaterialTheme } from '../utils/generateThemes';
 
 /** @jsx jsx*/
 import { css, jsx, Global } from '@emotion/core';
-
 interface INavbarlessLayoutProps {
 	title?: string;
 	children: any;
@@ -32,16 +33,20 @@ const layoutCss = css`
 const NavbarlessLayout: React.FunctionComponent<INavbarlessLayoutProps> = ({
 	children,
 	title = "Sayonika"
-}) => (
-	<ThemeProvider theme={ theme }>
-    <div>
-      <Global styles={ layoutCss }/>
-      <HeadProperties title={ title }/>
-      <div>
-        { children }
-      </div>
-    </div>
-  </ThemeProvider>
-);
+}) => {
+  return (
+    <ThemeProvider theme={ skMaterialTheme }>
+    	<EmotionThemeProvider theme={ theme }>
+        <div>
+          <Global styles={ layoutCss }/>
+          <HeadProperties title={ title }/>
+          <div>
+            { children }
+          </div>
+        </div>
+      </EmotionThemeProvider>
+    </ThemeProvider>
+  )
+};
 
 export default NavbarlessLayout;
