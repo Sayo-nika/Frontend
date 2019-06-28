@@ -15,15 +15,11 @@ interface AiCarouselState {
 
 class AiCarousel extends Component<AiCarouselProps, AiCarouselState> {
 
-	constructor(props: AiCarouselProps) {
-		super(props);
-
-		this.state = {
-			shouldTile: this.props.tile,
-			slideColor: this.props.color,
-			slideCount: this.props.numberOfSlides,
-			currentPoisition: 0
-		}
+	state = {
+		shouldTile: this.props.tile,
+		slideColor: this.props.color,
+		slideCount: this.props.numberOfSlides,
+		currentPoisition: 0
 	}
 
 	render() {
