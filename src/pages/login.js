@@ -34,12 +34,12 @@ class LoginPage extends Component{
                 <RoundIcon src='assets/icon.png'/>
                 <Header>Welcome, please login</Header>
                 <SubText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</SubText>
-                <TextInput value={this.username} />
-                <SecretInput value={this.password} />
-                <Flag value={this.stayLoggedIn} title='Remember this device' />
+                <TextInput value={ this.username } />
+                <SecretInput value={ this.password } />
+                <Flag value={ this.stayLoggedIn } title='Remember this device' />
                 <Row>
-                    <SubmitButton title='Sign Up' onPress={this.handleSignup}/>
-                    <SubmitButton title='Log In' onPress={this.handleLogin}/>
+                    <SubmitButton title='Sign Up' onPress={ this.handleSignup }/>
+                    <SubmitButton title='Log In' onPress={ this.handleLogin }/>
                 </Row>
             </Card>
         )
