@@ -1,8 +1,8 @@
 {
-  "name": "Frontend",
-  "version": "1.0.0",
   "dependencies": {
     "react": "^16.8.6",
+    "react-native": "^0.60.4",
+    "react-native-web": "^0.11.5",
     "styled-components": "^4.3.2"
   }
 }

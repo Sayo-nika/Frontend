@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {COMMON_STYLESHEET} from "src/stylesheets/common";
 
 export const Card = styled.div`
 
