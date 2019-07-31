@@ -9,8 +9,11 @@ import {
     SecretInput,
     SubmitButton,
     SubText,
-    TextInput
+    TextInput,
+    LoginBackground
 } from '../components/common';
+
+import icon from '../assets/img/logo.svg';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -32,21 +35,32 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <Card>
-                <RoundIcon src="assets/icon.png" />
-                <Header>Welcome, please login</Header>
-                <SubText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod.
-                </SubText>
-                <TextInput value={this.username} />
-                <SecretInput value={this.password} />
-                <Flag value={this.stayLoggedIn} title="Remember this device" />
-                <Row>
-                    <SubmitButton title="Sign Up" onPress={this.handleSignup} />
-                    <SubmitButton title="Log In" onPress={this.handleLogin} />
-                </Row>
-            </Card>
+            <LoginBackground>
+                <Card>
+                    <RoundIcon src={icon} />
+                    <Header>Welcome, please login</Header>
+                    <SubText>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod.
+                    </SubText>
+                    <TextInput value={this.username} />
+                    <SecretInput value={this.password} />
+                    <Flag
+                        value={this.stayLoggedIn}
+                        title="Remember this device"
+                    />
+                    <Row>
+                        <SubmitButton
+                            title="Sign Up"
+                            onPress={this.handleSignup}
+                        />
+                        <SubmitButton
+                            title="Log In"
+                            onPress={this.handleLogin}
+                        />
+                    </Row>
+                </Card>
+            </LoginBackground>
         );
     }
 }
