@@ -52,10 +52,22 @@ SubmitButton.propTypes = {
     onPress: propTypes.func
 };
 
-export const TextInput = styled.input``;
-export const SecretInput = styled.input``;
-
+export const TextInput = styled.input`
+    border-radius: 4px;
+    padding: 12px 16px 14px;
+    border-style: solid;
+    border-width: 0.25px;
+    border-color: #666666;
+`;
+export const SecretInput = styled.input`
+    border-radius: 4px;
+    padding: 12px 16px 14px;
+    border-style: solid;
+    border-width: 0.25px;
+    border-color: #666666;
+`;
 SecretInput.type = 'password';
+
 export const Flag = styled.input``;
 Flag.type = 'checkbox';
 export const RoundIcon = styled.img`
