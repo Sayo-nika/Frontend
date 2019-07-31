@@ -1,5 +1,6 @@
+import React from 'react';
+import propTypes from 'prop-types';
 import styled from 'styled-components';
-
 import loginBackground from '../assets/img/login-bg.jpg';
 
 export const LoginBackground = styled.div`
@@ -22,8 +23,35 @@ export const Card = styled.div`
     margin: auto;
     background-color: white;
 `;
-export const Link = styled.a``;
-export const SubmitButton = styled.button``;
+export const Link = styled.a`
+    color: #e84444;
+    text-decoration: none;
+`;
+export const SubmitButtonBase = styled.button`
+    background-color: #e84444;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    outline: none;
+    border: none;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 4px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+`;
+export const SubmitButton = props => (
+    <SubmitButtonBase onClick={props.onPress}>{props.title}</SubmitButtonBase>
+);
+
+SubmitButton.propTypes = {
+    title: propTypes.string,
+    onPress: propTypes.func
+};
+
 export const TextInput = styled.input``;
 export const SecretInput = styled.input``;
 
@@ -35,6 +63,9 @@ export const RoundIcon = styled.img`
     height: 128px;
     border-radius: 50%;
     background-color: #f4f4f4;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 `;
 export const Header = styled.div``;
 export const SubText = styled.div``;
