@@ -1,17 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     Card,
     Flag,
     Header,
     Link,
-    RoundIcon, Row,
+    RoundIcon,
+    Row,
     SecretInput,
-    SubmitButton, SubText,
+    SubmitButton,
+    SubText,
     TextInput
-} from "../components/common";
+} from '../components/common';
 
-class LoginPage extends Component{
-    constructor(props){
+class LoginPage extends Component {
+    constructor(props) {
         super(props);
 
         this.username = '';
@@ -31,17 +33,22 @@ class LoginPage extends Component{
     render() {
         return (
             <Card>
-                <RoundIcon src='assets/icon.png'/>
+                <RoundIcon src="assets/icon.png" />
                 <Header>Welcome, please login</Header>
-                <SubText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</SubText>
-                <TextInput value={ this.username } />
-                <SecretInput value={ this.password } />
-                <Flag value={ this.stayLoggedIn } title='Remember this device' />
+                <SubText>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod.
+                </SubText>
+                <TextInput value={this.username} />
+                <SecretInput value={this.password} />
+                <Flag value={this.stayLoggedIn} title="Remember this device" />
                 <Row>
-                    <SubmitButton title='Sign Up' onPress={ this.handleSignup }/>
-                    <SubmitButton title='Log In' onPress={ this.handleLogin }/>
+                    <SubmitButton title="Sign Up" onPress={this.handleSignup} />
+                    <SubmitButton title="Log In" onPress={this.handleLogin} />
                 </Row>
             </Card>
-        )
+        );
     }
 }
+
+export default LoginPage;
