@@ -1,9 +1,0 @@
-node_modules/
-.nuxt/
-dist/
-.eslintrc.js
-.eslintignore
-.editorconfig
-LICENSE
-README.md
-.gitignore
