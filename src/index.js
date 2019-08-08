@@ -1,7 +1,6 @@
 import { AppRegistry } from 'react-native';
-import LoginPage from './pages/login';
-
-AppRegistry.registerComponent('Sayonika', () => LoginPage);
+import App from './app';
+AppRegistry.registerComponent('Sayonika', () => App);
 
 AppRegistry.runApplication('Sayonika', {
     rootTag: document.getElementById('root')

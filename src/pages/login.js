@@ -12,16 +12,33 @@ import {
     TextInput,
     LoginBackground
 } from '../components/common';
+import {
+    TextField,
+    Button,
+    Typography,
+    Checkbox,
+    FormControlLabel
+} from '@material-ui/core';
 
 import icon from '../assets/img/logo.svg';
 
 class LoginPage extends Component {
-    constructor(props) {
-        super(props);
+    state = {
+        username: '',
+        password: '',
+        stayLoggedIn: false
+    };
 
-        this.username = '';
-        this.password = '';
-        this.stayLoggedIn = false;
+    updateUsername(username) {
+        this.setState({ username });
+    }
+
+    updatePassword(password) {
+        this.setState({ password });
+    }
+
+    toggleRememberMeState(stayLoggedIn) {
+        this.setState({ stayLoggedIn });
     }
 
     handleLogin = () => {
@@ -34,30 +51,43 @@ class LoginPage extends Component {
     };
 
     render() {
+        const { username, password, stayLoggedIn } = this.state;
         return (
             <LoginBackground>
                 <Card>
                     <RoundIcon src={icon} />
-                    <Header>Welcome, please login</Header>
-                    <SubText>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod.
-                    </SubText>
-                    <TextInput value={this.username} />
-                    <SecretInput value={this.password} />
-                    <Flag
-                        value={this.stayLoggedIn}
-                        title="Remember this device"
+                    <Typography variant="h5">Welcome, please login</Typography>
+                    <TextField
+                        label="Username or email address"
+                        variant="outlined"
+                        onChange={e => this.updateUsername(e.target.value)}
+                    />
+                    <TextField
+                        label="Password"
+                        variant="outlined"
+                        type="password"
+                        onChange={e => this.updatePassword(e.target.value)}
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                value="Remember me"
+                                checked={stayLoggedIn}
+                                onChange={e =>
+                                    this.toggleRememberMeState(e.target.checked)
+                                }
+                            />
+                        }
                     />
                     <Row>
-                        <SubmitButton
-                            title="Sign Up"
-                            onPress={this.handleSignup}
-                        />
-                        <SubmitButton
-                            title="Log In"
-                            onPress={this.handleLogin}
-                        />
+                        <Button onClick={this.handleSignup}>Sign up</Button>
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            onClick={this.handleLogin}
+                        >
+                            Log in
+                        </Button>
                     </Row>
                 </Card>
             </LoginBackground>
