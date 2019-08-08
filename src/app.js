@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginPage from './pages/login';
+import Navbar from './components/navbar';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
