@@ -13,6 +13,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import navBarLogo from '../assets/img/logo-white.svg';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import propTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,9 +29,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Navbar() {
+const Navbar = ({ loggedIn }) => {
     const [state, setState] = useState({
-        loggedIn: true,
+        loggedIn: loggedIn || false,
         menuVisible: false,
         isAdmin: false
     });
@@ -115,6 +116,10 @@ function Navbar() {
             </Toolbar>
         </AppBar>
     );
-}
+};
+
+Navbar.propTypes = {
+    loggedIn: propTypes.bool
+};
 
 export default Navbar;

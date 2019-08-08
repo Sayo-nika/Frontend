@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Card,
-    Flag,
-    Header,
-    Link,
-    RoundIcon,
-    Row,
-    SecretInput,
-    SubmitButton,
-    SubText,
-    TextInput,
-    LoginBackground
-} from '../components/common';
+import { Card, RoundIcon, Row, LoginBackground } from '../components/common';
 import {
     TextField,
     Button,
