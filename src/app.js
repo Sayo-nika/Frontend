@@ -34,7 +34,9 @@ function App() {
         <Router>
             <ThemeProvider theme={SayonikaTheme}>
                 <Route path="/login" component={LoginPage} />
-                <Route path="/zenno" component={DemoPage} />
+                {process.env.NODE_ENV == 'development' ? (
+                    <Route path="/zenno" component={DemoPage} />
+                ) : null}
             </ThemeProvider>
         </Router>
     );
