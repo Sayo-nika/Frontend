@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Recaptcha from 'react-recaptcha';
 import { Card, RoundIcon, Row, LoginBackground } from '../components/common';
 import {
     TextField,
@@ -92,6 +93,9 @@ class LoginPage extends Component {
                             }
                         />
                     </div>
+                    <Recaptcha
+                        sitekey={CONFIG.CAPTCHA_KEY}
+                    />
                     <Row>
                         <Button onClick={this.handleSignup}>Sign up</Button>
                         <Button
