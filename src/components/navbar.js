@@ -14,6 +14,7 @@ import navBarLogo from '../assets/img/logo-white.svg';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import propTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -108,7 +109,11 @@ const Navbar = ({ loggedIn }) => {
                             </Menu>
                         </div>
                     ) : (
-                        <Button color="inherit" onClick={handleLogin}>
+                        <Button
+                            component={RouterLink}
+                            to="/login"
+                            color="inherit"
+                        >
                             Log in
                         </Button>
                     )}
