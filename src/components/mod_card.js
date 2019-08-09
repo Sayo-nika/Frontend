@@ -5,6 +5,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
 import CodeIcon from '@material-ui/icons/Code';
+import BetaIcon from 'mdi-material-ui/Beta';
 import { makeStyles } from '@material-ui/core/styles';
 import { orange, red } from '@material-ui/core/colors';
 import { fromModColor } from '../utils/colors';
@@ -104,7 +105,7 @@ const statusCategory = (type, category, favorites) => {
                         style={{ color: red[500], fill: red[500] }}
                         className={classes.category}
                     >
-                        <ArchiveIcon className={classes.categoryIcon} />
+                        <BetaIcon className={classes.categoryIcon} />
                         <Typography>Beta</Typography>
                     </div>
                 </div>
