@@ -32,7 +32,7 @@ const DemoPage = props => {
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
                     ex. Maecenas dictum scelerisque facilisis."
-                            logo="https://preview.redd.it/hufj4jjffrb31.jpg?width=640&crop=smart&auto=webp&s=e0d08b74c15f0a7282f077673639f54d10fbb243"
+                            logo=""
                             header="https://about.aliceos.app/_next/static/images/f4-0ce4c2717db4e542bb7e633cd3e02fae.jpg"
                             status={4}
                             category="Horror"
@@ -45,7 +45,7 @@ const DemoPage = props => {
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
                     ex. Maecenas dictum scelerisque facilisis."
-                            logo="https://preview.redd.it/hufj4jjffrb31.jpg?width=640&crop=smart&auto=webp&s=e0d08b74c15f0a7282f077673639f54d10fbb243"
+                            logo=""
                             header="https://about.aliceos.app/_next/static/images/f4-0ce4c2717db4e542bb7e633cd3e02fae.jpg"
                             status={0}
                             category="Horror"
@@ -58,7 +58,7 @@ const DemoPage = props => {
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
                     ex. Maecenas dictum scelerisque facilisis."
-                            logo="https://preview.redd.it/hufj4jjffrb31.jpg?width=640&crop=smart&auto=webp&s=e0d08b74c15f0a7282f077673639f54d10fbb243"
+                            logo=""
                             header="https://about.aliceos.app/_next/static/images/f4-0ce4c2717db4e542bb7e633cd3e02fae.jpg"
                             status={1}
                             category="Horror"
@@ -71,7 +71,7 @@ const DemoPage = props => {
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
                     ex. Maecenas dictum scelerisque facilisis."
-                            logo="https://preview.redd.it/hufj4jjffrb31.jpg?width=640&crop=smart&auto=webp&s=e0d08b74c15f0a7282f077673639f54d10fbb243"
+                            logo=""
                             header="https://about.aliceos.app/_next/static/images/f4-0ce4c2717db4e542bb7e633cd3e02fae.jpg"
                             status={2}
                             category="Horror"
@@ -84,7 +84,7 @@ const DemoPage = props => {
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
                     ex. Maecenas dictum scelerisque facilisis."
-                            logo="https://preview.redd.it/hufj4jjffrb31.jpg?width=640&crop=smart&auto=webp&s=e0d08b74c15f0a7282f077673639f54d10fbb243"
+                            logo=""
                             header="https://about.aliceos.app/_next/static/images/f4-0ce4c2717db4e542bb7e633cd3e02fae.jpg"
                             status={3}
                             category="Horror"
