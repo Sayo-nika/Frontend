@@ -30,7 +30,7 @@ const SayonikaTheme = createMuiTheme({
     }
 });
 
-function App() {
+const App = () => {
     return (
         <Router>
             <ThemeProvider theme={SayonikaTheme}>
@@ -42,6 +42,6 @@ function App() {
             </ThemeProvider>
         </Router>
     );
-}
+};
 
 export default App;
