@@ -2,7 +2,7 @@ import CONFIG from './config';
 import { getStorageVar } from './storage';
 
 function createAPIFunction(path, method){
-    return function(body) {
+    return function(body, arg) {
         if (method==="POST"){
             body.token = getStorageVar("token");
         }
@@ -16,7 +16,7 @@ function createAPIFunction(path, method){
         }
 
         return fetch(
-            `${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/${path}`,
+            `${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/${path}`.replace('{0}', arg),
             {
                 method,
                 body: (method === "POST" ? body : null),
@@ -32,7 +32,8 @@ function createAPIFunction(path, method){
 let API = {
     env: {},
 
-    login: createAPIFunction("/login", "POST")
+    login: createAPIFunction("/login", "POST"),
+    getUser: createAPIFunction("/users/{0}")
 };
 
 export default API;
