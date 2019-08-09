@@ -9,7 +9,7 @@ import {
     Menu,
     MenuItem
 } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import navBarLogo from '../assets/img/logo-white.svg';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
