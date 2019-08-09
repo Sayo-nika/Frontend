@@ -7,15 +7,20 @@ function createAPIFunction(path, method){
             body.token = getStorageVar("token");
         }
 
+        let headers = {
+            "content-type": "application/json",
+        };
+
+        if (API.env.token){
+            headers["Authorization"] = API.env.token
+        }
+
         return fetch(
             `${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/${path}`,
             {
                 method,
                 body: (method === "POST" ? body : null),
-                headers: {
-                    "content-type": "application/json",
-                    "Authorization": API.env.token
-                }
+                headers
             }
         ).then(
             r=>r.json()
