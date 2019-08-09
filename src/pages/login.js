@@ -45,11 +45,13 @@ class LoginPage extends Component {
                 recaptcha
             })
         }).then(r=>r.json()).then(r=> {
-            // Handle response
             const token = r.token;
-            console.log(token)
+            if (this.state.stayLoggedIn){
+                window.localStorage.token = token;
+            } else {
+                window.sessionStorage.token = token
+            }
         })
-        // TODO: make request to log in
     };
 
     handleSignup = () => {
