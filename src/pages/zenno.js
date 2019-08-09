@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/navbar';
 import ModCard from '../components/mod_card';
 import CatalogBar from '../components/catalog_bar';
+import Review from '../components/review';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -103,6 +104,7 @@ const DemoPage = props => {
                         />
                     </Grid>
                 </Grid>
+                <Review />
             </div>
         </div>
     );
