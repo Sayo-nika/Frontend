@@ -11,6 +11,7 @@ import {
 
 import icon from '../assets/img/logo.svg';
 import CONFIG from "../utils/config";
+import API from '../utils/api';
 
 class LoginPage extends Component {
     state = {
@@ -35,23 +36,21 @@ class LoginPage extends Component {
     handleLogin = () => {
         let {username, password, recaptcha} = this.state;
 
-        fetch(`${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username,
-                password,
-                recaptcha
-            })
-        }).then(r=>r.json()).then(r=> {
+        API.login(JSON.stringify({
+            username,
+            password,
+            recaptcha
+        })).then(r=>{
+            console.log(r);
+
             const token = r.token;
+            API.env.token = token;
             if (this.state.stayLoggedIn){
                 window.localStorage.token = token;
             } else {
                 window.sessionStorage.token = token
             }
+            // TODO: Redirect to main page
         })
     };
 
