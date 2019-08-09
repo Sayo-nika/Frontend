@@ -95,6 +95,7 @@ class LoginPage extends Component {
                     </div>
                     <Recaptcha
                         sitekey={CONFIG.CAPTCHA_KEY}
+                        verifyCallback={recaptcha=>this.setState({recaptcha})}
                     />
                     <Row>
                         <Button onClick={this.handleSignup}>Sign up</Button>
