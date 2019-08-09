@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Card } from './common';
+import React from 'react';
 import { Paper, Typography, Avatar } from '@material-ui/core';
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import GamepadIcon from '@material-ui/icons/Gamepad';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
 import CodeIcon from '@material-ui/icons/Code';
 import { makeStyles } from '@material-ui/core/styles';
 import { orange, red } from '@material-ui/core/colors';
+import { fromModColor } from '../utils/colors';
 import propTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     },
     backgroundRoot: {
         height: 175,
-        backgroundColor: theme.palette.primary.dark,
+        backgroundColor: color => fromModColor(color, 'dark', theme),
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         paddingBottom: 0,
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: color => fromModColor(color, 'main', theme),
         width: 128,
         height: 128,
         marginTop: -64
@@ -113,7 +113,7 @@ const statusCategory = (type, category, favorites) => {
             return (
                 <div className={classes.categoryRoot}>
                     <div className={classes.category}>
-                        <InsertEmoticonIcon className={classes.categoryIcon} />
+                        <GamepadIcon className={classes.categoryIcon} />
                         <Typography>{category}</Typography>
                     </div>
                     <div className={classes.category}>
@@ -129,12 +129,13 @@ const ModCard = ({
     title,
     description,
     logo,
+    themeColor,
     header,
     status,
     category,
     favorites
 }) => {
-    const classes = useStyles();
+    const classes = useStyles(themeColor);
 
     return (
         <Paper className={classes.root}>
@@ -163,6 +164,7 @@ ModCard.propTypes = {
     description: propTypes.string,
     status: propTypes.number.isRequired,
     header: propTypes.string,
+    themeColor: propTypes.number,
     logo: propTypes.string,
     category: propTypes.string.isRequired,
     favorites: propTypes.number

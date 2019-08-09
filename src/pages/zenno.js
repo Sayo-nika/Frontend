@@ -33,10 +33,11 @@ const DemoPage = props => {
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
                     ex. Maecenas dictum scelerisque facilisis."
                             logo=""
-                            header="https://about.aliceos.app/_next/static/images/f4-0ce4c2717db4e542bb7e633cd3e02fae.jpg"
+                            header=""
                             status={4}
                             category="Horror"
                             favorites={1500}
+                            themeColor={5}
                         />
                     </Grid>
                     <Grid item xs={12} lg={3}>

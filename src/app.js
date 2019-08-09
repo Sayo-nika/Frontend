@@ -5,7 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import DemoPage from './pages/zenno';
-import ModList from "./pages/mod_list";
+import ModList from './pages/mod_list';
 
 const SayonikaTheme = createMuiTheme({
     palette: {
