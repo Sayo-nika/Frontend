@@ -45,28 +45,33 @@ class LoginPage extends Component {
                 <Card>
                     <RoundIcon src={icon} />
                     <Typography variant="h5">Welcome, please login</Typography>
-                    <TextField
-                        label="Username or email address"
-                        variant="outlined"
-                        onChange={e => this.updateUsername(e.target.value)}
-                    />
-                    <TextField
-                        label="Password"
-                        variant="outlined"
-                        type="password"
-                        onChange={e => this.updatePassword(e.target.value)}
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                value="Remember me"
-                                checked={stayLoggedIn}
-                                onChange={e =>
-                                    this.toggleRememberMeState(e.target.checked)
-                                }
+                    <div style={{flexDirection: 'column'}}>
+                        <div style={{flexDirection: 'column'}}>
+                            <TextField
+                                label="Username or email address"
+                                variant="outlined"
+                                onChange={e => this.updateUsername(e.target.value)}
                             />
-                        }
-                    />
+                            <TextField
+                                label="Password"
+                                variant="outlined"
+                                type="password"
+                                onChange={e => this.updatePassword(e.target.value)}
+                            />
+                        </div>
+                        <FormControlLabel
+                            label="Remember me"
+                            control={
+                                <Checkbox
+                                    value="Remember me"
+                                    checked={stayLoggedIn}
+                                    onChange={e =>
+                                        this.toggleRememberMeState(e.target.checked)
+                                    }
+                                />
+                            }
+                        />
+                    </div>
                     <Row>
                         <Button onClick={this.handleSignup}>Sign up</Button>
                         <Button
