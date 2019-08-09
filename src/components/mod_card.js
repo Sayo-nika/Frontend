@@ -10,8 +10,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { orange, red } from '@material-ui/core/colors';
 import { fromModColor } from '../utils/colors';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
+    baseLink: {
+        textDecoration: 'none'
+    },
     root: {
         paddingBottom: theme.spacing.unit * 2
     },
@@ -127,6 +131,7 @@ const statusCategory = (type, category, favorites) => {
 };
 
 const ModCard = ({
+    id,
     title,
     description,
     logo,
@@ -139,28 +144,31 @@ const ModCard = ({
     const classes = useStyles(themeColor);
 
     return (
-        <Paper className={classes.root}>
-            <div
-                className={classes.backgroundRoot}
-                style={{
-                    backgroundImage: `url(${header})`
-                }}
-            />
-            <Avatar className={classes.modLogo} src={logo} />
-            <div className={classes.contentRoot}>
-                <Typography className={classes.modTitle} variant="h4">
-                    {title}
-                </Typography>
-                <Typography paragraph variant="caption">
-                    {description ? description : 'No description provided.'}
-                </Typography>
-            </div>
-            {statusCategory(status, category, favorites)}
-        </Paper>
+        <Link to={`/mod/${id}`} className={classes.baseLink}>
+            <Paper className={classes.root}>
+                <div
+                    className={classes.backgroundRoot}
+                    style={{
+                        backgroundImage: `url(${header})`
+                    }}
+                />
+                <Avatar className={classes.modLogo} src={logo} />
+                <div className={classes.contentRoot}>
+                    <Typography className={classes.modTitle} variant="h4">
+                        {title}
+                    </Typography>
+                    <Typography paragraph variant="caption">
+                        {description ? description : 'No description provided.'}
+                    </Typography>
+                </div>
+                {statusCategory(status, category, favorites)}
+            </Paper>
+        </Link>
     );
 };
 
 ModCard.propTypes = {
+    id: propTypes.string.isRequired,
     title: propTypes.string.isRequired,
     description: propTypes.string,
     status: propTypes.number.isRequired,

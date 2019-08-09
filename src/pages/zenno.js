@@ -28,6 +28,7 @@ const DemoPage = props => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} lg={3}>
                         <ModCard
+                            id={0}
                             title="Just Zen'no"
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
@@ -42,6 +43,7 @@ const DemoPage = props => {
                     </Grid>
                     <Grid item xs={12} lg={3}>
                         <ModCard
+                            id={0}
                             title="Just Zen'no"
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
@@ -51,10 +53,12 @@ const DemoPage = props => {
                             status={0}
                             category="Horror"
                             favorites={1500}
+                            themeColor={8}
                         />
                     </Grid>
                     <Grid item xs={12} lg={3}>
                         <ModCard
+                            id={0}
                             title="Just Zen'no"
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
@@ -64,10 +68,12 @@ const DemoPage = props => {
                             status={1}
                             category="Horror"
                             favorites={1500}
+                            themeColor={0}
                         />
                     </Grid>
                     <Grid item xs={12} lg={3}>
                         <ModCard
+                            id={0}
                             title="Just Zen'no"
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
@@ -77,10 +83,12 @@ const DemoPage = props => {
                             status={2}
                             category="Horror"
                             favorites={1500}
+                            themeColor={9}
                         />
                     </Grid>
                     <Grid item xs={12} lg={3}>
                         <ModCard
+                            id={0}
                             title="Just Zen'no"
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Mauris vel tortor eu dolor volutpat volutpat sit amet cursus
