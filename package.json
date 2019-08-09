@@ -13,6 +13,7 @@
         "react-native": "^0.60.4",
         "react-native-web": "^0.11.5",
         "react-scripts": "^2.1.8",
+        "sayonika": "git+https://github.com/Sayo-nika/Megumi.git",
         "styled-components": "^4.3.2"
     },
     "devDependencies": {
