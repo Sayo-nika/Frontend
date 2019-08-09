@@ -20,7 +20,7 @@ const Review = ({ id, title, rating, content, author_id }) => {
     return (
         <Card>
             <div>
-                <Avatar component={<img src={data.avatar} />} />
+                <Avatar src={data.avatar} />
                 <div>
                     <div>{data.username}</div>
                     <div>{rating}</div>
