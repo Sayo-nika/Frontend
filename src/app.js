@@ -5,6 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import DemoPage from './pages/zenno';
+import ModList from "./pages/mod_list";
 
 const SayonikaTheme = createMuiTheme({
     palette: {
@@ -34,6 +35,7 @@ function App() {
         <Router>
             <ThemeProvider theme={SayonikaTheme}>
                 <Route path="/login" component={LoginPage} />
+                <Route path="/mods" component={ModList} />
                 {process.env.NODE_ENV == 'development' ? (
                     <Route path="/zenno" component={DemoPage} />
                 ) : null}

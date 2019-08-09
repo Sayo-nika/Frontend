@@ -9,11 +9,13 @@ import {
 } from '@material-ui/core';
 
 import icon from '../assets/img/logo.svg';
+import CONFIG from "../utils/config";
 
 class LoginPage extends Component {
     state = {
         username: '',
         password: '',
+        recaptcha: '',  // TODO: Add recaptcha to login page
         stayLoggedIn: false
     };
 
@@ -30,7 +32,23 @@ class LoginPage extends Component {
     }
 
     handleLogin = () => {
-        // Arrow function because lol js scope
+        let {username, password, recaptcha} = this.state;
+
+        fetch(`${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password,
+                recaptcha
+            })
+        }).then(r=>r.json()).then(r=> {
+            // Handle response
+            const token = r.token;
+            console.log(token)
+        })
         // TODO: make request to log in
     };
 
