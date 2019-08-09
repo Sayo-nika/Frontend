@@ -5,6 +5,7 @@ import CatalogBar from '../components/catalog_bar';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from '../components/footer';
+import Review from '../components/review';
 
 const useStyles = makeStyles(theme => ({
     zennoContent: {
@@ -104,6 +105,14 @@ const DemoPage = props => {
                         />
                     </Grid>
                 </Grid>
+                <br />
+                <Review
+                    id="1"
+                    title="Hello"
+                    content="My disappointment is immesurable and my day is ruined."
+                    author_id="33"
+                    rating={3}
+                />
             </div>
             <Footer />
         </div>
