@@ -2,9 +2,9 @@ import React from 'react';
 import Navbar from '../components/navbar';
 import ModCard from '../components/mod_card';
 import CatalogBar from '../components/catalog_bar';
-import Review from '../components/review';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Footer from '../components/footer';
 
 const useStyles = makeStyles(theme => ({
     zennoContent: {
@@ -104,14 +104,8 @@ const DemoPage = props => {
                         />
                     </Grid>
                 </Grid>
-                <Review
-                    id="1"
-                    title="Hello"
-                    content="Is it me you're looking for?"
-                    rating={5}
-                    author_id="69"
-                />
             </div>
+            <Footer />
         </div>
     );
 };
