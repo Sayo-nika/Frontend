@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import ModCard from '../components/mod_card';
+import CatalogBar from '../components/catalog_bar';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -25,6 +26,7 @@ const DemoPage = props => {
         <div>
             <Navbar />
             <div className={classes.zennoContent}>
+                <CatalogBar />
                 <Grid container spacing={2}>
                     <Grid item xs={12} lg={3}>
                         <ModCard
