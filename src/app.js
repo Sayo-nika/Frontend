@@ -6,29 +6,9 @@ import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import DemoPage from './pages/zenno';
 import ModList from './pages/mod_list';
+import Sayonitheme from './utils/theme';
 
-const SayonikaTheme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#e84444'
-        }
-    },
-    typography: {
-        fontFamily: [
-            'Noto Sans JP',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            '"Segoe UI"',
-            'Roboto',
-            '"Helvetica Neue"',
-            'Arial',
-            'sans-serif',
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"'
-        ].join(',')
-    }
-});
+const SayonikaTheme = createMuiTheme(Sayonitheme);
 
 const App = () => {
     return (
