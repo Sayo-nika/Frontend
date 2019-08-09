@@ -2,6 +2,7 @@ import API from '../utils/api';
 import React, { useEffect, useState } from 'react';
 import { Card } from './common';
 import Avatar from '@material-ui/core/Avatar';
+import propTypes from 'prop-types';
 
 const Review = ({ id, title, rating, content, author_id }) => {
     const [data, setData] = useState({});
@@ -32,6 +33,14 @@ const Review = ({ id, title, rating, content, author_id }) => {
             </div>
         </Card>
     );
+};
+
+Review.propTypes = {
+    id: propTypes.string.isRequired,
+    title: propTypes.string.isRequired,
+    rating: propTypes.number.isRequired,
+    content: propTypes.string.isRequired,
+    author_id: propTypes.string.isRequired
 };
 
 export default Review;
