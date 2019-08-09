@@ -7,7 +7,8 @@ import {
     IconButton,
     Tooltip,
     Menu,
-    MenuItem
+    MenuItem,
+    Link
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import navBarLogo from '../assets/img/logo-white.svg';
@@ -21,12 +22,19 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1
     },
     title: {
-        flexGrow: 1,
-        height: 48
+        height: 48,
+        paddingRight: theme.spacing.unit * 2
     },
     titleLogo: {
         height: 48,
         width: 'auto'
+    },
+    links: {
+        flexGrow: 1
+    },
+    link: {
+        paddingLeft: theme.spacing.unit,
+        paddingRight: theme.spacing.unit
     }
 }));
 
@@ -39,7 +47,6 @@ const Navbar = ({ loggedIn }) => {
     const classes = useStyles();
 
     // lol js scopes
-    const handleLogin = () => {};
     const handleNewMod = () => {};
     const handleProfileRedirect = () => {};
     const handleSettingsRedirect = () => {};
@@ -56,6 +63,18 @@ const Navbar = ({ loggedIn }) => {
             <Toolbar>
                 <div className={classes.title}>
                     <img src={navBarLogo} className={classes.titleLogo} />
+                </div>
+                <div className={classes.links}>
+                    <Link
+                        href="https://medium.com/sayonika"
+                        className={classes.link}
+                        color="inherit"
+                    >
+                        Blog
+                    </Link>
+                    <Link className={classes.link} color="inherit">
+                        Developers
+                    </Link>
                 </div>
                 <div>
                     {state.loggedIn ? (
