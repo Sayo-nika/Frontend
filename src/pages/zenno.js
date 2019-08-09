@@ -104,7 +104,13 @@ const DemoPage = props => {
                         />
                     </Grid>
                 </Grid>
-                <Review />
+                <Review
+                    id="1"
+                    title="Hello"
+                    content="Is it me you're looking for?"
+                    rating={5}
+                    author_id="69"
+                />
             </div>
         </div>
     );
