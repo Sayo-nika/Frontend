@@ -32,8 +32,10 @@ function createAPIFunction(path, method){
 let API = {
     env: {},
 
-    login: createAPIFunction("/login", "POST"),
-    getUser: createAPIFunction("/users/{0}")
+    login: createAPIFunction("login", "POST"),
+    signup: createAPIFunction("users", "POST"),
+    getUser: createAPIFunction("users/{0}", "GET"),
+
 };
 
 export default API;

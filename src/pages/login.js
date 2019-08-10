@@ -18,6 +18,7 @@ class LoginPage extends Component {
         username: '',
         password: '',
         recaptcha: '',  // TODO: Add recaptcha to login page
+        email: '',
         stayLoggedIn: false
     };
 
@@ -55,7 +56,14 @@ class LoginPage extends Component {
     };
 
     handleSignup = () => {
-        // TODO: make request to sign up
+        // TODO: Ask for email
+        let {username, password, recaptcha, email} = this.state;
+
+        API.signup(JSON.stringify({
+            username, password, recaptcha, email
+        })).then(r=> {
+            // Display "Verify email" message
+        })
     };
 
     render() {
