@@ -3,10 +3,6 @@ import { getStorageVar } from './storage';
 
 function createAPIFunction(path, method){
     return function(body, arg) {
-        if (method==="POST"){
-            body.token = getStorageVar("token");
-        }
-
         let headers = {
             "content-type": "application/json",
         };
