@@ -18,9 +18,9 @@ class EditorsChoice extends Component {
 
     render() {
         API.getMods("").then(r=>{
-            this.setState([
+            this.setState({mods:[
                 <ModCard id={0} title={"Coming Soon"} status={2} category={3}/>
-            ])
+            ]})
         });
 
         return <div>
