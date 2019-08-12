@@ -76,7 +76,7 @@ class LoginPage extends Component {
                     <div style={{flexDirection: 'column'}}>
                         <div style={{flexDirection: 'column'}}>
                             <TextField
-                                label="Username or email address"
+                                label="Username"
                                 variant="outlined"
                                 onChange={e => this.updateUsername(e.target.value)}
                             />
