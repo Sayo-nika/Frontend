@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import DemoPage from './pages/zenno';
 import IndexPage from './pages/index';
 import ModList from './pages/mod_list';
+import ModPage from './pages/mod';
 import Sayonitheme from './utils/theme';
 
 const SayonikaTheme = createMuiTheme(Sayonitheme);
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/index" component={IndexPage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/mods" component={ModList} />
+                <Route path="/mod/:id" component={ModPage} />
                 {process.env.NODE_ENV == 'development' ? (
                     <Route path="/zenno" component={DemoPage} />
                 ) : null}
