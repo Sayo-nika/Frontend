@@ -79,7 +79,7 @@ dist
 
 # IDE
 .idea
-
+.vscode
 .goot
 
 # Designs folder
