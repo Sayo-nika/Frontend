@@ -16,6 +16,7 @@ const App = () => {
         <Router>
             <ThemeProvider theme={SayonikaTheme}>
                 <Route exact path="/" component={IndexPage} />
+                <Route path="/index" component={IndexPage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/mods" component={ModList} />
                 {process.env.NODE_ENV == 'development' ? (
