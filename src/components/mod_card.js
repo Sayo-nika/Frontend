@@ -56,13 +56,15 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         verticalAlign: 'middle',
         marginLeft: 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        alignItems: 'center'
     },
     categoryIcon: {
         paddingRight: theme.spacing.unit
     },
     fab: {
-        margin: theme.spacing(1)
+        // margin: theme.spacing(1),
+        marginRight: theme.spacing(1)
     },
     fabIcon: {
         padding: theme.spacing(1)
