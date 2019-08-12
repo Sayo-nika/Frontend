@@ -31,7 +31,8 @@ let API = {
     login: createAPIFunction("login", "POST"),
     signup: createAPIFunction("users", "POST"),
     getUser: createAPIFunction("users/{0}", "GET"),
-    getMods: createAPIFunction("mods/editors_choice", "GET")
+    getEditorsChoiceMods: createAPIFunction("mods/editors_choice", "GET"),
+    getTrendingMods: createAPIFunction("mods/trending", "GET")
 };
 
 export default API;
