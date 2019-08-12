@@ -11,7 +11,7 @@ import {
     Link
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import navBarLogo from '../assets/img/logo-white.svg';
+import navBarLogo from '../assets/img/logo.svg';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import propTypes from 'prop-types';
@@ -19,7 +19,8 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+        boxShadow: 'none'
     },
     title: {
         height: 48,
@@ -59,7 +60,7 @@ const Navbar = ({ loggedIn }) => {
     };
 
     return (
-        <AppBar position="static" className={classes.root}>
+        <AppBar position="static" className={classes.root} color="default">
             <Toolbar>
                 <div className={classes.title}>
                     <img src={navBarLogo} className={classes.titleLogo} />
