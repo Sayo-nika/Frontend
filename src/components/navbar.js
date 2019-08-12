@@ -66,6 +66,9 @@ const Navbar = ({ loggedIn }) => {
                     <img src={navBarLogo} className={classes.titleLogo} />
                 </div>
                 <div className={classes.links}>
+                    <Link href="/" className={classes.link} color="inherit">
+                        Catalog
+                    </Link>
                     <Link
                         href="https://medium.com/sayonika"
                         className={classes.link}

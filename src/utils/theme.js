@@ -11,6 +11,7 @@ export const Sayonitheme = {
     typography: {
         fontFamily: [
             'Noto Sans JP',
+            'Noto Sans',
             '-apple-system',
             'BlinkMacSystemFont',
             '"Segoe UI"',
