@@ -6,7 +6,7 @@ import Footer from '../components/footer';
 import API from '../utils/api';
 import ModCard from '../components/mod_card';
 
-class EditorsChoice extends Component {
+class Trending extends Component {
     constructor(props) {
         super(props);
 
@@ -16,7 +16,7 @@ class EditorsChoice extends Component {
     }
 
     componentDidMount() {
-        API.getEditorsChoiceMods('').then(r => {
+        API.getTrendingMods('').then(r => {
             this.setState({
                 mods: [
                     <ModCard
