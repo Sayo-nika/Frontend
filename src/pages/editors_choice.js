@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Footer from '../components/footer';
 import API from '../utils/api';
 import ModCard from '../components/mod_card';
+import { useGlobalPageStyles } from '../utils/global_styles';
 
 class EditorsChoice extends Component {
     constructor(props) {

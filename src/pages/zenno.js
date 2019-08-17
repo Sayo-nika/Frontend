@@ -6,11 +6,10 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from '../components/footer';
 import Review from '../components/review';
+import { useGlobalPageStyles } from '../utils/global_styles';
 
 const useStyles = makeStyles(theme => ({
-    zennoContent: {
-        padding: theme.spacing.unit * 2
-    }
+
 }));
 
 /**
@@ -23,11 +22,12 @@ const useStyles = makeStyles(theme => ({
  * K thx - @alicerunsonfedora
  */
 const DemoPage = props => {
+    const globalClasses = useGlobalPageStyles();
     const classes = useStyles();
     return (
         <div>
             <Navbar />
-            <div className={classes.zennoContent}>
+            <div className={globalClasses.pageContent}>
                 <CatalogBar />
                 <Grid container spacing={2}>
                     <Grid item xs={12} lg={3}>

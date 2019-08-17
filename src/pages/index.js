@@ -5,11 +5,10 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from '../components/footer';
 import { Typography } from '@material-ui/core';
+import { useGlobalPageStyles } from '../utils/global_styles';
 
 const useStyles = makeStyles(theme => ({
-    zennoContent: {
-        padding: theme.spacing.unit * 2
-    }
+
 }));
 
 /**
@@ -22,11 +21,12 @@ const useStyles = makeStyles(theme => ({
  * K thx - @alicerunsonfedora
  */
 const IndexPage = props => {
+    const globalClasses = useGlobalPageStyles();
     const classes = useStyles();
     return (
         <div>
             <Navbar />
-            <div className={classes.zennoContent}>
+            <div className={globalClasses.pageContent}>
                 <CatalogBar />
                 <br />
                 <Typography variant="h2">Howdy</Typography>
