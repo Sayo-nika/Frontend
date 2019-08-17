@@ -15,6 +15,8 @@ const EditorsChoice = () => {
     const globalClasses = useGlobalPageStyles();
 
     // More info on useEffect: https://reactjs.org/docs/hooks-effect.html
+    // Condition chould be temporary at the moment, please rewrite to make
+    // state updates more friendly for hooks!
     React.useEffect(() => {
         if (state.mods.length <= 0) {
             API.getEditorsChoiceMods('').then(response => {
@@ -45,7 +47,7 @@ const EditorsChoice = () => {
                                     {mod}
                                 </Grid>
                             ))
-                        : <div>No editor's choice mods available.</div>
+                        : <div>No editor's choice mods</div>
                     }
                 </Grid>
             </div>
