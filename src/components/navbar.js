@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         height: 48,
-        paddingRight: theme.spacing.unit * 2
+        paddingRight: theme.spacing(2)
     },
     titleLogo: {
         height: 48,
@@ -34,8 +34,8 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1
     },
     link: {
-        paddingLeft: theme.spacing.unit,
-        paddingRight: theme.spacing.unit
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1)
     }
 }));
 

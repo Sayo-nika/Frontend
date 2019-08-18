@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1
     },
     link: {
-        paddingLeft: theme.spacing.unit,
-        paddingRight: theme.spacing.unit
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1)
     }
 }));
 

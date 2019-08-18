@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none'
     },
     root: {
-        paddingBottom: theme.spacing.unit * 2
+        paddingBottom: theme.spacing(2)
     },
     backgroundRoot: {
         height: 175,
@@ -38,14 +38,14 @@ const useStyles = makeStyles(theme => ({
         marginTop: -64
     },
     contentRoot: {
-        paddingLeft: theme.spacing.unit * 4,
-        paddingRight: theme.spacing.unit * 4,
-        paddingTop: theme.spacing.unit * 2,
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
+        paddingTop: theme.spacing(2),
         marginTop: 0
     },
     modTitle: {
         textAlign: 'center',
-        paddingBottom: theme.spacing.unit
+        paddingBottom: theme.spacing(1)
     },
     categoryRoot: {
         display: 'flex',
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center'
     },
     categoryIcon: {
-        paddingRight: theme.spacing.unit
+        paddingRight: theme.spacing(1)
     },
     fab: {
         // margin: theme.spacing(1),

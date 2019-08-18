@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.grey[200],
         display: 'flex',
-        padding: theme.spacing.unit * 2
+        padding: theme.spacing(1)
     },
     avatar: {
         width: 64,
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.primary.dark
     },
     content: {
-        paddingLeft: theme.spacing.unit * 2,
+        paddingLeft: theme.spacing(1),
         width: '100%'
     },
     reviewHeader: {
