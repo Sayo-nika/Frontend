@@ -18,7 +18,6 @@ const EditorsChoice = () => {
     // Condition chould be temporary at the moment, please rewrite to make
     // state updates more friendly for hooks!
     React.useEffect(() => {
-        if (state.mods.length <= 0) {
             API.getEditorsChoiceMods('').then(response => {
                 setState({
                     mods: [
@@ -31,8 +30,7 @@ const EditorsChoice = () => {
                     ]
                 })
             });
-        }
-    });
+    }, []);
 
     return (
         <div>
