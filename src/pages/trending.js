@@ -48,4 +48,4 @@ class Trending extends Component {
     }
 }
 
-export default EditorsChoice;
+export default Trending;
