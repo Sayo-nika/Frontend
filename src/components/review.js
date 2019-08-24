@@ -48,16 +48,13 @@ const Review = ({ id, title, rating, content, author_id }) => {
 
     const classes = useStyles();
 
-    useEffect(() => {
-        const getData = async () => {
-            let data = await API.getUser({}, author_id);
+    API.getUser({}, author_id).then(setData);
 
-            this.setState({ data });
-        };
-
-        getData();
-    }, []);
-
+    if (!data){
+        return (
+            <div>Loading...</div>
+        )
+    }
     return (
         <Paper className={classes.root}>
             <Avatar src={data.avatar} className={classes.avatar} />
