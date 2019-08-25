@@ -13,6 +13,7 @@ import EditorsChoice from './pages/editors_choice';
 import Trending from './pages/trending';
 import AllModsPage from './pages/all';
 import UserPage from './pages/user';
+import ErrorPage from './pages/error';
 
 const SayonikaTheme = createMuiTheme(Sayonitheme);
 
@@ -29,6 +30,7 @@ const App = () => {
                 <Route path="/all" component={AllModsPage} />
                 <Route path="/mod/:id" component={ModPage} />
                 <Route path="/user/:id" component={UserPage} />
+                <Route path="/error/:id" component={ErrorPage} />
                 {process.env.NODE_ENV == 'development' ? (
                     <Route path="/zenno" component={DemoPage} />
                 ) : null}
