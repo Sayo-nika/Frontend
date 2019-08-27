@@ -19,7 +19,10 @@ function createAPIFunction(path, method){
                 headers
             }
         ).then(
-            r=>r.json()
+            r=>{
+                console.log(r);
+                return r.json()
+            }
         ).catch(console.error)
     }
 }
