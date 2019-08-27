@@ -5,25 +5,29 @@ function createAPIFunction(path, method){
     return function(body, arg) {
         let headers = {
             "content-type": "application/json",
+            "Access-Control-Allow-Origin": "*"
         };
 
         if (API.env.token){
             headers["Authorization"] = API.env.token
         }
 
+        let url = `${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/${path}`.replace('{0}', arg);
+
+        console.log(url, body);
+        console.log(typeof(body));
+
         return fetch(
-            `${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/${path}`.replace('{0}', arg),
+            url,
             {
                 method,
-                body: (method === "POST" ? body : null),
-                headers
+                body: (method === "POST" ? body : undefined),
+                headers,
             }
-        ).then(
-            r=>{
-                console.log(r);
-                return r.json()
-            }
-        ).catch(console.error)
+        ).then(r=> {
+            console.log(r.text());
+            return r.json()
+        }).then(r=>{console.log(r);return r}).catch(console.error)
     }
 }
 
