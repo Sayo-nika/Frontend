@@ -56,7 +56,7 @@ const UserPage = ({ props, match }) => {
 
     React.useEffect(() => {
         //TODO: Write API requests here
-        API.getMods('').then(response => {
+        API.getMods({}).then(response => {
             setState(prevState => {
                 return {
                     ...prevState,
@@ -71,7 +71,7 @@ const UserPage = ({ props, match }) => {
                 };
             });
         });
-        API.getMods('').then(response => {
+        API.getMods({}).then(response => {
             setState(prevState => {
                 return {
                     ...prevState,
@@ -86,7 +86,7 @@ const UserPage = ({ props, match }) => {
                 };
             });
         });
-        API.getMods('').then(response => {
+        API.getMods({}).then(response => {
             setState(prevState => {
                 return {
                     ...prevState,

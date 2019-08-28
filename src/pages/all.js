@@ -13,7 +13,7 @@ const AllModsPage = ({ props }) => {
     });
 
     React.useEffect(() => {
-        API.getMods('').then(response => {
+        API.getMods({}).then(response => {
             setState({
                 mods: [
                     <ModCard

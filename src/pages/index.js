@@ -27,7 +27,7 @@ const IndexPage = props => {
     });
 
     React.useEffect(() => {
-        API.getMods('').then(response => {
+        API.getMods({}).then(response => {
             setState(prevState => {
                 return {
                     ...prevState,
@@ -42,7 +42,7 @@ const IndexPage = props => {
                 };
             });
         });
-        API.getMods('').then(response => {
+        API.getMods({}).then(response => {
             setState(prevState => {
                 return {
                     ...prevState,
@@ -57,7 +57,7 @@ const IndexPage = props => {
                 };
             });
         });
-        API.getMods('').then(response => {
+        API.getMods({}).then(response => {
             setState(prevState => {
                 return {
                     ...prevState,

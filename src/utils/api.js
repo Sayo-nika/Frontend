@@ -14,9 +14,6 @@ function createAPIFunction(path, method){
 
         let url = `${CONFIG.BASE_URL}/api/${CONFIG.API_VERSION}/${path}`.replace('{0}', arg);
 
-        console.log(url, body);
-        console.log(typeof(body));
-
         return fetch(
             url,
             {
@@ -24,10 +21,8 @@ function createAPIFunction(path, method){
                 body: (method === "POST" ? body : undefined),
                 headers,
             }
-        ).then(r=> {
-            console.log(r.text());
-            return r.json()
-        }).then(r=>{console.log(r);return r}).catch(console.error)
+        ).then(r=>r.json()
+        ).then(r=>{console.log(r);return r}).catch(console.error)
     }
 }
 
@@ -40,7 +35,8 @@ let API = {
     getUser: createAPIFunction("users/{0}", "GET"),
     getEditorsChoiceMods: createAPIFunction("mods/editors_choice", "GET"),
     getTrendingMods: createAPIFunction("mods/trending", "GET"),
-    getMods: createAPIFunction("mods/{0}", "GET")
+    getMods: createAPIFunction("mods", "GET"),
+    getMod: createAPIFunction("mods/{0}", "GET"),
 };
 
 export default API;
