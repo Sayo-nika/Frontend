@@ -60,6 +60,7 @@ class LoginPage extends Component {
     handleSignup = () => {
         // TODO: Ask for email
         let { username, password, recaptcha, email } = this.state;
+        console.log(this.state);
 
         API.signup(
             JSON.stringify({
@@ -72,6 +73,12 @@ class LoginPage extends Component {
             // Display "Verify email" message
         });
     };
+
+    componentDidMount() {
+        let script = document.createElement("script");
+        script.src=`https://www.google.com/recaptcha/api.js?render=${CONFIG.CAPTCHA_KEY}`;
+        document.body.appendChild(script);
+    }
 
     render() {
         const { username, password, stayLoggedIn } = this.state;
@@ -115,6 +122,7 @@ class LoginPage extends Component {
                     </div>
                     <Recaptcha
                         sitekey={CONFIG.CAPTCHA_KEY}
+                        render="explicit"
                         verifyCallback={recaptcha =>
                             this.setState({ recaptcha })
                         }
