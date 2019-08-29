@@ -17,9 +17,10 @@ class LoginPage extends Component {
     state = {
         username: '',
         password: '',
-        recaptcha: '', // TODO: Add recaptcha to login page
+        recaptcha: '',
         email: '',
-        stayLoggedIn: false
+        stayLoggedIn: false,
+        isSignUp: false
     };
 
     updateUsername(username) {
@@ -28,6 +29,10 @@ class LoginPage extends Component {
 
     updatePassword(password) {
         this.setState({ password });
+    }
+
+    updateEmail(email){
+        this.setState({email});
     }
 
     toggleRememberMeState(stayLoggedIn) {
@@ -60,35 +65,40 @@ class LoginPage extends Component {
     handleSignup = () => {
         // TODO: Ask for email
         let { username, password, recaptcha, email } = this.state;
-        console.log(this.state);
 
-        API.signup(
-            JSON.stringify({
-                username,
-                password,
-                recaptcha,
-                email
-            })
-        ).then(r => {
-            // Display "Verify email" message
-        });
+        let fields = document.getElementById("TextFieldContainer");
+        if (fields.childElementCount === 2) {
+            this.setState({isSignUp: true});
+        } else {
+            API.signup(
+                JSON.stringify({
+                    username,
+                    password,
+                    recaptcha,
+                    email
+                })
+            ).then(r => {
+                // Display "Verify email" message
+            });
+        }
     };
 
     componentDidMount() {
+        // Required to load captcha
         let script = document.createElement("script");
         script.src=`https://www.google.com/recaptcha/api.js?render=${CONFIG.CAPTCHA_KEY}`;
         document.body.appendChild(script);
     }
 
     render() {
-        const { username, password, stayLoggedIn } = this.state;
+        const { isSignUp, stayLoggedIn } = this.state;
         return (
             <LoginBackground>
                 <Card>
                     <RoundIcon src={icon} />
                     <Typography variant="h5">Welcome, please login</Typography>
                     <div style={{ flexDirection: 'column' }}>
-                        <div style={{ flexDirection: 'column' }}>
+                        <div style={{ flexDirection: 'column' }} id="TextFieldContainer">
                             <TextField
                                 label="Username"
                                 variant="outlined"
@@ -96,6 +106,16 @@ class LoginPage extends Component {
                                     this.updateUsername(e.target.value)
                                 }
                             />
+                            {
+                                isSignUp ? <TextField
+                                    label="Email"
+                                    variant="outlined"
+                                    type="email"
+                                    onChange={e =>
+                                        this.updateEmail(e.target.value)
+                                    }
+                                /> : null
+                            }
                             <TextField
                                 label="Password"
                                 variant="outlined"
