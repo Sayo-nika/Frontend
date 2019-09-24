@@ -9,22 +9,22 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "mdi-material-ui": "^6.3.0",
-    "react": "^16.8.6",
-    "react-dom": "16.8.4",
-    "react-native": "^0.60.4",
-    "react-native-web": "^0.11.5",
+    "mdi-material-ui": "^6.7.0",
+    "react": "^16.9.0",
+    "react-dom": "16.9.0",
+    "react-native": "^0.60.5",
+    "react-native-web": "^0.11.7",
     "react-recaptcha": "^2.3.10",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^3.1.2",
     "sayonika": "git+https://github.com/Sayo-nika/Megumi.git",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.4.0"
   },
   "devDependencies": {
-    "@material-ui/core": "^4.3.0",
-    "@material-ui/icons": "^4.2.1",
-    "@material-ui/styles": "^4.3.0",
+    "@material-ui/core": "^4.4.3",
+    "@material-ui/icons": "^4.4.3",
+    "@material-ui/styles": "^4.4.3",
     "eslint": "^6.4.0",
-    "eslint-config-clarity": "^0.2.8",
+    "eslint-config-clarity": "^0.2.9",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
