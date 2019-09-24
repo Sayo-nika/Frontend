@@ -36,6 +36,13 @@ const useStyles = makeStyles(theme => ({
     link: {
         paddingLeft: theme.spacing(1),
         paddingRight: theme.spacing(1)
+    },
+    button: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.common.black,
+        textTransform: 'none'
     }
 }));
 
@@ -132,13 +139,26 @@ const Navbar = ({ loggedIn }) => {
                             </Menu>
                         </div>
                     ) : (
-                        <Button
-                            component={RouterLink}
-                            to="/login"
-                            color="inherit"
-                        >
-                            Log in
-                        </Button>
+                        <div>
+                            <Button
+                                component={RouterLink}
+                                to="/login"
+                                color="inherit"
+                                variant="contained"
+                                className={classes.button}
+                            >
+                                Log in
+                            </Button>
+                            <Button
+                                component={RouterLink}
+                                to="/signup"
+                                color="inherit"
+                                variant="contained"
+                                className={classes.button}
+                            >
+                                Sign up
+                            </Button>
+                        </div>
                     )}
                 </div>
             </Toolbar>

@@ -18,41 +18,41 @@ const EditorsChoice = () => {
     // Condition chould be temporary at the moment, please rewrite to make
     // state updates more friendly for hooks!
     React.useEffect(() => {
-            API.getEditorsChoiceMods('').then(response => {
-                setState({
-                    mods: [
-                        <ModCard
-                            id={0}
-                            title={'Coming Soon'}
-                            status={2}
-                            category={3}
-                        />
-                    ]
-                })
+        API.getEditorsChoiceMods('').then(response => {
+            setState({
+                mods: [
+                    <ModCard
+                        id={0}
+                        title={'Coming Soon'}
+                        status={2}
+                        category={3}
+                    />
+                ]
             });
+        });
     }, []);
 
     return (
         <div>
-            <Navbar/>
-            <CatalogBar/>
+            <Navbar />
+            <CatalogBar />
             <div className={globalClasses.pageContent}>
                 <Grid container spacing={2}>
-                    {
-                        state.mods?
-                            state.mods.map(mod => (
-                                <Grid item xs={12} md={6} lg={3}>
-                                    {mod}
-                                </Grid>
-                            ))
-                        : <div>No editor's choice mods</div>
-                    }
+                    {state.mods ? (
+                        state.mods.map(mod => (
+                            <Grid item xs={12} md={6} lg={3}>
+                                {mod}
+                            </Grid>
+                        ))
+                    ) : (
+                        <div>No editor's choice mods</div>
+                    )}
                 </Grid>
             </div>
-            <Footer/>
+            <Footer />
         </div>
-    )
-}
+    );
+};
 
 // class EditorsChoice extends Component {
 //     constructor(props) {

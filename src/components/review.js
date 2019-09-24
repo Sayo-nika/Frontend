@@ -50,10 +50,8 @@ const Review = ({ id, title, rating, content, author_id }) => {
 
     API.getUser({}, author_id).then(setData);
 
-    if (!data){
-        return (
-            <div>Loading...</div>
-        )
+    if (!data) {
+        return <div>Loading...</div>;
     }
     return (
         <Paper className={classes.root}>

@@ -8,9 +8,7 @@ import Footer from '../components/footer';
 import Review from '../components/review';
 import { useGlobalPageStyles } from '../utils/global_styles';
 
-const useStyles = makeStyles(theme => ({
-
-}));
+const useStyles = makeStyles(theme => ({}));
 
 /**
  * This page is used to _test_ components for use in Sayonika.
