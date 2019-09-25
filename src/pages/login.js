@@ -31,8 +31,8 @@ class LoginPage extends Component {
         this.setState({ password });
     }
 
-    updateEmail(email){
-        this.setState({email});
+    updateEmail(email) {
+        this.setState({ email });
     }
 
     toggleRememberMeState(stayLoggedIn) {
@@ -66,9 +66,9 @@ class LoginPage extends Component {
         // TODO: Ask for email
         let { username, password, recaptcha, email } = this.state;
 
-        let fields = document.getElementById("TextFieldContainer");
+        let fields = document.getElementById('TextFieldContainer');
         if (fields.childElementCount === 2) {
-            this.setState({isSignUp: true});
+            this.setState({ isSignUp: true });
         } else {
             API.signup(
                 JSON.stringify({
@@ -85,8 +85,8 @@ class LoginPage extends Component {
 
     componentDidMount() {
         // Required to load captcha
-        let script = document.createElement("script");
-        script.src=`https://www.google.com/recaptcha/api.js?render=${CONFIG.CAPTCHA_KEY}`;
+        let script = document.createElement('script');
+        script.src = `https://www.google.com/recaptcha/api.js?render=${CONFIG.CAPTCHA_KEY}`;
         document.body.appendChild(script);
     }
 
@@ -98,7 +98,10 @@ class LoginPage extends Component {
                     <RoundIcon src={icon} />
                     <Typography variant="h5">Welcome, please login</Typography>
                     <div style={{ flexDirection: 'column' }}>
-                        <div style={{ flexDirection: 'column' }} id="TextFieldContainer">
+                        <div
+                            style={{ flexDirection: 'column' }}
+                            id="TextFieldContainer"
+                        >
                             <TextField
                                 label="Username"
                                 variant="outlined"
@@ -106,16 +109,16 @@ class LoginPage extends Component {
                                     this.updateUsername(e.target.value)
                                 }
                             />
-                            {
-                                isSignUp ? <TextField
+                            {isSignUp ? (
+                                <TextField
                                     label="Email"
                                     variant="outlined"
                                     type="email"
                                     onChange={e =>
                                         this.updateEmail(e.target.value)
                                     }
-                                /> : null
-                            }
+                                />
+                            ) : null}
                             <TextField
                                 label="Password"
                                 variant="outlined"
