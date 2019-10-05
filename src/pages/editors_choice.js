@@ -1,57 +1,51 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
+
 import Navbar from '../components/navbar';
 import CatalogBar from '../components/catalog_bar';
-import Grid from '@material-ui/core/Grid';
 import Footer from '../components/footer';
 import API from '../utils/api';
 import ModCard from '../components/mod_card';
 import { useGlobalPageStyles } from '../utils/global_styles';
 
 const EditorsChoice = () => {
-    const [state, setState] = React.useState({
-        mods: []
+  const [state, setState] = React.useState({
+    mods: []
+  });
+
+  const globalClasses = useGlobalPageStyles();
+
+  // More info on useEffect: https://reactjs.org/docs/hooks-effect.html
+  // Condition chould be temporary at the moment, please rewrite to make
+  // state updates more friendly for hooks!
+  React.useEffect(() => {
+    API.getEditorsChoiceMods('').then(response => {
+      setState({
+        mods: [<ModCard id={0} title="Coming Soon" status={2} category={3} />]
+      });
     });
+  }, []);
 
-    const globalClasses = useGlobalPageStyles();
-
-    // More info on useEffect: https://reactjs.org/docs/hooks-effect.html
-    // Condition chould be temporary at the moment, please rewrite to make
-    // state updates more friendly for hooks!
-    React.useEffect(() => {
-        API.getEditorsChoiceMods('').then(response => {
-            setState({
-                mods: [
-                    <ModCard
-                        id={0}
-                        title={'Coming Soon'}
-                        status={2}
-                        category={3}
-                    />
-                ]
-            });
-        });
-    }, []);
-
-    return (
-        <div>
-            <Navbar />
-            <CatalogBar />
-            <div className={globalClasses.pageContent}>
-                <Grid container spacing={2}>
-                    {state.mods ? (
-                        state.mods.map(mod => (
-                            <Grid item xs={12} md={6} lg={3}>
-                                {mod}
-                            </Grid>
-                        ))
-                    ) : (
-                        <div>No editor's choice mods</div>
-                    )}
-                </Grid>
-            </div>
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <Navbar />
+      <CatalogBar />
+      <div className={globalClasses.pageContent}>
+        <Grid spacing={2} container>
+          {state.mods ? (
+            state.mods.map(mod => (
+              <Grid xs={12} md={6} lg={3} item>
+                {mod}
+              </Grid>
+            ))
+          ) : (
+            <div>No editor's choice mods</div>
+          )}
+        </Grid>
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 // class EditorsChoice extends Component {
