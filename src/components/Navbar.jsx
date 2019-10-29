@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   AppBar,
-  Typography,
   Toolbar,
   Button,
   IconButton,
@@ -20,7 +19,7 @@ import navBarLogo from '../assets/img/logo.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
     boxShadow: 'none'
   },
   title: {

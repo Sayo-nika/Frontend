@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingBottom: 8
+    padding: [[0, 0, 8]]
   },
   links: {
     flexGrow: 1
@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 const CatalogBar = () => {
   const classes = useStyles();
+
   return (
     <Toolbar className={classes.root} variant="regular">
       <div className={classes.links}>
