@@ -2,7 +2,7 @@ import { red, orange } from '@material-ui/core/colors';
 /**
  * The default Sayonika theme for Material UI components.
  */
-export const Sayonitheme = {
+const SayonikaTheme = {
   palette: {
     primary: {
       main: '#e84444'
@@ -30,4 +30,4 @@ export const Sayonitheme = {
   }
 };
 
-export default Sayonitheme;
+export default SayonikaTheme;
