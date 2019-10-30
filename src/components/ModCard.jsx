@@ -194,15 +194,8 @@ ModCard.propTypes = {
   title: propTypes.string.isRequired
   // favourites
   // is_favourited
-  // category: propTypes.string.isRequired,
-  // description: propTypes.string,
   // favorites: propTypes.number,
-  // header: propTypes.string,
-  // id: propTypes.string.isRequired,
-  // logo: propTypes.string,
   // status: propTypes.number.isRequired,
-  // themeColor: propTypes.number,
-  // title: propTypes.string.isRequired
 };
 
 export default ModCard;

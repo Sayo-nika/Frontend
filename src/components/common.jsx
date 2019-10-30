@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import React from 'react';
 import propTypes from 'prop-types';
@@ -54,8 +55,8 @@ export const SubmitButtonBase = styled('button')({
     '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'
 });
 
-export const SubmitButton = props => (
-  <SubmitButtonBase onClick={props.onPress}>{props.title}</SubmitButtonBase>
+export const SubmitButton = ({ onPress, title }) => (
+  <SubmitButtonBase onClick={onPress}>{title}</SubmitButtonBase>
 );
 
 SubmitButton.propTypes = {
@@ -84,6 +85,8 @@ export const RoundIcon = styled('div')({
   margin: '0 auto',
   textAlign: 'center'
 });
+
+export const Spacer = () => <Box flexGrow={1} flexShrink={1} />;
 
 // ???
 export const Header = styled('div')({});

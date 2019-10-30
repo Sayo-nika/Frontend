@@ -61,7 +61,7 @@ const Navbar = ({ loggedIn }) => {
     <AppBar position="static" className={classes.root} color="default">
       <Toolbar>
         <div className={classes.title}>
-          <img src={navBarLogo} className={classes.titleLogo} />
+          <img src={navBarLogo} className={classes.titleLogo} alt="logo" />
         </div>
         <div className={classes.links}>
           <Link href="/" className={classes.link} color="inherit">
