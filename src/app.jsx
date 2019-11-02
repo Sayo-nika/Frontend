@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import DemoPage from './pages/zenno';
 import IndexPage from './pages';
 // import ModList from './pages/mod_list';
-// import ModPage from './pages/mod';
+import ModPage from './pages/mod';
 import SayonikaTheme from './utils/theme';
 // import EditorsChoice from './pages/editors_choice';
 // import Trending from './pages/trending';
@@ -22,13 +22,13 @@ const App = () => (
   <Router>
     <ThemeProvider theme={theme}>
       <Route path="/" component={IndexPage} exact />
+      <Route path="/mods/:id" component={ModPage} />
       {/* <Route path="/index" component={IndexPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/mods" component={ModList} />
       <Route path="/editors_choice" component={EditorsChoice} />
       <Route path="/trending" component={Trending} />
       <Route path="/all" component={AllModsPage} />
-      <Route path="/mod/:id" component={ModPage} />
       <Route path="/user/:id" component={UserPage} />
       <Route path="/error/:id" component={ErrorPage} />
       {process.env.NODE_ENV == 'development' ? (
