@@ -57,10 +57,10 @@ const SlideLink = React.forwardRef((props, ref) => (
   <Link innerRef={ref} {...props} />
 ));
 
-export const ImgSlide = ({ src }) => {
+export const ImgSlide = ({ src, height = 500 }) => {
   const { root } = useSlideStyles({ src });
 
-  return <Box className={root} height={500} />;
+  return <Box className={root} height={height} />;
 };
 
 export const FrontpageSlide = ({ type, title, body, url, banner }) => {

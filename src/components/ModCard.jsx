@@ -72,7 +72,8 @@ const useCategoryStyles = makeStyles(theme => ({
   },
   categoryIcon: {
     marginLeft: theme.spacing(1),
-    marginRight: -theme.spacing(1)
+    marginRight: -theme.spacing(1),
+    zIndex: 900
   }
 }));
 
@@ -152,7 +153,7 @@ const ModCard = ({
   } = useStyles({ themeColor });
 
   return (
-    <Link to={`/mod/${id}`} className={baseLink}>
+    <Link to={`/mods/${id}`} className={baseLink}>
       <Paper className={root}>
         <div
           className={backgroundRoot}
