@@ -19,9 +19,9 @@ import {
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Spacer } from '../components/common';
-import { useToggle } from '../utils';
-import useGlobalStyles from '../utils/globalStyles';
+import { Spacer } from '../../components/common';
+import { useToggle } from '../../utils';
+import useGlobalStyles from '../../utils/globalStyles';
 
 const useReviewStyles = makeStyles(theme => ({
   avatar: {

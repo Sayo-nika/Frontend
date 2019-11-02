@@ -12,11 +12,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Heart, Download, AlertOctagon } from 'mdi-material-ui';
 import React from 'react';
 
-import Carousel, { ImgSlide } from '../components/Carousel';
-import { Root, Spacer } from '../components/common';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import useGlobalStyles from '../utils/globalStyles';
+import Carousel, { ImgSlide } from '../../components/Carousel';
+import { Root, Spacer } from '../../components/common';
+import Footer from '../../components/Footer';
+import Navbar from '../../components/Navbar';
+import useGlobalStyles from '../../utils/globalStyles';
 
 import Review from './Review';
 import Shareable from './Shareable';

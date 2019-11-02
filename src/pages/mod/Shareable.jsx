@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FacebookBox, LinkVariant, Twitter } from 'mdi-material-ui';
 import React from 'react';
 
-import { copy, m } from '../utils';
-import useGlobalStyles from '../utils/globalStyles';
+import { copy, m } from '../../utils';
+import useGlobalStyles from '../../utils/globalStyles';
 
 const useShareableStyles = makeStyles(theme => ({
   spacing: {
