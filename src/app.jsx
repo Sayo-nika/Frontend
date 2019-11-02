@@ -5,9 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // import Navbar from './components/navbar';
 // import LoginPage from './pages/login';
-// import DemoPage from './pages/zenno';
 import IndexPage from './pages';
-// import ModList from './pages/mod_list';
 import ModPage from './pages/mod';
 import SayonikaTheme from './utils/theme';
 // import EditorsChoice from './pages/editors_choice';
@@ -30,10 +28,7 @@ const App = () => (
       <Route path="/trending" component={Trending} />
       <Route path="/all" component={AllModsPage} />
       <Route path="/user/:id" component={UserPage} />
-      <Route path="/error/:id" component={ErrorPage} />
-      {process.env.NODE_ENV == 'development' ? (
-        <Route path="/zenno" component={DemoPage} />
-      ) : null} */}
+      <Route path="/error/:id" component={ErrorPage} /> */}
     </ThemeProvider>
   </Router>
 );
