@@ -5,7 +5,10 @@ import { red, orange } from '@material-ui/core/colors';
 const SayonikaTheme = {
   palette: {
     primary: {
-      main: '#e84444'
+      main: '#E84444'
+    },
+    secondary: {
+      main: '#F99B2D'
     }
   },
   typography: {
