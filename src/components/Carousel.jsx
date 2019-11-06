@@ -3,10 +3,9 @@ import { orange, purple } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import { ChevronLeft, ChevronRight } from 'mdi-material-ui';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Slider from 'react-styled-carousel';
 
-import { Spacer } from '../components/common';
+import { Link, Spacer } from '../components/common';
 import { m } from '../utils';
 
 const useSlideStyles = makeStyles(theme => ({
@@ -53,10 +52,6 @@ const useSlideStyles = makeStyles(theme => ({
   }
 }));
 
-const SlideLink = React.forwardRef((props, ref) => (
-  <Link innerRef={ref} {...props} />
-));
-
 export const ImgSlide = ({ src, height = 500 }) => {
   const { root } = useSlideStyles({ src });
 
@@ -100,7 +95,7 @@ export const FrontpageSlide = ({ type, title, body, url, banner }) => {
           className={m(button, coloring)}
           size="large"
           variant="contained"
-          {...(type === 0 ? { component: SlideLink, to: url } : { href: url })}
+          {...(type === 0 ? { component: Link, to: url } : { href: url })}
         >
           View
         </Button>

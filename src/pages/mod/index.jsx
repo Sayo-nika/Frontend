@@ -1,5 +1,4 @@
 import {
-  CssBaseline,
   Container,
   Box,
   Avatar,
@@ -128,7 +127,6 @@ const ModPage = ({
   return (
     <Root>
       <Navbar />
-      <CssBaseline />
 
       <Container className={pageContent}>
         <Box display="flex" alignItems="center" className={header}>
