@@ -1,49 +1,15 @@
 import hash from '@emotion/hash';
-import { Container, Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Container } from '@material-ui/core';
 import React from 'react';
 
 import Carousel, { FrontpageSlide } from '../components/Carousel';
 import CatalogBar from '../components/CatalogBar';
 import { Root } from '../components/common';
 import Footer from '../components/Footer';
-import ModCard from '../components/ModCard';
 import Navbar from '../components/Navbar';
+import Showcase from '../components/Showcase';
 import useGlobalStyles from '../utils/globalStyles';
 import { getFrontpage } from '../utils/api';
-
-const useShowcaseStyles = makeStyles(theme => ({
-  section: {
-    paddingBottom: theme.spacing(4)
-  },
-  sectionHeading: {
-    paddingBottom: theme.spacing(3)
-  }
-}));
-
-const Showcase = ({ mods, title }) => {
-  const { section, sectionHeading } = useShowcaseStyles();
-
-  return (
-    <section className={section}>
-      <Typography variant="h4" component="h2" className={sectionHeading}>
-        {title}
-      </Typography>
-
-      <Grid spacing={2} container>
-        {mods && mods.length ? (
-          mods.map(mod => (
-            <Grid key={mod.id} xs={12} md={6} lg={3} item>
-              <ModCard {...mod} />
-            </Grid>
-          ))
-        ) : (
-          <Typography>Just us and these clowns.</Typography>
-        )}
-      </Grid>
-    </section>
-  );
-};
 
 const data = x => ({
   id: x.toString(),
