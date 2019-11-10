@@ -6,7 +6,7 @@ import React from 'react';
 import Slider from 'react-styled-carousel';
 
 import { Link, Spacer } from '../components/common';
-import { m } from '../utils';
+import { m, makeColorStyles } from '../utils';
 
 const useSlideStyles = makeStyles(theme => ({
   root: {
@@ -23,30 +23,15 @@ const useSlideStyles = makeStyles(theme => ({
   button: {
     borderRadius: 64
   },
-  coloring: {
-    color: ({ type }) =>
-      theme.palette.getContrastText(
-        type === 0
-          ? orange[500]
-          : type === 2
-          ? purple[500]
-          : theme.palette.secondary.main
-      ),
-    backgroundColor: ({ type }) =>
+  coloring: ({ type }) =>
+    makeColorStyles(
       type === 0
         ? orange[500]
-        : type === 2
-        ? purple[500]
-        : theme.palette.secondary.dark,
-    '&:hover': {
-      backgroundColor: ({ type }) =>
-        type === 0
-          ? orange[700]
-          : type === 2
-          ? purple[700]
-          : theme.palette.secondary.dark
-    }
-  },
+        : type === 1
+        ? theme.palette.secondary.main
+        : purple[500],
+      theme
+    ),
   headline: {
     paddingBottom: theme.spacing(1)
   }

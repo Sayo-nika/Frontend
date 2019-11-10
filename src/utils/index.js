@@ -49,3 +49,16 @@ export const m = (...args) => args.join(' ');
 /** Memo shortcut for checking if at least one of the given args are falsey */
 export const useMemoFalsey = (...vars) =>
   useMemo(() => vars.reduce((prev, curr) => !prev || !curr), [vars]);
+
+// TODO: this explanation sucks
+/** Makes an object using the given colour as the background, and then finding the contrast */
+export const makeColorStyles = (color, theme) => ({
+  color: theme.palette.getContrastText(color),
+  backgroundColor: color,
+  '&:hover': { backgroundColor: color }
+});
+
+export const makeColorProps = (color, theme) => ({
+  color: theme.palette.getContrastText(color),
+  bgcolor: color
+});
