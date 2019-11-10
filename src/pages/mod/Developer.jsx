@@ -43,7 +43,7 @@ const Developer = ({ id }) => {
           className={icon}
         />
         <Typography variant="h6" component="h3">
-          <Link to={`/users/${id}`} className={link}>
+          <Link to={`/profile/${id}`} className={link}>
             Mod Author
           </Link>
         </Typography>

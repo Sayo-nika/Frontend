@@ -1,4 +1,4 @@
-import { Box, Link as MuiLink } from '@material-ui/core';
+import { Box, Button as MuiButton, Link as MuiLink } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
@@ -30,3 +30,4 @@ const RefLink = React.forwardRef((props, ref) => (
 ));
 /* Using react-router link with MUI styling stuffs */
 export const Link = props => <MuiLink {...props} component={RefLink} />;
+export const Button = props => <MuiButton {...props} component={RefLink} />;

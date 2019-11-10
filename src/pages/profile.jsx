@@ -1,9 +1,9 @@
-import { Avatar, Box, Button, Container, Typography } from '@material-ui/core';
+import { Avatar, Box, Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Discord, Reddit, Twitter } from 'mdi-material-ui';
 import React from 'react';
 
-import { Root, Spacer } from '../components/common';
+import { Button, Root, Spacer } from '../components/common';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import Showcase from '../components/Showcase';
@@ -96,7 +96,12 @@ const UserPage = ({
 
         {/* if logged in and on own profile, show these */}
         <Spacer />
-        <Button color="primary" variant="contained" className={editButton}>
+        <Button
+          color="primary"
+          to="/profile/edit"
+          variant="contained"
+          className={editButton}
+        >
           Edit Profile
         </Button>
       </Container>
