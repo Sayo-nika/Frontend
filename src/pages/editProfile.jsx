@@ -128,8 +128,8 @@ const EditProfilePage = () => {
           </Typography>
 
           <Tabs value={tab} onChange={setTab}>
-            <Tab label="Account" value={0} />
-            <Tab label="Profile" value={1} />
+            <Tab label="Account" />
+            <Tab label="Profile" />
           </Tabs>
 
           <TabbedPane className={grid} index={0} value={tab}>

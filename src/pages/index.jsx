@@ -1,15 +1,19 @@
 import hash from '@emotion/hash';
 import { Container } from '@material-ui/core';
 import React from 'react';
+import { Route } from 'react-router-dom';
 
+import { Root } from '../components/common';
 import Carousel, { FrontpageSlide } from '../components/Carousel';
 import CatalogBar from '../components/CatalogBar';
-import { Root } from '../components/common';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import Showcase from '../components/Showcase';
-import useGlobalStyles from '../utils/globalStyles';
 import { getFrontpage } from '../utils/api';
+import useGlobalStyles from '../utils/globalStyles';
+
+import EditorsChoicePage from './editorsChoice';
+import TrendingPage from './trending';
 
 const data = x => ({
   id: x.toString(),
@@ -49,6 +53,26 @@ const IndexPage = () => {
   //   fetchData();
   // });
 
+  return (
+    <React.Fragment>
+      <Carousel>
+        {news.map(article => (
+          <FrontpageSlide
+            key={hash(article.url + article.title)}
+            {...article}
+          />
+        ))}
+      </Carousel>
+
+      <Showcase title="Fresh from the Oven" mods={recent} />
+      <Showcase title="Most Loved" mods={loved} />
+      <Showcase title="Trending" mods={trending} />
+      <Showcase title="Coming Soon" mods={wip} />
+    </React.Fragment>
+  );
+};
+
+const CatalogPages = () => {
   const { pageContent } = useGlobalStyles();
 
   return (
@@ -57,19 +81,9 @@ const IndexPage = () => {
       <Container className={pageContent}>
         <CatalogBar />
 
-        <Carousel>
-          {news.map(article => (
-            <FrontpageSlide
-              key={hash(article.url + article.title)}
-              {...article}
-            />
-          ))}
-        </Carousel>
-
-        <Showcase title="Fresh from the Oven" mods={recent} />
-        <Showcase title="Most Loved" mods={loved} />
-        <Showcase title="Trending" mods={trending} />
-        <Showcase title="Coming Soon" mods={wip} />
+        <Route path="/" component={IndexPage} exact />
+        <Route path="/editors_choice" component={EditorsChoicePage} exact />
+        <Route path="/trending" component={TrendingPage} exact />
       </Container>
 
       <Footer />
@@ -77,4 +91,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default CatalogPages;

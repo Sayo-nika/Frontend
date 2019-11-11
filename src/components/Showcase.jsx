@@ -4,7 +4,7 @@ import React from 'react';
 
 import ModCard from './ModCard';
 
-const useShowcaseStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   sectionHeading: {
     paddingBottom: theme.spacing(3)
   }
@@ -15,12 +15,14 @@ const Showcase = ({
   title,
   placeholder = <Typography>Just us and these clowns.</Typography>
 }) => {
-  const { sectionHeading } = useShowcaseStyles();
+  const { sectionHeading } = useStyles();
   return (
     <Box component="section" pb={4}>
-      <Typography variant="h4" component="h2" className={sectionHeading}>
-        {title}
-      </Typography>
+      {title && (
+        <Typography variant="h4" component="h2" className={sectionHeading}>
+          {title}
+        </Typography>
+      )}
 
       <Grid spacing={2} container>
         {mods && mods.length

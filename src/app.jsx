@@ -5,15 +5,13 @@ import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import Navbar from './components/navbar';
-import IndexPage from './pages';
+import CatalogPages from './pages';
 import LoginPage from './pages/login';
 import SignupPage from './pages/signup';
 import ModPage from './pages/mod';
 import SayonikaTheme from './utils/theme';
 import ProfilePage from './pages/profile';
 import EditProfilePage from './pages/editProfile';
-// import EditorsChoice from './pages/editors_choice';
-// import Trending from './pages/trending';
 // import AllModsPage from './pages/all';
 // import ErrorPage from './pages/error';
 
@@ -24,7 +22,13 @@ const App = () => (
     <CssBaseline />
     <ThemeProvider theme={theme}>
       <Switch>
-        <Route path="/" component={IndexPage} exact />
+        <Route
+          path="/(editors_choice|trending)?"
+          component={CatalogPages}
+          exact
+        />
+        {/* <Route path="/editors_choice" component={EditorsChoicePage} exact />
+        <Route path="/trending" component={TrendingPage} exact /> */}
         {/* TOOD: do we wanna have more reviews button change the route? */}
         <Route path="/mods/:id" component={ModPage} exact />
         <Route path="/login" component={LoginPage} exact />
