@@ -12,8 +12,7 @@ import ModPage from './pages/mod';
 import SayonikaTheme from './utils/theme';
 import ProfilePage from './pages/profile';
 import EditProfilePage from './pages/editProfile';
-// import AllModsPage from './pages/all';
-// import ErrorPage from './pages/error';
+import NotFoundPage from './pages/404';
 
 const theme = createMuiTheme(SayonikaTheme);
 
@@ -27,18 +26,15 @@ const App = () => (
           component={CatalogPages}
           exact
         />
-        {/* <Route path="/editors_choice" component={EditorsChoicePage} exact />
-        <Route path="/trending" component={TrendingPage} exact /> */}
         {/* TOOD: do we wanna have more reviews button change the route? */}
         <Route path="/mods/:id" component={ModPage} exact />
         <Route path="/login" component={LoginPage} exact />
         <Route path="/signup" component={SignupPage} exact />
         <Route path="/profile/edit" component={EditProfilePage} exact />
         <Route path="/profile/:id" component={ProfilePage} exact />
+        <Route component={NotFoundPage} />
         {/* <Route path="/index" component={IndexPage} />
       <Route path="/mods" component={ModList} />
-      <Route path="/editors_choice" component={EditorsChoice} />
-      <Route path="/trending" component={Trending} />
       <Route path="/all" component={AllModsPage} />
       <Route path="/error/:id" component={ErrorPage} /> */}
       </Switch>
