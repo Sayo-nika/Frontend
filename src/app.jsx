@@ -4,7 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// import Navbar from './components/navbar';
+import Boundary from './components/Boundary';
 import CatalogPages from './pages';
 import LoginPage from './pages/login';
 import SignupPage from './pages/signup';
@@ -13,33 +13,32 @@ import SayonikaTheme from './utils/theme';
 import ProfilePage from './pages/profile';
 import EditProfilePage from './pages/editProfile';
 import NotFoundPage from './pages/404';
+import ErrorPage from './pages/error';
 
 const theme = createMuiTheme(SayonikaTheme);
 
 const App = () => (
-  <Router>
+  <ThemeProvider theme={theme}>
     <CssBaseline />
-    <ThemeProvider theme={theme}>
-      <Switch>
-        <Route
-          path="/(editors_choice|trending)?"
-          component={CatalogPages}
-          exact
-        />
-        {/* TOOD: do we wanna have more reviews button change the route? */}
-        <Route path="/mods/:id" component={ModPage} exact />
-        <Route path="/login" component={LoginPage} exact />
-        <Route path="/signup" component={SignupPage} exact />
-        <Route path="/profile/edit" component={EditProfilePage} exact />
-        <Route path="/profile/:id" component={ProfilePage} exact />
-        <Route component={NotFoundPage} />
-        {/* <Route path="/index" component={IndexPage} />
-      <Route path="/mods" component={ModList} />
-      <Route path="/all" component={AllModsPage} />
-      <Route path="/error/:id" component={ErrorPage} /> */}
-      </Switch>
-    </ThemeProvider>
-  </Router>
+    <Boundary fallback={ErrorPage} onError={console.error}>
+      <Router>
+        <Switch>
+          <Route
+            path="/(editors_choice|trending)?"
+            component={CatalogPages}
+            exact
+          />
+          {/* TOOD: do we wanna have more reviews button change the route? */}
+          <Route path="/mods/:id" component={ModPage} exact />
+          <Route path="/login" component={LoginPage} exact />
+          <Route path="/signup" component={SignupPage} exact />
+          <Route path="/profile/edit" component={EditProfilePage} exact />
+          <Route path="/profile/:id" component={ProfilePage} exact />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Router>
+    </Boundary>
+  </ThemeProvider>
 );
 
 export default App;
