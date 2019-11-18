@@ -9,20 +9,19 @@ import {
   Container,
   FormControlLabel,
   Grid,
-  Slide,
   Tab as MuiTab,
   Tabs as MuiTabs,
   TextField,
   Typography
 } from '@material-ui/core';
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Discord, GithubCircle, Gitlab } from 'mdi-material-ui';
 import React from 'react';
 
 import { Root } from '../components/common';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { makeColorProps, makeColorStyles, useEventState } from '../utils';
+import { useColorProps, makeColorStyles, useEventState } from '../utils';
 
 const TabbedPane = ({
   value,
@@ -104,7 +103,10 @@ const EditProfilePage = () => {
   const [tab, _set] = React.useState(0);
   const setTab = (_, value) => _set(value);
 
-  const theme = useTheme();
+  const discordColor = useColorProps('#7289DA');
+  const githubColor = useColorProps('#24292E');
+  const gitlabColor = useColorProps('#FC6D26');
+
   const {
     bioField,
     button,
@@ -214,7 +216,7 @@ const EditProfilePage = () => {
 
               <Grid spacing={4} container>
                 <Grid xs={4} item>
-                  <Box {...makeColorProps('#7289DA', theme)} p={1} clone>
+                  <Box {...discordColor} p={1} clone>
                     <Card>
                       <CardContent>
                         <Typography
@@ -238,7 +240,7 @@ const EditProfilePage = () => {
                 </Grid>
 
                 <Grid xs={4} item>
-                  <Box {...makeColorProps('#24292E', theme)} p={1} clone>
+                  <Box {...githubColor} p={1} clone>
                     <Card>
                       <CardContent>
                         <Typography
@@ -262,7 +264,7 @@ const EditProfilePage = () => {
                 </Grid>
 
                 <Grid xs={4} item>
-                  <Box {...makeColorProps('#FC6D26', theme)} p={1} clone>
+                  <Box {...gitlabColor} p={1} clone>
                     <Card>
                       <CardContent>
                         <Typography

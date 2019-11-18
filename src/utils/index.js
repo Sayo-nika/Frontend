@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 
 /** Tries to copy given text to the clipboard. */
 export const copy = async (text, forceOld) => {
@@ -62,3 +63,8 @@ export const makeColorProps = (color, theme) => ({
   color: theme.palette.getContrastText(color),
   bgcolor: color
 });
+
+export const useColorProps = color => {
+  const theme = useTheme();
+  return useMemo(() => makeColorProps(color, theme), [color, theme]);
+};
