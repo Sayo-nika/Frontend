@@ -186,10 +186,29 @@ const ModCard = ({
 
 ModCard.propTypes = {
   banner: propTypes.string.isRequired,
-  category: propTypes.oneOf([]),
+  category: propTypes.oneOf([
+    'unassigned',
+    'tools',
+    'comedy',
+    'tragic_comedy',
+    'drama',
+    'rom_com',
+    'romance',
+    'horror',
+    'mystery',
+    'satire',
+    'thriller',
+    'sci_fi'
+  ]),
   icon: propTypes.string.isRequired,
   id: propTypes.string.isRequired,
-  status: propTypes.oneOf([]),
+  status: propTypes.oneOf([
+    'archived',
+    'planning',
+    'in_development',
+    'playtesting',
+    'released'
+  ]),
   tagline: propTypes.string.isRequired,
   theme_color: propTypes.string.isRequired, // eslint-disable-line camelcase
   title: propTypes.string.isRequired

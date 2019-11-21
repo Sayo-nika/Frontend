@@ -48,9 +48,9 @@ export function fromModColor(type, variant, theme) {
   else if (variant === 'main') shade = 500;
   else if (variant === 'dark') shade = 900;
 
-  const map = colorMap(theme);
-  console.log(map);
-  console.log(type);
+  // const map = colorMap(theme);
+  // console.log(map);
+  // console.log(type);
 
   return colorMap(theme)[type][shade];
 }
