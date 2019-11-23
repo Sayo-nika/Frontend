@@ -13,11 +13,12 @@ const useStyles = makeStyles(theme => ({
 const Showcase = ({
   mods,
   title,
+  className,
   placeholder = <Typography>Just us and these clowns.</Typography>
 }) => {
   const { sectionHeading } = useStyles();
   return (
-    <Box component="section" pb={4}>
+    <Box component="section" className={className} pb={4}>
       {title && (
         <Typography variant="h4" component="h2" className={sectionHeading}>
           {title}

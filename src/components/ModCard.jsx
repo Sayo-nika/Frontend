@@ -13,6 +13,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { fromModColor } from '../utils/colors';
+import { categories, statuses } from '../utils/maps';
 
 const m = (...args) => args.join(' ');
 
@@ -76,21 +77,6 @@ const useCategoryStyles = makeStyles(theme => ({
     zIndex: 900
   }
 }));
-
-const categories = {
-  unassigned: 'Unassigned',
-  tools: 'Tools',
-  comedy: 'Comedy',
-  tragic_comedy: 'Tragic Comedy', // eslint-disable-line camelcase
-  drama: 'Drama',
-  rom_com: 'Rom Com', // eslint-disable-line camelcase
-  romance: 'Romance',
-  horror: 'Horror',
-  mystery: 'Mystery',
-  satire: 'Satire',
-  thriller: 'Thriller',
-  sci_fi: 'Sci-Fi' // eslint-disable-line camelcase
-};
 
 const CategoryFavoriteFooter = ({ category }) => {
   const {
@@ -186,29 +172,10 @@ const ModCard = ({
 
 ModCard.propTypes = {
   banner: propTypes.string.isRequired,
-  category: propTypes.oneOf([
-    'unassigned',
-    'tools',
-    'comedy',
-    'tragic_comedy',
-    'drama',
-    'rom_com',
-    'romance',
-    'horror',
-    'mystery',
-    'satire',
-    'thriller',
-    'sci_fi'
-  ]),
+  category: propTypes.oneOf(Object.values(categories)),
   icon: propTypes.string.isRequired,
   id: propTypes.string.isRequired,
-  status: propTypes.oneOf([
-    'archived',
-    'planning',
-    'in_development',
-    'playtesting',
-    'released'
-  ]),
+  status: propTypes.oneOf(Object.values(statuses)),
   tagline: propTypes.string.isRequired,
   theme_color: propTypes.string.isRequired, // eslint-disable-line camelcase
   title: propTypes.string.isRequired
