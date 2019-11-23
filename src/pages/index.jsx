@@ -13,6 +13,7 @@ import { getFrontpage } from '../utils/api';
 import useGlobalStyles from '../utils/globalStyles';
 
 import EditorsChoicePage from './editorsChoice';
+import SearchPage from './search';
 import TrendingPage from './trending';
 
 const data = x => ({
@@ -54,7 +55,7 @@ const IndexPage = () => {
   // });
 
   return (
-    <React.Fragment>
+    <>
       <Carousel>
         {news.map(article => (
           <FrontpageSlide
@@ -68,7 +69,7 @@ const IndexPage = () => {
       <Showcase title="Most Loved" mods={loved} />
       <Showcase title="Trending" mods={trending} />
       <Showcase title="Coming Soon" mods={wip} />
-    </React.Fragment>
+    </>
   );
 };
 
@@ -84,6 +85,7 @@ const CatalogPages = () => {
         <Route path="/" component={IndexPage} exact />
         <Route path="/editors_choice" component={EditorsChoicePage} exact />
         <Route path="/trending" component={TrendingPage} exact />
+        <Route path="/search" component={SearchPage} exact />
       </Container>
 
       <Footer />

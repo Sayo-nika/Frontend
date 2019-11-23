@@ -23,12 +23,12 @@ const TrendingPage = () => {
   const { width } = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <Showcase title="Currently Trending" mods={mods} />
       <Button color="primary" to="/search" variant="outlined" className={width}>
         Find More
       </Button>
-    </React.Fragment>
+    </>
   );
 };
 

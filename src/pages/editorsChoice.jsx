@@ -23,12 +23,12 @@ const EditorsChoicePage = () => {
   const { width } = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <Showcase title="Editor's Choice" mods={mods} />
       <Button color="primary" to="/search" variant="outlined" className={width}>
         Find More
       </Button>
-    </React.Fragment>
+    </>
   );
 };
 

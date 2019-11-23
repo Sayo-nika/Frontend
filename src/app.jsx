@@ -1,7 +1,6 @@
 import React from 'react';
 import { CssBaseline } from '@material-ui/core';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Boundary from './components/Boundary';
@@ -24,7 +23,7 @@ const App = () => (
       <Router>
         <Switch>
           <Route
-            path="/(editors_choice|trending)?"
+            path="/(editors_choice|trending|search)?"
             component={CatalogPages}
             exact
           />
