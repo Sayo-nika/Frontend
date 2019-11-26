@@ -25,7 +25,7 @@ export const Card = styled('div')({
 
 export const Spacer = () => <Box flexGrow={1} flexShrink={1} />;
 
-const RefLink = React.forwardRef((props, ref) => (
+export const RefLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} {...props} />
 ));
 /* Using react-router link with MUI styling stuffs */

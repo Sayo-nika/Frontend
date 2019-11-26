@@ -1,4 +1,5 @@
 import {
+  Chip,
   Container,
   Box,
   Avatar,
@@ -7,21 +8,34 @@ import {
   Button,
   Grid
 } from '@material-ui/core';
+import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
-import { Heart, Download, AlertOctagon } from 'mdi-material-ui';
+import { format } from 'date-fns/fp';
+import {
+  AlertOctagon,
+  AlertCircle,
+  Download,
+  EmoticonOutline,
+  Heart,
+  Web
+} from 'mdi-material-ui';
 import React from 'react';
 
 import Carousel, { ImgSlide } from '../../components/Carousel';
-import { Root, Spacer } from '../../components/common';
+import { RefLink, Root, Spacer } from '../../components/common';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
 import useGlobalStyles from '../../utils/globalStyles';
+import { categories } from '../../utils/maps';
 
 import Review from './Review';
 import Shareable from './Shareable';
 import Developer from './Developer';
 
-const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles(theme => ({
+  carousel: {
+    marginBottom: theme.spacing(2)
+  },
   header: {
     marginBottom: theme.spacing(2)
   },
@@ -33,13 +47,17 @@ const useStyles = makeStyles(theme => ({
   spacing: {
     marginLeft: theme.spacing(1)
   },
-  carousel: {
-    marginBottom: theme.spacing(3)
-  },
   moreReviews: {
     width: '100%'
+  },
+  chipGrid: {
+    '& > *': {
+      marginRight: theme.spacing(1)
+    }
   }
 }));
+
+const modDateFormat = format('LLLL do, yyyy');
 
 const ModPage = ({
   match: {
@@ -53,9 +71,9 @@ const ModPage = ({
       description,
       website,
       category,
-      theme_color: themeColor,
       released_at: releasedAt,
-      last_updated: lastUpdated
+      last_updated: lastUpdated,
+      nsfw
     },
     setState
     /* eslint-disable camelcase */
@@ -114,27 +132,47 @@ const ModPage = ({
       </Typography>
     ],
     website: 'https://google.com',
-    category: 'idk',
-    theme_color: 'purple',
+    category: 'comedy',
     released_at: Date.now(),
-    last_updated: Date.now()
+    last_updated: Date.now(),
+    nsfw: true
   });
   /* eslint-enable camelcase */
 
   const { pageContent } = useGlobalStyles();
-  const { carousel, header, headerIcon, moreReviews, spacing } = useStyles();
+  const {
+    carousel,
+    chipGrid,
+    header,
+    headerIcon,
+    moreReviews,
+    spacing
+  } = useStyles();
 
   return (
     <Root>
       <Navbar />
 
       <Container className={pageContent}>
-        <Box display="flex" alignItems="center" className={header}>
+        <Box
+          component="header"
+          display="flex"
+          alignItems="center"
+          className={header}
+        >
           <Avatar alt="mod icon" src={icon} className={headerIcon} />
 
-          <Typography component="h1" variant="h4">
-            {title}
-          </Typography>
+          <div>
+            <Typography component="h1" variant="h4">
+              {title}
+            </Typography>
+
+            <Box color="text.secondary" clone>
+              <Typography component="p" variant="subtitle2">
+                Released {modDateFormat(releasedAt)}
+              </Typography>
+            </Box>
+          </div>
 
           <Spacer />
 
@@ -169,8 +207,6 @@ const ModPage = ({
           />
         </Carousel>
 
-        {/* TODO: metadata row here (category, etc) */}
-
         <Grid spacing={3} container>
           <Grid xs={8} item>
             <Box mb={4}>
@@ -190,6 +226,44 @@ const ModPage = ({
           </Grid>
 
           <Grid xs={4} item>
+            <Box mb={2}>
+              <Box color="text.secondary" clone>
+                <Typography component="p" variant="subtitle2">
+                  Last updated {modDateFormat(lastUpdated)}
+                </Typography>
+              </Box>
+
+              <Box
+                alignItems="center"
+                display="flex"
+                className={chipGrid}
+                mt={1}
+              >
+                <Chip
+                  title="Find similar mods"
+                  // className={cursor}
+                  component={RefLink}
+                  icon={<EmoticonOutline />}
+                  label={categories[category] || 'Unknown Category'}
+                  to={`/search?category=${category}`}
+                  clickable
+                />
+                <Chip
+                  component="a"
+                  label="Website"
+                  rel="noopener"
+                  target="_blank"
+                  // className={cursor}
+                  href={website}
+                  icon={<Web />}
+                  clickable
+                />
+                {nsfw && (
+                  <Chip label="NSFW" icon={<AlertCircle />} color="primary" />
+                )}
+              </Box>
+            </Box>
+
             <Typography variant="h5" component="h2" paragraph>
               <u>Authors</u>
             </Typography>
