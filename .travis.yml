@@ -9,7 +9,7 @@ matrix:
          - "10"
        install:
         - npm i --save
-        - npm run generate
+        - npm run build
        script:
          - npm run precommit
     #######################
@@ -25,9 +25,9 @@ matrix:
         - sudo cp -vRf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc /usr/bin
         - rm -rf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit
         - npm i --save
-        - npm run generate
+        - npm run build
        script:
-         - npm run precommit
+         - npm run build
        if: branch = staging
        after_success:
          - oc login https://api.starter-us-east-2.openshift.com -u $OPENSHIFT_USER -p $OPENSHIFT_PASSWORD
