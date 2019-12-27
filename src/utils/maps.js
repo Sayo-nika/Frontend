@@ -1,5 +1,5 @@
 export const categories = {
-  unassigned: 'Unassigned',
+  unassigned: 'Miscellaneous',
   tools: 'Tools',
   comedy: 'Comedy',
   tragic_comedy: 'Tragic Comedy', // eslint-disable-line camelcase
