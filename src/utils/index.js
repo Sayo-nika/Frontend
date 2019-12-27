@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTheme } from '@material-ui/core/styles';
+
+export * from './hooks';
 
 /** Tries to copy given text to the clipboard. */
 export const copy = async (text, forceOld) => {
@@ -22,37 +24,8 @@ export const copy = async (text, forceOld) => {
   document.body.removeChild(copier);
 };
 
-/** Small util to make a useState that toggles a boolean no matter what. */
-export const useToggle = (initial = false) => {
-  const [state, setState] = useState(initial);
-  const set = useCallback(() => setState(!state), [state]);
-
-  return [state, set];
-};
-
-/** Easily set a value from an input event without fiddling around. */
-export const useEventState = initial => {
-  const [state, setState] = useState(initial);
-  const set = useCallback(
-    ev =>
-      ev.target.type === 'checkbox'
-        ? setState(ev.target.checked)
-        : setState(ev.target.value),
-    []
-  );
-
-  // Raw setState given as last because some need it
-  return [state, set, setState];
-};
-
-export const useScrollTop = () => useEffect(() => window.scrollTo(0, 0), []);
-
 /** Bye bye ugly string concatenation for class names! */
 export const m = (...args) => args.join(' ');
-
-/** Memo shortcut for checking if at least one of the given args are falsey */
-export const useMemoFalsey = (...vars) =>
-  useMemo(() => vars.reduce((prev, curr) => !prev || !curr), [vars]);
 
 /** Make style properties for a given background color with contrasting font color */
 export const makeColorStyles = (color, theme) => ({
@@ -72,3 +45,6 @@ export const useColorProps = color => {
   const theme = useTheme();
   return useMemo(() => makeColorProps(color, theme), [color, theme]);
 };
+
+export const transition = property =>
+  `${property} 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms`;
