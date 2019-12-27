@@ -36,9 +36,6 @@ export const useStyles = makeStyles(theme => ({
   carousel: {
     marginBottom: theme.spacing(2)
   },
-  header: {
-    marginBottom: theme.spacing(2)
-  },
   headerIcon: {
     width: 64,
     height: 64,
@@ -47,7 +44,7 @@ export const useStyles = makeStyles(theme => ({
   spacing: {
     marginLeft: theme.spacing(1)
   },
-  moreReviews: {
+  fullWidth: {
     width: '100%'
   },
   chipGrid: {
@@ -140,26 +137,16 @@ const ModPage = ({
   /* eslint-enable camelcase */
 
   const { pageContent } = useGlobalStyles();
-  const {
-    carousel,
-    chipGrid,
-    header,
-    headerIcon,
-    moreReviews,
-    spacing
-  } = useStyles();
+  const { carousel, chipGrid, headerIcon, fullWidth, spacing } = useStyles();
 
   return (
     <Root>
       <Navbar />
 
       <Container className={pageContent}>
-        <Box
-          component="header"
-          display="flex"
-          alignItems="center"
-          className={header}
-        >
+        {/* add banner thing here depending on mod status */}
+
+        <Box component="header" display="flex" alignItems="center" mb={2}>
           <Avatar alt="mod icon" src={icon} className={headerIcon} />
 
           <div>
@@ -219,7 +206,7 @@ const ModPage = ({
               <Review authorID={2} />
               <Review authorID={3} />
               {/* TODO */}
-              <Button color="primary" className={moreReviews}>
+              <Button color="primary" className={fullWidth}>
                 See More Reviews
               </Button>
             </Box>
@@ -241,7 +228,6 @@ const ModPage = ({
               >
                 <Chip
                   title="Find similar mods"
-                  // className={cursor}
                   component={RefLink}
                   icon={<EmoticonOutline />}
                   label={categories[category] || 'Unknown Category'}
@@ -253,7 +239,6 @@ const ModPage = ({
                   label="Website"
                   rel="noopener"
                   target="_blank"
-                  // className={cursor}
                   href={website}
                   icon={<Web />}
                   clickable
