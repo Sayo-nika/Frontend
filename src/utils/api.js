@@ -27,7 +27,7 @@ export const getEditorsChoice = () => get('mods/editors_choice');
 export const getRecentMods = () => get('mods/recent_releases');
 export const getMostLovedMods = () => get('mods/most_loved');
 export const getMostDownloadedMods = () => get('mods/most_downloads');
-export const getModReviews = id => get(`mods/${id}/reviews`);
+export const getModReviews = id => get(`mods/${id}/reviews`); // TODO: options probs
 export const getModAuthors = id => get(`mods/${id}/authors`);
 
 export const getUser = id => get(`users/${id}`);
