@@ -15,10 +15,6 @@ class Boundary extends React.Component {
 
   state = { error: null };
 
-  constructor(props) {
-    super({ ...props, Fallback: props.fallback });
-  }
-
   static getDerivedStateFromError = error => ({ error });
 
   componentDidCatch(error, errorInfo) {
@@ -33,7 +29,7 @@ class Boundary extends React.Component {
   }
 
   render() {
-    const { Fallback, children } = this.props;
+    const { fallback: Fallback, children } = this.props;
     const { error } = this.state;
 
     return error ? <Fallback error={error} /> : children;
