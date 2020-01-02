@@ -1,21 +1,39 @@
 import { Box, CircularProgress, Fade } from '@material-ui/core';
 import React from 'react';
-import { useAsync } from 'react-use';
+import { useAsyncFn } from 'react-use';
+import useIsInViewport from 'use-is-in-viewport';
+
+const Spinner = ({ fetch }) => {
+  React.useEffect(() => {
+    fetch();
+  }, [fetch]);
+
+  return (
+    <Fade style={{ transitionDelay: '1000ms' }} in>
+      <CircularProgress />
+    </Fade>
+  );
+};
 
 const LoaderView = ({
   children,
   fetcher,
   height = '100%',
   width = '100%',
-  throwOnError = true
+  throwOnError = true,
+  delay = false,
+  errorView: ErrorView
 }) => {
-  const state = useAsync(fetcher, []);
+  const [state, fetch] = useAsyncFn(fetcher, []);
+  const [isInViewport, ref] = useIsInViewport();
 
-  if (state.error && throwOnError) throw state.error;
+  if (state.error && throwOnError && !ErrorView) throw state.error;
 
   return (
-    <>
-      {!state.loading ? (
+    <div ref={ref} style={{ display: 'contents' }}>
+      {state.error && ErrorView ? (
+        <ErrorView {...state} />
+      ) : !state.loading && state.value ? (
         children(state)
       ) : (
         <Box
@@ -25,12 +43,10 @@ const LoaderView = ({
           height={height}
           width={width}
         >
-          <Fade style={{ transitionDelay: '1000ms' }} in>
-            <CircularProgress />
-          </Fade>
+          {(!delay || isInViewport) && <Spinner fetch={fetch} />}
         </Box>
       )}
-    </>
+    </div>
   );
 };
 

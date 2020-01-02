@@ -28,7 +28,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
     "react-styled-carousel": "^0.5.1",
-    "react-use": "^13.12.2"
+    "react-use": "^13.12.2",
+    "use-is-in-viewport": "^1.0.7"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
