@@ -19,6 +19,7 @@
     "@material-ui/pickers": "^3.2.8",
     "bent": "^7.0.2",
     "date-fns": "^2.8.1",
+    "marked": "^0.8.0",
     "mdi-material-ui": "^6.8.0",
     "polished": "^3.4.2",
     "prop-types": "^15.7.2",
@@ -29,7 +30,8 @@
     "react-scripts": "^3.3.0",
     "react-styled-carousel": "^0.5.1",
     "react-use": "^13.12.2",
-    "use-is-in-viewport": "^1.0.7"
+    "use-is-in-viewport": "^1.0.7",
+    "xss": "^1.0.6"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
