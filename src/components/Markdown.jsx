@@ -25,7 +25,7 @@ ${body}
 
 const useStyles = makeStyles(theme => {
   const paper = paperStyles(theme);
-  const tableCell = tableCellStyles(theme).root;
+  const tableCell = tableCellStyles(theme);
 
   return {
     root: {
@@ -84,8 +84,15 @@ const useStyles = makeStyles(theme => {
       '& table': tableStyles(theme).root,
       '& thead': tableHeadStyles.root,
       '& tbody': tableBodyStyles.root,
-      '& th': tableCell,
-      '& td': tableCell
+      '& th': {
+        ...tableCell.root,
+        ...tableCell.head,
+        fontWeight: 700
+      },
+      '& td': {
+        ...tableCell.root,
+        ...tableCell.body
+      }
     }
   };
 });
