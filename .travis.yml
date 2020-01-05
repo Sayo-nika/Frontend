@@ -1,44 +1,7 @@
-matrix:
-   include:
-    #######################
-    #    Test Matrix      #
-    #######################
-     - language: node_js
-       dist: xenial
-       node_js:
-         - "10"
-       install:
-        - npm i --save
-        - npm run build
-       script:
-         - npm run precommit
-    #######################
-    #    Deploy Matrix    #
-    #######################
-     - language: node_js
-       dist: xenial
-       node_js:
-         - "10"
-       install:
-        - wget -qO - https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz | tar -xzvf -
-        - chmod -R 755 openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc
-        - sudo cp -vRf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc /usr/bin
-        - rm -rf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit
-        - npm i --save
-        - npm run build
-       script:
-         - npm run build
-       if: branch = staging
-       after_success:
-         - oc login https://api.starter-us-east-2.openshift.com -u $OPENSHIFT_USER -p $OPENSHIFT_PASSWORD
-         - docker build -t registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/frontend:latest .
-         - docker login registry.starter-us-east-2.openshift.com -u $(oc whoami) -p $(oc whoami -t)
-         - docker push registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/frontend:latest
-         - oc project $OPENSHIFT_NAMESPACE
-         - oc new-app registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/frontend:latest
-         - oc expose dc/frontend --port=8080
-
-
-
-notifications:
-  email: false
+cache: yarn
+language: node_js
+node_js:
+  - '10'
+script:
+  - yarn lint
+  - yarn build # Todo: see if we can make eslint warnings not cause an error
