@@ -24,6 +24,7 @@ import Carousel, { ImgSlide } from '../../components/Carousel';
 import { RefLink, Root, Spacer } from '../../components/common';
 import Footer from '../../components/Footer';
 import LoaderView from '../../components/LoaderView';
+import Markdown from '../../components/Markdown';
 import Navbar from '../../components/Navbar';
 import { getMod, getModReviews } from '../../utils/api';
 import useGlobalStyles from '../../utils/globalStyles';
@@ -137,8 +138,7 @@ const ModPage = ({
               <Grid spacing={3} container>
                 <Grid xs={8} item>
                   <Box mb={4}>
-                    {/* TODO: md parsing */}
-                    {description}
+                    <Markdown text={description} />
                   </Box>
 
                   {/* todo add a special thing on the api so that i get only 3 reviewso r smth */}
