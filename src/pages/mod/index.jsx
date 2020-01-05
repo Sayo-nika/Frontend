@@ -30,7 +30,7 @@ import useGlobalStyles from '../../utils/globalStyles';
 import { categories } from '../../utils/maps';
 
 import Review from './Review';
-import Shareable from './Shareable';
+import { ShareList } from './Shareable';
 import Developer from './Developer';
 
 export const useStyles = makeStyles(theme => ({
@@ -152,8 +152,7 @@ const ModPage = ({
                         {reviews.map(r => (
                           <Review key={r.id} {...r} />
                         ))}
-                        <Review authorID={3} /> */}
-                        {/* TODO */}
+
                         <Button color="primary" className={fullWidth}>
                           See More Reviews
                         </Button>
@@ -184,6 +183,7 @@ const ModPage = ({
                         to={`/search?category=${category}`}
                         clickable
                       />
+                      {website && (
                       <Chip
                         component="a"
                         label="Website"
@@ -193,6 +193,7 @@ const ModPage = ({
                         icon={<Web />}
                         clickable
                       />
+                      )}
                       {nsfw && (
                         <Chip
                           label="NSFW"
@@ -218,11 +219,7 @@ const ModPage = ({
                   </Typography>
 
                   <Box display="flex" flexDirection="column" mb={2}>
-                    {/* TODO: navigator.share button on mobile */}
-                    {/* <Shareable type="share" title="Lorem Ipsum"/> */}
-                    <Shareable type="copy" title="Lorem Ipsum" />
-                    <Shareable type="facebook" title="Lorem Ipsum" />
-                    <Shareable type="twitter" title="Lorem Ipsum" />
+                    <ShareList title={title} />
                   </Box>
                 </Grid>
               </Grid>
