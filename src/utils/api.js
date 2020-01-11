@@ -27,8 +27,11 @@ export const getEditorsChoice = () => get('mods/editors_choice');
 export const getRecentMods = () => get('mods/recent_releases');
 export const getMostLovedMods = () => get('mods/most_loved');
 export const getMostDownloadedMods = () => get('mods/most_downloads');
-export const getModReviews = id => get(`mods/${id}/reviews`); // TODO: options probs
 export const getModAuthors = id => get(`mods/${id}/authors`);
+export const getModReviews = (id, options = {}) =>
+  get(`mods/${id}/reviews?${qs(options)}`);
+export const reviewReact = (id, type, undo = false) =>
+  post(`mods/${id}/reviews/react`, { type, undo });
 
 export const getUser = id => get(`users/${id}`);
 export const getUsers = (options = {}) => get('users', options);

@@ -18,9 +18,10 @@ import {
 } from 'mdi-material-ui';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAsyncFn, useToggle } from 'react-use';
 
-import { Spacer } from '../../components/common';
-import { useToggle } from '../../utils';
+import { shortenAmount } from '../../utils';
+import { reviewReact } from '../../utils/api';
 import useGlobalStyles from '../../utils/globalStyles';
 
 const useReviewStyles = makeStyles(theme => ({
@@ -31,77 +32,107 @@ const useReviewStyles = makeStyles(theme => ({
   }
 }));
 
-const Review = ({ authorID }) => {
+const useReactionChange = (
+  type,
+  id,
+  { toggleUpvote, toggleDownvote, toggleFoundFunny }
+) =>
+  useAsyncFn(async undo => {
+    const { upvoted, downvoted, found_funny: foundFunny } = await reviewReact(
+      id,
+      type,
+      undo
+    );
+
+    toggleUpvote(upvoted);
+    toggleDownvote(downvoted);
+    toggleFoundFunny(foundFunny);
+  });
+
+const Review = ({
+  id,
+  rating,
+  content,
+  title,
+  author,
+  upvotes: upvotes_,
+  downvotes: downvotes_,
+  funnys: funnys_,
+  user_reacted_upvote: userUpvoted,
+  user_reacted_downvote: userDownvoted,
+  user_reacted_funny: userFoundFunny,
+  flat = false
+}) => {
+  const [upvoted, toggleUpvote] = useToggle(!!userUpvoted);
+  const [downvoted, toggleDownvote] = useToggle(!!userDownvoted);
+  const [foundFunny, toggleFoundFunny] = useToggle(!!userFoundFunny);
+
+  const changeToggles = { toggleUpvote, toggleDownvote, toggleFoundFunny };
+  const [, onUpvote] = useReactionChange('upvote', id, changeToggles);
+  const [, onDownvote] = useReactionChange('downvote', id, changeToggles);
+  const [, onFoundFunny] = useReactionChange('found_funny', id, changeToggles);
+
+  const upvotes = upvotes_ + (upvoted && !userUpvoted ? 1 : 0);
+  const downvotes = downvotes_ + (downvoted && !userDownvoted ? 1 : 0);
+  const funnys = funnys_ + (foundFunny && !userFoundFunny ? 1 : 0);
+
+  const UpvoteIcon = upvoted ? ThumbUp : ThumbUpOutline;
+  const DownvoteIcon = downvoted ? ThumbDown : ThumbDownOutline;
+  const FoundFunnyIcon = foundFunny ? EmoticonExcited : EmoticonExcitedOutline;
+
   const { buttonReset } = useGlobalStyles();
   const { avatar } = useReviewStyles();
-  const [upvoted, toggleUpvote] = useToggle();
-  const [downvoted, toggleDownvote] = useToggle();
-  const [foundFunny, toggleFoundFunny] = useToggle();
-  const UpvoteIcon = React.useMemo(() => (upvoted ? ThumbUp : ThumbUpOutline), [
-    upvoted
-  ]);
-  const DownvoteIcon = React.useMemo(
-    () => (downvoted ? ThumbDown : ThumbDownOutline),
-    [downvoted]
-  );
-  const FoundFunnyIcon = React.useMemo(
-    () => (foundFunny ? EmoticonExcited : EmoticonExcitedOutline),
-    [foundFunny]
-  );
+
   return (
     <Box mb={2}>
-      <Paper>
-        <Box p={3} display="flex" flexDirection="column">
+      <Paper elevation={Number(!flat)}>
+        <Box p={!flat ? 3 : 0} display="flex" flexDirection="column">
           <Box display="flex" alignItems="center" mb={2}>
-            <Avatar
-              src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000"
-              alt="h"
-              className={avatar}
-            />
-            <Link className={buttonReset} to={`/users/${authorID}`}>
-              <Typography variant="h6" component="h2">
-                Reviewer Boy
-              </Typography>
-            </Link>
-
-            <Spacer />
-            <Rating name="ratings-{id}" precision={0.5} value={3.5} readOnly />
+            <Avatar src={author.avatar} alt="h" className={avatar} />
+            <div>
+              <Link className={buttonReset} to={`/profile/${author.id}`}>
+                <Typography variant="h6" component="h2">
+                  {author.username}
+                </Typography>
+              </Link>
+              <Rating
+                name="ratings-{id}"
+                precision={0.5}
+                value={rating}
+                readOnly
+              />
+            </div>
           </Box>
 
-          <Typography variant="body1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec
-            nulla sagittis, porttitor felis a, mollis lacus. Quisque tempus
-            felis metus, eget malesuada ex consectetur eget. Praesent molestie
-            neque sed lacus porta dignissim. Integer bibendum quam sit amet
-            sapien aliquam, ullamcorper placerat sem dictum. Quisque
-            ullamcorper, nulla molestie congue bibendum, massa tellus euismod
-            nulla, sed sagittis risus purus et justo. Phasellus ipsum enim,
-            convallis dignissim nibh non, blandit dapibus massa.
+          <Typography variant="h6" component="h1">
+            {title}
           </Typography>
+
+          <Typography variant="body1">{content}</Typography>
 
           <Box display="flex" justifyContent="flex-end" mr={-1.5} mb={-1.5}>
             <Box alignItems="center" display="flex">
-              42k
+              {shortenAmount(upvotes)}
               <Tooltip title="Thumbs Up" placement="top">
-                <IconButton onClick={toggleUpvote}>
+                <IconButton onClick={() => onUpvote(upvoted)}>
                   <UpvoteIcon />
                 </IconButton>
               </Tooltip>
             </Box>
 
             <Box alignItems="center" display="flex" ml={1}>
-              1k
+              {shortenAmount(downvotes)}
               <Tooltip title="Thumbs Down" placement="top">
-                <IconButton onClick={toggleDownvote}>
+                <IconButton onClick={() => onDownvote(downvoted)}>
                   <DownvoteIcon />
                 </IconButton>
               </Tooltip>
             </Box>
 
             <Box alignItems="center" display="flex" ml={1}>
-              60
+              {shortenAmount(funnys)}
               <Tooltip title="Found Funny" placement="top">
-                <IconButton onClick={toggleFoundFunny}>
+                <IconButton onClick={() => onFoundFunny(foundFunny)}>
                   <FoundFunnyIcon />
                 </IconButton>
               </Tooltip>

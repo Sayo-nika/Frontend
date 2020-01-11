@@ -46,5 +46,16 @@ export const useColorProps = color => {
   return useMemo(() => makeColorProps(color, theme), [color, theme]);
 };
 
+/** Format a given number into a shorthand string */
+export const shortenAmount = amt => {
+  const units = ['', 'K', 'M', 'B', 'T'];
+  let formatted = amt;
+
+  for (const unit of units)
+    if (formatted / 1000 < 1 || unit === units.slice(-1)[0])
+      return formatted.toFixed(2) + unit;
+    else formatted /= 1000;
+};
+
 export const transition = property =>
   `${property} 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms`;
