@@ -38,7 +38,7 @@ const useReactionChange = (
   { toggleUpvote, toggleDownvote, toggleFoundFunny }
 ) =>
   useAsyncFn(async undo => {
-    const { upvoted, downvoted, found_funny: foundFunny } = await reviewReact(
+    const { upvoted, downvoted, funny: foundFunny } = await reviewReact(
       id,
       type,
       undo
@@ -68,9 +68,27 @@ const Review = ({
   const [foundFunny, toggleFoundFunny] = useToggle(!!userFoundFunny);
 
   const changeToggles = { toggleUpvote, toggleDownvote, toggleFoundFunny };
-  const [, onUpvote] = useReactionChange('upvote', id, changeToggles);
-  const [, onDownvote] = useReactionChange('downvote', id, changeToggles);
-  const [, onFoundFunny] = useReactionChange('found_funny', id, changeToggles);
+  const [, reactUpvote] = useReactionChange('upvote', id, changeToggles);
+  const [, reactDownvote] = useReactionChange('downvote', id, changeToggles);
+  const [, reactFunny] = useReactionChange('funny', id, changeToggles);
+
+  const onUpvote = () => {
+    // Give immediate feedback on reaction state.
+    if (!upvoted) toggleDownvote(false);
+    toggleUpvote();
+    console.log(upvoted);
+    reactUpvote(!upvoted);
+  };
+  const onDownvote = () => {
+    // Give immediate feedback on reaction state.
+    if (!downvoted) toggleUpvote(false);
+    toggleDownvote();
+    reactDownvote(!downvoted);
+  };
+  const onFoundFunny = () => {
+    toggleFoundFunny();
+    reactFunny(!foundFunny);
+  };
 
   const upvotes = upvotes_ + (upvoted && !userUpvoted ? 1 : 0);
   const downvotes = downvotes_ + (downvoted && !userDownvoted ? 1 : 0);
@@ -88,7 +106,9 @@ const Review = ({
       <Paper elevation={Number(!flat)}>
         <Box p={!flat ? 3 : 0} display="flex" flexDirection="column">
           <Box display="flex" alignItems="center" mb={2}>
-            <Avatar src={author.avatar} alt="h" className={avatar} />
+            <Link className={buttonReset} to={`/profile/${author.id}`}>
+              <Avatar src={author.avatar} alt="h" className={avatar} />
+            </Link>
             <div>
               <Link className={buttonReset} to={`/profile/${author.id}`}>
                 <Typography variant="h6" component="h2">
@@ -96,7 +116,7 @@ const Review = ({
                 </Typography>
               </Link>
               <Rating
-                name="ratings-{id}"
+                name={`ratings-${id}`}
                 precision={0.5}
                 value={rating}
                 readOnly
@@ -104,7 +124,7 @@ const Review = ({
             </div>
           </Box>
 
-          <Typography variant="h6" component="h1">
+          <Typography variant="h6" component="h1" gutterBottom>
             {title}
           </Typography>
 

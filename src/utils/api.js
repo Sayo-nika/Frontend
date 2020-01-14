@@ -31,7 +31,7 @@ export const getModAuthors = id => get(`mods/${id}/authors`);
 export const getModReviews = (id, options = {}) =>
   get(`mods/${id}/reviews?${qs(options)}`);
 export const reviewReact = (id, type, undo = false) =>
-  post(`mods/${id}/reviews/react`, { type, undo });
+  post(`reviews/${id}/react`, { type, undo });
 
 export const getUser = id => get(`users/${id}`);
 export const getUsers = (options = {}) => get('users', options);
