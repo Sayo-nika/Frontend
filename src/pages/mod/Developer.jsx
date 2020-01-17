@@ -32,19 +32,15 @@ const useDeveloperStyles = makeStyles(theme => ({
   }
 }));
 
-const Developer = ({ id }) => {
+const Developer = ({ id, username, avatar }) => {
   const { icon, link, root } = useDeveloperStyles();
   return (
     <Paper className={root} elevation={0}>
       <Box display="flex" alignItems="center">
-        <Avatar
-          src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000"
-          alt="author pic"
-          className={icon}
-        />
+        <Avatar src={avatar} alt={username} className={icon} />
         <Typography variant="h6" component="h3">
           <Link to={`/profile/${id}`} className={link}>
-            Mod Author
+            {username}
           </Link>
         </Typography>
       </Box>

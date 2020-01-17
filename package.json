@@ -20,6 +20,7 @@
     "bent": "^7.0.2",
     "date-fns": "^2.8.1",
     "marked": "^0.8.0",
+    "material-ui-flat-pagination": "^4.0.0",
     "mdi-material-ui": "^6.8.0",
     "polished": "^3.4.2",
     "prop-types": "^15.7.2",

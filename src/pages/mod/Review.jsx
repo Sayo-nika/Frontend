@@ -35,18 +35,29 @@ const useReviewStyles = makeStyles(theme => ({
 const useReactionChange = (
   type,
   id,
-  { toggleUpvote, toggleDownvote, toggleFoundFunny }
+  { toggleUpvote, toggleDownvote, toggleFoundFunny, upvoted, downvoted }
 ) =>
   useAsyncFn(async undo => {
-    const { upvoted, downvoted, funny: foundFunny } = await reviewReact(
-      id,
-      type,
-      undo
-    );
+    try {
+      const {
+        upvoted: newUpvoted,
+        downvoted: newDownvoted,
+        funny: newFunny
+      } = await reviewReact(id, type, undo);
 
-    toggleUpvote(upvoted);
-    toggleDownvote(downvoted);
-    toggleFoundFunny(foundFunny);
+      toggleUpvote(newUpvoted);
+      toggleDownvote(newDownvoted);
+      toggleFoundFunny(newFunny);
+    } catch {
+      // Undo immediate feedback if theres an error
+      if (type === 'upvote') {
+        if (undo && downvoted) toggleDownvote(true);
+        toggleUpvote(!undo);
+      } else if (type === 'downvote') {
+        if (undo && upvoted) toggleUpvote(true);
+        toggleDownvote(!undo);
+      } else if (type === 'funny') toggleFoundFunny(!undo);
+    }
   });
 
 const Review = ({
@@ -67,7 +78,13 @@ const Review = ({
   const [downvoted, toggleDownvote] = useToggle(!!userDownvoted);
   const [foundFunny, toggleFoundFunny] = useToggle(!!userFoundFunny);
 
-  const changeToggles = { toggleUpvote, toggleDownvote, toggleFoundFunny };
+  const changeToggles = {
+    toggleUpvote,
+    toggleDownvote,
+    toggleFoundFunny,
+    upvoted,
+    downvoted
+  };
   const [, reactUpvote] = useReactionChange('upvote', id, changeToggles);
   const [, reactDownvote] = useReactionChange('downvote', id, changeToggles);
   const [, reactFunny] = useReactionChange('funny', id, changeToggles);
@@ -76,7 +93,6 @@ const Review = ({
     // Give immediate feedback on reaction state.
     if (!upvoted) toggleDownvote(false);
     toggleUpvote();
-    console.log(upvoted);
     reactUpvote(!upvoted);
   };
   const onDownvote = () => {

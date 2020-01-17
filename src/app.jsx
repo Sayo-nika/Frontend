@@ -33,7 +33,7 @@ const App = () => (
             />
             {/* TOOD: do we wanna have more reviews button change the route? */}
             <Route path="/mods/add" component={AddModPage} exact />
-            <Route path="/mods/:id" component={ModPage} exact />
+            <Route path="/mods/:id/(reviews)?" component={ModPage} exact />
             <Route path="/login" component={LoginPage} exact />
             <Route path="/signup" component={SignupPage} exact />
             <Route path="/profile/edit" component={EditProfilePage} exact />

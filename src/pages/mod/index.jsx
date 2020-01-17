@@ -19,6 +19,7 @@ import {
   Web
 } from 'mdi-material-ui';
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import Carousel, { ImgSlide } from '../../components/Carousel';
 import { RefLink, Root, Spacer } from '../../components/common';
@@ -27,12 +28,14 @@ import LoaderView from '../../components/LoaderView';
 import Markdown from '../../components/Markdown';
 import Navbar from '../../components/Navbar';
 import { getMod, getModReviews } from '../../utils/api';
+import config from '../../utils/config';
 import useGlobalStyles from '../../utils/globalStyles';
 import { categories } from '../../utils/maps';
 
-import Review from './Review';
-import { ShareList } from './Shareable';
 import Developer from './Developer';
+import Review from './Review';
+import ReviewsModal from './ReviewsModal';
+import { ShareList } from './Shareable';
 
 export const useStyles = makeStyles(theme => ({
   carousel: {
@@ -61,7 +64,8 @@ const modDateFormat = format('LLLL do, yyyy');
 const ModPage = ({
   match: {
     params: { id }
-  }
+  },
+  history
 }) => {
   const { pageContent } = useGlobalStyles();
   const { carousel, chipGrid, headerIcon, fullWidth, spacing } = useStyles();
@@ -81,7 +85,9 @@ const ModPage = ({
               category,
               released_at: releasedAt,
               last_updated: lastUpdated,
-              nsfw
+              nsfw,
+              media,
+              authors
             }
           }) => (
             <>
@@ -125,14 +131,13 @@ const ModPage = ({
               </Box>
 
               <Carousel className={carousel}>
-                <ImgSlide
-                  src="https://images.unsplash.com/photo-1572380034678-c4d9b1039751"
-                  height={600}
-                />
-                <ImgSlide
-                  src="https://images.unsplash.com/photo-1572380034678-c4d9b1039751"
-                  height={600}
-                />
+                {media.map(({ hash }) => (
+                  <ImgSlide
+                    key={hash}
+                    src={`${config.IPFS_GATEWAY}${hash}`}
+                    height={600}
+                  />
+                ))}
               </Carousel>
 
               <Grid spacing={3} container>
@@ -141,11 +146,9 @@ const ModPage = ({
                     <Markdown text={description} />
                   </Box>
 
-                  {/* todo add a special thing on the api so that i get only 3 reviewso r smth */}
                   <LoaderView
                     height="auto"
-                    fetcher={() => getModReviews(id)}
-                    delay
+                    fetcher={() => getModReviews(id, { limit: 3 })}
                   >
                     {({ value: { results: reviews } }) => (
                       <Box>
@@ -153,9 +156,21 @@ const ModPage = ({
                           <Review key={r.id} {...r} />
                         ))}
 
-                        <Button color="primary" className={fullWidth}>
+                        <Button
+                          color="primary"
+                          className={fullWidth}
+                          onClick={() => history.push(`/mods/${id}/reviews`)}
+                        >
                           See More Reviews
                         </Button>
+
+                        <Route
+                          path={`/mods/${id}/reviews`}
+                          render={renderProps => (
+                            <ReviewsModal id={id} {...renderProps} />
+                          )}
+                          exact
+                        />
                       </Box>
                     )}
                   </LoaderView>
@@ -184,15 +199,15 @@ const ModPage = ({
                         clickable
                       />
                       {website && (
-                      <Chip
-                        component="a"
-                        label="Website"
-                        rel="noopener"
-                        target="_blank"
-                        href={website}
-                        icon={<Web />}
-                        clickable
-                      />
+                        <Chip
+                          component="a"
+                          label="Website"
+                          rel="noopener"
+                          target="_blank"
+                          href={website}
+                          icon={<Web />}
+                          clickable
+                        />
                       )}
                       {nsfw && (
                         <Chip
@@ -209,9 +224,9 @@ const ModPage = ({
                   </Typography>
 
                   <Box display="flex" flexDirection="column" mb={2}>
-                    <Developer id={1} />
-                    <Developer id={2} />
-                    <Developer id={3} />
+                    {authors.map(author => (
+                      <Developer key={author.id} {...author} />
+                    ))}
                   </Box>
 
                   <Typography variant="h5" component="h2" paragraph>
@@ -227,9 +242,6 @@ const ModPage = ({
           )}
         </LoaderView>
       </Container>
-
-      {/* modal route view for thingy */}
-
       <Footer />
     </Root>
   );
