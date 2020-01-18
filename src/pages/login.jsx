@@ -10,13 +10,14 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
+import { useImmer } from 'use-immer';
 import React from 'react';
 import { useAsyncFn } from 'react-use';
 
 import loginBackground from '../assets/img/login-bg.jpg';
 import logo from '../assets/img/logo.svg';
 import { Link, Spacer } from '../components/common';
-import { useEventState, useMemoFalsey, useRecaptcha } from '../utils';
+import { useMemoFalsey, useRecaptcha, updateFromEvent } from '../utils';
 import { login, setHeader } from '../utils/api';
 
 export const background = {
@@ -43,31 +44,36 @@ export const useStyles = makeStyles(theme => ({
 }));
 
 const LoginPage = ({ history }) => {
-  const [username, setUsername] = useEventState('');
-  const [password, setPassword] = useEventState('');
-  const [rememberMe, setRemembrance] = useEventState(false);
-  const [error, setError] = React.useState(null);
-  const [errorModal, setErrorModal] = React.useState(false);
+  const [state, update] = useImmer({
+    username: '',
+    password: '',
+    rememberMe: false,
+    error: null,
+    snackbarOpen: false
+  });
   const execute = useRecaptcha();
+  const eventUpdate = updateFromEvent(update);
 
   const [{ loading }, doLogin] = useAsyncFn(async () => {
     try {
       const recaptcha = execute('login');
-      const { token } = await login(username, password, recaptcha);
+      const { token } = await login(state.username, state.password, recaptcha);
 
       localStorage.setItem('token', token);
       setHeader('Authorization', token);
     } catch (err) {
-      setError(err);
-      setErrorModal(true);
+      update(draft => {
+        draft.error = err;
+        draft.snackbarOpen = true;
+      });
       return;
     }
     // TODO: action for getting users/@me and cache for session so we don't need to keep querying
     // useContext
     history.push('/');
-  }, [username, password]);
+  }, [state.username, state.password]);
 
-  const disabled = useMemoFalsey(loading, username, password);
+  const disabled = useMemoFalsey(loading, state.username, state.password);
   const { background, textField, recaptchaCaption } = useStyles();
 
   return (
@@ -83,18 +89,30 @@ const LoginPage = ({ history }) => {
           <img alt="Sayonika logo" height="100" src={logo} />
 
           <Snackbar
-            open={!!errorModal}
+            open={state.snackbarOpen}
             autoHideDuration={7500}
-            onClose={() => setErrorModal(false)}
-            onExited={() => setError(null)}
+            onClose={() =>
+              update(draft => {
+                draft.snackbarOpen = false;
+              })
+            }
+            onExited={() =>
+              update(draft => {
+                draft.error = null;
+              })
+            }
           >
             <Alert
               elevation={6}
               severity="error"
               variant="filled"
-              onClose={() => setErrorModal(false)}
+              onClose={() =>
+                update(draft => {
+                  draft.snackbarOpen = false;
+                })
+              }
             >
-              {error && error.message}
+              {state.error && state.error.message}
             </Alert>
           </Snackbar>
 
@@ -103,8 +121,8 @@ const LoginPage = ({ history }) => {
             label="Username"
             className={textField}
             disabled={loading}
-            value={username}
-            onChange={setUsername}
+            value={state.username}
+            onChange={eventUpdate('username')}
           />
           <TextField
             id="password"
@@ -112,8 +130,8 @@ const LoginPage = ({ history }) => {
             label="Password"
             className={textField}
             disabled={loading}
-            value={password}
-            onChange={setPassword}
+            value={state.password}
+            onChange={eventUpdate('password')}
           />
 
           <Box alignItems="center" display="flex" width="100%" mb={2}>
@@ -123,8 +141,8 @@ const LoginPage = ({ history }) => {
                 <Checkbox
                   color="secondary"
                   disabled={loading}
-                  checked={rememberMe}
-                  onChange={setRemembrance}
+                  checked={state.rememberMe}
+                  onChange={eventUpdate('rememberMe')}
                 />
               }
             />

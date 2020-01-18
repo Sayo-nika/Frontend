@@ -9,11 +9,12 @@ import {
   Typography
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useImmer } from 'use-immer';
 import React from 'react';
 
 import logo from '../assets/img/logo.svg';
 import { Link } from '../components/common';
-import { m, useEventState, useMemoFalsey } from '../utils';
+import { m, useMemoFalsey, updateFromEvent } from '../utils';
 
 import { background } from './login';
 
@@ -34,21 +35,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignupPage = () => {
-  const [username, setUsername] = useEventState('');
-  const [password, setPassword] = useEventState('');
-  const [confirmPassword, setConfirmPassword] = useEventState('');
-  const [email, setEmail] = useEventState('');
-  const [confirmEmail, setConfirmEmail] = useEventState('');
-  const [agreed, setAgreed] = useEventState(false);
+  const [state, update] = useImmer({
+    username: '',
+    password: '',
+    confirmPassword: '',
+    email: '',
+    confirmEmail: '',
+    agreed: false
+  });
   const [loading, setLoading] = React.useState(false);
+  const eventUpdate = updateFromEvent(update);
   const disabled = useMemoFalsey(
     loading,
-    username,
-    password,
-    confirmPassword,
-    email,
-    confirmEmail,
-    agreed
+    state.username,
+    state.password,
+    state.confirmPassword,
+    state.email,
+    state.confirmEmail,
+    state.agreed
   );
 
   const {
@@ -84,8 +88,8 @@ const SignupPage = () => {
             label="Username"
             className={m(width, spacingBottomSmall)}
             disabled={loading}
-            value={username}
-            onChange={setUsername}
+            value={state.username}
+            onChange={eventUpdate('username')}
           />
 
           <Box display="flex" width="100%" mb={2}>
@@ -96,8 +100,8 @@ const SignupPage = () => {
                 label="Password"
                 className={spacingBottomSmall}
                 disabled={loading}
-                value={password}
-                onChange={setPassword}
+                value={state.password}
+                onChange={eventUpdate('password')}
               />
               <TextField
                 id="confirmPassword"
@@ -105,8 +109,8 @@ const SignupPage = () => {
                 label="Confirm Password"
                 className={spacingBottomSmall}
                 disabled={loading}
-                value={confirmPassword}
-                onChange={setConfirmPassword}
+                value={state.confirmPassword}
+                onChange={eventUpdate('confirmPassword')}
               />
             </Box>
 
@@ -117,8 +121,8 @@ const SignupPage = () => {
                 label="Email"
                 className={spacingBottomSmall}
                 disabled={loading}
-                value={email}
-                onChange={setEmail}
+                value={state.email}
+                onChange={eventUpdate('email')}
               />
               <TextField
                 id="confirmEmail"
@@ -126,8 +130,8 @@ const SignupPage = () => {
                 label="Confirm Email"
                 className={spacingBottomSmall}
                 disabled={loading}
-                value={confirmEmail}
-                onChange={setConfirmEmail}
+                value={state.confirmEmail}
+                onChange={eventUpdate('confirmEmail')}
               />
             </Box>
           </Box>
@@ -155,8 +159,8 @@ const SignupPage = () => {
               <Checkbox
                 color="secondary"
                 disabled={loading}
-                checked={agreed}
-                onChange={setAgreed}
+                checked={state.agreed}
+                onChange={eventUpdate('agreed')}
               />
             }
           />

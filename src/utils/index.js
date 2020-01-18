@@ -59,3 +59,9 @@ export const shortenAmount = amt => {
 
 export const transition = property =>
   `${property} 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms`;
+
+export const updateFromEvent = update => key => ev =>
+  update(draft => {
+    draft[key] =
+      ev.target.type === 'checkbox' ? ev.target.checked : ev.target.value;
+  });

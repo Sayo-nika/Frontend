@@ -34,6 +34,7 @@ const useDeveloperStyles = makeStyles(theme => ({
 
 const Developer = ({ id, username, avatar }) => {
   const { icon, link, root } = useDeveloperStyles();
+
   return (
     <Paper className={root} elevation={0}>
       <Box display="flex" alignItems="center">
