@@ -14,7 +14,7 @@ const LoaderView = ({
   const state = useAsync(fetcher, []);
 
   // Rerender the component when any "watch" variable change. Useful for refetching on data change.
-  React.useEffect(() => {}, watch);
+  React.useEffect(() => {}, [watch]);
 
   if (state.error && throwOnError && !ErrorView) throw state.error;
 

@@ -5,15 +5,19 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Typography
+  Typography,
+  Snackbar
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Alert } from '@material-ui/lab';
 import React from 'react';
+import { useAsyncFn } from 'react-use';
 
 import loginBackground from '../assets/img/login-bg.jpg';
 import logo from '../assets/img/logo.svg';
 import { Link, Spacer } from '../components/common';
-import { useEventState, useMemoFalsey } from '../utils';
+import { useEventState, useMemoFalsey, useRecaptcha } from '../utils';
+import { login, setHeader } from '../utils/api';
 
 export const background = {
   width: '100%',
@@ -32,17 +36,39 @@ export const useStyles = makeStyles(theme => ({
   textField: {
     width: '100%',
     marginBottom: theme.spacing(3)
+  },
+  recaptchaCaption: {
+    opacity: 0.65
   }
 }));
 
-const LoginPage = () => {
+const LoginPage = ({ history }) => {
   const [username, setUsername] = useEventState('');
   const [password, setPassword] = useEventState('');
   const [rememberMe, setRemembrance] = useEventState(false);
-  const [loading, setLoading] = React.useState(false);
-  const disabled = useMemoFalsey(loading, username, password);
+  const [error, setError] = React.useState(null);
+  const [errorModal, setErrorModal] = React.useState(false);
+  const execute = useRecaptcha();
 
-  const { background, textField } = useStyles();
+  const [{ loading }, doLogin] = useAsyncFn(async () => {
+    try {
+      const recaptcha = execute('login');
+      const { token } = await login(username, password, recaptcha);
+
+      localStorage.setItem('token', token);
+      setHeader('Authorization', token);
+    } catch (err) {
+      setError(err);
+      setErrorModal(true);
+      return;
+    }
+    // TODO: action for getting users/@me and cache for session so we don't need to keep querying
+    // useContext
+    history.push('/');
+  }, [username, password]);
+
+  const disabled = useMemoFalsey(loading, username, password);
+  const { background, textField, recaptchaCaption } = useStyles();
 
   return (
     <div className={background}>
@@ -55,6 +81,22 @@ const LoginPage = () => {
           width={450}
         >
           <img alt="Sayonika logo" height="100" src={logo} />
+
+          <Snackbar
+            open={!!errorModal}
+            autoHideDuration={7500}
+            onClose={() => setErrorModal(false)}
+            onExited={() => setError(null)}
+          >
+            <Alert
+              elevation={6}
+              severity="error"
+              variant="filled"
+              onClose={() => setErrorModal(false)}
+            >
+              {error && error.message}
+            </Alert>
+          </Snackbar>
 
           <TextField
             id="username"
@@ -93,12 +135,26 @@ const LoginPage = () => {
             </Link>
           </Box>
 
+          <Box width="100%" className={recaptchaCaption}>
+            <Typography variant="caption">
+              This site is protected by reCAPTCHA and the Google
+              <a href="https://policies.google.com/privacy">
+                Privacy Policy
+              </a>{' '}
+              and
+              <a href="https://policies.google.com/terms">
+                Terms of Service
+              </a>{' '}
+              apply.
+            </Typography>
+          </Box>
+
           <Button
             color="primary"
             size="large"
             variant="contained"
             disabled={disabled}
-            onClick={() => setLoading(true)}
+            onClick={doLogin}
           >
             Login
           </Button>
