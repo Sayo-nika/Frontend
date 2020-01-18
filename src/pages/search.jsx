@@ -19,9 +19,10 @@ import {
   Star
 } from 'mdi-material-ui';
 import React from 'react';
+import { useToggle } from 'react-use';
 
 import Showcase from '../components/Showcase';
-import { useEventState, useToggle } from '../utils';
+import { useEventState } from '../utils';
 import { categories, statuses } from '../utils/maps';
 
 const useStyles = makeStyles(theme => ({
