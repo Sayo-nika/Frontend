@@ -36,7 +36,7 @@ export const useStyles = makeStyles(theme => ({
   background,
   textField: {
     width: '100%',
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(1)
   },
   recaptchaCaption: {
     opacity: 0.65
@@ -56,7 +56,7 @@ const LoginPage = ({ history }) => {
 
   const [{ loading }, doLogin] = useAsyncFn(async () => {
     try {
-      const recaptcha = execute('login');
+      const recaptcha = await execute('login');
       const { token } = await login(state.username, state.password, recaptcha);
 
       localStorage.setItem('token', token);
@@ -88,34 +88,6 @@ const LoginPage = ({ history }) => {
         >
           <img alt="Sayonika logo" height="100" src={logo} />
 
-          <Snackbar
-            open={state.snackbarOpen}
-            autoHideDuration={7500}
-            onClose={() =>
-              update(draft => {
-                draft.snackbarOpen = false;
-              })
-            }
-            onExited={() =>
-              update(draft => {
-                draft.error = null;
-              })
-            }
-          >
-            <Alert
-              elevation={6}
-              severity="error"
-              variant="filled"
-              onClose={() =>
-                update(draft => {
-                  draft.snackbarOpen = false;
-                })
-              }
-            >
-              {state.error && state.error.message}
-            </Alert>
-          </Snackbar>
-
           <TextField
             id="username"
             label="Username"
@@ -134,7 +106,7 @@ const LoginPage = ({ history }) => {
             onChange={eventUpdate('password')}
           />
 
-          <Box alignItems="center" display="flex" width="100%" mb={2}>
+          <Box alignItems="center" display="flex" width="100%" mb={1}>
             <FormControlLabel
               label="Remember me"
               control={
@@ -153,7 +125,7 @@ const LoginPage = ({ history }) => {
             </Link>
           </Box>
 
-          <Box width="100%" className={recaptchaCaption}>
+          <Box width="100%" className={recaptchaCaption} mb={2}>
             <Typography variant="caption">
               This site is protected by reCAPTCHA and the Google
               <a href="https://policies.google.com/privacy">
@@ -187,6 +159,34 @@ const LoginPage = ({ history }) => {
           </Box>
         </Box>
       </Paper>
+
+      <Snackbar
+        open={state.snackbarOpen}
+        autoHideDuration={7500}
+        onClose={() =>
+          update(draft => {
+            draft.snackbarOpen = false;
+          })
+        }
+        onExited={() =>
+          update(draft => {
+            draft.error = null;
+          })
+        }
+      >
+        <Alert
+          elevation={6}
+          severity="error"
+          variant="filled"
+          onClose={() =>
+            update(draft => {
+              draft.snackbarOpen = false;
+            })
+          }
+        >
+          {state.error && state.error.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

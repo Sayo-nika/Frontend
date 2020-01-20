@@ -1,20 +1,28 @@
 import {
   Box,
   Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
   Checkbox,
   FormControlLabel,
   Link as MuiLink,
   Paper,
   TextField,
-  Typography
+  Typography,
+  Snackbar
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Alert } from '@material-ui/lab';
 import { useImmer } from 'use-immer';
 import React from 'react';
+import { useAsyncFn } from 'react-use';
 
 import logo from '../assets/img/logo.svg';
 import { Link } from '../components/common';
-import { m, useMemoFalsey, updateFromEvent } from '../utils';
+import { m, useMemoFalsey, useRecaptcha, updateFromEvent } from '../utils';
+import { signup } from '../utils/api';
 
 import { background } from './login';
 
@@ -34,17 +42,58 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SignupPage = () => {
+const SignupPage = ({ history }) => {
   const [state, update] = useImmer({
     username: '',
     password: '',
     confirmPassword: '',
     email: '',
     confirmEmail: '',
-    agreed: false
+    agreed: false,
+    error: null,
+    snackbarOpen: false
   });
-  const [loading, setLoading] = React.useState(false);
   const eventUpdate = updateFromEvent(update);
+  const execute = useRecaptcha();
+  const emailRef = React.useRef(null);
+  const emailConfirmRef = React.useRef(null);
+
+  const [{ loading, value: openDialog }, doSignup] = useAsyncFn(async () => {
+    try {
+      const recaptcha = await execute('signup');
+      await signup(state.username, state.email, state.password, recaptcha);
+    } catch (err) {
+      update(draft => {
+        draft.error = err;
+        draft.snackbarOpen = true;
+      });
+      return false;
+    }
+
+    return true;
+  });
+
+  const validate = {
+    password:
+      state.password &&
+      state.password.length < 8 &&
+      'Password must be longer than 8 characters.',
+    confirmPassword:
+      state.confirmPassword &&
+      state.confirmPassword !== state.password &&
+      'Passwords must match.',
+    email: emailRef.current && emailRef.current.validationMessage,
+    emailConfirm:
+      (emailConfirmRef.current && emailConfirmRef.current.validationMessage) ||
+      (state.confirmEmail &&
+        state.confirmEmail !== state.email &&
+        'Emails must match.')
+  };
+  const toErrProps = validator => ({
+    error: !!validator,
+    helperText: validator
+  });
+
   const disabled = useMemoFalsey(
     loading,
     state.username,
@@ -52,7 +101,9 @@ const SignupPage = () => {
     state.confirmPassword,
     state.email,
     state.confirmEmail,
-    state.agreed
+    state.agreed,
+    // Reduce `validate` down to a single value if they failed or not
+    !Object.values(validate).reduce((prev, curr) => prev || curr, false)
   );
 
   const {
@@ -74,6 +125,7 @@ const SignupPage = () => {
           width={650}
         >
           <img alt="Sayonika logo" height="100" src={logo} />
+
           <Typography
             color="primary"
             component="h1"
@@ -102,6 +154,7 @@ const SignupPage = () => {
                 disabled={loading}
                 value={state.password}
                 onChange={eventUpdate('password')}
+                {...toErrProps(validate.password)}
               />
               <TextField
                 id="confirmPassword"
@@ -111,6 +164,7 @@ const SignupPage = () => {
                 disabled={loading}
                 value={state.confirmPassword}
                 onChange={eventUpdate('confirmPassword')}
+                {...toErrProps(validate.confirmPassword)}
               />
             </Box>
 
@@ -121,8 +175,11 @@ const SignupPage = () => {
                 label="Email"
                 className={spacingBottomSmall}
                 disabled={loading}
+                inputRef={emailRef}
                 value={state.email}
+                onBlur={() => emailRef.current.checkValidity()}
                 onChange={eventUpdate('email')}
+                {...toErrProps(validate.email)}
               />
               <TextField
                 id="confirmEmail"
@@ -130,8 +187,11 @@ const SignupPage = () => {
                 label="Confirm Email"
                 className={spacingBottomSmall}
                 disabled={loading}
+                inputRef={emailConfirmRef}
                 value={state.confirmEmail}
+                onBlur={() => emailConfirmRef.current.checkValidity()}
                 onChange={eventUpdate('confirmEmail')}
+                {...toErrProps(validate.emailConfirm)}
               />
             </Box>
           </Box>
@@ -170,7 +230,7 @@ const SignupPage = () => {
             size="large"
             variant="contained"
             disabled={disabled}
-            onClick={() => setLoading(true)}
+            onClick={doSignup}
           >
             Sign up
           </Button>
@@ -185,6 +245,57 @@ const SignupPage = () => {
           </Box>
         </Box>
       </Paper>
+
+      <Dialog
+        maxWidth="sm"
+        aria-labelledby="verify-title"
+        open={openDialog}
+        disableBackdropClick
+        disableEscapeKeyDown
+        fullWidth
+        onClose={() => history.push('/')}
+      >
+        <DialogTitle id="verify-title">Email Verification Required</DialogTitle>
+        <DialogContent>s</DialogContent>
+        <DialogActions>
+          <Button
+            color="primary"
+            variant="contained"
+            disableElevation
+            onClick={() => history.push('/')}
+          >
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Snackbar
+        open={state.snackbarOpen}
+        autoHideDuration={7500}
+        onClose={() =>
+          update(draft => {
+            draft.snackbarOpen = false;
+          })
+        }
+        onExited={() =>
+          update(draft => {
+            draft.error = null;
+          })
+        }
+      >
+        <Alert
+          elevation={6}
+          severity="error"
+          variant="filled"
+          onClose={() =>
+            update(draft => {
+              draft.snackbarOpen = false;
+            })
+          }
+        >
+          {state.error && state.error.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
