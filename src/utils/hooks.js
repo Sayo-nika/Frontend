@@ -15,7 +15,7 @@ export const useScrollTop = () => useEffect(() => window.scrollTo(0, 0), []);
 
 /** Memo shortcut for checking if at least one of the given args are falsey */
 export const useMemoFalsey = (...vars) =>
-  useMemo(() => vars.reduce((prev, curr) => !prev || !curr), [vars]);
+  useMemo(() => vars.reduce((prev, curr) => !curr || prev), [vars]);
 
 /** Reusable recaptcha hook with preset options */
 export const useRecaptcha = () =>
