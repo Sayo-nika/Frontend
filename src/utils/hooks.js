@@ -1,8 +1,10 @@
-import { useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import useRecaptchaHook from 'react-recaptcha-hook';
+import { useHistory } from 'react-router-dom';
 import { useMediatedState } from 'react-use';
 
 import config from './config';
+import UserContext from './context';
 
 /** Easily set a value from an input event without fiddling around */
 export const useEventState = initial =>
@@ -20,3 +22,19 @@ export const useMemoFalsey = (...vars) =>
 /** Reusable recaptcha hook with preset options */
 export const useRecaptcha = () =>
   useRecaptchaHook({ siteky: config.CAPTCHA_KEY, hideDefaultBadge: true });
+
+export const useNeedsLogin = () => {
+  const { user } = useContext(UserContext);
+  const history = useHistory();
+
+  if (!user) history.push('/login');
+};
+
+export const useNoLogin = () => {
+  const { user } = useContext(UserContext);
+  const history = useHistory();
+
+  if (user) history.push('/');
+};
+
+export const useIsLoggedIn = () => !!useContext(UserContext).user;

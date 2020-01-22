@@ -17,8 +17,14 @@ import { useAsyncFn } from 'react-use';
 import loginBackground from '../assets/img/login-bg.jpg';
 import logo from '../assets/img/logo.svg';
 import { Link, Spacer } from '../components/common';
-import { useMemoFalsey, useRecaptcha, updateFromEvent } from '../utils';
-import { login, setHeader } from '../utils/api';
+import {
+  useMemoFalsey,
+  useNoLogin,
+  useRecaptcha,
+  updateFromEvent
+} from '../utils';
+import { getUser, login, setHeader } from '../utils/api';
+import UserContext from '../utils/context';
 
 export const background = {
   width: '100%',
@@ -44,6 +50,8 @@ export const useStyles = makeStyles(theme => ({
 }));
 
 const LoginPage = ({ history }) => {
+  useNoLogin();
+
   const [state, update] = useImmer({
     username: '',
     password: '',
@@ -53,8 +61,12 @@ const LoginPage = ({ history }) => {
   });
   const execute = useRecaptcha();
   const eventUpdate = updateFromEvent(update);
+  const { user, setUser } = React.useContext(UserContext);
 
-  const [{ loading }, doLogin] = useAsyncFn(async () => {
+  // TODO: `?to` qs
+  if (user) history.push('/');
+
+  const [{ loading, error }, doLogin] = useAsyncFn(async () => {
     try {
       const recaptcha = await execute('login');
       const { token } = await login(state.username, state.password, recaptcha);
@@ -68,10 +80,14 @@ const LoginPage = ({ history }) => {
       });
       return;
     }
-    // TODO: action for getting users/@me and cache for session so we don't need to keep querying
-    // useContext
+
+    const user = await getUser('@me');
+
+    setUser(user);
     history.push('/');
   }, [state.username, state.password]);
+
+  if (error) throw error;
 
   const disabled = useMemoFalsey(loading, state.username, state.password);
   const { background, textField, recaptchaCaption } = useStyles();

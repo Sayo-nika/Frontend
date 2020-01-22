@@ -17,10 +17,10 @@ import {
   EmoticonExcitedOutline
 } from 'mdi-material-ui';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useAsyncFn, useToggle } from 'react-use';
 
-import { shortenAmount } from '../../utils';
+import { shortenAmount, useIsLoggedIn } from '../../utils';
 import { reviewReact } from '../../utils/api';
 import useGlobalStyles from '../../utils/globalStyles';
 
@@ -77,6 +77,8 @@ const Review = ({
   const [upvoted, toggleUpvote] = useToggle(!!userUpvoted);
   const [downvoted, toggleDownvote] = useToggle(!!userDownvoted);
   const [foundFunny, toggleFoundFunny] = useToggle(!!userFoundFunny);
+  const isLoggedIn = useIsLoggedIn();
+  const history = useHistory();
 
   const changeToggles = {
     toggleUpvote,
@@ -90,18 +92,27 @@ const Review = ({
   const [, reactFunny] = useReactionChange('funny', id, changeToggles);
 
   const onUpvote = () => {
+    if (!isLoggedIn)
+      return history.push(`/login?to=${encodeURIComponent(`/mods/${id}`)}`);
+
     // Give immediate feedback on reaction state.
     if (!upvoted) toggleDownvote(false);
     toggleUpvote();
     reactUpvote(!upvoted);
   };
   const onDownvote = () => {
+    if (!isLoggedIn)
+      return history.push(`/login?to=${encodeURIComponent(`/mods/${id}`)}`);
+
     // Give immediate feedback on reaction state.
     if (!downvoted) toggleUpvote(false);
     toggleDownvote();
     reactDownvote(!downvoted);
   };
   const onFoundFunny = () => {
+    if (!isLoggedIn)
+      return history.push(`/login?to=${encodeURIComponent(`/mods/${id}`)}`);
+
     toggleFoundFunny();
     reactFunny(!foundFunny);
   };

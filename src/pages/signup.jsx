@@ -21,7 +21,13 @@ import { useAsyncFn } from 'react-use';
 
 import logo from '../assets/img/logo.svg';
 import { Link } from '../components/common';
-import { m, useMemoFalsey, useRecaptcha, updateFromEvent } from '../utils';
+import {
+  m,
+  useMemoFalsey,
+  useNoLogin,
+  useRecaptcha,
+  updateFromEvent
+} from '../utils';
 import { signup } from '../utils/api';
 
 import { background } from './login';
@@ -43,6 +49,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignupPage = ({ history }) => {
+  useNoLogin();
+
   const [state, update] = useImmer({
     username: '',
     password: '',
