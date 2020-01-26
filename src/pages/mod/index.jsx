@@ -24,6 +24,7 @@ import { Route } from 'react-router-dom';
 import Carousel, { ImgSlide } from '../../components/Carousel';
 import { RefLink, Root, Spacer } from '../../components/common';
 import Footer from '../../components/Footer';
+import HTTPErrorView from '../../components/HTTPErrorView';
 import LoaderView from '../../components/LoaderView';
 import Markdown from '../../components/Markdown';
 import Navbar from '../../components/Navbar';
@@ -75,7 +76,7 @@ const ModPage = ({
       <Navbar />
 
       <Container className={pageContent}>
-        <LoaderView fetcher={() => getMod(id)} errorView={ErrorView}>
+        <LoaderView fetcher={() => getMod(id)} errorView={HTTPErrorView}>
           {({
             value: {
               title,
@@ -244,24 +245,6 @@ const ModPage = ({
       </Container>
       <Footer />
     </Root>
-  );
-};
-
-const ErrorView = ({ ...state }) => {
-  console.log(state);
-
-  return (
-    <Box
-      alignItems="center"
-      display="flex"
-      height="100%"
-      justifyContent="center"
-      width="100%"
-    >
-      <Typography component="h1" variant="h3">
-        Unknown mod
-      </Typography>
-    </Box>
   );
 };
 
