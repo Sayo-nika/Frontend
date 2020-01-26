@@ -5,8 +5,11 @@ import React from 'react';
 
 import { Button, Root, Spacer } from '../components/common';
 import Footer from '../components/Footer';
+import LoaderView from '../components/LoaderView';
+import HTTPErrorView from '../components/HTTPErrorView';
 import Navbar from '../components/Navbar';
 import Showcase from '../components/Showcase';
+import { getUser } from '../utils/api';
 
 const useStyles = makeStyles(theme => ({
   headerIcon: {
@@ -67,61 +70,77 @@ const UserPage = ({
       <Navbar />
 
       {/* User header */}
-      <Container
-        alignItems="center"
-        display="flex"
-        className={header}
-        component={Box}
-        py={8}
-      >
-        <Avatar
-          alt="user icon"
-          src="https://images.unsplash.com/photo-1572973785853-64e84f7a1cf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&q=80"
-          className={headerIcon}
-        />
+      <Box flex="1">
+        <LoaderView fetcher={() => getUser(id)} errorView={HTTPErrorView}>
+          {({ value: {} }) => (
+            <>
+              <Container
+                alignItems="center"
+                display="flex"
+                className={header}
+                component={Box}
+                py={8}
+              >
+                <Avatar
+                  alt="user icon"
+                  src="https://images.unsplash.com/photo-1572973785853-64e84f7a1cf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&q=80"
+                  className={headerIcon}
+                />
 
-        <Box display="flex" flexDirection="column" className={headerInfo}>
-          <Typography component="h1" variant="h4">
-            User Person Who Is Human
-          </Typography>
-          <Typography component="p" variant="h6">
-            Lorem ipsum dolor sit amet.
-          </Typography>
-          <Box display="flex" className={headerInfoSocial}>
-            <Twitter fontSize="inherit" />
-            <Reddit fontSize="inherit" />
-            <Discord fontSize="inherit" />
-          </Box>
-        </Box>
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  className={headerInfo}
+                >
+                  <Typography component="h1" variant="h4">
+                    User Person Who Is Human
+                  </Typography>
+                  <Typography component="p" variant="h6">
+                    Lorem ipsum dolor sit amet.
+                  </Typography>
+                  <Box display="flex" className={headerInfoSocial}>
+                    <Twitter fontSize="inherit" />
+                    <Reddit fontSize="inherit" />
+                    <Discord fontSize="inherit" />
+                  </Box>
+                </Box>
 
-        {/* if logged in and on own profile, show these */}
-        <Spacer />
-        <Button
-          color="primary"
-          to="/profile/edit"
-          variant="contained"
-          className={editButton}
-        >
-          Edit Profile
-        </Button>
-      </Container>
+                {/* if logged in and on own profile, show these */}
+                <Spacer />
+                {id === '@me' && (
+                  <Button
+                    color="primary"
+                    to="/profile/edit"
+                    variant="contained"
+                    className={editButton}
+                  >
+                    Edit Profile
+                  </Button>
+                )}
+              </Container>
 
-      {/* Body */}
-      <Container>
-        {/* TODO: Make small cards */}
-        <Showcase
-          title="Authored Mods"
-          mods={[]}
-          placeholder={<Placeholder text="This user hasn't made any mods." />}
-        />
-        <Showcase
-          title="Favourite Mods"
-          mods={[]}
-          placeholder={
-            <Placeholder text="This user hasn't favourited any mods yet 😢" />
-          }
-        />
-      </Container>
+              {/* Body */}
+              <Container>
+                {/* TODO: Make small cards */}
+                <Showcase
+                  title="Authored Mods"
+                  mods={[]}
+                  placeholder={
+                    <Placeholder text="This user hasn't made any mods." />
+                  }
+                />
+                <Showcase
+                  title="Favourite Mods"
+                  mods={[]}
+                  placeholder={
+                    <Placeholder text="This user hasn't favourited any mods yet 😢" />
+                  }
+                />
+              </Container>
+            </>
+          )}
+        </LoaderView>
+      </Box>
 
       <Footer />
     </Root>
