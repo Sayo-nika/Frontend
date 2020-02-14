@@ -1,3 +1,5 @@
+# THIS PROJECT HAS BEEN ARCHIVED AND IS NO LONGER MAINTAINED.
+
 # Sayonika (Frontend)
 
 The frontend for the Sayonika DDLC mod data base.
